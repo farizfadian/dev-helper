@@ -1,0 +1,214 @@
+{{define "content"}}
+<style>
+    .drop-zone {
+        border: 2px dashed var(--bs-border-color);
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        background: var(--bs-body-bg);
+    }
+    .drop-zone:hover {
+        border-color: #0d6efd;
+    }
+    .drop-zone.has-file {
+        border-color: #198754;
+    }
+    .result-match {
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 0.85rem;
+    }
+    .result-context {
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 0.85rem;
+        color: var(--bs-secondary-color);
+        font-style: italic;
+    }
+    .result-separator td {
+        text-align: center;
+        color: var(--bs-secondary-color);
+        padding: 2px 0 !important;
+        font-size: 0.8rem;
+        border: none !important;
+    }
+    .line-num {
+        color: var(--bs-secondary-color);
+        user-select: none;
+        text-align: right;
+        white-space: nowrap;
+        width: 60px;
+        min-width: 60px;
+    }
+    .log-text {
+        word-break: break-all;
+        white-space: pre-wrap;
+    }
+    .line-copy-cell {
+        width: 32px;
+        text-align: center;
+        vertical-align: middle;
+        padding: 0 4px !important;
+    }
+    .line-copy-btn {
+        opacity: 0;
+        transition: opacity 0.15s;
+        padding: 2px 5px;
+        font-size: 0.75rem;
+        line-height: 1;
+        border: none;
+        background: none;
+        color: var(--bs-secondary-color);
+        cursor: pointer;
+    }
+    .line-copy-btn:hover {
+        color: #0d6efd;
+    }
+    tr:hover .line-copy-btn {
+        opacity: 1;
+    }
+    mark {
+        background-color: #fff3cd;
+        padding: 0 2px;
+        border-radius: 2px;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0"><i class="bi bi-file-earmark-text"></i> Log Viewer <i id="pinToggle" data-tool="logviewer" class="bi bi-star pin-star" onclick="togglePin('logviewer')"></i></h4>
+</div>
+
+<!-- Upload & Filter Section -->
+<div class="card mb-3">
+    <div class="card-body">
+        <!-- Drop Zone -->
+        <div id="dropZone" class="drop-zone mb-3" onclick="document.getElementById('fileInput').click()">
+            <i class="bi bi-cloud-arrow-up fs-1 text-muted"></i>
+            <p class="mb-0 mt-2 text-muted" id="dropText">Drag & drop a log file here, or click to browse</p>
+            <small class="text-muted">.log, .txt, .csv, or any text file</small>
+        </div>
+        <input type="file" id="fileInput" class="d-none" accept=".log,.txt,.csv,.text,.out,.err">
+
+        <!-- Keyword Input -->
+        <div class="mb-3">
+            <label for="keywordInput" class="form-label fw-semibold">Keywords</label>
+            <input type="text" class="form-control" id="keywordInput" placeholder="Enter keywords, comma-separated (e.g. PR9628, ERROR, timeout)">
+        </div>
+
+        <!-- Filter Options -->
+        <div class="row g-3 align-items-end">
+            <!-- Mode Toggle -->
+            <div class="col-auto">
+                <label class="form-label fw-semibold d-block">Mode</label>
+                <div class="btn-group btn-group-sm" role="group">
+                    <input type="radio" class="btn-check" name="mode" id="modeOr" value="or" checked>
+                    <label class="btn btn-outline-primary" for="modeOr">OR</label>
+                    <input type="radio" class="btn-check" name="mode" id="modeAnd" value="and">
+                    <label class="btn btn-outline-primary" for="modeAnd">AND</label>
+                </div>
+            </div>
+
+            <!-- Context Lines -->
+            <div class="col-auto">
+                <label for="contextLines" class="form-label fw-semibold">Context Lines</label>
+                <input type="number" class="form-control form-control-sm" id="contextLines" value="0" min="0" max="10" style="width: 80px;">
+            </div>
+
+            <!-- Case Sensitive -->
+            <div class="col-auto">
+                <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" id="caseSensitive">
+                    <label class="form-check-label" for="caseSensitive">Case Sensitive</label>
+                </div>
+            </div>
+
+            <!-- Regex -->
+            <div class="col-auto">
+                <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" id="useRegex">
+                    <label class="form-check-label" for="useRegex">Regex</label>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="col-auto ms-auto">
+                <button class="btn btn-primary btn-sm" id="submitBtn" disabled onclick="submitFilter()">
+                    <i class="bi bi-funnel"></i> Filter
+                </button>
+                <button class="btn btn-outline-secondary btn-sm d-none" id="copyBtn" onclick="copyResults()">
+                    <i class="bi bi-clipboard"></i> Copy
+                </button>
+                <button class="btn btn-success btn-sm d-none" id="saveBtn" onclick="saveResults()">
+                    <i class="bi bi-save"></i> Save
+                </button>
+                <button class="btn btn-outline-primary btn-sm d-none" id="shareBtn" onclick="shareResults()">
+                    <i class="bi bi-share"></i> Share
+                </button>
+                <button class="btn btn-outline-success btn-sm d-none" id="downloadBtn" onclick="downloadResults()">
+                    <i class="bi bi-download"></i> Download
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Bar -->
+<div id="statsBar" class="alert alert-info py-2 d-none">
+    <i class="bi bi-info-circle"></i> <span id="statsText"></span>
+</div>
+
+<!-- Saved File Info -->
+<div id="savedInfo" class="card mb-3 border-success d-none">
+    <div class="card-body py-2">
+        <div class="row g-2 align-items-center">
+            <div class="col-md-6">
+                <label class="form-label mb-1 small fw-semibold text-success"><i class="bi bi-link-45deg"></i> URL</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" id="savedUrl" readonly>
+                    <button class="btn btn-outline-secondary" onclick="copyField('savedUrl')" title="Copy URL">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label mb-1 small fw-semibold text-success"><i class="bi bi-folder2"></i> Path</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" id="savedPath" readonly>
+                    <button class="btn btn-outline-secondary" onclick="copyField('savedPath')" title="Copy Path">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Results -->
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-sm table-hover mb-0" id="resultsTable">
+                <thead class="table-light">
+                    <tr>
+                        <th class="line-num">Line #</th>
+                        <th>Content</th>
+                        <th style="width: 32px;"></th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody">
+                    <tr>
+                        <td colspan="3" class="text-center text-muted py-4">
+                            <i class="bi bi-file-earmark-text fs-1 d-block mb-2"></i>
+                            Upload a log file and enter filter keywords to begin
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/logviewer.js"></script>
+{{end}}

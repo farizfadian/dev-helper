@@ -1,0 +1,120 @@
+{{define "content"}}
+<style>
+    .editor-pane {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .preview-pane {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 4px;
+        padding: 1.25rem;
+        overflow-y: auto;
+        background: var(--bs-body-bg);
+    }
+    .preview-pane img {
+        max-width: 100%;
+        height: auto;
+    }
+    .preview-pane table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .preview-pane table th,
+    .preview-pane table td {
+        border: 1px solid var(--bs-border-color);
+        padding: 0.5rem;
+    }
+    .preview-pane table th {
+        background-color: var(--bs-tertiary-bg);
+    }
+    .preview-pane pre {
+        background: var(--bs-tertiary-bg);
+        border-radius: 6px;
+        padding: 1rem;
+        overflow-x: auto;
+    }
+    .preview-pane code {
+        font-size: 0.875em;
+    }
+    .preview-pane blockquote {
+        border-left: 4px solid var(--bs-border-color);
+        padding-left: 1rem;
+        color: var(--bs-secondary-color);
+        margin-left: 0;
+    }
+    .preview-pane h1, .preview-pane h2 {
+        border-bottom: 1px solid var(--bs-border-color);
+        padding-bottom: 0.3rem;
+    }
+    .preview-pane input[type="checkbox"] {
+        margin-right: 0.3rem;
+    }
+    .drop-zone {
+        border: 2px dashed var(--bs-border-color);
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+        cursor: pointer;
+        color: var(--bs-secondary-color);
+        transition: all 0.15s ease;
+    }
+    .drop-zone:hover {
+        border-color: #0d6efd;
+        color: #0d6efd;
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="mb-0"><i class="bi bi-markdown"></i> Markdown Viewer <i id="pinToggle" data-tool="markdown" class="bi bi-star pin-star" onclick="togglePin('markdown')"></i></h5>
+    <div class="d-flex align-items-center gap-2 flex-wrap">
+        <button class="btn btn-sm btn-outline-secondary" id="openFileBtn" title="Open File">
+            <i class="bi bi-folder2-open"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-secondary" id="copyHtmlBtn" title="Copy rendered HTML">
+            <i class="bi bi-clipboard"></i> Copy HTML
+        </button>
+        <button class="btn btn-sm btn-outline-secondary" id="clearBtn" title="Clear">
+            <i class="bi bi-x-lg"></i> Clear
+        </button>
+        <input type="file" id="fileInput" class="d-none" accept=".md,.markdown,.mdx,.txt">
+    </div>
+</div>
+
+<!-- Drop Zone -->
+<div id="dropZone" class="drop-zone mb-2">
+    <i class="bi bi-file-earmark-text" style="font-size: 1.2rem;"></i>
+    Drag & drop a Markdown file here, or click to browse
+</div>
+
+<!-- URL Input -->
+<div class="input-group input-group-sm mb-2">
+    <span class="input-group-text"><i class="bi bi-link-45deg"></i></span>
+    <input type="text" id="urlInput" class="form-control" placeholder="Enter URL to fetch .md file">
+    <button class="btn btn-primary" id="fetchUrlBtn">
+        <i class="bi bi-cloud-download"></i> Fetch
+    </button>
+</div>
+
+<!-- Side by side: Editor + Preview -->
+<div class="row g-3">
+    <div class="col-md-6">
+        <label class="form-label small text-muted">Markdown</label>
+        <div id="markdownEditor" class="editor-pane" style="height: calc(100vh - 310px); min-height: 400px;"></div>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label small text-muted">Preview</label>
+        <div id="previewPane" class="preview-pane" style="height: calc(100vh - 310px); min-height: 400px;"></div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+<script src="/static/monaco-editor/min/vs/loader.js"></script>
+<script src="/static/markdown.js"></script>
+{{end}}

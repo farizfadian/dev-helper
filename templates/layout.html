@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Helper</title>
+    <script>
+    // Apply theme immediately to prevent flash of wrong theme
+    (function() {
+        const saved = localStorage.getItem('devhelper_theme') || 'auto';
+        let effective = saved;
+        if (saved === 'auto') {
+            effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-bs-theme', effective);
+    })();
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body { background-color: var(--bs-body-bg); transition: background-color 0.2s ease, color 0.2s ease; }
+        .drop-active {
+            border-color: #0d6efd !important;
+            background-color: #cfe2ff !important;
+            transform: scale(1.01);
+            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.25);
+            transition: all 0.15s ease;
+        }
+        [data-bs-theme="dark"] .drop-active {
+            background-color: #1a3a5c !important;
+        }
+        .modal-backdrop.show {
+            opacity: 1 !important;
+            background-color: rgba(0, 0, 0, 0.85) !important;
+            backdrop-filter: blur(8px);
+        }
+        .pin-star {
+            cursor: pointer;
+            font-size: 1rem;
+            vertical-align: middle;
+            margin-left: 0.4rem;
+            transition: all 0.15s ease;
+        }
+        .pin-star:hover {
+            transform: scale(1.2);
+        }
+        /* Dark mode: invert ChatGPT SVG icon */
+        [data-bs-theme="dark"] img[src*="chatgpt.svg"] {
+            filter: invert(1);
+        }
+        .theme-icon { width: 1em; text-align: center; }
+        /* Scrollable pinned nav */
+        .pinned-nav-scroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+            max-width: calc(100vw - 480px);
+        }
+        .pinned-nav-scroll::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        .pinned-nav-scroll .nav-item .nav-link { white-space: nowrap; }
+        /* Fade hints when scrollable */
+        .pinned-nav-wrapper {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+        }
+        .pinned-nav-wrapper::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 24px;
+            background: linear-gradient(to right, transparent, var(--bs-dark));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .pinned-nav-wrapper.has-scroll-right::after { opacity: 1; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="bi bi-tools"></i> Dev Helper
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="pinned-nav-wrapper">
+                <ul class="navbar-nav flex-nowrap pinned-nav-scroll" id="pinnedNav">
+                    <li class="nav-item d-none" data-tool="upload">
+                        <a class="nav-link {{if eq .ActivePage "upload"}}active{{end}}" href="/upload">
+                            <i class="bi bi-upload"></i> Upload
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="files">
+                        <a class="nav-link {{if eq .ActivePage "files"}}active{{end}}" href="/explorer">
+                            <i class="bi bi-folder2-open"></i> File Explorer
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="prettify">
+                        <a class="nav-link {{if eq .ActivePage "prettify"}}active{{end}}" href="/prettify">
+                            <i class="bi bi-braces"></i> Prettify
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="logs">
+                        <a class="nav-link {{if eq .ActivePage "logs"}}active{{end}}" href="/logs">
+                            <i class="bi bi-terminal"></i> Log Aggregator
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="logviewer">
+                        <a class="nav-link {{if eq .ActivePage "logviewer"}}active{{end}}" href="/logviewer">
+                            <i class="bi bi-file-earmark-text"></i> Log Viewer
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="editor">
+                        <a class="nav-link {{if eq .ActivePage "editor"}}active{{end}}" href="/editor">
+                            <i class="bi bi-code-slash"></i> Code Editor
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="markdown">
+                        <a class="nav-link {{if eq .ActivePage "markdown"}}active{{end}}" href="/markdown">
+                            <i class="bi bi-markdown"></i> Markdown Viewer
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="diff">
+                        <a class="nav-link {{if eq .ActivePage "diff"}}active{{end}}" href="/diff">
+                            <i class="bi bi-file-diff"></i> Code Diff
+                        </a>
+                    </li>
+                </ul>
+                </div>
+                <ul class="navbar-nav ms-auto flex-nowrap">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="themeToggle" title="Switch theme">
+                            <i class="bi bi-circle-half" id="themeIcon"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item theme-option" href="#" data-theme="light"><i class="bi bi-sun-fill theme-icon text-warning"></i> Light</a></li>
+                            <li><a class="dropdown-item theme-option" href="#" data-theme="dark"><i class="bi bi-moon-fill theme-icon text-primary"></i> Dark</a></li>
+                            <li><a class="dropdown-item theme-option" href="#" data-theme="auto"><i class="bi bi-circle-half theme-icon"></i> Auto</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="askAiBtn">
+                            <i class="bi bi-robot"></i> Ask AI
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><h6 class="dropdown-header">Cloud AI</h6></li>
+                            <li><a class="dropdown-item ai-link" href="#" data-ai="claude"><img src="/static/icons/claude.png" width="16" height="16" style="vertical-align: -2px;"> Claude</a></li>
+                            <li><a class="dropdown-item ai-link" href="#" data-ai="chatgpt"><img src="/static/icons/chatgpt.svg" width="16" height="16" style="vertical-align: -2px;"> ChatGPT</a></li>
+                            <li><a class="dropdown-item ai-link" href="#" data-ai="gemini"><img src="/static/icons/gemini.png" width="16" height="16" style="vertical-align: -2px;"> Gemini</a></li>
+                            <li><a class="dropdown-item ai-link" href="#" data-ai="deepseek"><img src="/static/icons/deepseek.svg" width="16" height="16" style="vertical-align: -2px;"> DeepSeek</a></li>
+                            <li><a class="dropdown-item ai-link" href="#" data-ai="grok"><img src="/static/icons/grok.png" width="16" height="16" style="vertical-align: -2px;"> Grok</a></li>
+                            <li><a class="dropdown-item ai-link" href="#" data-ai="perplexity"><img src="/static/icons/perplexity.png" width="16" height="16" style="vertical-align: -2px;"> Perplexity</a></li>
+                            <li><a class="dropdown-item ai-link" href="#" data-ai="copilot"><img src="/static/icons/copilot.ico" width="16" height="16" style="vertical-align: -2px;"> Copilot</a></li>
+                            <li><a class="dropdown-item ai-link" href="#" data-ai="mistral"><img src="/static/icons/mistral.ico" width="16" height="16" style="vertical-align: -2px;"> Mistral</a></li>
+                            <li><a class="dropdown-item ai-link" href="#" data-ai="huggingchat"><img src="/static/icons/huggingchat.ico" width="16" height="16" style="vertical-align: -2px;"> HuggingChat</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><h6 class="dropdown-header">Local AI</h6></li>
+                            <li><a class="dropdown-item ai-link" href="#" data-ai="ollama"><img src="/static/icons/ollama.png" width="16" height="16" style="vertical-align: -2px;"> Ollama</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{if eq .ActivePage "home"}}active{{end}}" href="/" title="All Tools">
+                            <i class="bi bi-grid-3x3-gap"></i> All Tools
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4 mb-5">
+        {{template "content" .}}
+    </div>
+
+    <!-- Ollama URL Modal -->
+    <div class="modal fade" id="ollamaModal" tabindex="-1">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h6 class="modal-title"><i class="bi bi-hdd-network"></i> Ollama URL</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="ollamaUrlInput" class="form-control form-control-sm" placeholder="http://localhost:11434">
+                    <div class="form-text">Enter your Ollama web UI URL</div>
+                </div>
+                <div class="modal-footer py-2">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-sm btn-primary" id="ollamaGoBtn">Open</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-muted py-3 mt-auto border-top" style="font-size: 0.85rem;">
+        Made with ❤️ by <a href="https://github.com/farizfadian" target="_blank" class="text-decoration-none">Fariz</a> & <a href="https://claude.ai" target="_blank" class="text-decoration-none">Claude <img src="/static/icons/claude.png" width="16" height="16" style="vertical-align: -2px;"></a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // ── Theme ──
+    const THEME_KEY = 'devhelper_theme';
+
+    function getThemePref() {
+        return localStorage.getItem(THEME_KEY) || 'auto';
+    }
+
+    function getEffectiveTheme(pref) {
+        if (pref === 'auto') {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        return pref;
+    }
+
+    function applyTheme(pref) {
+        const effective = getEffectiveTheme(pref);
+        document.documentElement.setAttribute('data-bs-theme', effective);
+
+        // Update navbar icon
+        const icon = document.getElementById('themeIcon');
+        if (icon) {
+            icon.className = 'bi ' + (pref === 'auto' ? 'bi-circle-half' : pref === 'dark' ? 'bi-moon-fill' : 'bi-sun-fill');
+        }
+
+        // Mark active item in dropdown
+        document.querySelectorAll('.theme-option').forEach(el => {
+            el.classList.toggle('active', el.dataset.theme === pref);
+        });
+
+        // Sync Monaco editors if available
+        if (typeof monaco !== 'undefined') {
+            monaco.editor.setTheme(effective === 'dark' ? 'vs-dark' : 'vs');
+        }
+
+        // Dispatch event for page-specific handling
+        window.dispatchEvent(new CustomEvent('devhelper-theme', { detail: { theme: effective, pref: pref } }));
+    }
+
+    // Theme option clicks
+    document.querySelectorAll('.theme-option').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pref = this.dataset.theme;
+            localStorage.setItem(THEME_KEY, pref);
+            applyTheme(pref);
+        });
+    });
+
+    // Listen for system theme changes (for auto mode)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (getThemePref() === 'auto') applyTheme('auto');
+    });
+
+    // Apply on load
+    applyTheme(getThemePref());
+
+    // ── Scrollable pinned nav ──
+    (function() {
+        const nav = document.getElementById('pinnedNav');
+        const wrapper = nav.parentElement;
+        function checkScroll() {
+            const canScroll = nav.scrollWidth > nav.clientWidth + 1;
+            const atEnd = nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 1;
+            wrapper.classList.toggle('has-scroll-right', canScroll && !atEnd);
+        }
+        nav.addEventListener('scroll', checkScroll);
+        window.addEventListener('resize', checkScroll);
+        // Mouse wheel → horizontal scroll
+        nav.addEventListener('wheel', function(e) {
+            if (nav.scrollWidth > nav.clientWidth) {
+                e.preventDefault();
+                nav.scrollLeft += e.deltaY;
+            }
+        }, { passive: false });
+        // Re-check after navbar pins change
+        const obs = new MutationObserver(checkScroll);
+        obs.observe(nav, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+        checkScroll();
+    })();
+
+    // ── Pinned tools (shared across all pages) ──
+    const PINNED_KEY = 'devhelper_pinned_tools';
+    const DEFAULT_PINNED = ['upload', 'files', 'prettify', 'editor', 'markdown', 'diff'];
+
+    function getPinnedTools() {
+        try {
+            const stored = localStorage.getItem(PINNED_KEY);
+            if (!stored) {
+                // First visit: init with defaults
+                savePinnedTools(DEFAULT_PINNED);
+                return [...DEFAULT_PINNED];
+            }
+            return JSON.parse(stored);
+        } catch { return [...DEFAULT_PINNED]; }
+    }
+
+    function savePinnedTools(list) {
+        localStorage.setItem(PINNED_KEY, JSON.stringify(list));
+    }
+
+    function isPinned(toolId) {
+        return getPinnedTools().includes(toolId);
+    }
+
+    function togglePin(toolId) {
+        const pinned = getPinnedTools();
+        const idx = pinned.indexOf(toolId);
+        const wasPinned = idx !== -1;
+        if (wasPinned) {
+            pinned.splice(idx, 1);
+        } else {
+            pinned.push(toolId);
+        }
+        savePinnedTools(pinned);
+        refreshNavbar();
+        refreshPinStar(toolId);
+        showToast(wasPinned ? '📌 Unpinned from navbar' : '⭐ Pinned to navbar');
+    }
+
+    function showToast(msg) {
+        const toast = document.createElement('div');
+        toast.className = 'position-fixed bottom-0 end-0 m-3 alert alert-dark py-2 px-3 small shadow-sm';
+        toast.style.zIndex = '9999';
+        toast.textContent = msg;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 1500);
+    }
+
+    function refreshNavbar() {
+        const pinned = getPinnedTools();
+        document.querySelectorAll('#pinnedNav [data-tool]').forEach(li => {
+            li.classList.toggle('d-none', !pinned.includes(li.dataset.tool));
+        });
+    }
+
+    function refreshPinStar(toolId) {
+        const star = document.getElementById('pinToggle');
+        if (!star || star.dataset.tool !== toolId) return;
+        const pinned = isPinned(toolId);
+        star.className = pinned
+            ? 'bi bi-star-fill text-warning pin-star'
+            : 'bi bi-star text-muted pin-star';
+        star.title = pinned ? 'Unpin from navbar' : 'Pin to navbar';
+    }
+
+    function refreshPinStarAuto() {
+        const star = document.getElementById('pinToggle');
+        if (!star) return;
+        const toolId = star.dataset.tool;
+        const pinned = isPinned(toolId);
+        star.className = pinned
+            ? 'bi bi-star-fill text-warning pin-star'
+            : 'bi bi-star text-muted pin-star';
+        star.title = pinned ? 'Unpin from navbar' : 'Pin to navbar';
+    }
+
+    // Init on page load
+    refreshNavbar();
+    // Wait for DOM content to be ready for pin star (content template parsed after this)
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', refreshPinStarAuto);
+    } else {
+        refreshPinStarAuto();
+    }
+
+    // ── Ask AI ──
+    const AI_URLS = {
+        claude: 'https://claude.ai/new',
+        chatgpt: 'https://chatgpt.com',
+        gemini: 'https://gemini.google.com/app',
+        deepseek: 'https://chat.deepseek.com',
+        grok: 'https://grok.com',
+        perplexity: 'https://www.perplexity.ai',
+        copilot: 'https://copilot.microsoft.com',
+        mistral: 'https://chat.mistral.ai',
+        huggingchat: 'https://huggingface.co/chat',
+    };
+    const OLLAMA_KEY = 'devhelper_ollama_url';
+
+    document.querySelectorAll('.ai-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const ai = this.dataset.ai;
+            if (ai === 'ollama') {
+                const ollamaInput = document.getElementById('ollamaUrlInput');
+                ollamaInput.value = localStorage.getItem(OLLAMA_KEY) || 'http://localhost:11434';
+                new bootstrap.Modal(document.getElementById('ollamaModal')).show();
+            } else {
+                window.open(AI_URLS[ai], 'devhelper_' + ai);
+            }
+        });
+    });
+
+    document.getElementById('ollamaGoBtn').addEventListener('click', function() {
+        const url = document.getElementById('ollamaUrlInput').value.trim();
+        if (!url) return;
+        localStorage.setItem(OLLAMA_KEY, url);
+        bootstrap.Modal.getInstance(document.getElementById('ollamaModal')).hide();
+        window.open(url, 'devhelper_ollama');
+    });
+
+    // Enter key in Ollama URL input
+    document.getElementById('ollamaUrlInput').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') document.getElementById('ollamaGoBtn').click();
+    });
+    </script>
+    {{template "scripts" .}}
+</body>
+</html>

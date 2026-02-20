@@ -1,0 +1,91 @@
+{{define "content"}}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0"><i class="bi bi-folder2-open"></i> Files <i id="pinToggle" data-tool="files" class="bi bi-star pin-star" onclick="togglePin('files')"></i></h4>
+            <div class="d-flex gap-2 align-items-center">
+                <input type="search" id="searchBox" class="form-control form-control-sm" placeholder="Search files..." style="width: 220px;">
+                <small class="text-muted text-nowrap" id="fileCount"></small>
+                <button id="deleteAllBtn" class="btn btn-sm btn-outline-danger d-none text-nowrap">
+                    <i class="bi bi-trash"></i> Delete All
+                </button>
+            </div>
+        </div>
+
+        <!-- Drop Zone (compact) -->
+        <div id="dropZone" class="border border-2 border-dashed rounded-3 p-3 text-center mb-3"
+             style="border-color: var(--bs-border-color); cursor: pointer; transition: all 0.2s; background: var(--bs-body-bg);">
+            <i class="bi bi-cloud-arrow-up" style="font-size: 1.5rem; color: var(--bs-secondary-color);"></i>
+            <span class="text-muted ms-2">Drop files here, click to browse, or <strong>Ctrl+V</strong> to paste</span>
+            <input type="file" id="fileInput" class="d-none" multiple>
+        </div>
+
+        <!-- Upload Progress -->
+        <div id="uploadProgress" class="mb-3 d-none">
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">Uploading...</div>
+            </div>
+        </div>
+
+        <!-- Files Grid -->
+        <div id="filesGrid" class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
+            <div class="col-12 text-center text-muted py-5" id="emptyState">
+                <i class="bi bi-folder2-open" style="font-size: 3rem;"></i>
+                <p class="mt-2">No files uploaded yet</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div class="modal fade" id="lightboxModal" tabindex="-1">
+    <button type="button" class="btn-close btn-close-white position-fixed" data-bs-dismiss="modal"
+            style="top: 20px; right: 20px; z-index: 1060; font-size: 1.2rem; opacity: 0.8;"></button>
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-transparent border-0 shadow-none">
+            <div class="modal-body p-0 text-center">
+                <img id="lightboxImg" src="" class="img-fluid rounded" style="max-height: 85vh; cursor: pointer;" data-bs-dismiss="modal">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- File Detail Modal -->
+<div class="modal fade" id="fileDetailModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="detailFilename"></h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <label class="form-label small text-muted">File URL</label>
+                <div class="input-group mb-2">
+                    <input type="text" id="detailUrl" class="form-control form-control-sm" readonly>
+                    <button class="btn btn-outline-secondary btn-sm" onclick="copyField('detailUrl')">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+                <label class="form-label small text-muted">File Path</label>
+                <div class="input-group mb-2">
+                    <input type="text" id="detailPath" class="form-control form-control-sm" readonly>
+                    <button class="btn btn-outline-secondary btn-sm" onclick="copyField('detailPath')">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+                <div class="small text-muted" id="detailMeta"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-danger" id="detailDeleteBtn">
+                    <i class="bi bi-trash"></i> Delete
+                </button>
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/files.js"></script>
+{{end}}

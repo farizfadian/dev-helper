@@ -1,0 +1,24 @@
+# Binaries
+*.exe
+dev-helper
+dist/
+
+# Runtime data (created at runtime, not source code)
+files/
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE & tools
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+*~
+
+# Go
+vendor/

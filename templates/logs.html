@@ -1,0 +1,98 @@
+{{define "content"}}
+<div class="row">
+    <div class="col-12">
+        <h4 class="mb-3"><i class="bi bi-terminal"></i> Log Aggregator <i id="pinToggle" data-tool="logs" class="bi bi-star pin-star" onclick="togglePin('logs')"></i></h4>
+
+        <!-- Filters Bar -->
+        <div class="card mb-3">
+            <div class="card-body py-2">
+                <div class="row g-2 align-items-center">
+                    <!-- App Selector -->
+                    <div class="col-auto">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">App</span>
+                            <select id="appSelect" class="form-select form-select-sm" style="min-width: 160px;">
+                                <option value="">-- select app --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Level Filter -->
+                    <div class="col-auto">
+                        <div class="btn-group btn-group-sm" id="levelFilter">
+                            <button class="btn btn-outline-secondary active" data-level="all">ALL</button>
+                            <button class="btn btn-outline-secondary" data-level="debug">DEBUG</button>
+                            <button class="btn btn-outline-primary" data-level="info">INFO</button>
+                            <button class="btn btn-outline-warning" data-level="warn">WARN</button>
+                            <button class="btn btn-outline-danger" data-level="error">ERROR</button>
+                        </div>
+                    </div>
+                    <!-- Search -->
+                    <div class="col">
+                        <input type="text" id="searchBox" class="form-control form-control-sm" placeholder="Search logs...">
+                    </div>
+                    <!-- Auto-refresh -->
+                    <div class="col-auto">
+                        <div class="form-check form-switch mb-0">
+                            <input class="form-check-input" type="checkbox" id="autoRefresh">
+                            <label class="form-check-label small" for="autoRefresh">Auto-refresh</label>
+                        </div>
+                    </div>
+                    <!-- Clear -->
+                    <div class="col-auto">
+                        <button id="clearBtn" class="btn btn-sm btn-outline-danger" disabled>
+                            <i class="bi bi-trash"></i> Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Log URL & File Path Info -->
+        <div id="pathBar" class="d-none mb-3">
+            <div class="input-group input-group-sm mb-2">
+                <span class="input-group-text">Log URL</span>
+                <input type="text" id="logUrl" class="form-control form-control-sm" readonly>
+                <button class="btn btn-outline-secondary btn-sm" onclick="copyField('logUrl')" title="Copy URL">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-text">Log File</span>
+                <input type="text" id="logFilePath" class="form-control form-control-sm" readonly>
+                <button class="btn btn-outline-secondary btn-sm" onclick="copyField('logFilePath')" title="Copy Path">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Log Count + Table -->
+        <div class="d-flex justify-content-end mb-2">
+            <small class="text-muted" id="logCount"></small>
+        </div>
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-sm table-hover mb-0" style="font-size: 0.85rem;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th style="width: 180px;">Timestamp</th>
+                            <th style="width: 80px;">Level</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logTableBody">
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-4">
+                                Select an app to view logs
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/logs.js"></script>
+{{end}}
