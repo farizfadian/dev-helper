@@ -57,7 +57,12 @@
 
         <!-- Upload History -->
         <div id="historySection" class="mt-4 d-none">
-            <h6 class="text-muted">Recent Uploads</h6>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="text-muted mb-0">Recent Uploads</h6>
+                <button class="btn btn-sm btn-outline-danger" id="clearHistoryBtn" title="Clear recent uploads">
+                    <i class="bi bi-trash3"></i> Clear
+                </button>
+            </div>
             <div id="historyList"></div>
         </div>
     </div>

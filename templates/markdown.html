@@ -70,6 +70,20 @@
 <div class="d-flex justify-content-between align-items-center mb-2">
     <h5 class="mb-0"><i class="bi bi-markdown"></i> Markdown Viewer <i id="pinToggle" data-tool="markdown" class="bi bi-star pin-star" onclick="togglePin('markdown')"></i></h5>
     <div class="d-flex align-items-center gap-2 flex-wrap">
+        <div class="dropdown">
+            <button class="btn btn-sm btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" title="Load sample">
+                <i class="bi bi-file-earmark-text"></i> Samples
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-sample="readme"><i class="bi bi-book"></i> README</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="api"><i class="bi bi-hdd-network"></i> API Documentation</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="changelog"><i class="bi bi-clock-history"></i> Changelog</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="blog"><i class="bi bi-pencil-square"></i> Blog Post</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="cheatsheet"><i class="bi bi-card-checklist"></i> Markdown Cheatsheet</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="meeting"><i class="bi bi-people"></i> Meeting Notes</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="todo"><i class="bi bi-check2-square"></i> Project TODO</a></li>
+            </ul>
+        </div>
         <button class="btn btn-sm btn-outline-secondary" id="openFileBtn" title="Open File">
             <i class="bi bi-folder2-open"></i>
         </button>
@@ -112,7 +126,7 @@
 {{end}}
 
 {{define "scripts"}}
-<script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/lib/marked.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
 <script src="/static/monaco-editor/min/vs/loader.js"></script>

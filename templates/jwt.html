@@ -1,0 +1,152 @@
+{{define "content"}}
+<style>
+    .jwt-token-display {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+        word-break: break-all;
+        line-height: 1.6;
+        min-height: 60px;
+        padding: 0.75rem;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        background: var(--bs-tertiary-bg);
+        cursor: text;
+        white-space: pre-wrap;
+    }
+    .jwt-token-input {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+        word-break: break-all;
+        line-height: 1.6;
+        min-height: 60px;
+        resize: vertical;
+    }
+    .jwt-header { color: #fb015b; }
+    .jwt-payload { color: #d63aff; }
+    .jwt-signature { color: #00b9f1; }
+    .jwt-dot { color: var(--bs-secondary-color); }
+    .editor-container {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .editor-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 4px 10px;
+        background: var(--bs-tertiary-bg);
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+    .editor-label-header { color: #fb015b; }
+    .editor-label-payload { color: #d63aff; }
+    .status-verified {
+        color: #198754;
+        font-weight: 600;
+    }
+    .status-invalid {
+        color: #dc3545;
+        font-weight: 600;
+    }
+    .status-neutral {
+        color: var(--bs-secondary-color);
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-shield-lock"></i> JWT Encoder & Decoder
+        <i id="pinToggle" data-tool="jwt" class="bi bi-star pin-star" onclick="togglePin('jwt')"></i>
+    </h5>
+</div>
+
+<!-- Encoded Token -->
+<div class="mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-1">
+        <label class="form-label mb-0 fw-semibold"><i class="bi bi-key"></i> Encoded Token</label>
+        <div class="d-flex gap-1">
+            <button class="btn btn-sm btn-outline-secondary" id="sampleBtn" title="Load sample JWT">
+                <i class="bi bi-lightning"></i> Sample
+            </button>
+            <button class="btn btn-sm btn-outline-secondary" id="copyTokenBtn" title="Copy JWT">
+                <i class="bi bi-clipboard"></i> Copy
+            </button>
+            <button class="btn btn-sm btn-outline-secondary" id="clearBtn" title="Clear all">
+                <i class="bi bi-x-lg"></i> Clear
+            </button>
+        </div>
+    </div>
+    <textarea id="tokenInput" class="form-control jwt-token-input" rows="3" placeholder="Paste a JWT here... (eyJhbGciOi...)"></textarea>
+    <div id="tokenColored" class="jwt-token-display d-none"></div>
+</div>
+
+<!-- Header & Payload Editors -->
+<div class="row g-3 mb-3">
+    <div class="col-md-5">
+        <div class="editor-container">
+            <div class="editor-label editor-label-header d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-braces"></i> Header</span>
+                <button class="btn btn-sm p-0 border-0" id="copyHeaderBtn" title="Copy header JSON" style="font-size: 0.75rem; color: var(--bs-secondary-color);">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+            <div id="headerEditor" style="height: 200px;"></div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="editor-container">
+            <div class="editor-label editor-label-payload d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-braces"></i> Payload</span>
+                <button class="btn btn-sm p-0 border-0" id="copyPayloadBtn" title="Copy payload JSON" style="font-size: 0.75rem; color: var(--bs-secondary-color);">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+            <div id="payloadEditor" style="height: 200px;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Signature Section -->
+<div class="card">
+    <div class="card-body py-2 px-3">
+        <div class="row align-items-center g-2">
+            <div class="col-auto">
+                <label class="form-label mb-0 fw-semibold" style="color: #00b9f1;">
+                    <i class="bi bi-pen"></i> Signature
+                </label>
+            </div>
+            <div class="col-auto">
+                <select id="algorithmSelect" class="form-select form-select-sm" style="width: auto;">
+                    <option value="HS256">HS256</option>
+                    <option value="HS384">HS384</option>
+                    <option value="HS512">HS512</option>
+                </select>
+            </div>
+            <div class="col">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input type="text" id="secretInput" class="form-control" placeholder="Enter secret key..." value="your-256-bit-secret">
+                </div>
+            </div>
+            <div class="col-auto d-flex gap-1">
+                <button class="btn btn-sm btn-primary" id="encodeBtn">
+                    <i class="bi bi-arrow-clockwise"></i> Encode
+                </button>
+                <button class="btn btn-sm btn-outline-success" id="verifyBtn">
+                    <i class="bi bi-check-circle"></i> Verify
+                </button>
+            </div>
+            <div class="col-12">
+                <small id="statusMsg" class="status-neutral"><i class="bi bi-info-circle"></i> Paste a JWT or click Sample to get started</small>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/monaco-editor/min/vs/loader.js"></script>
+<script src="/static/jwt.js"></script>
+{{end}}

@@ -1,0 +1,149 @@
+{{define "content"}}
+<style>
+    .epoch-live {
+        text-align: center; padding: 16px;
+        border: 1px solid var(--bs-border-color); border-radius: 10px;
+        background: var(--bs-tertiary-bg); margin-bottom: 16px;
+    }
+    .epoch-live-ts {
+        font-size: 2.2rem; font-weight: 700; font-family: 'Consolas', monospace;
+        color: var(--bs-primary); cursor: pointer; letter-spacing: 1px;
+    }
+    .epoch-live-ts:hover { text-decoration: underline; }
+    .epoch-live-date {
+        font-size: 0.9rem; color: var(--bs-secondary-color); margin-top: 2px;
+    }
+    .epoch-card {
+        border: 1px solid var(--bs-border-color); border-radius: 10px;
+        padding: 16px; background: var(--bs-body-bg); height: 100%;
+    }
+    .epoch-card h6 { font-weight: 700; margin-bottom: 12px; }
+    .result-table { font-size: 0.82rem; }
+    .result-table td { padding: 4px 8px; vertical-align: middle; }
+    .result-label { color: var(--bs-secondary-color); white-space: nowrap; width: 1%; }
+    .result-value {
+        font-family: 'Consolas', monospace; word-break: break-all;
+    }
+    .copy-btn {
+        border: none; background: transparent; color: var(--bs-primary);
+        cursor: pointer; padding: 0 4px; font-size: 0.8rem;
+    }
+    .copy-btn:hover { color: var(--bs-link-hover-color); }
+    .preset-btn {
+        font-size: 0.72rem; padding: 3px 10px; border-radius: 12px;
+        border: 1px solid var(--bs-border-color); background: transparent;
+        color: var(--bs-body-color); cursor: pointer; white-space: nowrap;
+    }
+    .preset-btn:hover { background: var(--bs-secondary-bg); }
+    .copy-toast {
+        position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+        background: var(--bs-success); color: #fff; padding: 6px 16px;
+        border-radius: 8px; font-size: 0.85rem; z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: none;
+    }
+    .copy-toast.show { display: block; }
+    .unit-toggle .btn { font-size: 0.8rem; padding: 2px 12px; }
+</style>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="mb-0">
+        <i class="bi bi-clock-history"></i> Epoch / Timestamp Converter
+        <i id="pinToggle" data-tool="epoch" class="bi bi-star pin-star" onclick="togglePin('epoch')"></i>
+    </h5>
+</div>
+
+<!-- Live clock -->
+<div class="epoch-live">
+    <div class="epoch-live-ts" id="liveClock" title="Click to copy"></div>
+    <div class="epoch-live-date" id="liveDate"></div>
+    <div class="mt-1">
+        <span class="badge bg-secondary" id="liveUnit">seconds</span>
+        <button class="btn btn-sm btn-link text-decoration-none" id="toggleLiveUnit">switch to ms</button>
+    </div>
+</div>
+
+<div class="row g-3">
+    <!-- Epoch → Date -->
+    <div class="col-lg-6">
+        <div class="epoch-card">
+            <h6><i class="bi bi-arrow-right-circle"></i> Epoch → Human Date</h6>
+            <div class="input-group input-group-sm mb-2">
+                <input type="text" class="form-control" id="epochInput" placeholder="e.g. 1700000000 or 1700000000000">
+                <button class="btn btn-primary" id="epochToDateBtn"><i class="bi bi-arrow-right"></i> Convert</button>
+            </div>
+            <div class="d-flex gap-1 flex-wrap mb-2">
+                <button class="preset-btn" data-preset="now">Now</button>
+                <button class="preset-btn" data-preset="today">Start of today</button>
+                <button class="preset-btn" data-preset="yesterday">Yesterday</button>
+                <button class="preset-btn" data-preset="week">1 week ago</button>
+                <button class="preset-btn" data-preset="month">1 month ago</button>
+                <button class="preset-btn" data-preset="year">Start of year</button>
+            </div>
+            <div id="epochResult" class="d-none">
+                <table class="table table-sm result-table mb-0">
+                    <tbody id="epochResultBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Date → Epoch -->
+    <div class="col-lg-6">
+        <div class="epoch-card">
+            <h6><i class="bi bi-arrow-left-circle"></i> Human Date → Epoch</h6>
+            <div class="row g-2 mb-2">
+                <div class="col-sm-5">
+                    <input type="date" class="form-control form-control-sm" id="dateInput">
+                </div>
+                <div class="col-sm-4">
+                    <input type="time" class="form-control form-control-sm" id="timeInput" step="1">
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-sm btn-primary w-100" id="dateToEpochBtn"><i class="bi bi-arrow-right"></i> Convert</button>
+                </div>
+            </div>
+            <div class="mb-2">
+                <input type="text" class="form-control form-control-sm" id="dateStringInput" placeholder="Or paste: 2024-01-15T10:30:00Z, Mon Jan 15 2024, etc.">
+            </div>
+            <div id="dateResult" class="d-none">
+                <table class="table table-sm result-table mb-0">
+                    <tbody id="dateResultBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Diff calculator -->
+<div class="row g-3 mt-1">
+    <div class="col-12">
+        <div class="epoch-card">
+            <h6><i class="bi bi-hourglass-split"></i> Time Difference Calculator</h6>
+            <div class="row g-2 align-items-end">
+                <div class="col-md-5">
+                    <label class="form-label small mb-1">From (epoch or date string)</label>
+                    <input type="text" class="form-control form-control-sm" id="diffFrom" placeholder="e.g. 1700000000 or 2024-01-01">
+                </div>
+                <div class="col-md-5">
+                    <label class="form-label small mb-1">To (epoch or date string, empty = now)</label>
+                    <input type="text" class="form-control form-control-sm" id="diffTo" placeholder="empty = now">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-sm btn-primary w-100" id="diffCalcBtn"><i class="bi bi-calculator"></i> Calc</button>
+                </div>
+            </div>
+            <div id="diffResult" class="d-none mt-2">
+                <div class="alert alert-light py-2 mb-0" id="diffResultText" style="font-family: 'Consolas', monospace; font-size: 0.85rem;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Copy toast -->
+<div class="copy-toast" id="copyToast">Copied!</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/epoch.js"></script>
+{{end}}

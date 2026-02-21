@@ -15,6 +15,8 @@ const formatToMonacoLang = {
 // ── State ──
 let inputEditor = null;
 let outputEditor = null;
+var LS_KEY_PRETTIFY = 'devhelper_prettify_input';
+var LS_KEY_PRETTIFY_FMT = 'devhelper_prettify_format';
 
 // ── Monaco AMD Setup ──
 require.config({ paths: { 'vs': '/static/monaco-editor/min/vs' } });
@@ -69,11 +71,17 @@ require(['vs/editor/editor.main'], function () {
         theme: isDark ? 'vs-dark' : 'vs',
     };
 
+    // ── Restore saved format ──
+    var savedFmt = localStorage.getItem(LS_KEY_PRETTIFY_FMT);
+    if (savedFmt) {
+        formatSelect.value = savedFmt;
+    }
+
     // ── Create input editor ──
     inputEditor = monaco.editor.create(document.getElementById('inputEditor'), {
         ...editorOptions,
-        value: '',
-        language: 'json',
+        value: localStorage.getItem(LS_KEY_PRETTIFY) || '',
+        language: formatToMonacoLang[savedFmt || 'json'] || 'json',
     });
 
     // ── Create output editor (readonly) ──
@@ -151,6 +159,7 @@ require(['vs/editor/editor.main'], function () {
         inputEditor.setValue('');
         outputEditor.setValue('');
         hideError();
+        localStorage.removeItem(LS_KEY_PRETTIFY);
     });
 
     // ── Swap: copy output to input ──
@@ -167,11 +176,12 @@ require(['vs/editor/editor.main'], function () {
         prettifyBtn.click();
     });
 
-    // ── Auto-detect format on content change (debounced) ──
+    // ── Auto-save + auto-detect format on content change (debounced) ──
     let detectTimeout;
     inputEditor.onDidChangeModelContent(() => {
         clearTimeout(detectTimeout);
         detectTimeout = setTimeout(() => {
+            localStorage.setItem(LS_KEY_PRETTIFY, inputEditor.getValue());
             const text = inputEditor.getValue().trim();
             const detected = detectFormat(text);
             if (detected && detected !== formatSelect.value) {
@@ -184,6 +194,7 @@ require(['vs/editor/editor.main'], function () {
     // ── Format selector change → update Monaco language ──
     formatSelect.addEventListener('change', () => {
         setMonacoLanguage(formatSelect.value);
+        localStorage.setItem(LS_KEY_PRETTIFY_FMT, formatSelect.value);
     });
 
     // ── File upload: click ──

@@ -1,0 +1,154 @@
+{{define "content"}}
+<style>
+    .charmap-layout {
+        display: flex; gap: 12px; height: calc(100vh - 200px); min-height: 400px;
+    }
+    .charmap-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+    .charmap-detail {
+        width: 260px; min-width: 260px;
+        border: 1px solid var(--bs-border-color); border-radius: 8px;
+        background: var(--bs-tertiary-bg); padding: 16px;
+        display: flex; flex-direction: column; align-items: center;
+        overflow-y: auto;
+    }
+    .charmap-categories {
+        display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .cat-btn {
+        font-size: 0.72rem; padding: 3px 10px; border-radius: 12px;
+        border: 1px solid var(--bs-border-color); background: transparent;
+        color: var(--bs-body-color); cursor: pointer; white-space: nowrap;
+    }
+    .cat-btn.active { background: var(--bs-primary); color: #fff; border-color: var(--bs-primary); }
+    .cat-btn:hover:not(.active) { background: var(--bs-secondary-bg); }
+    .charmap-grid-wrap {
+        flex: 1; overflow-y: auto; border: 1px solid var(--bs-border-color);
+        border-radius: 8px; padding: 8px; background: var(--bs-body-bg);
+    }
+    .charmap-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(48px, 1fr)); gap: 4px;
+    }
+    .char-tile {
+        display: flex; align-items: center; justify-content: center;
+        width: 100%; aspect-ratio: 1; font-size: 1.5rem;
+        border-radius: 6px; cursor: pointer; border: 2px solid transparent;
+        transition: all 0.1s; position: relative;
+        background: var(--bs-body-bg);
+    }
+    .char-tile:hover {
+        background: var(--bs-primary-bg-subtle); border-color: var(--bs-primary);
+        transform: scale(1.1); z-index: 1;
+    }
+    .char-tile.active { border-color: var(--bs-primary); background: var(--bs-primary-bg-subtle); }
+    .char-tile.small-char { font-size: 1.2rem; }
+    .detail-char { font-size: 4rem; margin-bottom: 8px; line-height: 1.2; }
+    .detail-name {
+        font-size: 0.8rem; font-weight: 600; text-align: center;
+        margin-bottom: 12px; color: var(--bs-body-color);
+    }
+    .detail-row {
+        width: 100%; display: flex; justify-content: space-between;
+        align-items: center; padding: 4px 0;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-size: 0.75rem;
+    }
+    .detail-label { color: var(--bs-secondary-color); }
+    .detail-value {
+        font-family: 'Consolas', monospace; font-size: 0.73rem;
+        cursor: pointer; color: var(--bs-primary);
+    }
+    .detail-value:hover { text-decoration: underline; }
+    .recent-section { margin-bottom: 8px; }
+    .recent-title {
+        font-size: 0.72rem; font-weight: 600; color: var(--bs-secondary-color);
+        margin-bottom: 4px;
+    }
+    .recent-grid { display: flex; gap: 4px; flex-wrap: wrap; }
+    .recent-tile {
+        width: 36px; height: 36px; display: flex; align-items: center;
+        justify-content: center; font-size: 1.2rem; border-radius: 4px;
+        cursor: pointer; border: 1px solid var(--bs-border-color);
+        transition: all 0.1s;
+    }
+    .recent-tile:hover { background: var(--bs-primary-bg-subtle); border-color: var(--bs-primary); }
+    .copy-toast {
+        position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+        background: var(--bs-success); color: #fff; padding: 6px 16px;
+        border-radius: 8px; font-size: 0.85rem; z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: none;
+    }
+    .copy-toast.show { display: block; }
+    .section-label {
+        grid-column: 1 / -1; font-size: 0.7rem; font-weight: 700;
+        color: var(--bs-secondary-color); padding: 6px 0 2px;
+        border-bottom: 1px solid var(--bs-border-color); margin-bottom: 2px;
+    }
+    .char-count { font-size: 0.72rem; color: var(--bs-secondary-color); }
+    @media (max-width: 768px) {
+        .charmap-layout { flex-direction: column; height: auto; }
+        .charmap-detail { width: 100%; min-width: 0; flex-direction: row; gap: 16px; padding: 10px; }
+        .detail-char { font-size: 2.5rem; margin: 0; }
+    }
+</style>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="mb-0">
+        <i class="bi bi-emoji-smile"></i> Emoji & CharMap
+        <i id="pinToggle" data-tool="charmap" class="bi bi-star pin-star" onclick="togglePin('charmap')"></i>
+    </h5>
+    <span class="char-count" id="charCount"></span>
+</div>
+
+<!-- Search -->
+<div class="mb-2">
+    <div class="input-group input-group-sm">
+        <span class="input-group-text"><i class="bi bi-search"></i></span>
+        <input type="search" id="searchInput" class="form-control" placeholder="Search emoji, symbols, characters... (e.g. euro, arrow, smile)" autofocus>
+    </div>
+</div>
+
+<!-- Tabs: Emoji / CharMap -->
+<ul class="nav nav-tabs nav-fill mb-2" style="font-size: 0.85rem;">
+    <li class="nav-item">
+        <a class="nav-link active" href="#" data-tab="emoji"><i class="bi bi-emoji-smile"></i> Emoji</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-tab="charmap"><i class="bi bi-fonts"></i> Special Characters</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-tab="all"><i class="bi bi-grid-3x3"></i> All</a>
+    </li>
+</ul>
+
+<!-- Categories -->
+<div class="charmap-categories" id="categoriesBar"></div>
+
+<!-- Recently used -->
+<div class="recent-section d-none" id="recentSection">
+    <div class="recent-title"><i class="bi bi-clock-history"></i> Recently Used</div>
+    <div class="recent-grid" id="recentGrid"></div>
+</div>
+
+<!-- Main layout -->
+<div class="charmap-layout">
+    <div class="charmap-main">
+        <div class="charmap-grid-wrap">
+            <div class="charmap-grid" id="charGrid"></div>
+        </div>
+    </div>
+    <div class="charmap-detail" id="detailPanel">
+        <div style="color: var(--bs-secondary-color); text-align: center; margin-top: 40px;">
+            <i class="bi bi-hand-index" style="font-size: 2rem;"></i>
+            <p class="mt-2 small">Click any character to see details</p>
+        </div>
+    </div>
+</div>
+
+<!-- Copy toast -->
+<div class="copy-toast" id="copyToast">Copied!</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/charmap.js"></script>
+{{end}}

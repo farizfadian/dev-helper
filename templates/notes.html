@@ -1,0 +1,255 @@
+{{define "content"}}
+<style>
+    .notes-layout {
+        display: flex;
+        height: calc(100vh - 150px);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    /* ── Left Panel: Note List ── */
+    .notes-sidebar {
+        width: 300px;
+        min-width: 300px;
+        border-right: 1px solid var(--bs-border-color);
+        display: flex;
+        flex-direction: column;
+        background: var(--bs-tertiary-bg);
+    }
+    .notes-sidebar-header { padding: 10px; border-bottom: 1px solid var(--bs-border-color); }
+    .notes-categories {
+        padding: 6px 10px;
+        border-bottom: 1px solid var(--bs-border-color);
+        display: flex; gap: 4px; flex-wrap: wrap;
+    }
+    .cat-btn {
+        font-size: 0.7rem; padding: 2px 8px; border-radius: 12px;
+        border: 1px solid var(--bs-border-color); background: transparent;
+        color: var(--bs-body-color); cursor: pointer; white-space: nowrap;
+    }
+    .cat-btn.active { background: var(--bs-primary); color: #fff; border-color: var(--bs-primary); }
+    .cat-btn:hover:not(.active) { background: var(--bs-secondary-bg); }
+    .notes-list { flex: 1; overflow-y: auto; padding: 6px; }
+    .note-card {
+        padding: 10px; margin-bottom: 4px; border-radius: 6px; cursor: pointer;
+        border: 2px solid transparent; transition: all 0.1s;
+    }
+    .note-card:hover { background: var(--bs-secondary-bg); }
+    .note-card.active { border-color: var(--bs-primary); background: var(--bs-secondary-bg); }
+    .note-card-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 2px; }
+    .note-card-preview {
+        font-size: 0.75rem; color: var(--bs-secondary-color);
+        overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    }
+    .note-card-meta {
+        display: flex; align-items: center; gap: 4px; margin-top: 4px;
+        font-size: 0.65rem; color: var(--bs-secondary-color);
+    }
+    .note-color-dot {
+        width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .note-card-cover {
+        width: 100%; height: 80px; object-fit: cover; border-radius: 4px; margin-bottom: 6px;
+    }
+    /* ── Right Panel: Editor ── */
+    .notes-editor {
+        flex: 1; display: flex; flex-direction: column; min-width: 0;
+    }
+    .notes-editor-header { padding: 8px 12px; border-bottom: 1px solid var(--bs-border-color); }
+    .notes-title-input {
+        border: none; outline: none; background: transparent;
+        font-size: 1.2rem; font-weight: 700; width: 100%;
+        color: var(--bs-body-color);
+    }
+    .notes-title-input::placeholder { color: var(--bs-secondary-color); }
+    .notes-tags-bar {
+        padding: 4px 12px; border-bottom: 1px solid var(--bs-border-color);
+        display: flex; gap: 4px; flex-wrap: wrap; align-items: center;
+    }
+    .note-tag {
+        font-size: 0.7rem; padding: 1px 8px; border-radius: 10px;
+        background: var(--bs-primary-bg-subtle); color: var(--bs-primary);
+        display: flex; align-items: center; gap: 2px;
+    }
+    .note-tag .remove-tag { cursor: pointer; font-size: 0.6rem; }
+    .tag-input {
+        border: none; outline: none; background: transparent;
+        font-size: 0.75rem; width: 80px; color: var(--bs-body-color);
+    }
+    .notes-toolbar {
+        padding: 4px 12px; border-bottom: 1px solid var(--bs-border-color);
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .notes-body { flex: 1; display: flex; overflow: hidden; position: relative; }
+    .notes-body #monacoEditor { flex: 1; height: 100%; }
+    .notes-body .preview-pane {
+        flex: 1; height: 100%; overflow-y: auto; padding: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .notes-body .preview-pane img { max-width: 100%; border-radius: 4px; }
+    .notes-attachments {
+        padding: 8px 12px; border-top: 1px solid var(--bs-border-color);
+        max-height: 120px; overflow-y: auto;
+    }
+    .att-item {
+        display: inline-flex; align-items: center; gap: 4px;
+        font-size: 0.75rem; padding: 2px 8px; margin: 2px;
+        border-radius: 4px; background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+    }
+    .att-item img { width: 20px; height: 20px; object-fit: cover; border-radius: 2px; }
+    .att-item .att-remove { cursor: pointer; color: var(--bs-danger); font-size: 0.6rem; }
+    .drop-hint {
+        font-size: 0.7rem; color: var(--bs-secondary-color); padding: 4px 0;
+    }
+    /* Empty state */
+    .notes-empty {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        height: 100%; color: var(--bs-secondary-color);
+    }
+    .notes-empty > i { font-size: 3rem; }
+    /* Color picker popup */
+    .color-picker {
+        display: flex; gap: 4px; padding: 6px;
+        background: var(--bs-body-bg); border: 1px solid var(--bs-border-color);
+        border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        position: absolute; z-index: 100;
+    }
+    .color-swatch {
+        width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
+        border: 2px solid transparent; transition: transform 0.1s;
+    }
+    .color-swatch:hover { transform: scale(1.2); }
+    .color-swatch.active { border-color: var(--bs-body-color); }
+    /* Save status */
+    .save-status { font-size: 0.7rem; color: var(--bs-secondary-color); }
+    .save-status.saving { color: var(--bs-warning); }
+    .save-status.saved { color: var(--bs-success); }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="mb-0">
+        <i class="bi bi-journal-text"></i> Notes
+        <i id="pinToggle" data-tool="notes" class="bi bi-star pin-star" onclick="togglePin('notes')"></i>
+    </h5>
+    <span class="save-status" id="saveStatus"></span>
+</div>
+
+<div class="notes-layout">
+    <!-- Left: Note List -->
+    <div class="notes-sidebar">
+        <div class="notes-sidebar-header">
+            <div class="d-flex gap-1">
+                <input type="search" id="noteSearch" class="form-control form-control-sm" placeholder="Search notes...">
+                <button class="btn btn-sm btn-primary flex-shrink-0" id="newNoteBtn" title="New note (Ctrl+N)">
+                    <i class="bi bi-plus-lg"></i>
+                </button>
+            </div>
+        </div>
+        <div class="notes-categories" id="categoriesBar">
+            <button class="cat-btn active" data-cat="all">All</button>
+            <button class="cat-btn" data-cat="trash"><i class="bi bi-trash3"></i> Trash</button>
+        </div>
+        <div class="notes-list" id="noteList">
+            <div class="notes-empty">
+                <i class="bi bi-journal-text"></i>
+                <p class="mt-2 mb-0 small">No notes yet</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: Editor -->
+    <div class="notes-editor" id="editorPanel">
+        <div class="notes-empty" id="editorEmpty">
+            <i class="bi bi-journal-text"></i>
+            <p class="mt-2 mb-1">Select a note or create a new one</p>
+            <button class="btn btn-sm btn-primary" id="newNoteBtn2"><i class="bi bi-plus-lg"></i> New Note</button>
+        </div>
+        <div class="d-none" id="editorContent" style="display: flex; flex-direction: column; height: 100%;">
+            <!-- Title -->
+            <div class="notes-editor-header d-flex align-items-center gap-2">
+                <input type="text" class="notes-title-input" id="noteTitle" placeholder="Untitled note...">
+                <select class="form-select form-select-sm" id="noteCategory" style="width: auto; font-size: 0.8rem;">
+                    <option value="General">General</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Ideas">Ideas</option>
+                    <option value="Code">Code</option>
+                </select>
+                <button class="btn btn-sm" id="pinNoteBtn" title="Pin note"><i class="bi bi-pin"></i></button>
+                <div class="position-relative">
+                    <button class="btn btn-sm" id="colorBtn" title="Color label"><i class="bi bi-palette"></i></button>
+                </div>
+                <button class="btn btn-sm text-danger" id="deleteNoteBtn" title="Delete note"><i class="bi bi-trash"></i></button>
+            </div>
+            <!-- Tags -->
+            <div class="notes-tags-bar" id="tagsBar">
+                <div id="tagsList"></div>
+                <input type="text" class="tag-input" id="tagInput" placeholder="+ tag">
+            </div>
+            <!-- Formatting toolbar -->
+            <div class="notes-toolbar">
+                <div class="d-flex gap-1 align-items-center flex-wrap">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="bold" title="Bold (Ctrl+B)"><i class="bi bi-type-bold"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="italic" title="Italic (Ctrl+I)"><i class="bi bi-type-italic"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="strike" title="Strikethrough (Ctrl+Shift+S)"><i class="bi bi-type-strikethrough"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="code" title="Inline code (Ctrl+E)"><i class="bi bi-code"></i></button>
+                    </div>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="h1" title="Heading 1 (Ctrl+Alt+1)"><b>H1</b></button>
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="h2" title="Heading 2 (Ctrl+Alt+2)"><b>H2</b></button>
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="h3" title="Heading 3 (Ctrl+Alt+3)"><b>H3</b></button>
+                    </div>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="ul" title="Bullet list (Ctrl+Shift+8)"><i class="bi bi-list-ul"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="ol" title="Numbered list (Ctrl+Shift+7)"><i class="bi bi-list-ol"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="checkbox" title="Checkbox (Ctrl+Shift+9)"><i class="bi bi-check2-square"></i></button>
+                    </div>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="link" title="Link (Ctrl+K)"><i class="bi bi-link-45deg"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="codeblock" title="Code block (Ctrl+Shift+K)"><i class="bi bi-braces"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="quote" title="Blockquote (Ctrl+Shift+.)"><i class="bi bi-blockquote-left"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm md-fmt" data-fmt="hr" title="Horizontal rule (Ctrl+Shift+X)"><i class="bi bi-hr"></i></button>
+                    </div>
+                    <span class="vr mx-1" style="height: 20px;"></span>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-primary btn-sm active" data-view="edit"><i class="bi bi-pencil"></i> Edit</button>
+                        <button class="btn btn-outline-secondary btn-sm" data-view="preview"><i class="bi bi-eye"></i> Preview</button>
+                        <button class="btn btn-outline-secondary btn-sm" data-view="split"><i class="bi bi-layout-split"></i> Split</button>
+                    </div>
+                </div>
+                <div class="d-flex gap-1">
+                    <label class="btn btn-sm btn-outline-secondary mb-0" title="Attach file">
+                        <i class="bi bi-paperclip"></i>
+                        <input type="file" id="attachFile" class="d-none" multiple>
+                    </label>
+                    <button class="btn btn-sm btn-outline-secondary" id="copyMdBtn" title="Copy Markdown"><i class="bi bi-clipboard"></i></button>
+                </div>
+            </div>
+            <!-- Editor / Preview -->
+            <div class="notes-body" id="notesBody">
+                <div id="monacoEditor"></div>
+                <div class="preview-pane d-none" id="previewPane"></div>
+            </div>
+            <!-- Attachments -->
+            <div class="notes-attachments" id="attachmentsSection">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="drop-hint"><i class="bi bi-paperclip"></i> Attachments — drag files here or Ctrl+V to paste images</span>
+                </div>
+                <div id="attachmentsList" class="mt-1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/lib/marked.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<script src="/static/monaco-editor/min/vs/loader.js"></script>
+<script src="/static/notes.js"></script>
+{{end}}

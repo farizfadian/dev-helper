@@ -1,126 +1,93 @@
 # Dev Helper
 
-**A lightweight, offline-first developer toolkit built with Go.**
+**Offline-first developer toolkit — single Go binary, zero dependencies.**
 
-Born from the frustration of developers whose daily tools are scattered across online services. When the internet goes down — especially in regions where connectivity isn't always reliable — simple tasks like formatting JSON or viewing logs become impossible.
-
-Dev Helper solves this by providing essential developer tools in a single, portable Go binary. Build it once, run it anywhere — Windows, Linux, Mac — no extra dependencies needed.
-
-## Philosophy
-
-> *"I built this because I felt what other developers feel — the frustration of not having the right tools when you need them most. If it helps me, it will help others too."*
-
-- **Offline-first** — Works without internet (except first CDN cache load)
-- **Zero dependencies** — Single Go binary, no runtime to install
-- **Cross-platform** — Build once, run on Windows, Linux, Mac
-- **Extensible** — Easy to add new tools via navbar menu pattern
-- **Developer-friendly** — Built by a developer, for developers
-
-## Features
-
-### Upload
-Upload files and screenshots with instant URL & path copying. Built as a companion for Claude Console (CLI) which doesn't support direct image attachments.
-
-- **Drag & Drop** — Drop any file onto the upload zone
-- **Ctrl+V Paste** — Paste screenshots directly from clipboard
-- **Click to Browse** — Traditional file picker
-- **Auto Upload** — Files upload immediately, no submit button needed
-- **Image Preview** — Thumbnail with lightbox for images
-- **File Type Icons** — Visual icons for PDF, Word, Excel, code files, etc.
-- **Browser Preview** — Click to open PDF, HTML, TXT, MD, and other browser-renderable files in new tab
-- **Copy to Clipboard** — One-click copy for both File URL and File Path
-
-### Files (Explorer)
-A Google Drive-like file explorer for all uploaded files.
-
-- **Grid View** — Card layout with thumbnails and file type icons
-- **Search** — Real-time filename search
-- **Upload** — Drag/drop, Ctrl+V, click browse (same as Upload page)
-- **File Details** — Click info button for URL, path, size, date + copy buttons
-- **Delete** — Delete individual files or all files at once
-- **Browser Preview** — Click to open renderable files in new tab
-
-### Prettify (Code Beautifier)
-Offline code formatter — no internet needed, everything runs in the browser.
-
-- **6 Formats** — JSON, XML, HTML, CSS, JavaScript, SQL
-- **Side-by-side** — Input left, output right for easy comparison
-- **Prettify & Minify** — Format or compress code
-- **Indent Options** — 2 spaces, 4 spaces, or tab
-- **Auto-detect** — Paste code and format is detected automatically
-- **Keyboard Shortcut** — Ctrl+Enter to prettify
-- **Copy & Swap** — Copy output or move output back to input
-
-### Logs (Lightweight Log Aggregator)
-A mini NewRelic for local development. Send logs from any application via HTTP, view and filter them in the web UI.
-
-- **Multi-platform** — Send logs from C#, Java, Python, Angular, React, Next.js, or any HTTP-capable language
-- **Per-app log files** — Each app gets its own `.log` file
-- **Filter by level** — ALL / DEBUG / INFO / WARN / ERROR
-- **Search** — Real-time text search across log messages
-- **Auto-refresh** — Live tail mode with 2-second polling
-- **URL persistence** — Selected app saved in URL, survives refresh
-- **Copy log file path** — One-click copy to paste into Claude Console
-
-## Requirements
-
-- Go 1.21+ (tested with Go 1.25)
+Essential daily dev tools (JSON formatter, code editor, diff viewer, JWT decoder, log aggregator, etc.) bundled in one portable binary. No internet required, no runtime to install. Build once, run on Windows / Linux / Mac.
 
 ## Quick Start
 
-### Run directly (development)
-
 ```bash
-cd dev-helper
+# Development (hot-reload templates)
 go run main.go
-```
 
-### Build & Run (production)
-
-```bash
-cd dev-helper
+# Production build
 go build -o dev-helper.exe .
 ./dev-helper.exe
 ```
 
-### Cross-platform build
+Open **http://localhost:9090**
+
+### Cross-platform Build
 
 ```bash
-# Windows
 GOOS=windows GOARCH=amd64 go build -o dev-helper.exe .
-
-# Linux
-GOOS=linux GOARCH=amd64 go build -o dev-helper .
-
-# Mac (Intel)
-GOOS=darwin GOARCH=amd64 go build -o dev-helper .
-
-# Mac (Apple Silicon)
-GOOS=darwin GOARCH=arm64 go build -o dev-helper .
+GOOS=linux   GOARCH=amd64 go build -o dev-helper .
+GOOS=darwin  GOARCH=amd64 go build -o dev-helper .    # Mac Intel
+GOOS=darwin  GOARCH=arm64 go build -o dev-helper .    # Mac Apple Silicon
 ```
 
-Server starts at **http://localhost:9090**
+## Tools
+
+| Tool | Route | Description |
+|------|-------|-------------|
+| **Dashboard** | `/` | Homepage with search, pinned tools, tool cards |
+| **Upload** | `/upload` | Drag/drop, Ctrl+V paste, file upload with instant URL & path copy |
+| **File Explorer** | `/explorer` | Google Drive-like grid view, search, delete, file preview |
+| **Prettify** | `/prettify` | Format JSON, XML, HTML, CSS, JS, TS, SQL, YAML, SCSS, LESS (Monaco editors) |
+| **Log Aggregator** | `/logs` | Receive logs via HTTP POST, filter by app/level/search, auto-refresh |
+| **Log Viewer** | `/logviewer` | Upload & search large log files with regex, context lines |
+| **Code Editor** | `/editor` | Monaco-powered editor, 40+ languages, file upload, URL fetch |
+| **Markdown** | `/markdown` | Monaco editor + live preview, syntax-highlighted code blocks |
+| **Code Diff** | `/diff` | Monaco diff editor, side-by-side/inline toggle, file upload |
+| **JWT Tool** | `/jwt` | Encode, decode, verify JWTs (HS256/384/512), color-coded display |
+
+### Global Features
+
+- **Theme** — Light / Dark / Auto (system), persisted in localStorage
+- **Pin system** — Star any tool to pin it to the navbar, drag-scrollable when many pinned
+- **Ask AI** — Dropdown with 9 cloud AIs + Ollama (local), opens in new tab
+- **Copy buttons** — Every URL and file path is one-click copyable
+
+## Tech Stack
+
+- **Backend**: Go standard library (`net/http`, `html/template`)
+- **Frontend**: Bootstrap 5.3.3 + Bootstrap Icons + Vanilla JS
+- **Editor**: Monaco Editor v0.52.2 (self-hosted AMD build)
+- **No frameworks, no build step** — just Go templates + static JS
 
 ## Project Structure
 
 ```
 dev-helper/
-├── main.go                # Go server, routes, all handlers
-├── go.mod                 # Go module definition
-├── README.md              # This file
+├── main.go                 # All routes & API handlers (single file)
+├── go.mod
 ├── templates/
-│   ├── layout.html        # Base layout (navbar, Bootstrap 5, footer)
-│   ├── upload.html        # Upload page (drop zone, preview, lightbox)
-│   ├── files.html         # File explorer page (grid, search, delete)
-│   ├── prettify.html      # Code beautifier page (side-by-side)
-│   └── logs.html          # Log viewer page (filters, table)
+│   ├── layout.html         # Shared layout: navbar, theme, Ask AI, footer
+│   ├── dashboard.html      # Homepage with tool cards
+│   ├── upload.html         # Upload page
+│   ├── files.html          # File explorer
+│   ├── prettify.html       # Code beautifier
+│   ├── logs.html           # Log aggregator
+│   ├── logviewer.html      # Log file viewer
+│   ├── editor.html         # Code editor
+│   ├── markdown.html       # Markdown viewer
+│   ├── diff.html           # Code diff
+│   └── jwt.html            # JWT encoder/decoder
 ├── static/
-│   ├── app.js             # Upload page logic
-│   ├── files.js           # File explorer logic
-│   ├── prettify.js        # Code beautifier logic
-│   └── logs.js            # Log viewer logic
-├── files/                 # Uploaded files
-└── logs/                  # Log files (one per app)
+│   ├── dashboard.js        # Tool registry & dashboard logic
+│   ├── app.js              # Upload page logic
+│   ├── files.js            # File explorer logic
+│   ├── prettify.js         # Code beautifier logic
+│   ├── logs.js             # Log aggregator logic
+│   ├── logviewer.js        # Log viewer logic
+│   ├── editor.js           # Code editor logic
+│   ├── markdown.js         # Markdown viewer logic
+│   ├── diff.js             # Code diff logic
+│   ├── jwt.js              # JWT tool logic
+│   ├── monaco-editor/      # Monaco Editor v0.52.2 (self-hosted)
+│   └── icons/              # Local AI favicons
+├── files/                  # Uploaded files (runtime)
+└── logs/                   # Log files, JSON-lines (runtime)
 ```
 
 ## API Reference
@@ -129,13 +96,13 @@ dev-helper/
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/upload` | Upload a file (multipart form) |
+| POST | `/api/upload` | Upload file (multipart form) |
 
 ### Files
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/files` | List all uploaded files (JSON) |
+| GET | `/api/files` | List all uploaded files |
 | DELETE | `/api/files?name=X` | Delete a specific file |
 | DELETE | `/api/files?all=true` | Delete all files |
 
@@ -149,28 +116,31 @@ dev-helper/
 | GET | `/api/logs/apps` | List all apps with logs |
 | DELETE | `/api/logs?app=X` | Clear logs for an app |
 
-### Log JSON Body
+### Log Viewer
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/logviewer` | Upload log file with keyword search/filter |
+
+### Proxy
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/proxy?url=X` | Proxy fetch remote URL (avoids CORS) |
+
+### Log JSON Format
 
 ```json
 {
   "app": "MyApp",
   "level": "info",
-  "message": "PR9628 - Load Data success"
+  "message": "Order processed successfully"
 }
 ```
 
-**Fields:**
-- `app` — Application name (required, becomes the log filename)
-- `level` — `debug`, `info`, `warn`, `error` (default: `info`)
+- `app` — Application name (becomes the log filename)
+- `level` — `debug` / `info` / `warn` / `error` (default: `info`)
 - `message` — Log message text
-
-### Quick Log via URL (Browser / cURL)
-
-```
-http://localhost:9090/api/logs/send?app=MyApp&level=warn&msg=connection+timeout
-```
-
----
 
 ## Log Integration Examples
 
@@ -245,7 +215,7 @@ log.info("Data pipeline completed")
 log.error("File not found: data.csv")
 ```
 
-### JavaScript / TypeScript (Angular, React, Next.js)
+### JavaScript / TypeScript
 
 ```typescript
 const DEV_LOG_URL = "http://localhost:9090/api/logs";
@@ -267,7 +237,6 @@ function send(level: string, message: string) {
 }
 
 // Usage:
-import { devlog } from "./devlog";
 devlog.info("User logged in");
 devlog.error("API call failed: /users/123");
 ```
@@ -284,13 +253,9 @@ curl -X POST http://localhost:9090/api/logs \
 curl "http://localhost:9090/api/logs/send?app=TestApp&level=warn&msg=something+broke"
 ```
 
----
-
 ## Adding New Tools
 
-To add a new page/tool:
-
-1. **Add route** in `main.go`:
+1. **Route + handler** in `main.go`:
 ```go
 mux.HandleFunc("/yourpage", handleYourPage)
 
@@ -300,29 +265,27 @@ func handleYourPage(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-2. **Add navbar item** in `templates/layout.html`:
+2. **Navbar item** in `templates/layout.html` (`#pinnedNav`):
 ```html
-<li class="nav-item">
+<li class="nav-item d-none" data-tool="yourtool">
     <a class="nav-link {{if eq .ActivePage "yourpage"}}active{{end}}" href="/yourpage">
-        <i class="bi bi-icon-name"></i> Page Name
+        <i class="bi bi-icon-name"></i> Tool Name
     </a>
 </li>
 ```
 
-3. **Create template** `templates/yourpage.html` with `{{define "content"}}` and `{{define "scripts"}}` blocks.
+3. **Template** `templates/yourpage.html` with `{{define "content"}}` and `{{define "scripts"}}` blocks.
 
-4. **Create JS** `static/yourpage.js` for page-specific logic.
+4. **JS file** `static/yourpage.js` for frontend logic.
 
----
+5. **Dashboard entry** in `static/dashboard.js` — add to `tools` array.
 
-## Usage with Claude Console
+6. **If using Monaco**: follow the worker URL pattern in `CLAUDE.md`.
 
-1. Start the server: `go run main.go`
-2. Open http://localhost:9090 in your browser
-3. Upload a screenshot (drag, paste, or browse)
-4. Copy the **File Path** from the result
-5. Paste the path into Claude Console — Claude can read the file directly
+## Requirements
 
----
+- Go 1.21+ (tested with Go 1.25)
 
-Made with Love by Fariz & Claude
+## License
+
+Made by [Fariz](https://github.com/farizfadian) & [Claude](https://claude.ai)

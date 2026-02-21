@@ -1,0 +1,98 @@
+{{define "content"}}
+<style>
+    .io-textarea {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+        min-height: 200px;
+        resize: vertical;
+    }
+    .file-info {
+        font-size: 0.8rem;
+        color: var(--bs-secondary-color);
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-file-earmark-binary"></i> Base64 Encoder & Decoder
+        <i id="pinToggle" data-tool="base64" class="bi bi-star pin-star" onclick="togglePin('base64')"></i>
+    </h5>
+</div>
+
+<div class="row g-3">
+    <!-- Input -->
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="form-label mb-0 fw-semibold"><i class="bi bi-input-cursor-text"></i> Input</label>
+            <div class="d-flex gap-1">
+                <label class="btn btn-sm btn-outline-secondary mb-0" title="Load file (binary → base64)">
+                    <i class="bi bi-file-earmark-arrow-up"></i> File
+                    <input type="file" id="fileInput" class="d-none">
+                </label>
+                <button class="btn btn-sm btn-outline-secondary" id="pasteBtn" title="Paste from clipboard">
+                    <i class="bi bi-clipboard-plus"></i> Paste
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="clearInputBtn" title="Clear input">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+        <textarea id="inputText" class="form-control io-textarea" placeholder="Enter text or paste base64 string..."></textarea>
+        <div id="fileInfo" class="file-info mt-1 d-none"></div>
+    </div>
+
+    <!-- Output -->
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="form-label mb-0 fw-semibold"><i class="bi bi-output"></i> Output</label>
+            <div class="d-flex gap-1">
+                <button class="btn btn-sm btn-outline-secondary" id="copyBtn" title="Copy output">
+                    <i class="bi bi-clipboard"></i> Copy
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="downloadBtn" title="Download decoded file" disabled>
+                    <i class="bi bi-download"></i>
+                </button>
+            </div>
+        </div>
+        <textarea id="outputText" class="form-control io-textarea" readonly placeholder="Result will appear here..."></textarea>
+    </div>
+</div>
+
+<!-- Action Buttons -->
+<div class="d-flex justify-content-center gap-2 mt-3">
+    <button class="btn btn-primary" id="encodeBtn">
+        <i class="bi bi-lock"></i> Encode
+    </button>
+    <button class="btn btn-success" id="decodeBtn">
+        <i class="bi bi-unlock"></i> Decode
+    </button>
+    <button class="btn btn-outline-secondary" id="swapBtn" title="Swap input ↔ output">
+        <i class="bi bi-arrow-left-right"></i> Swap
+    </button>
+    <button class="btn btn-outline-danger" id="clearAllBtn">
+        <i class="bi bi-trash"></i> Clear All
+    </button>
+</div>
+
+<!-- Options -->
+<div class="d-flex justify-content-center gap-4 mt-3">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="urlSafe">
+        <label class="form-check-label small" for="urlSafe">URL-safe Base64</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="lineBreaks">
+        <label class="form-check-label small" for="lineBreaks">Add line breaks (76 chars)</label>
+    </div>
+</div>
+
+<!-- Stats -->
+<div class="text-center mt-2">
+    <small id="stats" class="text-muted"></small>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/base64.js"></script>
+{{end}}

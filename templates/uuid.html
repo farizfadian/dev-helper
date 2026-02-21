@@ -1,0 +1,171 @@
+{{define "content"}}
+<style>
+    .uuid-display {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 1.5rem;
+        letter-spacing: 0.5px;
+        padding: 1rem;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 8px;
+        background: var(--bs-tertiary-bg);
+        text-align: center;
+        cursor: pointer;
+        transition: border-color 0.15s;
+        word-break: break-all;
+    }
+    .uuid-display:hover {
+        border-color: var(--bs-primary);
+    }
+    .uuid-display .copied-toast {
+        font-size: 0.75rem;
+        color: var(--bs-success);
+    }
+    .history-item {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+        padding: 6px 10px;
+        border-bottom: 1px solid var(--bs-border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+    }
+    .history-item:last-child {
+        border-bottom: none;
+    }
+    .history-item:hover {
+        background: var(--bs-tertiary-bg);
+    }
+    .history-item .uuid-text {
+        flex: 1;
+        cursor: pointer;
+        word-break: break-all;
+    }
+    .history-item .uuid-meta {
+        font-size: 0.7rem;
+        color: var(--bs-secondary-color);
+        white-space: nowrap;
+    }
+    .bulk-output {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+        min-height: 200px;
+        resize: vertical;
+    }
+    .version-badge {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 600;
+    }
+    .parse-table td:first-child {
+        font-weight: 600;
+        white-space: nowrap;
+        width: 120px;
+    }
+    .parse-table td:last-child {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        word-break: break-all;
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-upc-scan"></i> UUID Generator
+        <i id="pinToggle" data-tool="uuid" class="bi bi-star pin-star" onclick="togglePin('uuid')"></i>
+    </h5>
+</div>
+
+<!-- Main UUID Display -->
+<div class="uuid-display mb-3" id="uuidDisplay" title="Click to copy">
+    <span id="uuidText">—</span>
+</div>
+
+<!-- Generate Controls -->
+<div class="d-flex justify-content-center gap-2 mb-3 flex-wrap">
+    <div class="btn-group" role="group">
+        <button class="btn btn-primary active" id="btnV4" data-version="4" title="Random UUID (most common)">v4 Random</button>
+        <button class="btn btn-outline-primary" id="btnV1" data-version="1" title="Timestamp + node UUID">v1 Timestamp</button>
+        <button class="btn btn-outline-primary" id="btnV7" data-version="7" title="Unix timestamp + random (sortable)">v7 Sortable</button>
+    </div>
+    <button class="btn btn-success" id="generateBtn">
+        <i class="bi bi-arrow-clockwise"></i> Generate
+    </button>
+    <button class="btn btn-outline-secondary" id="copyBtn" title="Copy UUID">
+        <i class="bi bi-clipboard"></i> Copy
+    </button>
+</div>
+
+<!-- Options -->
+<div class="d-flex justify-content-center gap-4 mb-4">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="optUppercase">
+        <label class="form-check-label small" for="optUppercase">UPPERCASE</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="optNoDashes">
+        <label class="form-check-label small" for="optNoDashes">No dashes</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="optBraces">
+        <label class="form-check-label small" for="optBraces">{Braces}</label>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Left: Bulk Generate + Validate -->
+    <div class="col-lg-6">
+        <!-- Bulk Generate -->
+        <div class="card mb-3">
+            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                <span class="fw-semibold"><i class="bi bi-list-ol"></i> Bulk Generate</span>
+                <div class="d-flex gap-1 align-items-center">
+                    <input type="number" id="bulkCount" class="form-control form-control-sm" value="10" min="1" max="1000" style="width: 70px;">
+                    <button class="btn btn-sm btn-primary" id="bulkGenerateBtn">Generate</button>
+                    <button class="btn btn-sm btn-outline-secondary" id="bulkCopyBtn" title="Copy all"><i class="bi bi-clipboard"></i></button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <textarea id="bulkOutput" class="form-control bulk-output border-0 rounded-0" readonly placeholder="Click Generate to create multiple UUIDs..."></textarea>
+            </div>
+        </div>
+
+        <!-- Validate & Parse -->
+        <div class="card">
+            <div class="card-header py-2">
+                <span class="fw-semibold"><i class="bi bi-check-circle"></i> Validate & Parse UUID</span>
+            </div>
+            <div class="card-body">
+                <div class="input-group input-group-sm mb-2">
+                    <input type="text" id="validateInput" class="form-control font-monospace" placeholder="Paste a UUID to validate...">
+                    <button class="btn btn-outline-primary" id="validateBtn">Validate</button>
+                </div>
+                <div id="validateResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: History -->
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                <span class="fw-semibold"><i class="bi bi-clock-history"></i> History</span>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-outline-secondary" id="copyHistoryBtn" title="Copy all history"><i class="bi bi-clipboard"></i> Copy All</button>
+                    <button class="btn btn-sm btn-outline-danger" id="clearHistoryBtn" title="Clear history"><i class="bi bi-trash"></i></button>
+                </div>
+            </div>
+            <div class="card-body p-0" style="max-height: 400px; overflow-y: auto;">
+                <div id="historyList">
+                    <div class="text-center text-muted py-4 small">No UUIDs generated yet</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/uuid.js"></script>
+{{end}}

@@ -45,6 +45,9 @@ let originalModel = null;
 let modifiedModel = null;
 let isSideBySide = true;
 let currentLang = 'plaintext';
+const LS_KEY_DIFF_ORIG = 'devhelper_diff_original';
+const LS_KEY_DIFF_MOD = 'devhelper_diff_modified';
+const LS_KEY_DIFF_LANG = 'devhelper_diff_lang';
 
 // ── Monaco AMD Setup ──
 require.config({ paths: { 'vs': '/static/monaco-editor/min/vs' } });
@@ -63,9 +66,11 @@ require(['vs/editor/editor.main'], function () {
     const statusLeft = document.getElementById('statusLeft');
     const statusRight = document.getElementById('statusRight');
 
-    // ── Create models ──
-    originalModel = monaco.editor.createModel('', 'plaintext');
-    modifiedModel = monaco.editor.createModel('', 'plaintext');
+    // ── Create models (restore from localStorage) ──
+    var savedLang = localStorage.getItem(LS_KEY_DIFF_LANG) || 'plaintext';
+    currentLang = savedLang;
+    originalModel = monaco.editor.createModel(localStorage.getItem(LS_KEY_DIFF_ORIG) || '', savedLang);
+    modifiedModel = monaco.editor.createModel(localStorage.getItem(LS_KEY_DIFF_MOD) || '', savedLang);
 
     // ── Create diff editor ──
     diffEditor = monaco.editor.createDiffEditor(document.getElementById('diffContainer'), {
@@ -86,6 +91,22 @@ require(['vs/editor/editor.main'], function () {
         modified: modifiedModel,
     });
 
+    // ── Restore saved language in selector ──
+    if (savedLang !== 'plaintext') languageSelect.value = savedLang;
+
+    // ── Auto-save to localStorage ──
+    var diffSaveTimeout;
+    function saveDiffToLS() {
+        clearTimeout(diffSaveTimeout);
+        diffSaveTimeout = setTimeout(function () {
+            localStorage.setItem(LS_KEY_DIFF_ORIG, originalModel.getValue());
+            localStorage.setItem(LS_KEY_DIFF_MOD, modifiedModel.getValue());
+            localStorage.setItem(LS_KEY_DIFF_LANG, currentLang);
+        }, 500);
+    }
+    originalModel.onDidChangeContent(saveDiffToLS);
+    modifiedModel.onDidChangeContent(saveDiffToLS);
+
     // ── Update status on changes ──
     function updateStatus() {
         const origLines = originalModel.getLineCount();
@@ -102,6 +123,7 @@ require(['vs/editor/editor.main'], function () {
         currentLang = languageSelect.value;
         monaco.editor.setModelLanguage(originalModel, currentLang);
         monaco.editor.setModelLanguage(modifiedModel, currentLang);
+        localStorage.setItem(LS_KEY_DIFF_LANG, currentLang);
         updateStatus();
     });
 
@@ -127,6 +149,8 @@ require(['vs/editor/editor.main'], function () {
     document.getElementById('clearBtn').addEventListener('click', () => {
         originalModel.setValue('');
         modifiedModel.setValue('');
+        localStorage.removeItem(LS_KEY_DIFF_ORIG);
+        localStorage.removeItem(LS_KEY_DIFF_MOD);
     });
 
     // ── File drop: Original ──

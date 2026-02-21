@@ -16,6 +16,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -26,10 +27,12 @@ var templatesFS embed.FS
 var staticFS embed.FS
 
 var (
-	version = "dev"
-	baseDir string
+	version  = "dev"
+	baseDir  string
 	filesDir string
 	logsDir  string
+	notesDir string
+	notesMu  sync.Mutex
 	devMode  bool
 )
 
@@ -63,8 +66,10 @@ func main() {
 
 	filesDir = filepath.Join(baseDir, "files")
 	logsDir = filepath.Join(baseDir, "logs")
+	notesDir = filepath.Join(baseDir, "notes")
 	os.MkdirAll(filesDir, 0755)
 	os.MkdirAll(logsDir, 0755)
+	os.MkdirAll(filepath.Join(notesDir, "attachments"), 0755)
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handleIndex)
@@ -83,9 +88,26 @@ func main() {
 	mux.HandleFunc("/api/proxy", handleAPIProxy)
 	mux.HandleFunc("/markdown", handleMarkdownPage)
 	mux.HandleFunc("/diff", handleDiffPage)
+	mux.HandleFunc("/jwt", handleJWTPage)
+	mux.HandleFunc("/base64", handleBase64Page)
+	mux.HandleFunc("/urlencoder", handleURLEncoderPage)
+	mux.HandleFunc("/htmleditor", handleHTMLEditorPage)
+	mux.HandleFunc("/mermaid", handleMermaidPage)
+	mux.HandleFunc("/uuid", handleUUIDPage)
+	mux.HandleFunc("/notes", handleNotesPage)
+	mux.HandleFunc("/regex", handleRegexPage)
+	mux.HandleFunc("/charmap", handleCharmapPage)
+	mux.HandleFunc("/epoch", handleEpochPage)
+	mux.HandleFunc("/api/notes", handleAPINotes)
+	mux.HandleFunc("/api/notes/restore", handleAPINotesRestore)
+	mux.HandleFunc("/api/notes/reorder", handleAPINotesReorder)
+	mux.HandleFunc("/api/notes/attachment", handleAPINotesAttachment)
 
 	// Uploaded files — always served from disk
 	mux.Handle("/files/", http.StripPrefix("/files/", http.FileServer(http.Dir(filesDir))))
+
+	// Notes attachments
+	mux.Handle("/notes-att/", http.StripPrefix("/notes-att/", http.FileServer(http.Dir(filepath.Join(notesDir, "attachments")))))
 
 	// Static files — disk in dev mode, embedded in production
 	if devMode {
@@ -671,6 +693,343 @@ func handleDiffPage(w http.ResponseWriter, r *http.Request) {
 func handleEditorPage(w http.ResponseWriter, r *http.Request) {
 	data := PageData{ActivePage: "editor"}
 	loadPage("editor.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── JWT handler ──
+
+func handleJWTPage(w http.ResponseWriter, r *http.Request) {
+	data := PageData{ActivePage: "jwt"}
+	loadPage("jwt.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── Base64 handler ──
+
+func handleBase64Page(w http.ResponseWriter, r *http.Request) {
+	data := PageData{ActivePage: "base64"}
+	loadPage("base64.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── URL Encoder handler ──
+
+func handleURLEncoderPage(w http.ResponseWriter, r *http.Request) {
+	data := PageData{ActivePage: "urlencoder"}
+	loadPage("urlencoder.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── HTML Editor handler ──
+
+func handleHTMLEditorPage(w http.ResponseWriter, r *http.Request) {
+	data := PageData{ActivePage: "htmleditor"}
+	loadPage("htmleditor.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── Mermaid handler ──
+
+func handleMermaidPage(w http.ResponseWriter, r *http.Request) {
+	data := PageData{ActivePage: "mermaid"}
+	loadPage("mermaid.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── UUID handler ──
+
+func handleUUIDPage(w http.ResponseWriter, r *http.Request) {
+	data := PageData{ActivePage: "uuid"}
+	loadPage("uuid.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── Regex handler ──
+
+func handleRegexPage(w http.ResponseWriter, r *http.Request) {
+	data := PageData{ActivePage: "regex"}
+	loadPage("regex.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── CharMap handler ──
+
+func handleCharmapPage(w http.ResponseWriter, r *http.Request) {
+	data := PageData{ActivePage: "charmap"}
+	loadPage("charmap.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── Epoch handler ──
+
+func handleEpochPage(w http.ResponseWriter, r *http.Request) {
+	data := PageData{ActivePage: "epoch"}
+	loadPage("epoch.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── Notes handlers ──
+
+type Note struct {
+	ID          string   `json:"id"`
+	Title       string   `json:"title"`
+	Content     string   `json:"content"`
+	Category    string   `json:"category"`
+	Tags        []string `json:"tags"`
+	Color       string   `json:"color"`
+	Pinned      bool     `json:"pinned"`
+	Attachments []string `json:"attachments"`
+	CreatedAt   string   `json:"createdAt"`
+	UpdatedAt   string   `json:"updatedAt"`
+	TrashedAt   string   `json:"trashedAt,omitempty"`
+}
+
+func handleNotesPage(w http.ResponseWriter, r *http.Request) {
+	data := PageData{ActivePage: "notes"}
+	loadPage("notes.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func loadNotes() []Note {
+	data, err := os.ReadFile(filepath.Join(notesDir, "notes.json"))
+	if err != nil {
+		return []Note{}
+	}
+	var notes []Note
+	if err := json.Unmarshal(data, &notes); err != nil {
+		return []Note{}
+	}
+	return notes
+}
+
+func saveNotes(notes []Note) error {
+	data, err := json.MarshalIndent(notes, "", "  ")
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(filepath.Join(notesDir, "notes.json"), data, 0644)
+}
+
+func handleAPINotes(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		notesMu.Lock()
+		notes := loadNotes()
+		notesMu.Unlock()
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(notes)
+
+	case http.MethodPost:
+		var note Note
+		if err := json.NewDecoder(r.Body).Decode(&note); err != nil {
+			http.Error(w, "Invalid JSON", http.StatusBadRequest)
+			return
+		}
+		note.CreatedAt = time.Now().Format(time.RFC3339)
+		note.UpdatedAt = note.CreatedAt
+		if note.Tags == nil {
+			note.Tags = []string{}
+		}
+		if note.Attachments == nil {
+			note.Attachments = []string{}
+		}
+
+		notesMu.Lock()
+		notes := loadNotes()
+		notes = append([]Note{note}, notes...) // prepend
+		saveNotes(notes)
+		notesMu.Unlock()
+
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(note)
+
+	case http.MethodPut:
+		var updated Note
+		if err := json.NewDecoder(r.Body).Decode(&updated); err != nil {
+			http.Error(w, "Invalid JSON", http.StatusBadRequest)
+			return
+		}
+		updated.UpdatedAt = time.Now().Format(time.RFC3339)
+
+		notesMu.Lock()
+		notes := loadNotes()
+		for i, n := range notes {
+			if n.ID == updated.ID {
+				// Preserve fields not sent by client
+				if updated.CreatedAt == "" {
+					updated.CreatedAt = n.CreatedAt
+				}
+				if updated.Attachments == nil {
+					updated.Attachments = n.Attachments
+				}
+				if updated.Tags == nil {
+					updated.Tags = n.Tags
+				}
+				notes[i] = updated
+				break
+			}
+		}
+		saveNotes(notes)
+		notesMu.Unlock()
+
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(updated)
+
+	case http.MethodDelete:
+		id := r.URL.Query().Get("id")
+		if id == "" {
+			http.Error(w, "id required", http.StatusBadRequest)
+			return
+		}
+		permanent := r.URL.Query().Get("permanent") == "true"
+
+		notesMu.Lock()
+		notes := loadNotes()
+		if permanent {
+			// Remove permanently + delete attachments
+			filtered := make([]Note, 0, len(notes))
+			for _, n := range notes {
+				if n.ID != id {
+					filtered = append(filtered, n)
+				}
+			}
+			notes = filtered
+			os.RemoveAll(filepath.Join(notesDir, "attachments", id))
+		} else {
+			// Soft delete
+			for i, n := range notes {
+				if n.ID == id {
+					notes[i].TrashedAt = time.Now().Format(time.RFC3339)
+					break
+				}
+			}
+		}
+		saveNotes(notes)
+		notesMu.Unlock()
+
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
+
+	default:
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	}
+}
+
+func handleAPINotesRestore(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	id := r.URL.Query().Get("id")
+	if id == "" {
+		http.Error(w, "id required", http.StatusBadRequest)
+		return
+	}
+
+	notesMu.Lock()
+	notes := loadNotes()
+	for i, n := range notes {
+		if n.ID == id {
+			notes[i].TrashedAt = ""
+			break
+		}
+	}
+	saveNotes(notes)
+	notesMu.Unlock()
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{"status": "restored"})
+}
+
+func handleAPINotesReorder(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	var ids []string
+	if err := json.NewDecoder(r.Body).Decode(&ids); err != nil {
+		http.Error(w, "Invalid JSON", http.StatusBadRequest)
+		return
+	}
+
+	notesMu.Lock()
+	notes := loadNotes()
+	noteMap := make(map[string]Note)
+	for _, n := range notes {
+		noteMap[n.ID] = n
+	}
+	reordered := make([]Note, 0, len(notes))
+	seen := make(map[string]bool)
+	for _, id := range ids {
+		if n, ok := noteMap[id]; ok {
+			reordered = append(reordered, n)
+			seen[id] = true
+		}
+	}
+	// Append any notes not in the order list
+	for _, n := range notes {
+		if !seen[n.ID] {
+			reordered = append(reordered, n)
+		}
+	}
+	saveNotes(reordered)
+	notesMu.Unlock()
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
+}
+
+func handleAPINotesAttachment(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	noteId := r.URL.Query().Get("noteId")
+	if noteId == "" {
+		http.Error(w, "noteId required", http.StatusBadRequest)
+		return
+	}
+
+	r.ParseMultipartForm(50 << 20) // 50 MB
+	file, header, err := r.FormFile("file")
+	if err != nil {
+		http.Error(w, "Failed to read file", http.StatusBadRequest)
+		return
+	}
+	defer file.Close()
+
+	// Create note attachment directory
+	attDir := filepath.Join(notesDir, "attachments", sanitizeFilename(noteId))
+	os.MkdirAll(attDir, 0755)
+
+	// Generate filename with timestamp
+	ext := filepath.Ext(header.Filename)
+	name := strings.TrimSuffix(header.Filename, ext)
+	timestamp := time.Now().Format("20060102-150405")
+	filename := fmt.Sprintf("%s-%s%s", timestamp, sanitizeFilename(name), ext)
+
+	destPath := filepath.Join(attDir, filename)
+	dst, err := os.Create(destPath)
+	if err != nil {
+		http.Error(w, "Failed to save file", http.StatusInternalServerError)
+		return
+	}
+	defer dst.Close()
+
+	if _, err := io.Copy(dst, file); err != nil {
+		http.Error(w, "Failed to write file", http.StatusInternalServerError)
+		return
+	}
+
+	// Add to note's attachments list
+	url := fmt.Sprintf("/notes-att/%s/%s", sanitizeFilename(noteId), filename)
+
+	notesMu.Lock()
+	notes := loadNotes()
+	for i, n := range notes {
+		if n.ID == noteId {
+			notes[i].Attachments = append(notes[i].Attachments, filename)
+			break
+		}
+	}
+	saveNotes(notes)
+	notesMu.Unlock()
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{
+		"filename": filename,
+		"url":      url,
+	})
 }
 
 // GET /api/proxy?url=X — fetch remote file content (avoids CORS)

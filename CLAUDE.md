@@ -16,15 +16,21 @@ Dev Helper is an offline-first, cross-platform developer toolkit built with pure
 Each page has: a route in `main.go` → handler function → template file → JS file.
 
 ```
-GET /           → handleIndex()        → dashboard.html → dashboard.js
-GET /upload     → handleUpload()       → upload.html    → app.js
-GET /explorer   → handleFilesPage()    → files.html     → files.js
-GET /prettify   → handlePrettifyPage() → prettify.html  → prettify.js
-GET /logs       → handleLogsPage()     → logs.html      → logs.js
-GET /logviewer  → handleLogViewerPage()→ logviewer.html  → logviewer.js
-GET /editor     → handleEditorPage()   → editor.html    → editor.js
-GET /markdown   → handleMarkdownPage() → markdown.html  → markdown.js
-GET /diff       → handleDiffPage()     → diff.html      → diff.js
+GET /           → handleIndex()           → dashboard.html  → dashboard.js
+GET /upload     → handleUpload()          → upload.html     → app.js
+GET /explorer   → handleFilesPage()       → files.html      → files.js
+GET /prettify   → handlePrettifyPage()    → prettify.html   → prettify.js
+GET /logs       → handleLogsPage()        → logs.html       → logs.js
+GET /logviewer  → handleLogViewerPage()   → logviewer.html  → logviewer.js
+GET /editor     → handleEditorPage()      → editor.html     → editor.js
+GET /markdown   → handleMarkdownPage()    → markdown.html   → markdown.js
+GET /diff       → handleDiffPage()        → diff.html       → diff.js
+GET /jwt        → handleJWTPage()         → jwt.html        → jwt.js
+GET /base64     → handleBase64Page()      → base64.html     → base64.js
+GET /urlencoder → handleURLEncoderPage()  → urlencoder.html → urlencoder.js
+GET /htmleditor → handleHTMLEditorPage()  → htmleditor.html → htmleditor.js
+GET /mermaid    → handleMermaidPage()     → mermaid.html    → mermaid-page.js
+GET /uuid       → handleUUIDPage()        → uuid.html       → uuid.js
 ```
 
 ### Template Pattern (IMPORTANT)
@@ -49,6 +55,12 @@ templates/
   editor.html        — Code editor (Monaco, full-featured)
   markdown.html      — Markdown viewer (Monaco + live preview)
   diff.html          — Code diff/comparison (Monaco diff editor)
+  jwt.html           — JWT encoder/decoder (Monaco + HMAC verify)
+  base64.html        — Base64 encoder/decoder (text + binary file support)
+  urlencoder.html    — URL encoder/decoder (component/full URL + URL parser)
+  htmleditor.html    — HTML/WYSIWYG editor (TinyMCE + Monaco source view)
+  mermaid.html       — Mermaid diagram previewer (12 chart types, download, share)
+  uuid.html          — UUID generator (v1/v4/v7, bulk, validate, parse)
 static/
   dashboard.js       — Tool cards rendering, search, tools registry
   app.js             — Upload page logic (with localStorage recent uploads)
@@ -59,6 +71,12 @@ static/
   editor.js          — Code editor logic (Monaco, language detection, URL fetch)
   markdown.js        — Markdown viewer logic (Monaco + marked.js + highlight.js)
   diff.js            — Code diff logic (Monaco diff editor)
+  jwt.js             — JWT encoder/decoder logic (Monaco + HMAC-SHA256/384/512)
+  base64.js          — Base64 encode/decode logic (text + binary files, URL-safe option)
+  urlencoder.js      — URL encode/decode logic (component/full + URL parser)
+  htmleditor.js      — HTML editor logic (TinyMCE WYSIWYG + Monaco source toggle)
+  mermaid-page.js    — Mermaid diagram logic (live preview, 12 samples, SVG/PNG export, share via URL)
+  uuid.js            — UUID generator logic (v1/v4/v7, bulk, validate & parse, history)
   monaco-editor/     — Monaco Editor v0.52.2 assets (self-hosted, ~12MB)
     min/vs/          — AMD modules: loader.js, base/, basic-languages/, editor/, language/
   icons/             — Local AI favicons (claude.png, chatgpt.svg, gemini.png, deepseek.svg, etc.)
@@ -120,7 +138,7 @@ window.MonacoEnvironment = {
 theme: document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'vs-dark' : 'vs',
 ```
 
-Pages using Monaco: editor.js, prettify.js, markdown.js, diff.js
+Pages using Monaco: editor.js, prettify.js, markdown.js, diff.js, jwt.js, htmleditor.js, mermaid-page.js
 
 ### Prettify Formats
 Supported: JSON, XML, HTML, CSS, JavaScript, TypeScript, SQL, YAML, SCSS, LESS

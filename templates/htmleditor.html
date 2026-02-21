@@ -1,0 +1,65 @@
+{{define "content"}}
+<style>
+    .editor-wrapper {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    #tinymceContainer {
+        min-height: 500px;
+    }
+    #monacoContainer {
+        height: 500px;
+    }
+    .tox .tox-promotion { display: none !important; }
+    .tox .tox-statusbar__branding { display: none !important; }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-filetype-html"></i> HTML / WYSIWYG Editor
+        <i id="pinToggle" data-tool="htmleditor" class="bi bi-star pin-star" onclick="togglePin('htmleditor')"></i>
+    </h5>
+    <div class="d-flex gap-1">
+        <div class="btn-group btn-group-sm" role="group">
+            <button class="btn btn-primary active" id="wysiwygBtn">
+                <i class="bi bi-eye"></i> WYSIWYG
+            </button>
+            <button class="btn btn-outline-secondary" id="sourceBtn">
+                <i class="bi bi-code-slash"></i> Source
+            </button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary" id="copyHtmlBtn" title="Copy HTML">
+            <i class="bi bi-clipboard"></i> Copy HTML
+        </button>
+        <button class="btn btn-sm btn-outline-secondary" id="clearBtn" title="Clear editor">
+            <i class="bi bi-trash"></i> Clear
+        </button>
+        <label class="btn btn-sm btn-outline-secondary mb-0" title="Import HTML file">
+            <i class="bi bi-file-earmark-arrow-up"></i> Import
+            <input type="file" id="importFile" class="d-none" accept=".html,.htm,.txt">
+        </label>
+    </div>
+</div>
+
+<!-- WYSIWYG Editor -->
+<div class="editor-wrapper">
+    <div id="tinymceContainer">
+        <textarea id="wysiwygEditor"></textarea>
+    </div>
+    <div id="monacoContainer" class="d-none"></div>
+</div>
+
+<!-- Stats -->
+<div class="d-flex justify-content-between mt-2">
+    <small id="stats" class="text-muted"></small>
+    <small class="text-muted">Powered by TinyMCE</small>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/tinymce@7/tinymce.min.js"></script>
+<script src="/static/monaco-editor/min/vs/loader.js"></script>
+<script src="/static/htmleditor.js"></script>
+{{end}}

@@ -1,0 +1,171 @@
+{{define "content"}}
+<style>
+    .preview-panel {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        background: var(--bs-body-bg);
+        min-height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+        position: relative;
+    }
+    .preview-panel svg {
+        max-width: 100%;
+        height: auto;
+    }
+    .preview-panel.zoom svg {
+        max-width: none;
+    }
+    .editor-container {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    #monacoEditor {
+        height: 500px;
+    }
+    .sample-btn {
+        font-size: 0.8rem;
+        padding: 2px 8px;
+    }
+    .error-msg {
+        color: #dc3545;
+        font-family: 'SF Mono', 'Fira Code', monospace;
+        font-size: 0.85rem;
+        white-space: pre-wrap;
+        text-align: left;
+        width: 100%;
+        padding: 1rem;
+    }
+    .zoom-controls {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        z-index: 10;
+        display: flex;
+        gap: 2px;
+        background: var(--bs-tertiary-bg);
+        border-radius: 6px;
+        padding: 2px;
+        border: 1px solid var(--bs-border-color);
+    }
+    .zoom-controls button {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        font-size: 0.85rem;
+    }
+    .preview-placeholder {
+        color: var(--bs-secondary-color);
+        text-align: center;
+    }
+    .fullscreen-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: var(--bs-body-bg);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+        padding: 2rem;
+    }
+    .fullscreen-overlay .close-fs {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 10000;
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-diagram-3"></i> Mermaid Diagram
+        <i id="pinToggle" data-tool="mermaid" class="bi bi-star pin-star" onclick="togglePin('mermaid')"></i>
+    </h5>
+    <div class="d-flex gap-1 flex-wrap">
+        <!-- Samples Dropdown -->
+        <div class="dropdown">
+            <button class="btn btn-sm btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-lightning"></i> Samples
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" data-sample="flowchart"><i class="bi bi-diagram-3"></i> Flowchart</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="sequence"><i class="bi bi-chat-left-dots"></i> Sequence Diagram</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="class"><i class="bi bi-boxes"></i> Class Diagram</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="state"><i class="bi bi-circle"></i> State Diagram</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="er"><i class="bi bi-database"></i> ER Diagram</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="gantt"><i class="bi bi-bar-chart-steps"></i> Gantt Chart</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="pie"><i class="bi bi-pie-chart"></i> Pie Chart</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="mindmap"><i class="bi bi-share"></i> Mindmap</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="gitgraph"><i class="bi bi-git"></i> Git Graph</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="journey"><i class="bi bi-person-walking"></i> User Journey</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="quadrant"><i class="bi bi-grid-3x3"></i> Quadrant Chart</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="timeline"><i class="bi bi-clock-history"></i> Timeline</a></li>
+            </ul>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary" id="copyCodeBtn" title="Copy Mermaid code">
+            <i class="bi bi-clipboard"></i> Copy Code
+        </button>
+        <button class="btn btn-sm btn-outline-secondary" id="copyImageBtn" title="Copy diagram as image">
+            <i class="bi bi-image"></i> Copy Image
+        </button>
+        <div class="dropdown">
+            <button class="btn btn-sm btn-outline-success dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-download"></i> Download
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" id="downloadSvg"><i class="bi bi-filetype-svg"></i> SVG</a></li>
+                <li><a class="dropdown-item" href="#" id="downloadPng"><i class="bi bi-filetype-png"></i> PNG</a></li>
+                <li><a class="dropdown-item" href="#" id="downloadPng2x"><i class="bi bi-filetype-png"></i> PNG @2x (High-Res)</a></li>
+            </ul>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary" id="shareBtn" title="Share via URL">
+            <i class="bi bi-share"></i> Share
+        </button>
+        <button class="btn btn-sm btn-outline-secondary" id="fullscreenBtn" title="Fullscreen preview">
+            <i class="bi bi-fullscreen"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-danger" id="clearBtn" title="Clear editor">
+            <i class="bi bi-trash"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Main Layout -->
+<div class="row g-3">
+    <!-- Editor -->
+    <div class="col-lg-5">
+        <div class="editor-container">
+            <div id="monacoEditor"></div>
+        </div>
+    </div>
+    <!-- Preview -->
+    <div class="col-lg-7">
+        <div class="preview-panel" id="previewPanel">
+            <div class="preview-placeholder">
+                <i class="bi bi-diagram-3" style="font-size: 3rem;"></i>
+                <p class="mt-2 mb-0">Select a sample or write Mermaid code</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Status bar -->
+<div class="d-flex justify-content-between mt-2">
+    <small id="statusMsg" class="text-muted"><i class="bi bi-info-circle"></i> Write Mermaid syntax on the left, preview updates live</small>
+    <small class="text-muted">Powered by <a href="https://mermaid.js.org" target="_blank" class="text-decoration-none">Mermaid.js</a></small>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script src="/static/monaco-editor/min/vs/loader.js"></script>
+<script src="/static/mermaid-page.js"></script>
+{{end}}

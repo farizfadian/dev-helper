@@ -214,6 +214,14 @@ document.addEventListener('DOMContentLoaded', function () {
         historyList.appendChild(item);
     }
 
+    // Clear history button
+    document.getElementById('clearHistoryBtn').addEventListener('click', function () {
+        if (!confirm('Clear all recent uploads history?')) return;
+        localStorage.removeItem(HISTORY_KEY);
+        historyList.innerHTML = '';
+        historySection.classList.add('d-none');
+    });
+
     // Restore recent uploads from localStorage (must be after helper declarations)
     const saved = loadHistory();
     if (saved.length > 0) {

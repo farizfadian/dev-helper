@@ -1,0 +1,210 @@
+{{define "content"}}
+<style>
+    .regex-pattern-bar {
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 10px 12px;
+    }
+    .regex-slash {
+        font-size: 1.3rem; font-weight: 300; color: var(--bs-secondary-color);
+        line-height: 1; padding: 0 2px;
+    }
+    .regex-input {
+        border: none; outline: none; background: transparent;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 1rem; color: var(--bs-body-color); flex: 1; min-width: 0;
+    }
+    .regex-input::placeholder { color: var(--bs-secondary-color); }
+    .flag-btn {
+        width: 28px; height: 28px; padding: 0; font-size: 0.8rem;
+        font-family: 'Consolas', monospace; font-weight: 700;
+        border-radius: 4px; border: 1px solid var(--bs-border-color);
+        background: transparent; color: var(--bs-secondary-color);
+        cursor: pointer; transition: all 0.1s;
+    }
+    .flag-btn.active {
+        background: var(--bs-primary); color: #fff; border-color: var(--bs-primary);
+    }
+    .flag-btn:hover:not(.active) { background: var(--bs-secondary-bg); }
+    .regex-error {
+        font-size: 0.75rem; color: var(--bs-danger); margin-top: 4px;
+        font-family: monospace;
+    }
+    .highlight-box {
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.85rem; line-height: 1.5;
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px; padding: 10px 12px;
+        white-space: pre-wrap; word-wrap: break-word;
+        min-height: 60px; max-height: 300px; overflow-y: auto;
+    }
+    .highlight-box mark {
+        background: rgba(255, 193, 7, 0.45);
+        color: inherit; border-radius: 2px;
+        padding: 1px 0;
+        box-shadow: 0 0 0 1px rgba(255, 193, 7, 0.6);
+    }
+    [data-bs-theme="dark"] .highlight-box mark {
+        background: rgba(255, 193, 7, 0.3);
+        box-shadow: 0 0 0 1px rgba(255, 193, 7, 0.4);
+    }
+    .highlight-box mark.group-1 { background: rgba(13, 110, 253, 0.3); box-shadow: 0 0 0 1px rgba(13, 110, 253, 0.4); }
+    .highlight-box mark.group-2 { background: rgba(25, 135, 84, 0.3); box-shadow: 0 0 0 1px rgba(25, 135, 84, 0.4); }
+    .highlight-box mark.group-3 { background: rgba(220, 53, 69, 0.25); box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.4); }
+    .test-textarea {
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.85rem; line-height: 1.5; resize: vertical;
+    }
+    .match-table { font-size: 0.8rem; }
+    .match-table th { font-weight: 600; white-space: nowrap; }
+    .match-table td { font-family: monospace; font-size: 0.78rem; }
+    .match-table .match-text {
+        background: rgba(255, 193, 7, 0.2); padding: 1px 4px; border-radius: 3px;
+    }
+    .match-table .group-text {
+        color: var(--bs-primary); padding: 1px 4px;
+    }
+    .cheat-card {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px; overflow: hidden;
+        max-height: calc(100vh - 220px); overflow-y: auto;
+    }
+    .cheat-section-title {
+        font-size: 0.75rem; font-weight: 700; padding: 6px 10px;
+        background: var(--bs-tertiary-bg);
+        border-bottom: 1px solid var(--bs-border-color);
+        position: sticky; top: 0; z-index: 1;
+        cursor: pointer; user-select: none;
+    }
+    .cheat-section-title:hover { background: var(--bs-secondary-bg); }
+    .cheat-row {
+        display: flex; gap: 8px; padding: 3px 10px;
+        font-size: 0.72rem; border-bottom: 1px solid var(--bs-border-color);
+        cursor: pointer; transition: background 0.1s;
+    }
+    .cheat-row:last-child { border-bottom: none; }
+    .cheat-row:hover { background: var(--bs-secondary-bg); }
+    .cheat-syntax {
+        font-family: 'Consolas', monospace; font-weight: 600;
+        color: var(--bs-primary); min-width: 70px; flex-shrink: 0;
+    }
+    .cheat-desc { color: var(--bs-secondary-color); }
+    .pattern-item { cursor: pointer; }
+    .pattern-item:hover { background: var(--bs-secondary-bg); }
+    .replace-result {
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.85rem; line-height: 1.5;
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px; padding: 10px 12px;
+        white-space: pre-wrap; word-wrap: break-word;
+        min-height: 40px; max-height: 200px; overflow-y: auto;
+        color: var(--bs-success);
+    }
+</style>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="mb-0">
+        <i class="bi bi-regex"></i> Regex Tester
+        <i id="pinToggle" data-tool="regex" class="bi bi-star pin-star" onclick="togglePin('regex')"></i>
+    </h5>
+    <div class="d-flex gap-1">
+        <button class="btn btn-sm btn-outline-secondary" id="clearAllBtn" title="Clear all"><i class="bi bi-x-lg"></i> Clear</button>
+        <button class="btn btn-sm btn-outline-secondary" id="copyRegexBtn" title="Copy regex"><i class="bi bi-clipboard"></i> Copy</button>
+        <button class="btn btn-sm btn-outline-secondary" id="shareBtn" title="Share via URL"><i class="bi bi-share"></i> Share</button>
+    </div>
+</div>
+
+<!-- Pattern bar -->
+<div class="regex-pattern-bar mb-2">
+    <div class="d-flex align-items-center gap-2">
+        <span class="regex-slash">/</span>
+        <input type="text" id="regexInput" class="regex-input" placeholder="Enter regex pattern..." spellcheck="false" autocomplete="off">
+        <span class="regex-slash">/</span>
+        <div class="d-flex gap-1" id="flagsGroup">
+            <button class="flag-btn active" data-flag="g" title="Global — find all matches">g</button>
+            <button class="flag-btn" data-flag="i" title="Case insensitive">i</button>
+            <button class="flag-btn" data-flag="m" title="Multiline — ^ and $ match per line">m</button>
+            <button class="flag-btn" data-flag="s" title="Dotall — . matches newline">s</button>
+            <button class="flag-btn" data-flag="u" title="Unicode support">u</button>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" title="Common patterns">
+                <i class="bi bi-bookmark"></i><span class="d-none d-md-inline"> Patterns</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" id="patternsMenu" style="max-height: 400px; overflow-y: auto; min-width: 280px;">
+            </ul>
+        </div>
+    </div>
+    <div class="regex-error d-none" id="regexError"></div>
+</div>
+
+<!-- Main content -->
+<div class="row g-3">
+    <!-- Left: Test area -->
+    <div class="col-lg-8">
+        <!-- Test string -->
+        <div class="mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <label class="form-label small fw-bold mb-0">Test String</label>
+                <button class="btn btn-sm btn-link text-decoration-none p-0" id="pasteTestBtn" title="Paste from clipboard" style="font-size:0.75rem;">
+                    <i class="bi bi-clipboard-plus"></i> Paste
+                </button>
+            </div>
+            <textarea id="testInput" class="form-control test-textarea" rows="6" placeholder="Enter test string here..." spellcheck="false"></textarea>
+        </div>
+
+        <!-- Highlighted matches -->
+        <div class="mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <label class="form-label small fw-bold mb-0">Matches</label>
+                <span class="badge bg-secondary" id="matchCount">0 matches</span>
+            </div>
+            <div class="highlight-box" id="highlightResult">
+                <span style="color: var(--bs-secondary-color); font-style: italic;">Matches will be highlighted here...</span>
+            </div>
+        </div>
+
+        <!-- Replace section -->
+        <div class="mb-2">
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <label class="form-label small fw-bold mb-0">Replace</label>
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" id="replaceToggle">
+                </div>
+            </div>
+            <div class="d-none" id="replaceSection">
+                <div class="d-flex gap-1 mb-1">
+                    <input type="text" id="replaceInput" class="form-control form-control-sm test-textarea" placeholder="Replace with... ($1, $2 for groups)" spellcheck="false">
+                    <button class="btn btn-sm btn-outline-secondary flex-shrink-0" id="copyReplaceBtn" title="Copy result"><i class="bi bi-clipboard"></i></button>
+                </div>
+                <div class="replace-result" id="replaceResult"></div>
+            </div>
+        </div>
+
+        <!-- Match details -->
+        <div class="mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <label class="form-label small fw-bold mb-0">Match Details</label>
+                <button class="btn btn-sm btn-link text-decoration-none p-0 d-none" id="toggleDetails" style="font-size:0.75rem;">
+                    <i class="bi bi-chevron-down"></i> Show all
+                </button>
+            </div>
+            <div id="matchDetails"></div>
+        </div>
+    </div>
+
+    <!-- Right: Cheat sheet -->
+    <div class="col-lg-4">
+        <label class="form-label small fw-bold mb-1">Cheat Sheet</label>
+        <div class="cheat-card" id="cheatSheet"></div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/regex.js"></script>
+{{end}}

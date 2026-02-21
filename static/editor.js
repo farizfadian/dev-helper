@@ -53,6 +53,8 @@ let editor = null;
 let currentFilename = 'untitled.txt';
 let isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
 let isWordWrap = false;
+const LS_KEY_EDITOR = 'devhelper_editor_content';
+const LS_KEY_EDITOR_LANG = 'devhelper_editor_lang';
 
 // ── Monaco AMD Setup ──
 require.config({ paths: { 'vs': '/static/monaco-editor/min/vs' } });
@@ -68,9 +70,11 @@ window.MonacoEnvironment = {
 
 require(['vs/editor/editor.main'], function () {
     // ── Create editor ──
+    var savedContent = localStorage.getItem(LS_KEY_EDITOR) || '';
+    var savedLang = localStorage.getItem(LS_KEY_EDITOR_LANG) || 'plaintext';
     editor = monaco.editor.create(document.getElementById('editorContainer'), {
-        value: '',
-        language: 'plaintext',
+        value: savedContent,
+        language: savedLang,
         theme: document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'vs-dark' : 'vs',
         automaticLayout: true,
         minimap: { enabled: true },
@@ -95,6 +99,18 @@ require(['vs/editor/editor.main'], function () {
     const statusLeft = document.getElementById('statusLeft');
     const statusCenter = document.getElementById('statusCenter');
     const statusRight = document.getElementById('statusRight');
+
+    // ── Restore saved language in selector ──
+    if (savedLang !== 'plaintext') languageSelect.value = savedLang;
+
+    // ── Auto-save to localStorage ──
+    var editorSaveTimeout;
+    editor.onDidChangeModelContent(function () {
+        clearTimeout(editorSaveTimeout);
+        editorSaveTimeout = setTimeout(function () {
+            localStorage.setItem(LS_KEY_EDITOR, editor.getValue());
+        }, 500);
+    });
 
     // ── File Upload: Click ──
     document.getElementById('openFileBtn').addEventListener('click', () => fileInput.click());
@@ -209,6 +225,7 @@ require(['vs/editor/editor.main'], function () {
     // ── Language selector ──
     languageSelect.addEventListener('change', () => {
         monaco.editor.setModelLanguage(editor.getModel(), languageSelect.value);
+        localStorage.setItem(LS_KEY_EDITOR_LANG, languageSelect.value);
         updateStatusRight();
     });
 
