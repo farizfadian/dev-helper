@@ -6,6 +6,7 @@ dist/
 # Runtime data (created at runtime, not source code)
 files/
 logs/
+notes/
 
 # OS files
 .DS_Store
