@@ -1,0 +1,212 @@
+{{define "content"}}
+<style>
+    .qr-preview {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 300px;
+        border: 2px dashed var(--bs-border-color);
+        border-radius: 8px;
+        background: var(--bs-tertiary-bg);
+        padding: 1.5rem;
+    }
+    .qr-preview canvas {
+        max-width: 100%;
+        height: auto;
+        image-rendering: pixelated;
+    }
+    .qr-preview .placeholder-text {
+        color: var(--bs-secondary-color);
+        font-size: 0.9rem;
+    }
+    .input-type-btn.active {
+        font-weight: 600;
+    }
+    .color-swatch {
+        width: 36px;
+        height: 36px;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 6px;
+        padding: 0;
+        cursor: pointer;
+    }
+    .color-swatch::-webkit-color-swatch-wrapper {
+        padding: 2px;
+    }
+    .color-swatch::-webkit-color-swatch {
+        border: none;
+        border-radius: 3px;
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-qr-code"></i> QR Code Generator
+        <i id="pinToggle" data-tool="qrcode" class="bi bi-star pin-star" onclick="togglePin('qrcode')"></i>
+    </h5>
+</div>
+
+<div class="row g-4">
+    <!-- Left: Input -->
+    <div class="col-lg-6">
+        <!-- Input Type Tabs -->
+        <div class="btn-group w-100 mb-3" role="group">
+            <button class="btn btn-outline-primary input-type-btn active" data-type="text">
+                <i class="bi bi-type"></i> Text
+            </button>
+            <button class="btn btn-outline-primary input-type-btn" data-type="url">
+                <i class="bi bi-link-45deg"></i> URL
+            </button>
+            <button class="btn btn-outline-primary input-type-btn" data-type="wifi">
+                <i class="bi bi-wifi"></i> WiFi
+            </button>
+            <button class="btn btn-outline-primary input-type-btn" data-type="vcard">
+                <i class="bi bi-person-vcard"></i> vCard
+            </button>
+        </div>
+
+        <!-- Text Input -->
+        <div id="inputText" class="input-panel">
+            <label class="form-label fw-semibold small">Text Content</label>
+            <textarea id="textContent" class="form-control" rows="4" placeholder="Enter any text to encode as QR code..."></textarea>
+        </div>
+
+        <!-- URL Input -->
+        <div id="inputUrl" class="input-panel d-none">
+            <label class="form-label fw-semibold small">URL</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-link-45deg"></i></span>
+                <input type="url" id="urlContent" class="form-control" placeholder="https://example.com">
+            </div>
+        </div>
+
+        <!-- WiFi Input -->
+        <div id="inputWifi" class="input-panel d-none">
+            <label class="form-label fw-semibold small">WiFi Network</label>
+            <div class="mb-2">
+                <input type="text" id="wifiSsid" class="form-control form-control-sm" placeholder="Network name (SSID)">
+            </div>
+            <div class="mb-2">
+                <div class="input-group input-group-sm">
+                    <input type="password" id="wifiPassword" class="form-control" placeholder="Password">
+                    <button class="btn btn-outline-secondary" type="button" id="wifiTogglePass" title="Show/hide password">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <select id="wifiEncryption" class="form-select form-select-sm">
+                    <option value="WPA">WPA/WPA2</option>
+                    <option value="WEP">WEP</option>
+                    <option value="nopass">No encryption</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- vCard Input -->
+        <div id="inputVcard" class="input-panel d-none">
+            <label class="form-label fw-semibold small">Contact (vCard)</label>
+            <div class="mb-2">
+                <input type="text" id="vcardName" class="form-control form-control-sm" placeholder="Full name">
+            </div>
+            <div class="mb-2">
+                <input type="tel" id="vcardPhone" class="form-control form-control-sm" placeholder="Phone number">
+            </div>
+            <div class="mb-2">
+                <input type="email" id="vcardEmail" class="form-control form-control-sm" placeholder="Email address">
+            </div>
+            <div class="mb-2">
+                <input type="text" id="vcardOrg" class="form-control form-control-sm" placeholder="Organization (optional)">
+            </div>
+            <div>
+                <input type="url" id="vcardUrl" class="form-control form-control-sm" placeholder="Website (optional)">
+            </div>
+        </div>
+
+        <!-- Options -->
+        <div class="card mt-3">
+            <div class="card-header py-2">
+                <span class="fw-semibold small"><i class="bi bi-gear"></i> Options</span>
+            </div>
+            <div class="card-body py-2">
+                <div class="row g-2 align-items-center">
+                    <div class="col-6">
+                        <label class="form-label mb-1 small">Size</label>
+                        <select id="qrSize" class="form-select form-select-sm">
+                            <option value="128">128 x 128</option>
+                            <option value="256" selected>256 x 256</option>
+                            <option value="512">512 x 512</option>
+                            <option value="1024">1024 x 1024</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label mb-1 small">Error Correction</label>
+                        <select id="qrErrorLevel" class="form-select form-select-sm">
+                            <option value="L">L — Low (7%)</option>
+                            <option value="M" selected>M — Medium (15%)</option>
+                            <option value="Q">Q — Quartile (25%)</option>
+                            <option value="H">H — High (30%)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row g-2 align-items-center mt-1">
+                    <div class="col-6">
+                        <label class="form-label mb-1 small">Foreground</label>
+                        <div class="d-flex align-items-center gap-2">
+                            <input type="color" id="qrFgColor" class="color-swatch" value="#000000">
+                            <code class="small" id="fgColorLabel">#000000</code>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label mb-1 small">Background</label>
+                        <div class="d-flex align-items-center gap-2">
+                            <input type="color" id="qrBgColor" class="color-swatch" value="#ffffff">
+                            <code class="small" id="bgColorLabel">#ffffff</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <button class="btn btn-sm btn-outline-secondary" id="resetColorsBtn" title="Reset to default black/white">
+                        <i class="bi bi-arrow-counterclockwise"></i> Reset Colors
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: QR Preview -->
+    <div class="col-lg-6">
+        <div class="qr-preview mb-3" id="qrPreview">
+            <span class="placeholder-text"><i class="bi bi-qr-code" style="font-size: 3rem; opacity: 0.3;"></i><br>Enter content to generate QR code</span>
+        </div>
+        <canvas id="qrCanvas" class="d-none"></canvas>
+
+        <!-- Action Buttons -->
+        <div class="d-flex gap-2 justify-content-center flex-wrap">
+            <button class="btn btn-primary" id="downloadPngBtn" disabled>
+                <i class="bi bi-download"></i> Download PNG
+            </button>
+            <button class="btn btn-outline-secondary" id="copyImageBtn" disabled title="Copy QR image to clipboard">
+                <i class="bi bi-clipboard"></i> Copy Image
+            </button>
+            <button class="btn btn-outline-secondary" id="downloadSvgBtn" disabled>
+                <i class="bi bi-filetype-svg"></i> Download SVG
+            </button>
+            <button class="btn btn-outline-danger" id="clearQrBtn">
+                <i class="bi bi-trash"></i> Clear
+            </button>
+        </div>
+
+        <!-- QR Info -->
+        <div class="text-center mt-2">
+            <small id="qrStats" class="text-muted"></small>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<script src="/static/qrcode.js"></script>
+{{end}}

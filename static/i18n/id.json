@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Salin",
+    "copied": "Tersalin!",
+    "clear": "Hapus",
+    "save": "Simpan",
+    "saved": "Tersimpan!",
+    "delete": "Hapus",
+    "cancel": "Batal",
+    "close": "Tutup",
+    "open": "Buka",
+    "search": "Cari",
+    "loading": "Memuat...",
+    "error": "Error",
+    "success": "Berhasil",
+    "warning": "Peringatan",
+    "info": "Info",
+    "yes": "Ya",
+    "no": "Tidak",
+    "confirm": "Konfirmasi",
+    "download": "Unduh",
+    "upload": "Unggah",
+    "export": "Ekspor",
+    "import": "Impor",
+    "expand": "Perluas",
+    "exit": "Keluar",
+    "file": "File",
+    "settings": "Pengaturan",
+    "none": "Tidak ada",
+    "all": "Semua",
+    "reset": "Reset",
+    "apply": "Terapkan",
+    "preview": "Pratinjau",
+    "source": "Sumber",
+    "result": "Hasil",
+    "input": "Input",
+    "output": "Output",
+    "generate": "Buat",
+    "encode": "Encode",
+    "decode": "Decode",
+    "paste": "Tempel",
+    "swap": "Tukar",
+    "back": "Kembali",
+    "next": "Berikutnya",
+    "samples": "Contoh",
+    "history": "Riwayat",
+    "options": "Opsi",
+    "format": "Format",
+    "validate": "Validasi",
+    "convert": "Konversi",
+    "raw": "Mentah",
+    "send": "Kirim",
+    "stop": "Berhenti",
+    "start": "Mulai",
+    "refresh": "Segarkan",
+    "browse": "Jelajah",
+    "select": "Pilih",
+    "add": "Tambah",
+    "remove": "Hapus",
+    "edit": "Edit",
+    "share": "Bagikan",
+    "pin": "Sematkan",
+    "unpin": "Lepas sematan",
+    "new": "Baru",
+    "text": "Teks",
+    "type": "Tipe",
+    "size": "Ukuran",
+    "name": "Nama",
+    "value": "Nilai",
+    "status": "Status",
+    "actions": "Aksi",
+    "description": "Deskripsi",
+    "category": "Kategori",
+    "tags": "Tag",
+    "language": "Bahasa",
+    "title": "Judul",
+    "content": "Konten",
+    "count": "Jumlah",
+    "length": "Panjang",
+    "total": "Total",
+    "or": "atau",
+    "and": "dan",
+    "no_data": "Tidak ada data",
+    "no_results": "Tidak ada hasil",
+    "confirm_delete": "Yakin ingin menghapus ini?",
+    "drag_drop": "Seret & lepas file di sini",
+    "processing": "Memproses...",
+    "done": "Selesai",
+    "copied_to_clipboard": "Tersalin ke clipboard!",
+    "failed_to_copy": "Gagal menyalin",
+    "keyboard_shortcuts": "Pintasan keyboard",
+    "toggle_fullscreen": "Beralih layar penuh (F11)",
+    "exit_fullscreen": "Keluar layar penuh (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Cari",
+    "search_tools": "Cari tools...",
+    "more": "Lainnya",
+    "all_tools": "Semua Tools",
+    "ask_ai": "Tanya AI",
+    "cloud_ai": "Cloud AI",
+    "local_ai": "AI Lokal",
+    "language": "Bahasa",
+    "pinned_to_navbar": "Disematkan ke navbar",
+    "unpinned_from_navbar": "Dilepas dari navbar",
+    "pin_to_navbar": "Sematkan ke navbar",
+    "unpin_from_navbar": "Lepas dari navbar",
+    "open_navigation": "Buka navigasi"
+  },
+  "theme": {
+    "light": "Terang",
+    "dark": "Gelap",
+    "auto": "Otomatis",
+    "switch_theme": "Ganti tema"
+  },
+  "spotlight": {
+    "placeholder": "Cari tools...",
+    "no_results": "Tidak ada tools untuk \"{query}\"",
+    "navigate": "Navigasi",
+    "open": "Buka",
+    "close": "Tutup"
+  },
+  "drawer": {
+    "search": "Cari",
+    "theme": "Tema",
+    "pinned": "Disematkan",
+    "file_code": "File & Kode",
+    "encode_decode": "Encode & Decode",
+    "converters": "Konverter",
+    "generators": "Generator",
+    "tools_section": "Tools",
+    "logs_network": "Log & Jaringan",
+    "all_tools": "Semua Tools"
+  },
+  "footer": {
+    "made_by": "Dibuat dengan ❤️ oleh"
+  },
+  "ai": {
+    "ask": "Tanya",
+    "prompt_placeholder": "Mau bertanya apa?",
+    "enter_to_send": "Enter untuk kirim",
+    "shift_enter_newline": "Shift+Enter untuk baris baru",
+    "open_without_prompt": "Buka tanpa prompt",
+    "ollama_url": "URL Ollama",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Masukkan URL web UI Ollama kamu"
+  },
+  "dashboard": {
+    "search_placeholder": "Cari tools...",
+    "pinned_tools": "Tools Favorit",
+    "all_tools": "Semua Tools",
+    "no_results": "Tidak ada tools yang cocok dengan pencarian.",
+    "open_source_toolkit": "Toolkit developer open source",
+    "tools_count": "{count} tools tersedia"
+  },
+  "tools": {
+    "upload": {
+      "name": "Upload",
+      "desc": "Seret & lepas, tempel, atau pilih file untuk diunggah. Pratinjau gambar dengan lightbox."
+    },
+    "files": {
+      "name": "File Explorer",
+      "desc": "Jelajahi, cari, dan kelola file yang diunggah dalam tampilan grid ala Google Drive."
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "Format & percantik kode JSON, XML, HTML, CSS, JavaScript, dan SQL."
+    },
+    "logs": {
+      "name": "Log Aggregator",
+      "desc": "Pengumpul log ringan. Terima log dari aplikasi apa saja via HTTP POST, filter berdasarkan app dan level."
+    },
+    "logviewer": {
+      "name": "Log Viewer",
+      "desc": "Unggah dan cari file log besar dengan filter kata kunci, regex, dan baris konteks."
+    },
+    "editor": {
+      "name": "Code Editor",
+      "desc": "Editor kode lengkap dengan Monaco (VS Code). Syntax highlighting untuk 40+ bahasa pemrograman."
+    },
+    "markdown": {
+      "name": "Markdown Viewer",
+      "desc": "Tulis Markdown dengan live preview, blok kode syntax-highlighted, dan dukungan GFM."
+    },
+    "diff": {
+      "name": "Code Diff",
+      "desc": "Bandingkan dua file kode secara berdampingan atau inline dengan tampilan diff syntax-highlighted."
+    },
+    "jwt": {
+      "name": "JWT Tool",
+      "desc": "Encode, decode, dan verifikasi JSON Web Token. Mendukung HS256/384/512 dengan tampilan berwarna."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Encode dan decode string Base64. Mendukung teks dan file biner dengan opsi URL-safe."
+    },
+    "urlencoder": {
+      "name": "URL Encoder",
+      "desc": "Encode dan decode URL serta parameter query. URL parser menampilkan protocol, host, path, dan params."
+    },
+    "htmleditor": {
+      "name": "HTML Editor",
+      "desc": "Editor teks kaya WYSIWYG dengan TinyMCE dan tampilan kode sumber HTML."
+    },
+    "mermaid": {
+      "name": "Mermaid Diagram",
+      "desc": "Buat flowchart, sequence diagram, ER diagram, Gantt chart, dan lainnya dengan live preview Mermaid.js."
+    },
+    "uuid": {
+      "name": "UUID Generator",
+      "desc": "Buat UUID v1, v4, dan v7. Bulk generate, validasi, parse, dan salin dengan opsi format."
+    },
+    "notes": {
+      "name": "Catatan",
+      "desc": "Catatan Markdown dengan live preview, tag, kategori, label warna, lampiran, dan auto-save."
+    },
+    "regex": {
+      "name": "Regex Tester",
+      "desc": "Uji pola regex dengan highlight kecocokan real-time, capture group, replace, dan cheat sheet."
+    },
+    "charmap": {
+      "name": "Emoji & CharMap",
+      "desc": "Cari dan salin emoji, simbol, dan karakter khusus. Detail Unicode, HTML entity, dan yang baru dipakai."
+    },
+    "epoch": {
+      "name": "Epoch Converter",
+      "desc": "Konversi timestamp Unix epoch ke tanggal yang mudah dibaca dan sebaliknya. Jam langsung, preset, dan kalkulator selisih waktu."
+    },
+    "hash": {
+      "name": "Hash Generator",
+      "desc": "Buat hash MD5, SHA-1, SHA-256, SHA-512 dari teks atau file. Verifikasi checksum secara instan."
+    },
+    "colorpicker": {
+      "name": "Color Picker",
+      "desc": "Pilih warna dan konversi antara format HEX, RGB, HSL. Palet warna dan pemeriksa kontras."
+    },
+    "cron": {
+      "name": "Cron Parser",
+      "desc": "Parse dan buat ekspresi cron dengan deskripsi yang mudah dibaca dan jadwal eksekusi berikutnya."
+    },
+    "password": {
+      "name": "Password Generator",
+      "desc": "Buat password acak yang aman secara kriptografis dan passphrase yang mudah diingat."
+    },
+    "qrcode": {
+      "name": "QR Code Generator",
+      "desc": "Buat QR code dari teks, URL, kredensial WiFi, atau info kontak. Unduh sebagai PNG."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Buat teks placeholder — paragraf, kalimat, atau kata. Tersedia berbagai gaya."
+    },
+    "baseconverter": {
+      "name": "Base Converter",
+      "desc": "Konversi angka antara Binary, Octal, Decimal, dan Hexadecimal secara real-time."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Konversi antara format JSON dan YAML dengan validasi syntax dan formatting."
+    },
+    "httpclient": {
+      "name": "HTTP Client",
+      "desc": "Uji API endpoint seperti Postman mini. Method kustom, header, body, dan penampil respons."
+    },
+    "stringutils": {
+      "name": "String Utilities",
+      "desc": "Konversi huruf besar/kecil, trim, hitung, balik, slug generator, dan operasi string lainnya."
+    },
+    "chat": {
+      "name": "LAN Chat",
+      "desc": "Chat real-time di jaringan lokal. Tanpa internet — cukup Dev Helper di LAN."
+    },
+    "netscan": {
+      "name": "Network Scanner",
+      "desc": "Scan host dan port di LAN. Temukan perangkat, layanan, dan port terbuka di jaringanmu."
+    },
+    "worldclock": {
+      "name": "Jam Dunia",
+      "desc": "Jam multi-timezone dengan tampilan analog, perencana rapat, dan geser untuk urutkan."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Ekstrak teks dari gambar dan screenshot. Seret, tempel, atau unggah — didukung Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Konversi antara application.yml dan application.properties untuk proyek Java/Spring Boot."
+    },
+    "netinspect": {
+      "name": "Network Inspector",
+      "desc": "Geolokasi IP, DNS lookup, HTTP response header, dan pemeriksa sertifikat SSL."
+    },
+    "aichat": {
+      "name": "AI Chat",
+      "desc": "Chat dengan model AI Ollama lokal. Respons streaming, rendering markdown, riwayat percakapan."
+    },
+    "speedtest": {
+      "name": "Speed Test",
+      "desc": "Uji kecepatan download/upload jaringan, ping latency, dan performa baca/tulis disk."
+    },
+    "snippets": {
+      "name": "Code Snippets",
+      "desc": "Simpan dan atur potongan kode yang sering dipakai dengan syntax highlighting dan salin cepat."
+    },
+    "sysmon": {
+      "name": "System Monitor",
+      "desc": "Monitor CPU, memori, disk, jaringan, dan proses secara real-time dengan gauge langsung."
+    },
+    "icons": {
+      "name": "Icon Explorer",
+      "desc": "Jelajahi dan cari Bootstrap Icons, Font Awesome, dan Tabler Icons. Klik untuk salin class CSS atau HTML."
+    },
+    "askai": {
+      "name": "Tanya AI",
+      "desc": "Akses cepat ke 9 cloud AI (Claude, ChatGPT, Gemini, dll.) dan Ollama dari navbar."
+    },
+    "translator": {
+      "name": "Penerjemah",
+      "desc": "Terjemahkan teks antar bahasa menggunakan model AI Ollama lokal. Seperti Google Translate, offline."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Seret & Lepas File di Sini",
+    "drop_or_browse": "atau klik untuk memilih file",
+    "paste_hint": "Kamu juga bisa tempel dari clipboard (Ctrl+V)",
+    "recent_uploads": "Upload Terbaru",
+    "clear_recent": "Hapus Riwayat",
+    "copy_url": "Salin URL",
+    "open_new_tab": "Buka di Tab Baru",
+    "file_uploaded": "File berhasil diunggah",
+    "upload_failed": "Gagal mengunggah"
+  },
+  "files_page": {
+    "search_placeholder": "Cari file...",
+    "grid_view": "Grid",
+    "list_view": "Daftar",
+    "delete_all": "Hapus Semua",
+    "confirm_delete_all": "Yakin ingin menghapus semua file?",
+    "no_files": "Tidak ada file",
+    "file_deleted": "File dihapus",
+    "download": "Unduh",
+    "file_size": "Ukuran",
+    "file_date": "Tanggal"
+  },
+  "prettify_page": {
+    "input_label": "Input",
+    "output_label": "Output",
+    "prettify": "Percantik",
+    "minify": "Perkecil",
+    "paste_placeholder": "Tempel atau ketik kode di sini...",
+    "auto_detect": "Deteksi Otomatis",
+    "copy_output": "Salin Output"
+  },
+  "logs_page": {
+    "app": "Aplikasi",
+    "level": "Level",
+    "search_placeholder": "Cari log...",
+    "clear_logs": "Hapus Log",
+    "auto_scroll": "Auto-scroll",
+    "no_logs": "Tidak ada log",
+    "all_apps": "Semua Aplikasi",
+    "all_levels": "Semua Level",
+    "timestamp": "Waktu",
+    "message": "Pesan"
+  },
+  "logviewer_page": {
+    "upload_log": "Unggah File Log",
+    "search_placeholder": "Cari kata kunci atau regex...",
+    "use_regex": "Regex",
+    "case_sensitive": "Peka Huruf Besar/Kecil",
+    "context_lines": "Baris Konteks",
+    "showing_lines": "Menampilkan {shown} dari {total} baris",
+    "no_matches": "Tidak ada yang cocok",
+    "line": "Baris"
+  },
+  "editor_page": {
+    "new_file": "Baru",
+    "open_file": "Buka File",
+    "save_file": "Simpan",
+    "word_wrap": "Word Wrap",
+    "minimap": "Minimap",
+    "line": "Baris",
+    "column": "Kolom",
+    "language": "Bahasa",
+    "fetch_url": "Ambil dari URL",
+    "url_placeholder": "Masukkan URL untuk mengambil file..."
+  },
+  "markdown_page": {
+    "samples": "Contoh",
+    "open_file": "Buka File",
+    "copy_html": "Salin HTML",
+    "export": "Ekspor",
+    "export_pdf": "Ekspor ke PDF",
+    "export_md": "Ekspor ke Markdown",
+    "export_html": "Ekspor ke HTML",
+    "clear": "Hapus",
+    "expand": "Perluas",
+    "editor_label": "Markdown",
+    "preview_label": "Pratinjau",
+    "drop_zone": "Seret & lepas file Markdown di sini, atau klik untuk memilih",
+    "url_placeholder": "Masukkan URL untuk mengambil file .md",
+    "fetch": "Ambil",
+    "html_copied": "HTML tersalin!",
+    "readme": "README",
+    "api_docs": "Dokumentasi API",
+    "changelog": "Changelog",
+    "blog_post": "Posting Blog",
+    "cheatsheet": "Cheatsheet Markdown",
+    "meeting_notes": "Notulen Rapat",
+    "project_todo": "TODO Proyek"
+  },
+  "diff_page": {
+    "original": "Asli",
+    "modified": "Diubah",
+    "side_by_side": "Berdampingan",
+    "inline": "Inline",
+    "open_file": "Buka File",
+    "paste_code": "Tempel kode di sini...",
+    "swap": "Tukar",
+    "no_differences": "Tidak ada perbedaan"
+  },
+  "jwt_page": {
+    "header": "Header",
+    "payload": "Payload",
+    "signature": "Signature",
+    "secret": "Kunci Rahasia",
+    "algorithm": "Algoritma",
+    "encode": "Encode",
+    "decode": "Decode",
+    "verify": "Verifikasi",
+    "valid_signature": "Signature valid",
+    "invalid_signature": "Signature tidak valid",
+    "paste_jwt": "Tempel token JWT di sini..."
+  },
+  "base64_page": {
+    "text_mode": "Teks",
+    "file_mode": "File",
+    "url_safe": "URL-safe",
+    "line_breaks": "Baris baru",
+    "input_placeholder": "Masukkan teks untuk encode/decode...",
+    "drop_file": "Lepas file di sini atau klik untuk memilih",
+    "download_result": "Unduh Hasil"
+  },
+  "urlencoder_page": {
+    "component_mode": "Komponen",
+    "full_url_mode": "URL Lengkap",
+    "url_parser": "URL Parser",
+    "protocol": "Protokol",
+    "host": "Host",
+    "path": "Path",
+    "params": "Parameter",
+    "input_placeholder": "Masukkan URL atau teks untuk encode/decode..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Kode Sumber",
+    "import_html": "Impor HTML",
+    "export_html": "Ekspor HTML",
+    "clear": "Hapus"
+  },
+  "mermaid_page": {
+    "samples": "Contoh",
+    "download_svg": "Unduh SVG",
+    "download_png": "Unduh PNG",
+    "share": "Bagikan",
+    "zoom_in": "Perbesar",
+    "zoom_out": "Perkecil",
+    "reset_zoom": "Reset Zoom",
+    "diagram_label": "Kode Mermaid",
+    "preview_label": "Pratinjau",
+    "link_copied": "Link berbagi tersalin!",
+    "flowchart": "Flowchart",
+    "sequence": "Sequence Diagram",
+    "class_diagram": "Class Diagram",
+    "state": "State Diagram",
+    "er": "ER Diagram",
+    "gantt": "Gantt Chart",
+    "pie": "Pie Chart",
+    "mindmap": "Mindmap",
+    "timeline": "Timeline",
+    "quadrant": "Quadrant Chart",
+    "git": "Git Graph",
+    "sankey": "Sankey Diagram"
+  },
+  "uuid_page": {
+    "version": "Versi",
+    "bulk_generate": "Buat Massal",
+    "validate_parse": "Validasi & Parse",
+    "count": "Jumlah",
+    "uppercase": "Huruf Besar",
+    "braces": "Kurung Kurawal",
+    "hyphens": "Tanda Hubung",
+    "copy_all": "Salin Semua",
+    "generated": "Dibuat",
+    "valid_uuid": "UUID Valid",
+    "invalid_uuid": "UUID Tidak Valid",
+    "uuid_version": "Versi",
+    "uuid_variant": "Varian",
+    "uuid_timestamp": "Timestamp"
+  },
+  "notes_page": {
+    "new_note": "Catatan Baru",
+    "search_placeholder": "Cari catatan...",
+    "categories": "Kategori",
+    "all_notes": "Semua Catatan",
+    "pinned": "Disematkan",
+    "trash": "Sampah",
+    "restore": "Pulihkan",
+    "permanent_delete": "Hapus Permanen",
+    "note_saved": "Catatan tersimpan",
+    "note_deleted": "Catatan dipindahkan ke sampah",
+    "untitled": "Catatan Tanpa Judul",
+    "attachments": "Lampiran",
+    "color_label": "Label Warna",
+    "sort_by": "Urutkan",
+    "date_modified": "Tanggal Diubah",
+    "date_created": "Tanggal Dibuat"
+  },
+  "regex_page": {
+    "pattern": "Pola",
+    "test_string": "String Uji",
+    "flags": "Flag",
+    "matches": "Kecocokan",
+    "replace": "Ganti",
+    "replacement": "Pengganti",
+    "cheat_sheet": "Cheat Sheet",
+    "common_patterns": "Pola Umum",
+    "no_matches": "Tidak ada kecocokan",
+    "match_count": "{count} kecocokan ditemukan",
+    "global": "Global",
+    "case_insensitive": "Tidak Peka Huruf",
+    "multiline": "Multiline"
+  },
+  "charmap_page": {
+    "search_placeholder": "Cari emoji atau karakter...",
+    "recently_used": "Terakhir Dipakai",
+    "unicode": "Unicode",
+    "html_entity": "HTML Entity",
+    "css_code": "Kode CSS",
+    "copy_char": "Klik untuk menyalin",
+    "smileys": "Senyum & Orang",
+    "animals": "Hewan & Alam",
+    "food": "Makanan & Minuman",
+    "activities": "Aktivitas",
+    "travel": "Perjalanan & Tempat",
+    "objects": "Objek",
+    "symbols": "Simbol",
+    "flags": "Bendera",
+    "arrows": "Panah",
+    "math": "Matematika",
+    "currency": "Mata Uang",
+    "latin": "Latin Diperluas"
+  },
+  "epoch_page": {
+    "timestamp": "Timestamp",
+    "date_time": "Tanggal & Waktu",
+    "now": "Sekarang",
+    "seconds": "Detik",
+    "milliseconds": "Milidetik",
+    "local_time": "Waktu Lokal",
+    "utc_time": "Waktu UTC",
+    "relative": "Relatif",
+    "time_diff": "Selisih Waktu",
+    "presets": "Preset",
+    "live_clock": "Jam Langsung"
+  },
+  "hash_page": {
+    "text_input": "Input Teks",
+    "file_input": "Input File",
+    "compare": "Bandingkan Hash",
+    "hash_match": "Hash cocok!",
+    "hash_mismatch": "Hash tidak cocok",
+    "drop_file": "Lepas file untuk di-hash...",
+    "computing": "Menghitung hash..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Cek Kontras",
+    "foreground": "Latar Depan",
+    "background": "Latar Belakang",
+    "ratio": "Rasio",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Lulus",
+    "fail": "Gagal",
+    "palette": "Palet",
+    "shades": "Gelap",
+    "tints": "Terang",
+    "pick_color": "Pilih Warna",
+    "eyedropper": "EyeDropper"
+  },
+  "cron_page": {
+    "expression": "Ekspresi",
+    "description_label": "Deskripsi",
+    "next_runs": "Eksekusi Berikutnya",
+    "presets": "Preset",
+    "minute": "Menit",
+    "hour": "Jam",
+    "day_month": "Hari (Bulan)",
+    "month": "Bulan",
+    "day_week": "Hari (Minggu)",
+    "every_minute": "Setiap menit",
+    "every_hour": "Setiap jam",
+    "every_day": "Setiap hari tengah malam",
+    "share": "Bagikan"
+  },
+  "password_page": {
+    "password": "Password",
+    "passphrase": "Passphrase",
+    "length": "Panjang",
+    "uppercase": "Huruf Besar (A-Z)",
+    "lowercase": "Huruf Kecil (a-z)",
+    "numbers": "Angka (0-9)",
+    "symbols": "Simbol (!@#$...)",
+    "word_count": "Jumlah Kata",
+    "separator": "Pemisah",
+    "strength": "Kekuatan",
+    "entropy": "Entropi",
+    "very_weak": "Sangat Lemah",
+    "weak": "Lemah",
+    "fair": "Cukup",
+    "strong": "Kuat",
+    "very_strong": "Sangat Kuat",
+    "bulk_generate": "Buat Massal",
+    "generate_count": "Jumlah"
+  },
+  "qrcode_page": {
+    "text_url": "Teks / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Masukkan teks atau URL...",
+    "network_name": "Nama Jaringan (SSID)",
+    "wifi_password": "Password",
+    "encryption": "Enkripsi",
+    "hidden_network": "Jaringan Tersembunyi",
+    "full_name": "Nama Lengkap",
+    "phone": "Telepon",
+    "email": "Email",
+    "organization": "Organisasi",
+    "error_correction": "Koreksi Error",
+    "foreground_color": "Warna Depan",
+    "background_color": "Warna Belakang",
+    "download_png": "Unduh PNG",
+    "download_svg": "Unduh SVG",
+    "copy_image": "Salin Gambar"
+  },
+  "lorem_page": {
+    "paragraphs": "Paragraf",
+    "sentences": "Kalimat",
+    "words": "Kata",
+    "style": "Gaya",
+    "classic": "Klasik",
+    "hipster": "Hipster",
+    "tech": "Tech / Dev",
+    "include_html": "Sertakan tag HTML",
+    "start_lorem": "Mulai dengan \"Lorem ipsum...\"",
+    "generated_text": "Teks yang Dihasilkan",
+    "copy_text": "Salin Teks"
+  },
+  "baseconverter_page": {
+    "binary": "Biner",
+    "octal": "Oktal",
+    "decimal": "Desimal",
+    "hexadecimal": "Heksadesimal",
+    "bit_visualization": "Visualisasi Bit",
+    "signed": "Bertanda",
+    "unsigned": "Tak Bertanda",
+    "twos_complement": "Komplemen Dua"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Percantik",
+    "minify": "Perkecil",
+    "import_file": "Impor File",
+    "invalid_json": "JSON tidak valid",
+    "invalid_yaml": "YAML tidak valid"
+  },
+  "httpclient_page": {
+    "url_placeholder": "Masukkan URL request...",
+    "method": "Method",
+    "headers": "Header",
+    "body": "Body",
+    "auth": "Auth",
+    "params": "Params",
+    "response": "Respons",
+    "status_code": "Status",
+    "response_time": "Waktu",
+    "response_size": "Ukuran",
+    "send_request": "Kirim",
+    "clear_history": "Hapus Riwayat",
+    "no_auth": "Tanpa Auth",
+    "basic_auth": "Basic Auth",
+    "bearer_token": "Bearer Token",
+    "username": "Username",
+    "token": "Token",
+    "key": "Key",
+    "add_header": "Tambah Header",
+    "add_param": "Tambah Parameter"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Masukkan teks di sini...",
+    "operations": "Operasi",
+    "case_conversion": "Konversi Huruf",
+    "text_cleanup": "Bersihkan Teks",
+    "text_transform": "Transformasi Teks",
+    "encode_decode": "Encode / Decode",
+    "extract_info": "Ekstrak Info",
+    "uppercase": "HURUF BESAR",
+    "lowercase": "huruf kecil",
+    "title_case": "Huruf Judul",
+    "sentence_case": "Huruf kalimat",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Karakter",
+    "word_count": "Kata",
+    "line_count": "Baris"
+  },
+  "chat_page": {
+    "username_placeholder": "Masukkan nama kamu...",
+    "message_placeholder": "Ketik pesan...",
+    "join": "Gabung",
+    "online_users": "Pengguna Online",
+    "user_joined": "{user} bergabung ke chat",
+    "user_left": "{user} keluar dari chat"
+  },
+  "netscan_page": {
+    "interface": "Interface",
+    "target": "Target",
+    "ports": "Port",
+    "scan": "Scan",
+    "scanning": "Memindai...",
+    "open_ports": "Port Terbuka",
+    "host": "Host",
+    "port": "Port",
+    "service": "Layanan",
+    "scan_complete": "Scan selesai",
+    "common_ports": "Port Umum",
+    "custom_range": "Rentang Kustom"
+  },
+  "worldclock_page": {
+    "add_clock": "Tambah Jam",
+    "your_local_time": "Waktu Lokal Kamu",
+    "meeting_planner": "Perencana Rapat",
+    "timezone": "Zona Waktu",
+    "search_timezone": "Cari zona waktu...",
+    "remove_clock": "Hapus"
+  },
+  "ocr_page": {
+    "upload_image": "Unggah Gambar",
+    "paste_image": "Tempel Gambar",
+    "drop_image": "Seret & lepas gambar di sini",
+    "extract_text": "Ekstrak Teks",
+    "extracted_text": "Teks Terekstrak",
+    "copy_result": "Salin Hasil",
+    "recognizing": "Mengenali teks...",
+    "no_text_found": "Tidak ada teks ditemukan di gambar",
+    "supported_formats": "Didukung: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Impor File",
+    "download_result": "Unduh"
+  },
+  "aichat_page": {
+    "model": "Model",
+    "no_models": "Tidak ada model. Apakah Ollama sedang berjalan?",
+    "message_placeholder": "Ketik pesan kamu...",
+    "clear_chat": "Hapus Chat",
+    "thinking": "Berpikir...",
+    "ollama_not_running": "Tidak bisa terhubung ke Ollama",
+    "connection_error": "Error koneksi"
+  },
+  "speedtest_page": {
+    "start_test": "Mulai Tes",
+    "ping": "Ping",
+    "download_speed": "Download",
+    "upload_speed": "Upload",
+    "disk_speed": "Disk",
+    "latency": "Latensi",
+    "read_speed": "Baca",
+    "write_speed": "Tulis",
+    "testing": "Menguji...",
+    "test_complete": "Tes selesai"
+  },
+  "snippets_page": {
+    "new_snippet": "Snippet Baru",
+    "search_placeholder": "Cari snippet...",
+    "title_placeholder": "Judul snippet...",
+    "desc_placeholder": "Deskripsi (opsional)",
+    "tags_placeholder": "Tag (pisahkan dengan koma)",
+    "save_snippet": "Simpan",
+    "delete_snippet": "Hapus",
+    "copy_code": "Salin Kode",
+    "language": "Bahasa",
+    "default_loaded": "Snippet default dimuat",
+    "snippet_saved": "Snippet tersimpan",
+    "snippet_deleted": "Snippet dihapus",
+    "code_copied": "Kode tersalin!",
+    "no_snippets": "Tidak ada snippet",
+    "pinned": "Disematkan",
+    "all_snippets": "Semua Snippet"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Memori",
+    "disk": "Disk",
+    "network": "Jaringan",
+    "processes": "Proses",
+    "usage": "Pemakaian",
+    "total": "Total",
+    "used": "Terpakai",
+    "free": "Bebas",
+    "available": "Tersedia",
+    "cores": "Core",
+    "uptime": "Waktu Aktif",
+    "pid": "PID",
+    "process_name": "Nama",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Memori %",
+    "connecting": "Menghubungkan...",
+    "disconnected": "Terputus",
+    "bytes_sent": "Terkirim",
+    "bytes_recv": "Diterima",
+    "read_speed": "Baca",
+    "write_speed": "Tulis"
+  },
+  "icons_page": {
+    "search_placeholder": "Cari ikon...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "Semua",
+    "recently_used": "Terakhir Dipakai",
+    "class_name": "Class",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Salin Class",
+    "copy_html": "Salin HTML",
+    "icon_count": "{count} ikon",
+    "loading_icons": "Memuat ikon...",
+    "click_to_view": "Klik ikon untuk melihat detail"
+  },
+  "netinspect_page": {
+    "my_ip": "IP Saya",
+    "ip_lookup": "IP Lookup",
+    "dns_lookup": "DNS Lookup",
+    "http_headers": "HTTP Header",
+    "ssl_cert": "Sertifikat SSL",
+    "lookup": "Lookup",
+    "check": "Periksa",
+    "ip_placeholder": "Masukkan alamat IP...",
+    "domain_placeholder": "Masukkan nama domain...",
+    "url_placeholder": "Masukkan URL...",
+    "location": "Lokasi",
+    "isp": "ISP",
+    "record_type": "Tipe Record",
+    "issuer": "Penerbit",
+    "valid_from": "Berlaku Dari",
+    "valid_until": "Berlaku Sampai",
+    "subject": "Subjek"
+  },
+  "translator_page": {
+    "source_lang": "Bahasa Sumber",
+    "target_lang": "Bahasa Tujuan",
+    "auto_detect": "Deteksi Otomatis",
+    "translate": "Terjemahkan",
+    "translating": "Menerjemahkan...",
+    "swap_languages": "Tukar Bahasa",
+    "input_placeholder": "Masukkan teks untuk diterjemahkan...",
+    "model": "Model",
+    "copy_translation": "Salin Terjemahan",
+    "translation_copied": "Terjemahan tersalin!",
+    "clear_all": "Hapus Semua",
+    "char_count": "{count} karakter"
+  }
+}

@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "कॉपी करें",
+    "copied": "कॉपी हो गया!",
+    "clear": "साफ़ करें",
+    "save": "सहेजें",
+    "saved": "सहेज लिया!",
+    "delete": "हटाएँ",
+    "cancel": "रद्द करें",
+    "close": "बंद करें",
+    "open": "खोलें",
+    "search": "खोजें",
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि",
+    "success": "सफल",
+    "warning": "चेतावनी",
+    "info": "जानकारी",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "confirm": "पुष्टि करें",
+    "download": "डाउनलोड",
+    "upload": "अपलोड",
+    "export": "निर्यात",
+    "import": "आयात",
+    "expand": "विस्तार करें",
+    "exit": "बाहर निकलें",
+    "file": "फ़ाइल",
+    "settings": "सेटिंग्स",
+    "none": "कोई नहीं",
+    "all": "सभी",
+    "reset": "रीसेट करें",
+    "apply": "लागू करें",
+    "preview": "पूर्वावलोकन",
+    "source": "स्रोत",
+    "result": "परिणाम",
+    "input": "इनपुट",
+    "output": "आउटपुट",
+    "generate": "उत्पन्न करें",
+    "encode": "एन्कोड",
+    "decode": "डिकोड",
+    "paste": "चिपकाएँ",
+    "swap": "अदला-बदली",
+    "back": "वापस",
+    "next": "अगला",
+    "samples": "नमूने",
+    "history": "इतिहास",
+    "options": "विकल्प",
+    "format": "फ़ॉर्मेट",
+    "validate": "मान्य करें",
+    "convert": "रूपांतरित करें",
+    "raw": "कच्चा",
+    "send": "भेजें",
+    "stop": "रोकें",
+    "start": "शुरू करें",
+    "refresh": "ताज़ा करें",
+    "browse": "ब्राउज़ करें",
+    "select": "चुनें",
+    "add": "जोड़ें",
+    "remove": "हटाएँ",
+    "edit": "संपादित करें",
+    "share": "साझा करें",
+    "pin": "पिन करें",
+    "unpin": "अनपिन करें",
+    "new": "नया",
+    "text": "टेक्स्ट",
+    "type": "प्रकार",
+    "size": "आकार",
+    "name": "नाम",
+    "value": "मान",
+    "status": "स्थिति",
+    "actions": "कार्यवाही",
+    "description": "विवरण",
+    "category": "श्रेणी",
+    "tags": "टैग",
+    "language": "भाषा",
+    "title": "शीर्षक",
+    "content": "सामग्री",
+    "count": "गिनती",
+    "length": "लंबाई",
+    "total": "कुल",
+    "or": "या",
+    "and": "और",
+    "no_data": "कोई डेटा नहीं",
+    "no_results": "कोई परिणाम नहीं मिला",
+    "confirm_delete": "क्या आप वाकई इसे हटाना चाहते हैं?",
+    "drag_drop": "फ़ाइल यहाँ खींचें और छोड़ें",
+    "processing": "प्रोसेस हो रहा है...",
+    "done": "हो गया",
+    "copied_to_clipboard": "क्लिपबोर्ड पर कॉपी हो गया!",
+    "failed_to_copy": "कॉपी करने में विफल",
+    "keyboard_shortcuts": "कीबोर्ड शॉर्टकट",
+    "toggle_fullscreen": "फ़ुलस्क्रीन टॉगल करें (F11)",
+    "exit_fullscreen": "फ़ुलस्क्रीन से बाहर निकलें (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "खोजें",
+    "search_tools": "टूल खोजें...",
+    "more": "और",
+    "all_tools": "सभी टूल",
+    "ask_ai": "AI से पूछें",
+    "cloud_ai": "क्लाउड AI",
+    "local_ai": "लोकल AI",
+    "language": "भाषा",
+    "pinned_to_navbar": "नेवबार में पिन किया गया",
+    "unpinned_from_navbar": "नेवबार से अनपिन किया गया",
+    "pin_to_navbar": "नेवबार में पिन करें",
+    "unpin_from_navbar": "नेवबार से अनपिन करें",
+    "open_navigation": "नेविगेशन खोलें"
+  },
+  "theme": {
+    "light": "लाइट",
+    "dark": "डार्क",
+    "auto": "स्वचालित",
+    "switch_theme": "थीम बदलें"
+  },
+  "spotlight": {
+    "placeholder": "टूल खोजें...",
+    "no_results": "\"{query}\" के लिए कोई टूल नहीं मिला",
+    "navigate": "नेविगेट करें",
+    "open": "खोलें",
+    "close": "बंद करें"
+  },
+  "drawer": {
+    "search": "खोजें",
+    "theme": "थीम",
+    "pinned": "पिन किए गए",
+    "file_code": "फ़ाइल और कोड",
+    "encode_decode": "एन्कोड और डिकोड",
+    "converters": "कन्वर्टर",
+    "generators": "जनरेटर",
+    "tools_section": "टूल",
+    "logs_network": "लॉग और नेटवर्क",
+    "all_tools": "सभी टूल"
+  },
+  "footer": {
+    "made_by": "❤️ से बनाया"
+  },
+  "ai": {
+    "ask": "पूछें",
+    "prompt_placeholder": "आप क्या पूछना चाहते हैं?",
+    "enter_to_send": "भेजने के लिए Enter दबाएँ",
+    "shift_enter_newline": "नई पंक्ति के लिए Shift+Enter",
+    "open_without_prompt": "बिना प्रॉम्प्ट के खोलें",
+    "ollama_url": "Ollama URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "अपना Ollama वेब UI URL दर्ज करें"
+  },
+  "dashboard": {
+    "search_placeholder": "टूल खोजें...",
+    "pinned_tools": "पिन किए गए टूल",
+    "all_tools": "सभी टूल",
+    "no_results": "आपकी खोज से मेल खाने वाले कोई टूल नहीं मिले।",
+    "open_source_toolkit": "ओपन सोर्स डेवलपर टूलकिट",
+    "tools_count": "{count} टूल उपलब्ध"
+  },
+  "tools": {
+    "upload": {
+      "name": "अपलोड",
+      "desc": "फ़ाइलें अपलोड करने के लिए खींचें और छोड़ें, पेस्ट करें, या ब्राउज़ करें। लाइटबॉक्स के साथ इमेज पूर्वावलोकन।"
+    },
+    "files": {
+      "name": "फ़ाइल एक्सप्लोरर",
+      "desc": "Google Drive जैसे ग्रिड व्यू में अपलोड की गई फ़ाइलें ब्राउज़ करें, खोजें, और प्रबंधित करें।"
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "JSON, XML, HTML, CSS, JavaScript, और SQL कोड को फ़ॉर्मेट और सुंदर बनाएँ।"
+    },
+    "logs": {
+      "name": "लॉग एग्रीगेटर",
+      "desc": "हल्का लॉग कलेक्टर। किसी भी ऐप से HTTP POST द्वारा लॉग प्राप्त करें, ऐप और स्तर द्वारा फ़िल्टर करें।"
+    },
+    "logviewer": {
+      "name": "लॉग व्यूअर",
+      "desc": "कीवर्ड फ़िल्टरिंग, regex, और संदर्भ पंक्तियों के साथ बड़ी लॉग फ़ाइलें अपलोड और खोजें।"
+    },
+    "editor": {
+      "name": "कोड एडिटर",
+      "desc": "Monaco (VS Code) द्वारा संचालित पूर्ण-सुविधा कोड एडिटर। 40+ भाषाओं के लिए सिंटैक्स हाइलाइटिंग।"
+    },
+    "markdown": {
+      "name": "Markdown व्यूअर",
+      "desc": "लाइव पूर्वावलोकन, सिंटैक्स-हाइलाइटेड कोड ब्लॉक, और GFM सपोर्ट के साथ Markdown लिखें।"
+    },
+    "diff": {
+      "name": "कोड Diff",
+      "desc": "सिंटैक्स-हाइलाइटेड diff व्यू के साथ दो कोड फ़ाइलों की साथ-साथ या इनलाइन तुलना करें।"
+    },
+    "jwt": {
+      "name": "JWT टूल",
+      "desc": "JSON Web Tokens को एन्कोड, डिकोड, और सत्यापित करें। रंग-कोडित प्रदर्शन के साथ HS256/384/512 सपोर्ट।"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Base64 स्ट्रिंग्स को एन्कोड और डिकोड करें। URL-safe विकल्प के साथ टेक्स्ट और बाइनरी फ़ाइलें सपोर्ट।"
+    },
+    "urlencoder": {
+      "name": "URL एन्कोडर",
+      "desc": "URLs और क्वेरी पैरामीटर्स को एन्कोड और डिकोड करें। URL पार्सर प्रोटोकॉल, होस्ट, पथ, और पैरामीटर्स दिखाता है।"
+    },
+    "htmleditor": {
+      "name": "HTML एडिटर",
+      "desc": "TinyMCE द्वारा संचालित रिच टेक्स्ट WYSIWYG एडिटर, HTML सोर्स कोड व्यू टॉगल के साथ।"
+    },
+    "mermaid": {
+      "name": "Mermaid डायग्राम",
+      "desc": "Mermaid.js लाइव पूर्वावलोकन के साथ फ़्लोचार्ट, सीक्वेंस डायग्राम, ER डायग्राम, गैंट चार्ट, और अधिक बनाएँ।"
+    },
+    "uuid": {
+      "name": "UUID जनरेटर",
+      "desc": "UUID v1, v4, और v7 जनरेट करें। बल्क जनरेट, मान्य करें, पार्स करें, और फ़ॉर्मेट विकल्पों के साथ कॉपी करें।"
+    },
+    "notes": {
+      "name": "नोट्स",
+      "desc": "लाइव पूर्वावलोकन, टैग, श्रेणियाँ, रंग लेबल, अटैचमेंट, और ऑटो-सेव के साथ Markdown नोट्स।"
+    },
+    "regex": {
+      "name": "Regex टेस्टर",
+      "desc": "रीयल-टाइम मैच हाइलाइटिंग, कैप्चर ग्रुप, रिप्लेस, और चीट शीट के साथ regex पैटर्न टेस्ट करें।"
+    },
+    "charmap": {
+      "name": "Emoji और CharMap",
+      "desc": "इमोजी, चिह्न, और विशेष अक्षर खोजें और कॉपी करें। Unicode विवरण, HTML एंटिटीज़, और हाल ही में उपयोग किए गए।"
+    },
+    "epoch": {
+      "name": "Epoch कन्वर्टर",
+      "desc": "Unix epoch टाइमस्टैम्प को मानव-पठनीय दिनांक में और इसके विपरीत रूपांतरित करें। लाइव घड़ी, प्रीसेट, और समय अंतर कैलकुलेटर।"
+    },
+    "hash": {
+      "name": "Hash जनरेटर",
+      "desc": "टेक्स्ट या फ़ाइलों से MD5, SHA-1, SHA-256, SHA-512 हैश जनरेट करें। चेकसम तुरंत सत्यापित करें।"
+    },
+    "colorpicker": {
+      "name": "कलर पिकर",
+      "desc": "रंग चुनें और HEX, RGB, HSL फ़ॉर्मेट्स के बीच कन्वर्ट करें। कलर पैलेट और कंट्रास्ट चेकर।"
+    },
+    "cron": {
+      "name": "Cron पार्सर",
+      "desc": "मानव-पठनीय विवरण और अगले रन समय के साथ cron एक्सप्रेशन पार्स और जनरेट करें।"
+    },
+    "password": {
+      "name": "पासवर्ड जनरेटर",
+      "desc": "क्रिप्टोग्राफ़िक रूप से सुरक्षित रैंडम पासवर्ड और याद रखने योग्य पासफ़्रेज़ जनरेट करें।"
+    },
+    "qrcode": {
+      "name": "QR Code जनरेटर",
+      "desc": "टेक्स्ट, URLs, WiFi क्रेडेंशियल्स, या संपर्क जानकारी से QR Code जनरेट करें। PNG के रूप में डाउनलोड करें।"
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "प्लेसहोल्डर टेक्स्ट जनरेट करें — पैराग्राफ़, वाक्य, या शब्द। कई शैलियाँ उपलब्ध।"
+    },
+    "baseconverter": {
+      "name": "बेस कन्वर्टर",
+      "desc": "रीयल-टाइम में संख्याओं को Binary, Octal, Decimal, और Hexadecimal बेस के बीच कन्वर्ट करें।"
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "सिंटैक्स वैलिडेशन और फ़ॉर्मेटिंग के साथ JSON और YAML फ़ॉर्मेट के बीच कन्वर्ट करें।"
+    },
+    "httpclient": {
+      "name": "HTTP क्लाइंट",
+      "desc": "मिनी Postman की तरह API एंडपॉइंट टेस्ट करें। कस्टम मेथड, हेडर्स, बॉडी, और रिस्पॉन्स व्यूअर।"
+    },
+    "stringutils": {
+      "name": "स्ट्रिंग यूटिलिटीज़",
+      "desc": "केस कन्वर्टर, ट्रिम, काउंट, रिवर्स, स्लग जनरेटर, और अधिक स्ट्रिंग ऑपरेशन।"
+    },
+    "chat": {
+      "name": "LAN चैट",
+      "desc": "आपके लोकल नेटवर्क के लिए रीयल-टाइम चैट। इंटरनेट की ज़रूरत नहीं — बस LAN पर Dev Helper।"
+    },
+    "netscan": {
+      "name": "नेटवर्क स्कैनर",
+      "desc": "LAN होस्ट और पोर्ट स्कैन करें। अपने नेटवर्क पर डिवाइस, सेवाएँ, और ओपन पोर्ट खोजें।"
+    },
+    "worldclock": {
+      "name": "विश्व घड़ी",
+      "desc": "एनालॉग डिस्प्ले, मीटिंग प्लानर, और ड्रैग रीऑर्डर के साथ मल्टी-टाइमज़ोन घड़ियाँ।"
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "इमेज और स्क्रीनशॉट से टेक्स्ट निकालें। खींचें, पेस्ट करें, या अपलोड करें — Tesseract.js द्वारा संचालित।"
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Java/Spring Boot प्रोजेक्ट्स के लिए application.yml और application.properties के बीच कन्वर्ट करें।"
+    },
+    "netinspect": {
+      "name": "नेटवर्क इंस्पेक्टर",
+      "desc": "IP जियोलोकेशन, DNS लुकअप, HTTP रिस्पॉन्स हेडर्स, और SSL सर्टिफ़िकेट चेकर।"
+    },
+    "aichat": {
+      "name": "AI चैट",
+      "desc": "लोकल Ollama AI मॉडल्स के साथ चैट करें। स्ट्रीमिंग रिस्पॉन्स, markdown रेंडरिंग, बातचीत इतिहास।"
+    },
+    "speedtest": {
+      "name": "स्पीड टेस्ट",
+      "desc": "नेटवर्क डाउनलोड/अपलोड स्पीड, पिंग लेटेंसी, और डिस्क रीड/राइट प्रदर्शन टेस्ट करें।"
+    },
+    "snippets": {
+      "name": "कोड स्निपेट्स",
+      "desc": "सिंटैक्स हाइलाइटिंग और क्विक कॉपी के साथ बार-बार उपयोग किए जाने वाले कोड स्निपेट्स सहेजें और व्यवस्थित करें।"
+    },
+    "sysmon": {
+      "name": "सिस्टम मॉनिटर",
+      "desc": "लाइव गेज के साथ रीयल-टाइम CPU, मेमोरी, डिस्क, नेटवर्क, और प्रोसेस मॉनिटरिंग।"
+    },
+    "icons": {
+      "name": "आइकन एक्सप्लोरर",
+      "desc": "Bootstrap Icons, Font Awesome, और Tabler Icons ब्राउज़ और खोजें। CSS क्लास या HTML कॉपी करने के लिए क्लिक करें।"
+    },
+    "askai": {
+      "name": "AI से पूछें",
+      "desc": "नेवबार से 9 क्लाउड AIs (Claude, ChatGPT, Gemini, आदि) और Ollama तक त्वरित पहुँच।"
+    },
+    "translator": {
+      "name": "अनुवादक",
+      "desc": "लोकल Ollama AI मॉडल्स का उपयोग करके भाषाओं के बीच टेक्स्ट अनुवाद करें। Google Translate जैसा, ऑफ़लाइन।"
+    }
+  },
+  "upload_page": {
+    "drop_zone": "फ़ाइलें यहाँ खींचें और छोड़ें",
+    "drop_or_browse": "या ब्राउज़ करने के लिए क्लिक करें",
+    "paste_hint": "आप क्लिपबोर्ड से भी पेस्ट कर सकते हैं (Ctrl+V)",
+    "recent_uploads": "हाल के अपलोड",
+    "clear_recent": "हाल के साफ़ करें",
+    "copy_url": "URL कॉपी करें",
+    "open_new_tab": "नई टैब में खोलें",
+    "file_uploaded": "फ़ाइल सफलतापूर्वक अपलोड हो गई",
+    "upload_failed": "अपलोड विफल रहा"
+  },
+  "files_page": {
+    "search_placeholder": "फ़ाइलें खोजें...",
+    "grid_view": "ग्रिड",
+    "list_view": "सूची",
+    "delete_all": "सभी हटाएँ",
+    "confirm_delete_all": "क्या आप वाकई सभी फ़ाइलें हटाना चाहते हैं?",
+    "no_files": "कोई फ़ाइल नहीं मिली",
+    "file_deleted": "फ़ाइल हटा दी गई",
+    "download": "डाउनलोड",
+    "file_size": "आकार",
+    "file_date": "दिनांक"
+  },
+  "prettify_page": {
+    "input_label": "इनपुट",
+    "output_label": "आउटपुट",
+    "prettify": "Prettify",
+    "minify": "Minify",
+    "paste_placeholder": "यहाँ कोड पेस्ट या टाइप करें...",
+    "auto_detect": "स्वचालित पहचान",
+    "copy_output": "आउटपुट कॉपी करें"
+  },
+  "logs_page": {
+    "app": "ऐप",
+    "level": "स्तर",
+    "search_placeholder": "लॉग खोजें...",
+    "clear_logs": "लॉग साफ़ करें",
+    "auto_scroll": "ऑटो-स्क्रॉल",
+    "no_logs": "कोई लॉग नहीं मिले",
+    "all_apps": "सभी ऐप्स",
+    "all_levels": "सभी स्तर",
+    "timestamp": "टाइमस्टैम्प",
+    "message": "संदेश"
+  },
+  "logviewer_page": {
+    "upload_log": "लॉग फ़ाइल अपलोड करें",
+    "search_placeholder": "कीवर्ड या regex खोजें...",
+    "use_regex": "Regex",
+    "case_sensitive": "केस संवेदनशील",
+    "context_lines": "संदर्भ पंक्तियाँ",
+    "showing_lines": "{total} में से {shown} पंक्तियाँ दिखा रहे हैं",
+    "no_matches": "कोई मिलान नहीं मिला",
+    "line": "पंक्ति"
+  },
+  "editor_page": {
+    "new_file": "नया",
+    "open_file": "फ़ाइल खोलें",
+    "save_file": "सहेजें",
+    "word_wrap": "वर्ड रैप",
+    "minimap": "मिनीमैप",
+    "line": "पंक्ति",
+    "column": "कॉलम",
+    "language": "भाषा",
+    "fetch_url": "URL से लाएँ",
+    "url_placeholder": "फ़ाइल लाने के लिए URL दर्ज करें..."
+  },
+  "markdown_page": {
+    "samples": "नमूने",
+    "open_file": "फ़ाइल खोलें",
+    "copy_html": "HTML कॉपी करें",
+    "export": "निर्यात",
+    "export_pdf": "PDF में निर्यात",
+    "export_md": "Markdown में निर्यात",
+    "export_html": "HTML में निर्यात",
+    "clear": "साफ़ करें",
+    "expand": "विस्तार करें",
+    "editor_label": "Markdown",
+    "preview_label": "पूर्वावलोकन",
+    "drop_zone": "Markdown फ़ाइल यहाँ खींचें और छोड़ें, या ब्राउज़ करने के लिए क्लिक करें",
+    "url_placeholder": ".md फ़ाइल लाने के लिए URL दर्ज करें",
+    "fetch": "लाएँ",
+    "html_copied": "HTML कॉपी हो गया!",
+    "readme": "README",
+    "api_docs": "API प्रलेखन",
+    "changelog": "बदलाव सूची",
+    "blog_post": "ब्लॉग पोस्ट",
+    "cheatsheet": "Markdown चीट शीट",
+    "meeting_notes": "मीटिंग नोट्स",
+    "project_todo": "प्रोजेक्ट TODO"
+  },
+  "diff_page": {
+    "original": "मूल",
+    "modified": "संशोधित",
+    "side_by_side": "साथ-साथ",
+    "inline": "इनलाइन",
+    "open_file": "फ़ाइल खोलें",
+    "paste_code": "यहाँ कोड पेस्ट करें...",
+    "swap": "अदला-बदली",
+    "no_differences": "कोई अंतर नहीं मिला"
+  },
+  "jwt_page": {
+    "header": "हेडर",
+    "payload": "पेलोड",
+    "signature": "हस्ताक्षर",
+    "secret": "गुप्त कुंजी",
+    "algorithm": "एल्गोरिदम",
+    "encode": "एन्कोड",
+    "decode": "डिकोड",
+    "verify": "सत्यापित करें",
+    "valid_signature": "मान्य हस्ताक्षर",
+    "invalid_signature": "अमान्य हस्ताक्षर",
+    "paste_jwt": "JWT टोकन यहाँ पेस्ट करें..."
+  },
+  "base64_page": {
+    "text_mode": "टेक्स्ट",
+    "file_mode": "फ़ाइल",
+    "url_safe": "URL-safe",
+    "line_breaks": "लाइन ब्रेक",
+    "input_placeholder": "एन्कोड/डिकोड करने के लिए टेक्स्ट दर्ज करें...",
+    "drop_file": "फ़ाइल यहाँ छोड़ें या ब्राउज़ करने के लिए क्लिक करें",
+    "download_result": "परिणाम डाउनलोड करें"
+  },
+  "urlencoder_page": {
+    "component_mode": "कम्पोनेंट",
+    "full_url_mode": "पूरा URL",
+    "url_parser": "URL पार्सर",
+    "protocol": "प्रोटोकॉल",
+    "host": "होस्ट",
+    "path": "पथ",
+    "params": "पैरामीटर्स",
+    "input_placeholder": "एन्कोड/डिकोड करने के लिए URL या टेक्स्ट दर्ज करें..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "सोर्स कोड",
+    "import_html": "HTML आयात करें",
+    "export_html": "HTML निर्यात करें",
+    "clear": "साफ़ करें"
+  },
+  "mermaid_page": {
+    "samples": "नमूने",
+    "download_svg": "SVG डाउनलोड करें",
+    "download_png": "PNG डाउनलोड करें",
+    "share": "साझा करें",
+    "zoom_in": "ज़ूम इन",
+    "zoom_out": "ज़ूम आउट",
+    "reset_zoom": "ज़ूम रीसेट करें",
+    "diagram_label": "Mermaid कोड",
+    "preview_label": "पूर्वावलोकन",
+    "link_copied": "शेयर लिंक कॉपी हो गया!",
+    "flowchart": "फ़्लोचार्ट",
+    "sequence": "सीक्वेंस डायग्राम",
+    "class_diagram": "क्लास डायग्राम",
+    "state": "स्टेट डायग्राम",
+    "er": "ER डायग्राम",
+    "gantt": "गैंट चार्ट",
+    "pie": "पाई चार्ट",
+    "mindmap": "माइंडमैप",
+    "timeline": "टाइमलाइन",
+    "quadrant": "क्वाड्रेंट चार्ट",
+    "git": "Git ग्राफ़",
+    "sankey": "सैंकी डायग्राम"
+  },
+  "uuid_page": {
+    "version": "संस्करण",
+    "bulk_generate": "बल्क जनरेट",
+    "validate_parse": "मान्य करें और पार्स करें",
+    "count": "गिनती",
+    "uppercase": "अपरकेस",
+    "braces": "ब्रेसेज़",
+    "hyphens": "हाइफ़न",
+    "copy_all": "सभी कॉपी करें",
+    "generated": "जनरेट किए गए",
+    "valid_uuid": "मान्य UUID",
+    "invalid_uuid": "अमान्य UUID",
+    "uuid_version": "संस्करण",
+    "uuid_variant": "वेरिएंट",
+    "uuid_timestamp": "टाइमस्टैम्प"
+  },
+  "notes_page": {
+    "new_note": "नया नोट",
+    "search_placeholder": "नोट्स खोजें...",
+    "categories": "श्रेणियाँ",
+    "all_notes": "सभी नोट्स",
+    "pinned": "पिन किए गए",
+    "trash": "ट्रैश",
+    "restore": "पुनर्स्थापित करें",
+    "permanent_delete": "स्थायी रूप से हटाएँ",
+    "note_saved": "नोट सहेजा गया",
+    "note_deleted": "नोट ट्रैश में ले जाया गया",
+    "untitled": "बिना शीर्षक नोट",
+    "attachments": "अटैचमेंट्स",
+    "color_label": "रंग लेबल",
+    "sort_by": "क्रमबद्ध करें",
+    "date_modified": "संशोधित दिनांक",
+    "date_created": "निर्माण दिनांक"
+  },
+  "regex_page": {
+    "pattern": "पैटर्न",
+    "test_string": "टेस्ट स्ट्रिंग",
+    "flags": "फ़्लैग",
+    "matches": "मिलान",
+    "replace": "बदलें",
+    "replacement": "प्रतिस्थापन",
+    "cheat_sheet": "चीट शीट",
+    "common_patterns": "सामान्य पैटर्न",
+    "no_matches": "कोई मिलान नहीं",
+    "match_count": "{count} मिलान मिले",
+    "global": "ग्लोबल",
+    "case_insensitive": "केस असंवेदनशील",
+    "multiline": "मल्टीलाइन"
+  },
+  "charmap_page": {
+    "search_placeholder": "इमोजी या अक्षर खोजें...",
+    "recently_used": "हाल ही में उपयोग किए गए",
+    "unicode": "Unicode",
+    "html_entity": "HTML एंटिटी",
+    "css_code": "CSS कोड",
+    "copy_char": "कॉपी करने के लिए क्लिक करें",
+    "smileys": "स्माइली और लोग",
+    "animals": "जानवर और प्रकृति",
+    "food": "खान-पान",
+    "activities": "गतिविधियाँ",
+    "travel": "यात्रा और स्थान",
+    "objects": "वस्तुएँ",
+    "symbols": "चिह्न",
+    "flags": "झंडे",
+    "arrows": "तीर",
+    "math": "गणित",
+    "currency": "मुद्रा",
+    "latin": "लैटिन विस्तारित"
+  },
+  "epoch_page": {
+    "timestamp": "टाइमस्टैम्प",
+    "date_time": "दिनांक और समय",
+    "now": "अभी",
+    "seconds": "सेकंड",
+    "milliseconds": "मिलीसेकंड",
+    "local_time": "स्थानीय समय",
+    "utc_time": "UTC समय",
+    "relative": "सापेक्ष",
+    "time_diff": "समय अंतर",
+    "presets": "प्रीसेट",
+    "live_clock": "लाइव घड़ी"
+  },
+  "hash_page": {
+    "text_input": "टेक्स्ट इनपुट",
+    "file_input": "फ़ाइल इनपुट",
+    "compare": "हैश तुलना करें",
+    "hash_match": "हैश मिलान करते हैं!",
+    "hash_mismatch": "हैश मिलान नहीं करते",
+    "drop_file": "हैश करने के लिए फ़ाइल छोड़ें...",
+    "computing": "हैश गणना हो रही है..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "कंट्रास्ट जाँच",
+    "foreground": "अग्रभूमि",
+    "background": "पृष्ठभूमि",
+    "ratio": "अनुपात",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "पास",
+    "fail": "फ़ेल",
+    "palette": "पैलेट",
+    "shades": "शेड्स",
+    "tints": "टिंट्स",
+    "pick_color": "रंग चुनें",
+    "eyedropper": "EyeDropper"
+  },
+  "cron_page": {
+    "expression": "एक्सप्रेशन",
+    "description_label": "विवरण",
+    "next_runs": "अगले रन",
+    "presets": "प्रीसेट",
+    "minute": "मिनट",
+    "hour": "घंटा",
+    "day_month": "दिन (महीना)",
+    "month": "महीना",
+    "day_week": "दिन (सप्ताह)",
+    "every_minute": "हर मिनट",
+    "every_hour": "हर घंटे",
+    "every_day": "हर दिन आधी रात को",
+    "share": "साझा करें"
+  },
+  "password_page": {
+    "password": "पासवर्ड",
+    "passphrase": "पासफ़्रेज़",
+    "length": "लंबाई",
+    "uppercase": "अपरकेस (A-Z)",
+    "lowercase": "लोअरकेस (a-z)",
+    "numbers": "अंक (0-9)",
+    "symbols": "चिह्न (!@#$...)",
+    "word_count": "शब्द गिनती",
+    "separator": "विभाजक",
+    "strength": "शक्ति",
+    "entropy": "एन्ट्रॉपी",
+    "very_weak": "बहुत कमज़ोर",
+    "weak": "कमज़ोर",
+    "fair": "ठीक-ठाक",
+    "strong": "मज़बूत",
+    "very_strong": "बहुत मज़बूत",
+    "bulk_generate": "बल्क जनरेट",
+    "generate_count": "गिनती"
+  },
+  "qrcode_page": {
+    "text_url": "टेक्स्ट / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "टेक्स्ट या URL दर्ज करें...",
+    "network_name": "नेटवर्क नाम (SSID)",
+    "wifi_password": "पासवर्ड",
+    "encryption": "एन्क्रिप्शन",
+    "hidden_network": "छिपा नेटवर्क",
+    "full_name": "पूरा नाम",
+    "phone": "फ़ोन",
+    "email": "ईमेल",
+    "organization": "संगठन",
+    "error_correction": "त्रुटि सुधार",
+    "foreground_color": "अग्रभूमि",
+    "background_color": "पृष्ठभूमि",
+    "download_png": "PNG डाउनलोड करें",
+    "download_svg": "SVG डाउनलोड करें",
+    "copy_image": "इमेज कॉपी करें"
+  },
+  "lorem_page": {
+    "paragraphs": "पैराग्राफ़",
+    "sentences": "वाक्य",
+    "words": "शब्द",
+    "style": "शैली",
+    "classic": "क्लासिक",
+    "hipster": "हिप्स्टर",
+    "tech": "टेक / डेव",
+    "include_html": "HTML टैग शामिल करें",
+    "start_lorem": "\"Lorem ipsum...\" से शुरू करें",
+    "generated_text": "जनरेट किया गया टेक्स्ट",
+    "copy_text": "टेक्स्ट कॉपी करें"
+  },
+  "baseconverter_page": {
+    "binary": "बाइनरी",
+    "octal": "ऑक्टल",
+    "decimal": "दशमलव",
+    "hexadecimal": "हेक्साडेसिमल",
+    "bit_visualization": "बिट विज़ुअलाइज़ेशन",
+    "signed": "साइन्ड",
+    "unsigned": "अनसाइन्ड",
+    "twos_complement": "Two's Complement"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Prettify",
+    "minify": "Minify",
+    "import_file": "फ़ाइल आयात करें",
+    "invalid_json": "अमान्य JSON",
+    "invalid_yaml": "अमान्य YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "रिक्वेस्ट URL दर्ज करें...",
+    "method": "मेथड",
+    "headers": "हेडर्स",
+    "body": "बॉडी",
+    "auth": "ऑथ",
+    "params": "पैरामीटर्स",
+    "response": "रिस्पॉन्स",
+    "status_code": "स्टेटस",
+    "response_time": "समय",
+    "response_size": "आकार",
+    "send_request": "भेजें",
+    "clear_history": "इतिहास साफ़ करें",
+    "no_auth": "कोई ऑथ नहीं",
+    "basic_auth": "Basic ऑथ",
+    "bearer_token": "Bearer टोकन",
+    "username": "उपयोगकर्ता नाम",
+    "token": "टोकन",
+    "key": "कुंजी",
+    "add_header": "हेडर जोड़ें",
+    "add_param": "पैरामीटर जोड़ें"
+  },
+  "stringutils_page": {
+    "input_placeholder": "यहाँ टेक्स्ट दर्ज करें...",
+    "operations": "ऑपरेशन",
+    "case_conversion": "केस रूपांतरण",
+    "text_cleanup": "टेक्स्ट सफ़ाई",
+    "text_transform": "टेक्स्ट रूपांतरण",
+    "encode_decode": "एन्कोड / डिकोड",
+    "extract_info": "जानकारी निकालें",
+    "uppercase": "UPPERCASE",
+    "lowercase": "lowercase",
+    "title_case": "Title Case",
+    "sentence_case": "Sentence case",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "अक्षर",
+    "word_count": "शब्द",
+    "line_count": "पंक्तियाँ"
+  },
+  "chat_page": {
+    "username_placeholder": "अपना नाम दर्ज करें...",
+    "message_placeholder": "संदेश टाइप करें...",
+    "join": "शामिल हों",
+    "online_users": "ऑनलाइन उपयोगकर्ता",
+    "user_joined": "{user} चैट में शामिल हुए",
+    "user_left": "{user} चैट छोड़ गए"
+  },
+  "netscan_page": {
+    "interface": "इंटरफ़ेस",
+    "target": "लक्ष्य",
+    "ports": "पोर्ट्स",
+    "scan": "स्कैन",
+    "scanning": "स्कैन हो रहा है...",
+    "open_ports": "ओपन पोर्ट्स",
+    "host": "होस्ट",
+    "port": "पोर्ट",
+    "service": "सेवा",
+    "scan_complete": "स्कैन पूरा हुआ",
+    "common_ports": "सामान्य पोर्ट्स",
+    "custom_range": "कस्टम रेंज"
+  },
+  "worldclock_page": {
+    "add_clock": "घड़ी जोड़ें",
+    "your_local_time": "आपका स्थानीय समय",
+    "meeting_planner": "मीटिंग प्लानर",
+    "timezone": "टाइमज़ोन",
+    "search_timezone": "टाइमज़ोन खोजें...",
+    "remove_clock": "हटाएँ"
+  },
+  "ocr_page": {
+    "upload_image": "इमेज अपलोड करें",
+    "paste_image": "इमेज पेस्ट करें",
+    "drop_image": "इमेज यहाँ खींचें और छोड़ें",
+    "extract_text": "टेक्स्ट निकालें",
+    "extracted_text": "निकाला गया टेक्स्ट",
+    "copy_result": "परिणाम कॉपी करें",
+    "recognizing": "टेक्स्ट पहचाना जा रहा है...",
+    "no_text_found": "इमेज में कोई टेक्स्ट नहीं मिला",
+    "supported_formats": "सपोर्टेड: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "फ़ाइल आयात करें",
+    "download_result": "डाउनलोड"
+  },
+  "aichat_page": {
+    "model": "मॉडल",
+    "no_models": "कोई मॉडल नहीं मिला। क्या Ollama चल रहा है?",
+    "message_placeholder": "अपना संदेश टाइप करें...",
+    "clear_chat": "चैट साफ़ करें",
+    "thinking": "सोच रहा है...",
+    "ollama_not_running": "Ollama से कनेक्ट नहीं हो सका",
+    "connection_error": "कनेक्शन त्रुटि"
+  },
+  "speedtest_page": {
+    "start_test": "टेस्ट शुरू करें",
+    "ping": "पिंग",
+    "download_speed": "डाउनलोड",
+    "upload_speed": "अपलोड",
+    "disk_speed": "डिस्क",
+    "latency": "लेटेंसी",
+    "read_speed": "रीड",
+    "write_speed": "राइट",
+    "testing": "टेस्ट हो रहा है...",
+    "test_complete": "टेस्ट पूरा हुआ"
+  },
+  "snippets_page": {
+    "new_snippet": "नया स्निपेट",
+    "search_placeholder": "स्निपेट्स खोजें...",
+    "title_placeholder": "स्निपेट शीर्षक...",
+    "desc_placeholder": "विवरण (वैकल्पिक)",
+    "tags_placeholder": "टैग (अल्पविराम से अलग)",
+    "save_snippet": "सहेजें",
+    "delete_snippet": "हटाएँ",
+    "copy_code": "कोड कॉपी करें",
+    "language": "भाषा",
+    "default_loaded": "डिफ़ॉल्ट स्निपेट्स लोड हो गए",
+    "snippet_saved": "स्निपेट सहेजा गया",
+    "snippet_deleted": "स्निपेट हटा दिया गया",
+    "code_copied": "कोड कॉपी हो गया!",
+    "no_snippets": "कोई स्निपेट नहीं मिला",
+    "pinned": "पिन किए गए",
+    "all_snippets": "सभी स्निपेट्स"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "मेमोरी",
+    "disk": "डिस्क",
+    "network": "नेटवर्क",
+    "processes": "प्रोसेस",
+    "usage": "उपयोग",
+    "total": "कुल",
+    "used": "उपयोग में",
+    "free": "खाली",
+    "available": "उपलब्ध",
+    "cores": "कोर",
+    "uptime": "अपटाइम",
+    "pid": "PID",
+    "process_name": "नाम",
+    "cpu_percent": "CPU %",
+    "mem_percent": "मेमोरी %",
+    "connecting": "कनेक्ट हो रहा है...",
+    "disconnected": "डिस्कनेक्ट",
+    "bytes_sent": "भेजा गया",
+    "bytes_recv": "प्राप्त हुआ",
+    "read_speed": "रीड",
+    "write_speed": "राइट"
+  },
+  "icons_page": {
+    "search_placeholder": "आइकन खोजें...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "सभी",
+    "recently_used": "हाल ही में उपयोग किए गए",
+    "class_name": "क्लास",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "क्लास कॉपी करें",
+    "copy_html": "HTML कॉपी करें",
+    "icon_count": "{count} आइकन",
+    "loading_icons": "आइकन लोड हो रहे हैं...",
+    "click_to_view": "विवरण देखने के लिए आइकन पर क्लिक करें"
+  },
+  "netinspect_page": {
+    "my_ip": "मेरा IP",
+    "ip_lookup": "IP लुकअप",
+    "dns_lookup": "DNS लुकअप",
+    "http_headers": "HTTP हेडर्स",
+    "ssl_cert": "SSL सर्टिफ़िकेट",
+    "lookup": "लुकअप",
+    "check": "जाँच करें",
+    "ip_placeholder": "IP एड्रेस दर्ज करें...",
+    "domain_placeholder": "डोमेन नाम दर्ज करें...",
+    "url_placeholder": "URL दर्ज करें...",
+    "location": "स्थान",
+    "isp": "ISP",
+    "record_type": "रिकॉर्ड प्रकार",
+    "issuer": "जारीकर्ता",
+    "valid_from": "वैध तिथि से",
+    "valid_until": "वैध तिथि तक",
+    "subject": "विषय"
+  },
+  "translator_page": {
+    "source_lang": "स्रोत भाषा",
+    "target_lang": "लक्ष्य भाषा",
+    "auto_detect": "स्वचालित पहचान",
+    "translate": "अनुवाद करें",
+    "translating": "अनुवाद हो रहा है...",
+    "swap_languages": "भाषाएँ अदला-बदली करें",
+    "input_placeholder": "अनुवाद करने के लिए टेक्स्ट दर्ज करें...",
+    "model": "मॉडल",
+    "copy_translation": "अनुवाद कॉपी करें",
+    "translation_copied": "अनुवाद कॉपी हो गया!",
+    "clear_all": "सभी साफ़ करें",
+    "char_count": "{count} अक्षर"
+  }
+}

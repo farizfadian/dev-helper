@@ -1,0 +1,252 @@
+{{define "content"}}
+<style>
+    .mono {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+    }
+    .request-url-input {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.9rem;
+    }
+    .response-body-pre {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.82rem;
+        max-height: 500px;
+        overflow: auto;
+        white-space: pre-wrap;
+        word-break: break-all;
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        padding: 12px;
+        margin: 0;
+    }
+    .header-row .btn-remove {
+        opacity: 0.5;
+        transition: opacity 0.15s;
+    }
+    .header-row:hover .btn-remove {
+        opacity: 1;
+    }
+    .status-badge {
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    }
+    .history-item {
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid var(--bs-border-color);
+        margin-bottom: 4px;
+        transition: background 0.1s;
+        font-size: 0.82rem;
+    }
+    .history-item:hover {
+        background: var(--bs-tertiary-bg);
+    }
+    .history-method {
+        font-weight: 700;
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.75rem;
+        display: inline-block;
+        min-width: 52px;
+        text-align: center;
+        padding: 1px 4px;
+        border-radius: 3px;
+    }
+    .method-GET { color: #198754; }
+    .method-POST { color: #ffc107; }
+    .method-PUT { color: #0d6efd; }
+    .method-PATCH { color: #6f42c1; }
+    .method-DELETE { color: #dc3545; }
+    .method-HEAD { color: #6c757d; }
+    .method-OPTIONS { color: #0dcaf0; }
+    .history-url {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.78rem;
+        color: var(--bs-secondary-color);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 280px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .history-status {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    .resp-header-table {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.82rem;
+    }
+    .resp-header-table td:first-child {
+        font-weight: 600;
+        white-space: nowrap;
+        color: var(--bs-secondary-color);
+    }
+    .resp-header-table td:last-child {
+        word-break: break-all;
+    }
+    .spinner-border-sm {
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.15em;
+    }
+</style>
+
+<h5 class="mb-3">
+    <i class="bi bi-send" style="color: #ff5722;"></i> HTTP Client
+    <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="httpclient" onclick="togglePin('httpclient')" title="Pin to navbar"></i>
+    <small class="text-muted ms-2" style="font-size: 0.7rem;">Ctrl+Enter to send</small>
+</h5>
+
+<div class="row g-3">
+    <!-- Left: Request + Response -->
+    <div class="col-lg-9">
+        <!-- URL Bar -->
+        <div class="d-flex gap-2 mb-3">
+            <select class="form-select" id="methodSelect" style="width: 130px; font-weight: 600;">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="PATCH">PATCH</option>
+                <option value="DELETE">DELETE</option>
+                <option value="HEAD">HEAD</option>
+                <option value="OPTIONS">OPTIONS</option>
+            </select>
+            <input type="text" class="form-control request-url-input" id="urlInput" placeholder="https://api.example.com/endpoint" autocomplete="off" spellcheck="false">
+            <button class="btn btn-primary d-flex align-items-center gap-1 flex-shrink-0" id="sendBtn">
+                <i class="bi bi-send-fill" id="sendIcon"></i>
+                <span class="spinner-border spinner-border-sm d-none" id="sendSpinner"></span>
+                Send
+            </button>
+        </div>
+
+        <!-- Request Tabs -->
+        <ul class="nav nav-tabs nav-tabs-sm mb-0" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabHeaders" type="button">
+                    <i class="bi bi-list-ul"></i> Headers <span class="badge bg-secondary ms-1" id="headerCount">0</span>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabBody" type="button">
+                    <i class="bi bi-body-text"></i> Body
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabAuth" type="button">
+                    <i class="bi bi-shield-lock"></i> Auth
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content border border-top-0 rounded-bottom p-3 mb-3">
+            <!-- Headers Tab -->
+            <div class="tab-pane fade show active" id="tabHeaders">
+                <div id="headersContainer"></div>
+                <button class="btn btn-sm btn-outline-secondary mt-2" id="addHeaderBtn">
+                    <i class="bi bi-plus-lg"></i> Add Header
+                </button>
+            </div>
+            <!-- Body Tab -->
+            <div class="tab-pane fade" id="tabBody">
+                <div class="d-flex gap-2 mb-2">
+                    <select class="form-select form-select-sm" id="contentTypeSelect" style="width: 220px;">
+                        <option value="application/json">application/json</option>
+                        <option value="text/plain">text/plain</option>
+                        <option value="application/x-www-form-urlencoded">application/x-www-form-urlencoded</option>
+                        <option value="application/xml">application/xml</option>
+                        <option value="text/html">text/html</option>
+                    </select>
+                    <button class="btn btn-sm btn-outline-secondary" id="formatBodyBtn" title="Format JSON body">
+                        <i class="bi bi-braces"></i> Format
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" id="clearBodyBtn" title="Clear body">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+                <textarea class="form-control mono" id="requestBody" rows="8" placeholder='{"key": "value"}' spellcheck="false"></textarea>
+            </div>
+            <!-- Auth Tab -->
+            <div class="tab-pane fade" id="tabAuth">
+                <label class="form-label small fw-semibold">Bearer Token</label>
+                <div class="input-group">
+                    <span class="input-group-text mono small">Authorization: Bearer</span>
+                    <input type="text" class="form-control mono" id="bearerToken" placeholder="eyJhbGciOiJIUzI1NiIs..." autocomplete="off" spellcheck="false">
+                </div>
+                <div class="form-text">Token will be auto-added as <code>Authorization: Bearer &lt;token&gt;</code> header.</div>
+            </div>
+        </div>
+
+        <!-- Response Section -->
+        <div id="responseSection" class="d-none">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex align-items-center gap-3">
+                    <h6 class="mb-0"><i class="bi bi-arrow-down-circle"></i> Response</h6>
+                    <span class="status-badge" id="responseStatus"></span>
+                    <small class="text-muted mono" id="responseTime"></small>
+                    <small class="text-muted mono" id="responseSize"></small>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary" id="copyResponseBtn" title="Copy response body">
+                    <i class="bi bi-clipboard"></i> Copy
+                </button>
+            </div>
+
+            <!-- Response Tabs -->
+            <ul class="nav nav-tabs nav-tabs-sm mb-0" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabRespBody" type="button">
+                        <i class="bi bi-code-slash"></i> Body
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabRespHeaders" type="button">
+                        <i class="bi bi-list-ul"></i> Headers <span class="badge bg-secondary ms-1" id="respHeaderCount">0</span>
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content border border-top-0 rounded-bottom p-3">
+                <div class="tab-pane fade show active" id="tabRespBody">
+                    <pre class="response-body-pre" id="responseBody"></pre>
+                </div>
+                <div class="tab-pane fade" id="tabRespHeaders">
+                    <table class="table table-sm table-bordered resp-header-table mb-0">
+                        <tbody id="respHeadersBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Section -->
+        <div id="errorSection" class="d-none">
+            <div class="alert alert-danger d-flex align-items-center gap-2 mb-0">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <span id="errorMessage"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: History -->
+    <div class="col-lg-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="mb-0"><i class="bi bi-clock-history"></i> History</h6>
+            <button class="btn btn-sm btn-outline-danger" id="clearHistoryBtn" title="Clear all history">
+                <i class="bi bi-trash"></i>
+            </button>
+        </div>
+        <div id="historyList">
+            <div class="text-muted text-center small py-4" id="historyEmpty">
+                <i class="bi bi-inbox" style="font-size: 1.5rem;"></i>
+                <p class="mb-0 mt-1">No requests yet</p>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/httpclient.js"></script>
+{{end}}

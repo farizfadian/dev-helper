@@ -1,0 +1,195 @@
+{{define "content"}}
+<style>
+    .icons-layout {
+        display: flex; gap: 12px; height: calc(100vh - 200px); min-height: 400px;
+    }
+    .icons-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+    .icons-detail {
+        width: 280px; min-width: 280px;
+        border: 1px solid var(--bs-border-color); border-radius: 8px;
+        background: var(--bs-tertiary-bg); padding: 16px;
+        display: flex; flex-direction: column; align-items: center;
+        overflow-y: auto;
+    }
+    .icons-tabs {
+        display: flex; gap: 4px; margin-bottom: 8px;
+    }
+    .icons-tab {
+        font-size: 0.8rem; padding: 5px 14px; border-radius: 6px;
+        border: 1px solid var(--bs-border-color); background: transparent;
+        color: var(--bs-body-color); cursor: pointer; white-space: nowrap;
+        font-weight: 500; transition: all 0.15s;
+    }
+    .icons-tab.active { background: var(--bs-primary); color: #fff; border-color: var(--bs-primary); }
+    .icons-tab:hover:not(.active) { background: var(--bs-secondary-bg); }
+    .icons-tab .badge { font-size: 0.6rem; vertical-align: middle; }
+    .icons-categories {
+        display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .cat-btn {
+        font-size: 0.7rem; padding: 2px 10px; border-radius: 12px;
+        border: 1px solid var(--bs-border-color); background: transparent;
+        color: var(--bs-body-color); cursor: pointer; white-space: nowrap;
+    }
+    .cat-btn.active { background: var(--bs-primary); color: #fff; border-color: var(--bs-primary); }
+    .cat-btn:hover:not(.active) { background: var(--bs-secondary-bg); }
+    .icons-grid-wrap {
+        flex: 1; overflow-y: auto; border: 1px solid var(--bs-border-color);
+        border-radius: 8px; padding: 8px; background: var(--bs-body-bg);
+        position: relative;
+    }
+    .icons-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); gap: 4px;
+    }
+    .icon-tile {
+        display: flex; align-items: center; justify-content: center;
+        width: 100%; aspect-ratio: 1; font-size: 1.4rem;
+        border-radius: 6px; cursor: pointer; border: 2px solid transparent;
+        transition: all 0.1s; color: var(--bs-body-color);
+        background: var(--bs-body-bg);
+    }
+    .icon-tile:hover {
+        background: var(--bs-primary-bg-subtle); border-color: var(--bs-primary);
+        transform: scale(1.1); z-index: 1;
+    }
+    .icon-tile.active { border-color: var(--bs-primary); background: var(--bs-primary-bg-subtle); }
+    .detail-icon { font-size: 4rem; margin-bottom: 8px; line-height: 1.2; color: var(--bs-body-color); }
+    .detail-name {
+        font-size: 0.8rem; font-weight: 600; text-align: center;
+        margin-bottom: 12px; color: var(--bs-body-color); word-break: break-all;
+    }
+    .detail-row {
+        width: 100%; display: flex; justify-content: space-between;
+        align-items: center; padding: 6px 0;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-size: 0.75rem;
+    }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { color: var(--bs-secondary-color); font-weight: 600; flex-shrink: 0; margin-right: 8px; }
+    .detail-value {
+        font-family: 'SFMono-Regular', Consolas, monospace;
+        color: var(--bs-body-color); word-break: break-all;
+        cursor: pointer; flex: 1; text-align: right;
+    }
+    .detail-value:hover { color: var(--bs-primary); }
+    .detail-buttons { margin-top: 12px; display: flex; gap: 6px; width: 100%; }
+    .detail-buttons .btn { flex: 1; font-size: 0.75rem; }
+    .icons-recent-section { margin-bottom: 8px; }
+    .icons-recent-section h6 {
+        font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;
+        color: var(--bs-secondary-color); margin-bottom: 4px;
+    }
+    .icons-recent-grid {
+        display: flex; gap: 4px; flex-wrap: wrap;
+    }
+    .icons-recent-grid .icon-tile { width: 40px; height: 40px; font-size: 1.1rem; flex-shrink: 0; }
+    .icons-loading {
+        position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        display: flex; align-items: center; justify-content: center;
+        background: var(--bs-body-bg); z-index: 5; border-radius: 8px;
+    }
+    .icons-count { font-size: 0.75rem; color: var(--bs-secondary-color); }
+    .icons-empty-detail {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        height: 100%; color: var(--bs-secondary-color); text-align: center;
+    }
+    .icons-empty-detail i { font-size: 3rem; margin-bottom: 8px; }
+    .copy-toast {
+        position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+        background: var(--bs-success); color: #fff; padding: 8px 20px;
+        border-radius: 8px; font-size: 0.85rem; z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        animation: toastIn 0.2s ease, toastOut 0.2s ease 1.3s forwards;
+    }
+    @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+    @keyframes toastOut { from { opacity: 1; } to { opacity: 0; } }
+    @media (max-width: 768px) {
+        .icons-layout { flex-direction: column; height: auto; min-height: 0; }
+        .icons-detail { width: 100%; min-width: 0; min-height: 200px; }
+        .icons-main { min-height: 400px; }
+    }
+</style>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="mb-0">
+        <i class="bi bi-collection"></i> Icon Explorer
+        <i id="pinToggle" data-tool="icons" class="bi bi-star pin-star" onclick="togglePin('icons')"></i>
+        <span class="icons-count" id="iconCount"></span>
+    </h5>
+</div>
+
+<!-- Tabs -->
+<div class="icons-tabs mb-2" id="iconTabs">
+    <button class="icons-tab active" data-lib="bootstrap">
+        <img src="/static/icons/bootstrap-icon.svg" width="16" height="16" style="vertical-align: -2px;"> Bootstrap Icons
+    </button>
+    <button class="icons-tab" data-lib="fa">
+        <img src="/static/icons/font-awesome.svg" width="16" height="16" style="vertical-align: -2px;"> Font Awesome
+    </button>
+    <button class="icons-tab" data-lib="tabler">
+        <img src="/static/icons/tabler-icon.svg" width="16" height="16" style="vertical-align: -2px;"> Tabler Icons
+    </button>
+</div>
+
+<!-- Search -->
+<div class="input-group input-group-sm mb-2" style="max-width: 400px;">
+    <span class="input-group-text"><i class="bi bi-search"></i></span>
+    <input type="search" id="iconSearch" class="form-control" placeholder="Search icons... (e.g. arrow, user, chart)">
+</div>
+
+<div class="icons-layout">
+    <!-- Left: Grid -->
+    <div class="icons-main">
+        <!-- Categories -->
+        <div class="icons-categories" id="categoriesBar"></div>
+        <!-- Recently Used -->
+        <div class="icons-recent-section d-none" id="recentSection">
+            <h6><i class="bi bi-clock-history"></i> Recently Used</h6>
+            <div class="icons-recent-grid" id="recentGrid"></div>
+        </div>
+        <!-- Grid -->
+        <div class="icons-grid-wrap" id="gridWrap">
+            <div class="icons-loading d-none" id="gridLoading">
+                <div class="text-center">
+                    <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+                    <div class="mt-2 small text-muted">Loading icons...</div>
+                </div>
+            </div>
+            <div class="icons-grid" id="iconsGrid"></div>
+        </div>
+    </div>
+
+    <!-- Right: Detail -->
+    <div class="icons-detail" id="detailPanel">
+        <div class="icons-empty-detail" id="detailEmpty">
+            <i class="bi bi-hand-index"></i>
+            <p class="small mb-0">Click an icon to see details</p>
+        </div>
+        <div class="d-none" id="detailContent">
+            <div class="detail-icon" id="detailIcon"></div>
+            <div class="detail-name" id="detailName"></div>
+            <div class="detail-row">
+                <span class="detail-label">Class</span>
+                <span class="detail-value" id="detailClass" title="Click to copy"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">HTML</span>
+                <span class="detail-value" id="detailHTML" title="Click to copy"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">JSX</span>
+                <span class="detail-value" id="detailJSX" title="Click to copy"></span>
+            </div>
+            <div class="detail-buttons">
+                <button class="btn btn-sm btn-primary" id="copyClassBtn"><i class="bi bi-clipboard"></i> Copy Class</button>
+                <button class="btn btn-sm btn-outline-secondary" id="copyHTMLBtn"><i class="bi bi-code-slash"></i> Copy HTML</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/icons.js"></script>
+{{end}}

@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Sao chép",
+    "copied": "Đã sao chép!",
+    "clear": "Xóa",
+    "save": "Lưu",
+    "saved": "Đã lưu!",
+    "delete": "Xóa",
+    "cancel": "Hủy",
+    "close": "Đóng",
+    "open": "Mở",
+    "search": "Tìm kiếm",
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "warning": "Cảnh báo",
+    "info": "Thông tin",
+    "yes": "Có",
+    "no": "Không",
+    "confirm": "Xác nhận",
+    "download": "Tải xuống",
+    "upload": "Tải lên",
+    "export": "Xuất",
+    "import": "Nhập",
+    "expand": "Mở rộng",
+    "exit": "Thoát",
+    "file": "Tệp",
+    "settings": "Cài đặt",
+    "none": "Không có",
+    "all": "Tất cả",
+    "reset": "Đặt lại",
+    "apply": "Áp dụng",
+    "preview": "Xem trước",
+    "source": "Nguồn",
+    "result": "Kết quả",
+    "input": "Đầu vào",
+    "output": "Đầu ra",
+    "generate": "Tạo",
+    "encode": "Mã hóa",
+    "decode": "Giải mã",
+    "paste": "Dán",
+    "swap": "Hoán đổi",
+    "back": "Quay lại",
+    "next": "Tiếp",
+    "samples": "Mẫu",
+    "history": "Lịch sử",
+    "options": "Tùy chọn",
+    "format": "Định dạng",
+    "validate": "Kiểm tra",
+    "convert": "Chuyển đổi",
+    "raw": "Thô",
+    "send": "Gửi",
+    "stop": "Dừng",
+    "start": "Bắt đầu",
+    "refresh": "Làm mới",
+    "browse": "Duyệt",
+    "select": "Chọn",
+    "add": "Thêm",
+    "remove": "Xóa",
+    "edit": "Sửa",
+    "share": "Chia sẻ",
+    "pin": "Ghim",
+    "unpin": "Bỏ ghim",
+    "new": "Mới",
+    "text": "Văn bản",
+    "type": "Loại",
+    "size": "Kích thước",
+    "name": "Tên",
+    "value": "Giá trị",
+    "status": "Trạng thái",
+    "actions": "Thao tác",
+    "description": "Mô tả",
+    "category": "Danh mục",
+    "tags": "Thẻ",
+    "language": "Ngôn ngữ",
+    "title": "Tiêu đề",
+    "content": "Nội dung",
+    "count": "Số lượng",
+    "length": "Độ dài",
+    "total": "Tổng",
+    "or": "hoặc",
+    "and": "và",
+    "no_data": "Không có dữ liệu",
+    "no_results": "Không tìm thấy kết quả",
+    "confirm_delete": "Bạn có chắc chắn muốn xóa không?",
+    "drag_drop": "Kéo & thả tệp vào đây",
+    "processing": "Đang xử lý...",
+    "done": "Xong",
+    "copied_to_clipboard": "Đã sao chép vào bộ nhớ tạm!",
+    "failed_to_copy": "Sao chép thất bại",
+    "keyboard_shortcuts": "Phím tắt",
+    "toggle_fullscreen": "Bật/tắt toàn màn hình (F11)",
+    "exit_fullscreen": "Thoát toàn màn hình (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Tìm kiếm",
+    "search_tools": "Tìm công cụ...",
+    "more": "Thêm",
+    "all_tools": "Tất cả công cụ",
+    "ask_ai": "Hỏi AI",
+    "cloud_ai": "AI đám mây",
+    "local_ai": "AI cục bộ",
+    "language": "Ngôn ngữ",
+    "pinned_to_navbar": "Đã ghim vào thanh điều hướng",
+    "unpinned_from_navbar": "Đã bỏ ghim khỏi thanh điều hướng",
+    "pin_to_navbar": "Ghim vào thanh điều hướng",
+    "unpin_from_navbar": "Bỏ ghim khỏi thanh điều hướng",
+    "open_navigation": "Mở điều hướng"
+  },
+  "theme": {
+    "light": "Sáng",
+    "dark": "Tối",
+    "auto": "Tự động",
+    "switch_theme": "Đổi giao diện"
+  },
+  "spotlight": {
+    "placeholder": "Tìm công cụ...",
+    "no_results": "Không tìm thấy công cụ cho \"{query}\"",
+    "navigate": "Điều hướng",
+    "open": "Mở",
+    "close": "Đóng"
+  },
+  "drawer": {
+    "search": "Tìm kiếm",
+    "theme": "Giao diện",
+    "pinned": "Đã ghim",
+    "file_code": "Tệp & Mã",
+    "encode_decode": "Mã hóa & Giải mã",
+    "converters": "Chuyển đổi",
+    "generators": "Trình tạo",
+    "tools_section": "Công cụ",
+    "logs_network": "Nhật ký & Mạng",
+    "all_tools": "Tất cả công cụ"
+  },
+  "footer": {
+    "made_by": "Được tạo với ❤️ bởi"
+  },
+  "ai": {
+    "ask": "Hỏi",
+    "prompt_placeholder": "Bạn muốn hỏi gì?",
+    "enter_to_send": "Enter để gửi",
+    "shift_enter_newline": "Shift+Enter để xuống dòng",
+    "open_without_prompt": "Mở không cần câu hỏi",
+    "ollama_url": "Ollama URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Nhập URL giao diện web Ollama của bạn"
+  },
+  "dashboard": {
+    "search_placeholder": "Tìm công cụ...",
+    "pinned_tools": "Công cụ đã ghim",
+    "all_tools": "Tất cả công cụ",
+    "no_results": "Không tìm thấy công cụ phù hợp.",
+    "open_source_toolkit": "Bộ công cụ dev mã nguồn mở",
+    "tools_count": "{count} công cụ có sẵn"
+  },
+  "tools": {
+    "upload": {
+      "name": "Tải lên",
+      "desc": "Kéo & thả, dán, hoặc chọn tệp để tải lên. Xem trước hình ảnh với lightbox."
+    },
+    "files": {
+      "name": "Trình quản lý tệp",
+      "desc": "Duyệt, tìm kiếm và quản lý tệp đã tải lên trong giao diện lưới giống Google Drive."
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "Định dạng & làm đẹp mã JSON, XML, HTML, CSS, JavaScript và SQL."
+    },
+    "logs": {
+      "name": "Trình thu thập nhật ký",
+      "desc": "Thu thập nhật ký nhẹ. Nhận nhật ký từ bất kỳ ứng dụng nào qua HTTP POST, lọc theo ứng dụng và mức độ."
+    },
+    "logviewer": {
+      "name": "Trình xem nhật ký",
+      "desc": "Tải lên và tìm kiếm tệp nhật ký lớn với lọc từ khóa, regex và dòng ngữ cảnh."
+    },
+    "editor": {
+      "name": "Trình soạn mã",
+      "desc": "Trình soạn mã đầy đủ tính năng chạy bằng Monaco (VS Code). Tô sáng cú pháp cho hơn 40 ngôn ngữ."
+    },
+    "markdown": {
+      "name": "Trình xem Markdown",
+      "desc": "Viết Markdown với xem trước trực tiếp, khối mã tô sáng cú pháp và hỗ trợ GFM."
+    },
+    "diff": {
+      "name": "So sánh mã",
+      "desc": "So sánh hai tệp mã cạnh nhau hoặc xen kẽ với chế độ xem diff tô sáng cú pháp."
+    },
+    "jwt": {
+      "name": "Công cụ JWT",
+      "desc": "Mã hóa, giải mã và xác minh JSON Web Token. Hỗ trợ HS256/384/512 với hiển thị màu sắc."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Mã hóa và giải mã chuỗi Base64. Hỗ trợ văn bản và tệp nhị phân với tùy chọn URL-safe."
+    },
+    "urlencoder": {
+      "name": "Bộ mã hóa URL",
+      "desc": "Mã hóa và giải mã URL và tham số truy vấn. Phân tích URL hiển thị giao thức, host, đường dẫn và tham số."
+    },
+    "htmleditor": {
+      "name": "Trình soạn HTML",
+      "desc": "Trình soạn văn bản WYSIWYG chạy bằng TinyMCE với chế độ xem mã nguồn HTML."
+    },
+    "mermaid": {
+      "name": "Sơ đồ Mermaid",
+      "desc": "Tạo sơ đồ luồng, sơ đồ tuần tự, sơ đồ ER, biểu đồ Gantt và nhiều hơn nữa với Mermaid.js xem trước trực tiếp."
+    },
+    "uuid": {
+      "name": "Trình tạo UUID",
+      "desc": "Tạo UUID v1, v4 và v7. Tạo hàng loạt, kiểm tra, phân tích và sao chép với tùy chọn định dạng."
+    },
+    "notes": {
+      "name": "Ghi chú",
+      "desc": "Ghi chú Markdown với xem trước trực tiếp, thẻ, danh mục, nhãn màu, tệp đính kèm và tự động lưu."
+    },
+    "regex": {
+      "name": "Kiểm tra regex",
+      "desc": "Kiểm tra mẫu regex với tô sáng kết quả thời gian thực, nhóm bắt, thay thế và bảng mẹo."
+    },
+    "charmap": {
+      "name": "Emoji & Bản đồ ký tự",
+      "desc": "Tìm kiếm và sao chép emoji, ký hiệu và ký tự đặc biệt. Chi tiết Unicode, thực thể HTML và đã dùng gần đây."
+    },
+    "epoch": {
+      "name": "Chuyển đổi Epoch",
+      "desc": "Chuyển đổi dấu thời gian Unix epoch sang ngày dễ đọc và ngược lại. Đồng hồ trực tiếp, mẫu có sẵn và tính chênh lệch thời gian."
+    },
+    "hash": {
+      "name": "Trình tạo Hash",
+      "desc": "Tạo hash MD5, SHA-1, SHA-256, SHA-512 từ văn bản hoặc tệp. Xác minh checksum ngay lập tức."
+    },
+    "colorpicker": {
+      "name": "Bộ chọn màu",
+      "desc": "Chọn màu và chuyển đổi giữa các định dạng HEX, RGB, HSL. Bảng màu và kiểm tra độ tương phản."
+    },
+    "cron": {
+      "name": "Phân tích cron",
+      "desc": "Phân tích và tạo biểu thức cron với mô tả dễ hiểu và thời gian chạy tiếp theo."
+    },
+    "password": {
+      "name": "Trình tạo mật khẩu",
+      "desc": "Tạo mật khẩu ngẫu nhiên an toàn bằng mã hóa và cụm mật khẩu dễ nhớ."
+    },
+    "qrcode": {
+      "name": "Trình tạo QR Code",
+      "desc": "Tạo QR code từ văn bản, URL, thông tin WiFi hoặc liên hệ. Tải xuống dạng PNG."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Tạo văn bản giữ chỗ — đoạn văn, câu hoặc từ. Có nhiều phong cách khác nhau."
+    },
+    "baseconverter": {
+      "name": "Chuyển đổi cơ số",
+      "desc": "Chuyển đổi số giữa các cơ số Nhị phân, Bát phân, Thập phân và Thập lục phân theo thời gian thực."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Chuyển đổi giữa định dạng JSON và YAML với kiểm tra cú pháp và định dạng."
+    },
+    "httpclient": {
+      "name": "HTTP Client",
+      "desc": "Kiểm tra API endpoint giống Postman thu nhỏ. Phương thức, header, body tùy chỉnh và xem phản hồi."
+    },
+    "stringutils": {
+      "name": "Tiện ích chuỗi",
+      "desc": "Chuyển đổi chữ hoa/thường, cắt khoảng trắng, đếm, đảo ngược, tạo slug và nhiều thao tác chuỗi khác."
+    },
+    "chat": {
+      "name": "Chat LAN",
+      "desc": "Chat thời gian thực trong mạng nội bộ. Không cần internet — chỉ cần Dev Helper trên LAN."
+    },
+    "netscan": {
+      "name": "Quét mạng",
+      "desc": "Quét host và cổng trên LAN. Phát hiện thiết bị, dịch vụ và cổng mở trên mạng của bạn."
+    },
+    "worldclock": {
+      "name": "Đồng hồ thế giới",
+      "desc": "Đồng hồ nhiều múi giờ với hiển thị analog, lên lịch họp và kéo thả sắp xếp."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Trích xuất văn bản từ hình ảnh và ảnh chụp màn hình. Kéo, dán hoặc tải lên — chạy bằng Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Chuyển đổi giữa application.yml và application.properties cho dự án Java/Spring Boot."
+    },
+    "netinspect": {
+      "name": "Kiểm tra mạng",
+      "desc": "Tra cứu vị trí IP, DNS, header phản hồi HTTP và kiểm tra chứng chỉ SSL."
+    },
+    "aichat": {
+      "name": "Chat AI",
+      "desc": "Chat với mô hình AI Ollama cục bộ. Phản hồi streaming, hiển thị markdown, lịch sử hội thoại."
+    },
+    "speedtest": {
+      "name": "Kiểm tra tốc độ",
+      "desc": "Kiểm tra tốc độ tải xuống/tải lên, độ trễ ping và hiệu suất đọc/ghi ổ đĩa."
+    },
+    "snippets": {
+      "name": "Đoạn mã",
+      "desc": "Lưu và sắp xếp các đoạn mã hay dùng với tô sáng cú pháp và sao chép nhanh."
+    },
+    "sysmon": {
+      "name": "Giám sát hệ thống",
+      "desc": "Giám sát CPU, bộ nhớ, ổ đĩa, mạng và tiến trình thời gian thực với đồng hồ đo trực tiếp."
+    },
+    "icons": {
+      "name": "Khám phá biểu tượng",
+      "desc": "Duyệt và tìm kiếm Bootstrap Icons, Font Awesome và Tabler Icons. Nhấn để sao chép class CSS hoặc HTML."
+    },
+    "askai": {
+      "name": "Hỏi AI",
+      "desc": "Truy cập nhanh 9 AI đám mây (Claude, ChatGPT, Gemini, v.v.) và Ollama từ thanh điều hướng."
+    },
+    "translator": {
+      "name": "Dịch thuật",
+      "desc": "Dịch văn bản giữa các ngôn ngữ bằng mô hình AI Ollama cục bộ. Giống Google Translate, ngoại tuyến."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Kéo & Thả tệp vào đây",
+    "drop_or_browse": "hoặc nhấn để chọn tệp",
+    "paste_hint": "Bạn cũng có thể dán từ bộ nhớ tạm (Ctrl+V)",
+    "recent_uploads": "Đã tải lên gần đây",
+    "clear_recent": "Xóa gần đây",
+    "copy_url": "Sao chép URL",
+    "open_new_tab": "Mở trong tab mới",
+    "file_uploaded": "Tải tệp lên thành công",
+    "upload_failed": "Tải lên thất bại"
+  },
+  "files_page": {
+    "search_placeholder": "Tìm kiếm tệp...",
+    "grid_view": "Lưới",
+    "list_view": "Danh sách",
+    "delete_all": "Xóa tất cả",
+    "confirm_delete_all": "Bạn có chắc chắn muốn xóa tất cả tệp không?",
+    "no_files": "Không tìm thấy tệp",
+    "file_deleted": "Đã xóa tệp",
+    "download": "Tải xuống",
+    "file_size": "Kích thước",
+    "file_date": "Ngày"
+  },
+  "prettify_page": {
+    "input_label": "Đầu vào",
+    "output_label": "Đầu ra",
+    "prettify": "Làm đẹp",
+    "minify": "Thu gọn",
+    "paste_placeholder": "Dán hoặc nhập mã vào đây...",
+    "auto_detect": "Tự động nhận diện",
+    "copy_output": "Sao chép đầu ra"
+  },
+  "logs_page": {
+    "app": "Ứng dụng",
+    "level": "Mức độ",
+    "search_placeholder": "Tìm kiếm nhật ký...",
+    "clear_logs": "Xóa nhật ký",
+    "auto_scroll": "Tự động cuộn",
+    "no_logs": "Không tìm thấy nhật ký",
+    "all_apps": "Tất cả ứng dụng",
+    "all_levels": "Tất cả mức độ",
+    "timestamp": "Thời gian",
+    "message": "Tin nhắn"
+  },
+  "logviewer_page": {
+    "upload_log": "Tải lên tệp nhật ký",
+    "search_placeholder": "Tìm kiếm từ khóa hoặc regex...",
+    "use_regex": "Regex",
+    "case_sensitive": "Phân biệt hoa thường",
+    "context_lines": "Dòng ngữ cảnh",
+    "showing_lines": "Hiển thị {shown} trong {total} dòng",
+    "no_matches": "Không tìm thấy kết quả",
+    "line": "Dòng"
+  },
+  "editor_page": {
+    "new_file": "Mới",
+    "open_file": "Mở tệp",
+    "save_file": "Lưu",
+    "word_wrap": "Ngắt dòng",
+    "minimap": "Minimap",
+    "line": "Dòng",
+    "column": "Cột",
+    "language": "Ngôn ngữ",
+    "fetch_url": "Tải từ URL",
+    "url_placeholder": "Nhập URL để tải tệp..."
+  },
+  "markdown_page": {
+    "samples": "Mẫu",
+    "open_file": "Mở tệp",
+    "copy_html": "Sao chép HTML",
+    "export": "Xuất",
+    "export_pdf": "Xuất ra PDF",
+    "export_md": "Xuất ra Markdown",
+    "export_html": "Xuất ra HTML",
+    "clear": "Xóa",
+    "expand": "Mở rộng",
+    "editor_label": "Markdown",
+    "preview_label": "Xem trước",
+    "drop_zone": "Kéo & thả tệp Markdown vào đây, hoặc nhấn để chọn",
+    "url_placeholder": "Nhập URL để tải tệp .md",
+    "fetch": "Tải",
+    "html_copied": "Đã sao chép HTML!",
+    "readme": "README",
+    "api_docs": "Tài liệu API",
+    "changelog": "Nhật ký thay đổi",
+    "blog_post": "Bài viết blog",
+    "cheatsheet": "Bảng mẹo Markdown",
+    "meeting_notes": "Ghi chú cuộc họp",
+    "project_todo": "Việc cần làm dự án"
+  },
+  "diff_page": {
+    "original": "Bản gốc",
+    "modified": "Đã chỉnh sửa",
+    "side_by_side": "Cạnh nhau",
+    "inline": "Xen kẽ",
+    "open_file": "Mở tệp",
+    "paste_code": "Dán mã vào đây...",
+    "swap": "Hoán đổi",
+    "no_differences": "Không tìm thấy khác biệt"
+  },
+  "jwt_page": {
+    "header": "Header",
+    "payload": "Payload",
+    "signature": "Chữ ký",
+    "secret": "Khóa bí mật",
+    "algorithm": "Thuật toán",
+    "encode": "Mã hóa",
+    "decode": "Giải mã",
+    "verify": "Xác minh",
+    "valid_signature": "Chữ ký hợp lệ",
+    "invalid_signature": "Chữ ký không hợp lệ",
+    "paste_jwt": "Dán token JWT vào đây..."
+  },
+  "base64_page": {
+    "text_mode": "Văn bản",
+    "file_mode": "Tệp",
+    "url_safe": "URL-safe",
+    "line_breaks": "Ngắt dòng",
+    "input_placeholder": "Nhập văn bản để mã hóa/giải mã...",
+    "drop_file": "Thả tệp vào đây hoặc nhấn để chọn",
+    "download_result": "Tải xuống kết quả"
+  },
+  "urlencoder_page": {
+    "component_mode": "Component",
+    "full_url_mode": "URL đầy đủ",
+    "url_parser": "Phân tích URL",
+    "protocol": "Giao thức",
+    "host": "Host",
+    "path": "Đường dẫn",
+    "params": "Tham số",
+    "input_placeholder": "Nhập URL hoặc văn bản để mã hóa/giải mã..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Mã nguồn",
+    "import_html": "Nhập HTML",
+    "export_html": "Xuất HTML",
+    "clear": "Xóa"
+  },
+  "mermaid_page": {
+    "samples": "Mẫu",
+    "download_svg": "Tải SVG",
+    "download_png": "Tải PNG",
+    "share": "Chia sẻ",
+    "zoom_in": "Phóng to",
+    "zoom_out": "Thu nhỏ",
+    "reset_zoom": "Đặt lại phóng",
+    "diagram_label": "Mã Mermaid",
+    "preview_label": "Xem trước",
+    "link_copied": "Đã sao chép liên kết chia sẻ!",
+    "flowchart": "Sơ đồ luồng",
+    "sequence": "Sơ đồ tuần tự",
+    "class_diagram": "Sơ đồ lớp",
+    "state": "Sơ đồ trạng thái",
+    "er": "Sơ đồ ER",
+    "gantt": "Biểu đồ Gantt",
+    "pie": "Biểu đồ tròn",
+    "mindmap": "Sơ đồ tư duy",
+    "timeline": "Dòng thời gian",
+    "quadrant": "Biểu đồ tứ phân",
+    "git": "Đồ thị Git",
+    "sankey": "Sơ đồ Sankey"
+  },
+  "uuid_page": {
+    "version": "Phiên bản",
+    "bulk_generate": "Tạo hàng loạt",
+    "validate_parse": "Kiểm tra & Phân tích",
+    "count": "Số lượng",
+    "uppercase": "Chữ hoa",
+    "braces": "Dấu ngoặc nhọn",
+    "hyphens": "Dấu gạch ngang",
+    "copy_all": "Sao chép tất cả",
+    "generated": "Đã tạo",
+    "valid_uuid": "UUID hợp lệ",
+    "invalid_uuid": "UUID không hợp lệ",
+    "uuid_version": "Phiên bản",
+    "uuid_variant": "Biến thể",
+    "uuid_timestamp": "Dấu thời gian"
+  },
+  "notes_page": {
+    "new_note": "Ghi chú mới",
+    "search_placeholder": "Tìm kiếm ghi chú...",
+    "categories": "Danh mục",
+    "all_notes": "Tất cả ghi chú",
+    "pinned": "Đã ghim",
+    "trash": "Thùng rác",
+    "restore": "Khôi phục",
+    "permanent_delete": "Xóa vĩnh viễn",
+    "note_saved": "Đã lưu ghi chú",
+    "note_deleted": "Đã chuyển ghi chú vào thùng rác",
+    "untitled": "Ghi chú không tiêu đề",
+    "attachments": "Tệp đính kèm",
+    "color_label": "Nhãn màu",
+    "sort_by": "Sắp xếp theo",
+    "date_modified": "Ngày sửa đổi",
+    "date_created": "Ngày tạo"
+  },
+  "regex_page": {
+    "pattern": "Mẫu",
+    "test_string": "Chuỗi kiểm tra",
+    "flags": "Cờ",
+    "matches": "Kết quả",
+    "replace": "Thay thế",
+    "replacement": "Thay thế bằng",
+    "cheat_sheet": "Bảng mẹo",
+    "common_patterns": "Mẫu phổ biến",
+    "no_matches": "Không có kết quả",
+    "match_count": "Tìm thấy {count} kết quả",
+    "global": "Toàn cục",
+    "case_insensitive": "Không phân biệt hoa thường",
+    "multiline": "Nhiều dòng"
+  },
+  "charmap_page": {
+    "search_placeholder": "Tìm emoji hoặc ký tự...",
+    "recently_used": "Đã dùng gần đây",
+    "unicode": "Unicode",
+    "html_entity": "Thực thể HTML",
+    "css_code": "Mã CSS",
+    "copy_char": "Nhấn để sao chép",
+    "smileys": "Mặt cười & Con người",
+    "animals": "Động vật & Thiên nhiên",
+    "food": "Đồ ăn & Thức uống",
+    "activities": "Hoạt động",
+    "travel": "Du lịch & Địa điểm",
+    "objects": "Đồ vật",
+    "symbols": "Ký hiệu",
+    "flags": "Cờ",
+    "arrows": "Mũi tên",
+    "math": "Toán học",
+    "currency": "Tiền tệ",
+    "latin": "Latin mở rộng"
+  },
+  "epoch_page": {
+    "timestamp": "Dấu thời gian",
+    "date_time": "Ngày & Giờ",
+    "now": "Bây giờ",
+    "seconds": "Giây",
+    "milliseconds": "Mili giây",
+    "local_time": "Giờ địa phương",
+    "utc_time": "Giờ UTC",
+    "relative": "Tương đối",
+    "time_diff": "Chênh lệch thời gian",
+    "presets": "Mẫu có sẵn",
+    "live_clock": "Đồng hồ trực tiếp"
+  },
+  "hash_page": {
+    "text_input": "Nhập văn bản",
+    "file_input": "Nhập tệp",
+    "compare": "So sánh Hash",
+    "hash_match": "Hash trùng khớp!",
+    "hash_mismatch": "Hash không trùng khớp",
+    "drop_file": "Thả tệp để tính hash...",
+    "computing": "Đang tính hash..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Kiểm tra độ tương phản",
+    "foreground": "Tiền cảnh",
+    "background": "Nền",
+    "ratio": "Tỷ lệ",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Đạt",
+    "fail": "Không đạt",
+    "palette": "Bảng màu",
+    "shades": "Tông tối",
+    "tints": "Tông sáng",
+    "pick_color": "Chọn màu",
+    "eyedropper": "Lấy mẫu màu"
+  },
+  "cron_page": {
+    "expression": "Biểu thức",
+    "description_label": "Mô tả",
+    "next_runs": "Lần chạy tiếp theo",
+    "presets": "Mẫu có sẵn",
+    "minute": "Phút",
+    "hour": "Giờ",
+    "day_month": "Ngày (Tháng)",
+    "month": "Tháng",
+    "day_week": "Ngày (Tuần)",
+    "every_minute": "Mỗi phút",
+    "every_hour": "Mỗi giờ",
+    "every_day": "Mỗi ngày lúc nửa đêm",
+    "share": "Chia sẻ"
+  },
+  "password_page": {
+    "password": "Mật khẩu",
+    "passphrase": "Cụm mật khẩu",
+    "length": "Độ dài",
+    "uppercase": "Chữ hoa (A-Z)",
+    "lowercase": "Chữ thường (a-z)",
+    "numbers": "Số (0-9)",
+    "symbols": "Ký hiệu (!@#$...)",
+    "word_count": "Số từ",
+    "separator": "Dấu phân cách",
+    "strength": "Độ mạnh",
+    "entropy": "Entropy",
+    "very_weak": "Rất yếu",
+    "weak": "Yếu",
+    "fair": "Trung bình",
+    "strong": "Mạnh",
+    "very_strong": "Rất mạnh",
+    "bulk_generate": "Tạo hàng loạt",
+    "generate_count": "Số lượng"
+  },
+  "qrcode_page": {
+    "text_url": "Văn bản / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Nhập văn bản hoặc URL...",
+    "network_name": "Tên mạng (SSID)",
+    "wifi_password": "Mật khẩu",
+    "encryption": "Mã hóa",
+    "hidden_network": "Mạng ẩn",
+    "full_name": "Họ và tên",
+    "phone": "Điện thoại",
+    "email": "Email",
+    "organization": "Tổ chức",
+    "error_correction": "Sửa lỗi",
+    "foreground_color": "Tiền cảnh",
+    "background_color": "Nền",
+    "download_png": "Tải PNG",
+    "download_svg": "Tải SVG",
+    "copy_image": "Sao chép hình ảnh"
+  },
+  "lorem_page": {
+    "paragraphs": "Đoạn văn",
+    "sentences": "Câu",
+    "words": "Từ",
+    "style": "Phong cách",
+    "classic": "Cổ điển",
+    "hipster": "Hipster",
+    "tech": "Công nghệ / Dev",
+    "include_html": "Bao gồm thẻ HTML",
+    "start_lorem": "Bắt đầu bằng \"Lorem ipsum...\"",
+    "generated_text": "Văn bản đã tạo",
+    "copy_text": "Sao chép văn bản"
+  },
+  "baseconverter_page": {
+    "binary": "Nhị phân",
+    "octal": "Bát phân",
+    "decimal": "Thập phân",
+    "hexadecimal": "Thập lục phân",
+    "bit_visualization": "Trực quan hóa bit",
+    "signed": "Có dấu",
+    "unsigned": "Không dấu",
+    "twos_complement": "Bù hai"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Làm đẹp",
+    "minify": "Thu gọn",
+    "import_file": "Nhập tệp",
+    "invalid_json": "JSON không hợp lệ",
+    "invalid_yaml": "YAML không hợp lệ"
+  },
+  "httpclient_page": {
+    "url_placeholder": "Nhập URL yêu cầu...",
+    "method": "Phương thức",
+    "headers": "Header",
+    "body": "Body",
+    "auth": "Xác thực",
+    "params": "Tham số",
+    "response": "Phản hồi",
+    "status_code": "Trạng thái",
+    "response_time": "Thời gian",
+    "response_size": "Kích thước",
+    "send_request": "Gửi",
+    "clear_history": "Xóa lịch sử",
+    "no_auth": "Không xác thực",
+    "basic_auth": "Basic Auth",
+    "bearer_token": "Bearer Token",
+    "username": "Tên người dùng",
+    "token": "Token",
+    "key": "Khóa",
+    "add_header": "Thêm Header",
+    "add_param": "Thêm tham số"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Nhập văn bản vào đây...",
+    "operations": "Thao tác",
+    "case_conversion": "Chuyển đổi chữ hoa/thường",
+    "text_cleanup": "Dọn dẹp văn bản",
+    "text_transform": "Biến đổi văn bản",
+    "encode_decode": "Mã hóa / Giải mã",
+    "extract_info": "Trích xuất thông tin",
+    "uppercase": "CHỮ HOA",
+    "lowercase": "chữ thường",
+    "title_case": "Viết Hoa Đầu Từ",
+    "sentence_case": "Viết hoa đầu câu",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Ký tự",
+    "word_count": "Từ",
+    "line_count": "Dòng"
+  },
+  "chat_page": {
+    "username_placeholder": "Nhập tên của bạn...",
+    "message_placeholder": "Nhập tin nhắn...",
+    "join": "Tham gia",
+    "online_users": "Đang trực tuyến",
+    "user_joined": "{user} đã tham gia phòng chat",
+    "user_left": "{user} đã rời phòng chat"
+  },
+  "netscan_page": {
+    "interface": "Giao diện mạng",
+    "target": "Mục tiêu",
+    "ports": "Cổng",
+    "scan": "Quét",
+    "scanning": "Đang quét...",
+    "open_ports": "Cổng mở",
+    "host": "Host",
+    "port": "Cổng",
+    "service": "Dịch vụ",
+    "scan_complete": "Quét hoàn tất",
+    "common_ports": "Cổng phổ biến",
+    "custom_range": "Khoảng tùy chỉnh"
+  },
+  "worldclock_page": {
+    "add_clock": "Thêm đồng hồ",
+    "your_local_time": "Giờ địa phương của bạn",
+    "meeting_planner": "Lên lịch họp",
+    "timezone": "Múi giờ",
+    "search_timezone": "Tìm múi giờ...",
+    "remove_clock": "Xóa"
+  },
+  "ocr_page": {
+    "upload_image": "Tải lên hình ảnh",
+    "paste_image": "Dán hình ảnh",
+    "drop_image": "Kéo & thả hình ảnh vào đây",
+    "extract_text": "Trích xuất văn bản",
+    "extracted_text": "Văn bản trích xuất",
+    "copy_result": "Sao chép kết quả",
+    "recognizing": "Đang nhận dạng văn bản...",
+    "no_text_found": "Không tìm thấy văn bản trong hình ảnh",
+    "supported_formats": "Hỗ trợ: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Nhập tệp",
+    "download_result": "Tải xuống"
+  },
+  "aichat_page": {
+    "model": "Mô hình",
+    "no_models": "Không tìm thấy mô hình. Ollama đang chạy chứ?",
+    "message_placeholder": "Nhập tin nhắn của bạn...",
+    "clear_chat": "Xóa cuộc trò chuyện",
+    "thinking": "Đang suy nghĩ...",
+    "ollama_not_running": "Không thể kết nối tới Ollama",
+    "connection_error": "Lỗi kết nối"
+  },
+  "speedtest_page": {
+    "start_test": "Bắt đầu kiểm tra",
+    "ping": "Ping",
+    "download_speed": "Tải xuống",
+    "upload_speed": "Tải lên",
+    "disk_speed": "Ổ đĩa",
+    "latency": "Độ trễ",
+    "read_speed": "Đọc",
+    "write_speed": "Ghi",
+    "testing": "Đang kiểm tra...",
+    "test_complete": "Kiểm tra hoàn tất"
+  },
+  "snippets_page": {
+    "new_snippet": "Đoạn mã mới",
+    "search_placeholder": "Tìm kiếm đoạn mã...",
+    "title_placeholder": "Tiêu đề đoạn mã...",
+    "desc_placeholder": "Mô tả (tùy chọn)",
+    "tags_placeholder": "Thẻ (phân cách bằng dấu phẩy)",
+    "save_snippet": "Lưu",
+    "delete_snippet": "Xóa",
+    "copy_code": "Sao chép mã",
+    "language": "Ngôn ngữ",
+    "default_loaded": "Đã tải đoạn mã mặc định",
+    "snippet_saved": "Đã lưu đoạn mã",
+    "snippet_deleted": "Đã xóa đoạn mã",
+    "code_copied": "Đã sao chép mã!",
+    "no_snippets": "Không tìm thấy đoạn mã",
+    "pinned": "Đã ghim",
+    "all_snippets": "Tất cả đoạn mã"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Bộ nhớ",
+    "disk": "Ổ đĩa",
+    "network": "Mạng",
+    "processes": "Tiến trình",
+    "usage": "Sử dụng",
+    "total": "Tổng",
+    "used": "Đã dùng",
+    "free": "Trống",
+    "available": "Khả dụng",
+    "cores": "Nhân",
+    "uptime": "Thời gian hoạt động",
+    "pid": "PID",
+    "process_name": "Tên",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Bộ nhớ %",
+    "connecting": "Đang kết nối...",
+    "disconnected": "Đã ngắt kết nối",
+    "bytes_sent": "Đã gửi",
+    "bytes_recv": "Đã nhận",
+    "read_speed": "Đọc",
+    "write_speed": "Ghi"
+  },
+  "icons_page": {
+    "search_placeholder": "Tìm kiếm biểu tượng...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "Tất cả",
+    "recently_used": "Đã dùng gần đây",
+    "class_name": "Class",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Sao chép Class",
+    "copy_html": "Sao chép HTML",
+    "icon_count": "{count} biểu tượng",
+    "loading_icons": "Đang tải biểu tượng...",
+    "click_to_view": "Nhấn vào biểu tượng để xem chi tiết"
+  },
+  "netinspect_page": {
+    "my_ip": "IP của tôi",
+    "ip_lookup": "Tra cứu IP",
+    "dns_lookup": "Tra cứu DNS",
+    "http_headers": "HTTP Header",
+    "ssl_cert": "Chứng chỉ SSL",
+    "lookup": "Tra cứu",
+    "check": "Kiểm tra",
+    "ip_placeholder": "Nhập địa chỉ IP...",
+    "domain_placeholder": "Nhập tên miền...",
+    "url_placeholder": "Nhập URL...",
+    "location": "Vị trí",
+    "isp": "Nhà cung cấp",
+    "record_type": "Loại bản ghi",
+    "issuer": "Đơn vị cấp",
+    "valid_from": "Có hiệu lực từ",
+    "valid_until": "Có hiệu lực đến",
+    "subject": "Chủ thể"
+  },
+  "translator_page": {
+    "source_lang": "Ngôn ngữ nguồn",
+    "target_lang": "Ngôn ngữ đích",
+    "auto_detect": "Tự động nhận diện",
+    "translate": "Dịch",
+    "translating": "Đang dịch...",
+    "swap_languages": "Hoán đổi ngôn ngữ",
+    "input_placeholder": "Nhập văn bản để dịch...",
+    "model": "Mô hình",
+    "copy_translation": "Sao chép bản dịch",
+    "translation_copied": "Đã sao chép bản dịch!",
+    "clear_all": "Xóa tất cả",
+    "char_count": "{count} ký tự"
+  }
+}

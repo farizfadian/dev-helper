@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "复制",
+    "copied": "已复制！",
+    "clear": "清除",
+    "save": "保存",
+    "saved": "已保存！",
+    "delete": "删除",
+    "cancel": "取消",
+    "close": "关闭",
+    "open": "打开",
+    "search": "搜索",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "warning": "警告",
+    "info": "信息",
+    "yes": "是",
+    "no": "否",
+    "confirm": "确认",
+    "download": "下载",
+    "upload": "上传",
+    "export": "导出",
+    "import": "导入",
+    "expand": "展开",
+    "exit": "退出",
+    "file": "文件",
+    "settings": "设置",
+    "none": "无",
+    "all": "全部",
+    "reset": "重置",
+    "apply": "应用",
+    "preview": "预览",
+    "source": "源代码",
+    "result": "结果",
+    "input": "输入",
+    "output": "输出",
+    "generate": "生成",
+    "encode": "编码",
+    "decode": "解码",
+    "paste": "粘贴",
+    "swap": "交换",
+    "back": "返回",
+    "next": "下一步",
+    "samples": "示例",
+    "history": "历史记录",
+    "options": "选项",
+    "format": "格式化",
+    "validate": "验证",
+    "convert": "转换",
+    "raw": "原始",
+    "send": "发送",
+    "stop": "停止",
+    "start": "开始",
+    "refresh": "刷新",
+    "browse": "浏览",
+    "select": "选择",
+    "add": "添加",
+    "remove": "移除",
+    "edit": "编辑",
+    "share": "分享",
+    "pin": "固定",
+    "unpin": "取消固定",
+    "new": "新建",
+    "text": "文本",
+    "type": "类型",
+    "size": "大小",
+    "name": "名称",
+    "value": "值",
+    "status": "状态",
+    "actions": "操作",
+    "description": "描述",
+    "category": "分类",
+    "tags": "标签",
+    "language": "语言",
+    "title": "标题",
+    "content": "内容",
+    "count": "数量",
+    "length": "长度",
+    "total": "总计",
+    "or": "或",
+    "and": "和",
+    "no_data": "暂无数据",
+    "no_results": "未找到结果",
+    "confirm_delete": "确定要删除吗？",
+    "drag_drop": "将文件拖放到此处",
+    "processing": "处理中...",
+    "done": "完成",
+    "copied_to_clipboard": "已复制到剪贴板！",
+    "failed_to_copy": "复制失败",
+    "keyboard_shortcuts": "键盘快捷键",
+    "toggle_fullscreen": "切换全屏 (F11)",
+    "exit_fullscreen": "退出全屏 (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "搜索",
+    "search_tools": "搜索工具...",
+    "more": "更多",
+    "all_tools": "所有工具",
+    "ask_ai": "问 AI",
+    "cloud_ai": "云端 AI",
+    "local_ai": "本地 AI",
+    "language": "语言",
+    "pinned_to_navbar": "已固定到导航栏",
+    "unpinned_from_navbar": "已从导航栏取消固定",
+    "pin_to_navbar": "固定到导航栏",
+    "unpin_from_navbar": "从导航栏取消固定",
+    "open_navigation": "打开导航"
+  },
+  "theme": {
+    "light": "浅色",
+    "dark": "深色",
+    "auto": "自动",
+    "switch_theme": "切换主题"
+  },
+  "spotlight": {
+    "placeholder": "搜索工具...",
+    "no_results": "未找到与 \"{query}\" 匹配的工具",
+    "navigate": "导航",
+    "open": "打开",
+    "close": "关闭"
+  },
+  "drawer": {
+    "search": "搜索",
+    "theme": "主题",
+    "pinned": "已固定",
+    "file_code": "文件与代码",
+    "encode_decode": "编码与解码",
+    "converters": "转换工具",
+    "generators": "生成工具",
+    "tools_section": "工具",
+    "logs_network": "日志与网络",
+    "all_tools": "所有工具"
+  },
+  "footer": {
+    "made_by": "用 ❤️ 制作，作者"
+  },
+  "ai": {
+    "ask": "提问",
+    "prompt_placeholder": "你想问什么？",
+    "enter_to_send": "Enter 发送",
+    "shift_enter_newline": "Shift+Enter 换行",
+    "open_without_prompt": "直接打开",
+    "ollama_url": "Ollama URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "输入你的 Ollama 网页 UI 地址"
+  },
+  "dashboard": {
+    "search_placeholder": "搜索工具...",
+    "pinned_tools": "已固定工具",
+    "all_tools": "所有工具",
+    "no_results": "没有找到匹配的工具。",
+    "open_source_toolkit": "开源开发工具箱",
+    "tools_count": "{count} 个可用工具"
+  },
+  "tools": {
+    "upload": {
+      "name": "上传",
+      "desc": "拖放、粘贴或浏览文件进行上传。支持图片预览和灯箱查看。"
+    },
+    "files": {
+      "name": "文件管理器",
+      "desc": "以类似 Google Drive 的网格视图浏览、搜索和管理已上传的文件。"
+    },
+    "prettify": {
+      "name": "代码美化",
+      "desc": "格式化和美化 JSON、XML、HTML、CSS、JavaScript 和 SQL 代码。"
+    },
+    "logs": {
+      "name": "日志聚合器",
+      "desc": "轻量级日志收集器。通过 HTTP POST 接收任意应用的日志，按应用和级别过滤。"
+    },
+    "logviewer": {
+      "name": "日志查看器",
+      "desc": "上传和搜索大型日志文件，支持关键字过滤、regex 和上下文行。"
+    },
+    "editor": {
+      "name": "代码编辑器",
+      "desc": "基于 Monaco（VS Code）的全功能代码编辑器，支持 40 多种语言的语法高亮。"
+    },
+    "markdown": {
+      "name": "Markdown 查看器",
+      "desc": "编写 Markdown 并实时预览，支持语法高亮代码块和 GFM 规范。"
+    },
+    "diff": {
+      "name": "代码对比",
+      "desc": "并排或内联比较两个代码文件，带语法高亮的差异视图。"
+    },
+    "jwt": {
+      "name": "JWT 工具",
+      "desc": "编码、解码和验证 JSON Web Token。支持 HS256/384/512，彩色显示。"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "编码和解码 Base64 字符串。支持文本和二进制文件，可选 URL 安全模式。"
+    },
+    "urlencoder": {
+      "name": "URL 编码器",
+      "desc": "编码和解码 URL 和查询参数。URL 解析器显示协议、主机、路径和参数。"
+    },
+    "htmleditor": {
+      "name": "HTML 编辑器",
+      "desc": "基于 TinyMCE 的富文本 WYSIWYG 编辑器，可切换 HTML 源代码视图。"
+    },
+    "mermaid": {
+      "name": "Mermaid 图表",
+      "desc": "使用 Mermaid.js 实时预览创建流程图、时序图、ER 图、甘特图等。"
+    },
+    "uuid": {
+      "name": "UUID 生成器",
+      "desc": "生成 UUID v1、v4 和 v7。批量生成、验证、解析和复制，支持格式选项。"
+    },
+    "notes": {
+      "name": "笔记",
+      "desc": "Markdown 笔记，实时预览，支持标签、分类、颜色标记、附件和自动保存。"
+    },
+    "regex": {
+      "name": "Regex 测试器",
+      "desc": "实时匹配高亮测试 regex 模式，支持捕获组、替换和速查表。"
+    },
+    "charmap": {
+      "name": "表情与字符映射",
+      "desc": "搜索和复制表情符号、符号和特殊字符。显示 Unicode 详情、HTML 实体和最近使用。"
+    },
+    "epoch": {
+      "name": "时间戳转换器",
+      "desc": "Unix 时间戳与人类可读日期互转。实时时钟、预设和时间差计算器。"
+    },
+    "hash": {
+      "name": "哈希生成器",
+      "desc": "从文本或文件生成 MD5、SHA-1、SHA-256、SHA-512 哈希值。即时校验。"
+    },
+    "colorpicker": {
+      "name": "颜色选择器",
+      "desc": "选取颜色并在 HEX、RGB、HSL 格式间转换。调色板和对比度检查器。"
+    },
+    "cron": {
+      "name": "Cron 解析器",
+      "desc": "解析和生成 cron 表达式，提供人类可读描述和下次运行时间。"
+    },
+    "password": {
+      "name": "密码生成器",
+      "desc": "生成加密安全的随机密码和易记的密码短语。"
+    },
+    "qrcode": {
+      "name": "QR 码生成器",
+      "desc": "从文本、URL、WiFi 凭据或联系人信息生成 QR 码。下载为 PNG。"
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "生成占位文本——段落、句子或单词，多种风格可选。"
+    },
+    "baseconverter": {
+      "name": "进制转换器",
+      "desc": "在二进制、八进制、十进制和十六进制之间实时转换数字。"
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "在 JSON 和 YAML 格式之间互转，支持语法验证和格式化。"
+    },
+    "httpclient": {
+      "name": "HTTP 客户端",
+      "desc": "像迷你 Postman 一样测试 API 端点。自定义方法、头信息、请求体和响应查看器。"
+    },
+    "stringutils": {
+      "name": "字符串工具",
+      "desc": "大小写转换、修剪、计数、反转、slug 生成等多种字符串操作。"
+    },
+    "chat": {
+      "name": "局域网聊天",
+      "desc": "局域网实时聊天。无需互联网——只需 Dev Helper 在 LAN 上运行。"
+    },
+    "netscan": {
+      "name": "网络扫描器",
+      "desc": "扫描 LAN 主机和端口。发现网络上的设备、服务和开放端口。"
+    },
+    "worldclock": {
+      "name": "世界时钟",
+      "desc": "多时区时钟，带模拟显示、会议规划器和拖拽排序。"
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "从图片和截图中提取文字。拖放、粘贴或上传——由 Tesseract.js 提供支持。"
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "在 application.yml 和 application.properties 之间转换，适用于 Java/Spring Boot 项目。"
+    },
+    "netinspect": {
+      "name": "网络检查器",
+      "desc": "IP 地理定位、DNS 查询、HTTP 响应头和 SSL 证书检查。"
+    },
+    "aichat": {
+      "name": "AI 聊天",
+      "desc": "与本地 Ollama AI 模型对话。流式响应、Markdown 渲染、对话历史。"
+    },
+    "speedtest": {
+      "name": "测速工具",
+      "desc": "测试网络下载/上传速度、ping 延迟和磁盘读写性能。"
+    },
+    "snippets": {
+      "name": "代码片段",
+      "desc": "保存和管理常用代码片段，支持语法高亮和快速复制。"
+    },
+    "sysmon": {
+      "name": "系统监控",
+      "desc": "实时 CPU、内存、磁盘、网络和进程监控，配有动态仪表盘。"
+    },
+    "icons": {
+      "name": "图标浏览器",
+      "desc": "浏览和搜索 Bootstrap Icons、Font Awesome 和 Tabler Icons。点击复制 CSS 类名或 HTML。"
+    },
+    "askai": {
+      "name": "问 AI",
+      "desc": "从导航栏快速访问 9 个云端 AI（Claude、ChatGPT、Gemini 等）和 Ollama。"
+    },
+    "translator": {
+      "name": "翻译器",
+      "desc": "使用本地 Ollama AI 模型翻译文本。像 Google 翻译一样，但离线使用。"
+    }
+  },
+  "upload_page": {
+    "drop_zone": "将文件拖放到此处",
+    "drop_or_browse": "或点击浏览",
+    "paste_hint": "也可以从剪贴板粘贴 (Ctrl+V)",
+    "recent_uploads": "最近上传",
+    "clear_recent": "清除记录",
+    "copy_url": "复制 URL",
+    "open_new_tab": "在新标签页打开",
+    "file_uploaded": "文件上传成功",
+    "upload_failed": "上传失败"
+  },
+  "files_page": {
+    "search_placeholder": "搜索文件...",
+    "grid_view": "网格",
+    "list_view": "列表",
+    "delete_all": "全部删除",
+    "confirm_delete_all": "确定要删除所有文件吗？",
+    "no_files": "未找到文件",
+    "file_deleted": "文件已删除",
+    "download": "下载",
+    "file_size": "大小",
+    "file_date": "日期"
+  },
+  "prettify_page": {
+    "input_label": "输入",
+    "output_label": "输出",
+    "prettify": "美化",
+    "minify": "压缩",
+    "paste_placeholder": "在此粘贴或输入代码...",
+    "auto_detect": "自动检测",
+    "copy_output": "复制输出"
+  },
+  "logs_page": {
+    "app": "应用",
+    "level": "级别",
+    "search_placeholder": "搜索日志...",
+    "clear_logs": "清除日志",
+    "auto_scroll": "自动滚动",
+    "no_logs": "未找到日志",
+    "all_apps": "所有应用",
+    "all_levels": "所有级别",
+    "timestamp": "时间戳",
+    "message": "消息"
+  },
+  "logviewer_page": {
+    "upload_log": "上传日志文件",
+    "search_placeholder": "搜索关键字或 regex...",
+    "use_regex": "Regex",
+    "case_sensitive": "区分大小写",
+    "context_lines": "上下文行数",
+    "showing_lines": "显示 {shown} / {total} 行",
+    "no_matches": "未找到匹配项",
+    "line": "行"
+  },
+  "editor_page": {
+    "new_file": "新建",
+    "open_file": "打开文件",
+    "save_file": "保存",
+    "word_wrap": "自动换行",
+    "minimap": "小地图",
+    "line": "行",
+    "column": "列",
+    "language": "语言",
+    "fetch_url": "从 URL 获取",
+    "url_placeholder": "输入 URL 以获取文件..."
+  },
+  "markdown_page": {
+    "samples": "示例",
+    "open_file": "打开文件",
+    "copy_html": "复制 HTML",
+    "export": "导出",
+    "export_pdf": "导出为 PDF",
+    "export_md": "导出为 Markdown",
+    "export_html": "导出为 HTML",
+    "clear": "清除",
+    "expand": "展开",
+    "editor_label": "Markdown",
+    "preview_label": "预览",
+    "drop_zone": "将 Markdown 文件拖放到此处，或点击浏览",
+    "url_placeholder": "输入 URL 以获取 .md 文件",
+    "fetch": "获取",
+    "html_copied": "HTML 已复制！",
+    "readme": "README",
+    "api_docs": "API 文档",
+    "changelog": "更新日志",
+    "blog_post": "博客文章",
+    "cheatsheet": "Markdown 速查表",
+    "meeting_notes": "会议记录",
+    "project_todo": "项目待办"
+  },
+  "diff_page": {
+    "original": "原始文件",
+    "modified": "修改后",
+    "side_by_side": "并排显示",
+    "inline": "内联显示",
+    "open_file": "打开文件",
+    "paste_code": "在此粘贴代码...",
+    "swap": "交换",
+    "no_differences": "未发现差异"
+  },
+  "jwt_page": {
+    "header": "头部",
+    "payload": "载荷",
+    "signature": "签名",
+    "secret": "密钥",
+    "algorithm": "算法",
+    "encode": "编码",
+    "decode": "解码",
+    "verify": "验证",
+    "valid_signature": "签名有效",
+    "invalid_signature": "签名无效",
+    "paste_jwt": "在此粘贴 JWT 令牌..."
+  },
+  "base64_page": {
+    "text_mode": "文本",
+    "file_mode": "文件",
+    "url_safe": "URL 安全",
+    "line_breaks": "换行符",
+    "input_placeholder": "输入要编码/解码的文本...",
+    "drop_file": "将文件拖放到此处或点击浏览",
+    "download_result": "下载结果"
+  },
+  "urlencoder_page": {
+    "component_mode": "组件",
+    "full_url_mode": "完整 URL",
+    "url_parser": "URL 解析器",
+    "protocol": "协议",
+    "host": "主机",
+    "path": "路径",
+    "params": "参数",
+    "input_placeholder": "输入 URL 或文本进行编码/解码..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "源代码",
+    "import_html": "导入 HTML",
+    "export_html": "导出 HTML",
+    "clear": "清除"
+  },
+  "mermaid_page": {
+    "samples": "示例",
+    "download_svg": "下载 SVG",
+    "download_png": "下载 PNG",
+    "share": "分享",
+    "zoom_in": "放大",
+    "zoom_out": "缩小",
+    "reset_zoom": "重置缩放",
+    "diagram_label": "Mermaid 代码",
+    "preview_label": "预览",
+    "link_copied": "分享链接已复制！",
+    "flowchart": "流程图",
+    "sequence": "时序图",
+    "class_diagram": "类图",
+    "state": "状态图",
+    "er": "ER 图",
+    "gantt": "甘特图",
+    "pie": "饼图",
+    "mindmap": "思维导图",
+    "timeline": "时间线",
+    "quadrant": "象限图",
+    "git": "Git 图",
+    "sankey": "桑基图"
+  },
+  "uuid_page": {
+    "version": "版本",
+    "bulk_generate": "批量生成",
+    "validate_parse": "验证与解析",
+    "count": "数量",
+    "uppercase": "大写",
+    "braces": "花括号",
+    "hyphens": "连字符",
+    "copy_all": "全部复制",
+    "generated": "已生成",
+    "valid_uuid": "有效 UUID",
+    "invalid_uuid": "无效 UUID",
+    "uuid_version": "版本",
+    "uuid_variant": "变体",
+    "uuid_timestamp": "时间戳"
+  },
+  "notes_page": {
+    "new_note": "新建笔记",
+    "search_placeholder": "搜索笔记...",
+    "categories": "分类",
+    "all_notes": "所有笔记",
+    "pinned": "已固定",
+    "trash": "回收站",
+    "restore": "恢复",
+    "permanent_delete": "永久删除",
+    "note_saved": "笔记已保存",
+    "note_deleted": "笔记已移至回收站",
+    "untitled": "无标题笔记",
+    "attachments": "附件",
+    "color_label": "颜色标记",
+    "sort_by": "排序方式",
+    "date_modified": "修改日期",
+    "date_created": "创建日期"
+  },
+  "regex_page": {
+    "pattern": "模式",
+    "test_string": "测试字符串",
+    "flags": "标志",
+    "matches": "匹配",
+    "replace": "替换",
+    "replacement": "替换文本",
+    "cheat_sheet": "速查表",
+    "common_patterns": "常用模式",
+    "no_matches": "无匹配",
+    "match_count": "找到 {count} 个匹配",
+    "global": "全局",
+    "case_insensitive": "不区分大小写",
+    "multiline": "多行"
+  },
+  "charmap_page": {
+    "search_placeholder": "搜索表情或字符...",
+    "recently_used": "最近使用",
+    "unicode": "Unicode",
+    "html_entity": "HTML 实体",
+    "css_code": "CSS 代码",
+    "copy_char": "点击复制",
+    "smileys": "表情与人物",
+    "animals": "动物与自然",
+    "food": "食物与饮品",
+    "activities": "活动",
+    "travel": "旅行与地点",
+    "objects": "物品",
+    "symbols": "符号",
+    "flags": "旗帜",
+    "arrows": "箭头",
+    "math": "数学",
+    "currency": "货币",
+    "latin": "拉丁扩展"
+  },
+  "epoch_page": {
+    "timestamp": "时间戳",
+    "date_time": "日期与时间",
+    "now": "现在",
+    "seconds": "秒",
+    "milliseconds": "毫秒",
+    "local_time": "本地时间",
+    "utc_time": "UTC 时间",
+    "relative": "相对时间",
+    "time_diff": "时间差",
+    "presets": "预设",
+    "live_clock": "实时时钟"
+  },
+  "hash_page": {
+    "text_input": "文本输入",
+    "file_input": "文件输入",
+    "compare": "比较哈希",
+    "hash_match": "哈希匹配！",
+    "hash_mismatch": "哈希不匹配",
+    "drop_file": "拖放文件进行哈希计算...",
+    "computing": "正在计算哈希..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "对比度检查",
+    "foreground": "前景色",
+    "background": "背景色",
+    "ratio": "比率",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "通过",
+    "fail": "未通过",
+    "palette": "调色板",
+    "shades": "暗色调",
+    "tints": "亮色调",
+    "pick_color": "选取颜色",
+    "eyedropper": "取色器"
+  },
+  "cron_page": {
+    "expression": "表达式",
+    "description_label": "描述",
+    "next_runs": "下次运行",
+    "presets": "预设",
+    "minute": "分钟",
+    "hour": "小时",
+    "day_month": "日（月）",
+    "month": "月",
+    "day_week": "日（周）",
+    "every_minute": "每分钟",
+    "every_hour": "每小时",
+    "every_day": "每天午夜",
+    "share": "分享"
+  },
+  "password_page": {
+    "password": "密码",
+    "passphrase": "密码短语",
+    "length": "长度",
+    "uppercase": "大写字母 (A-Z)",
+    "lowercase": "小写字母 (a-z)",
+    "numbers": "数字 (0-9)",
+    "symbols": "符号 (!@#$...)",
+    "word_count": "单词数",
+    "separator": "分隔符",
+    "strength": "强度",
+    "entropy": "熵",
+    "very_weak": "非常弱",
+    "weak": "弱",
+    "fair": "一般",
+    "strong": "强",
+    "very_strong": "非常强",
+    "bulk_generate": "批量生成",
+    "generate_count": "数量"
+  },
+  "qrcode_page": {
+    "text_url": "文本 / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "输入文本或 URL...",
+    "network_name": "网络名称 (SSID)",
+    "wifi_password": "密码",
+    "encryption": "加密方式",
+    "hidden_network": "隐藏网络",
+    "full_name": "姓名",
+    "phone": "电话",
+    "email": "邮箱",
+    "organization": "组织",
+    "error_correction": "纠错级别",
+    "foreground_color": "前景色",
+    "background_color": "背景色",
+    "download_png": "下载 PNG",
+    "download_svg": "下载 SVG",
+    "copy_image": "复制图片"
+  },
+  "lorem_page": {
+    "paragraphs": "段落",
+    "sentences": "句子",
+    "words": "单词",
+    "style": "风格",
+    "classic": "经典",
+    "hipster": "文艺",
+    "tech": "科技 / 开发",
+    "include_html": "包含 HTML 标签",
+    "start_lorem": "以 \"Lorem ipsum...\" 开头",
+    "generated_text": "生成的文本",
+    "copy_text": "复制文本"
+  },
+  "baseconverter_page": {
+    "binary": "二进制",
+    "octal": "八进制",
+    "decimal": "十进制",
+    "hexadecimal": "十六进制",
+    "bit_visualization": "位可视化",
+    "signed": "有符号",
+    "unsigned": "无符号",
+    "twos_complement": "补码"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "美化",
+    "minify": "压缩",
+    "import_file": "导入文件",
+    "invalid_json": "无效 JSON",
+    "invalid_yaml": "无效 YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "输入请求 URL...",
+    "method": "方法",
+    "headers": "请求头",
+    "body": "请求体",
+    "auth": "认证",
+    "params": "参数",
+    "response": "响应",
+    "status_code": "状态",
+    "response_time": "耗时",
+    "response_size": "大小",
+    "send_request": "发送",
+    "clear_history": "清除历史",
+    "no_auth": "无认证",
+    "basic_auth": "Basic 认证",
+    "bearer_token": "Bearer Token",
+    "username": "用户名",
+    "token": "Token",
+    "key": "键",
+    "add_header": "添加请求头",
+    "add_param": "添加参数"
+  },
+  "stringutils_page": {
+    "input_placeholder": "在此输入文本...",
+    "operations": "操作",
+    "case_conversion": "大小写转换",
+    "text_cleanup": "文本清理",
+    "text_transform": "文本转换",
+    "encode_decode": "编码 / 解码",
+    "extract_info": "信息提取",
+    "uppercase": "全大写",
+    "lowercase": "全小写",
+    "title_case": "首字母大写",
+    "sentence_case": "句首大写",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "字符数",
+    "word_count": "单词数",
+    "line_count": "行数"
+  },
+  "chat_page": {
+    "username_placeholder": "输入你的名字...",
+    "message_placeholder": "输入消息...",
+    "join": "加入",
+    "online_users": "在线用户",
+    "user_joined": "{user} 加入了聊天",
+    "user_left": "{user} 离开了聊天"
+  },
+  "netscan_page": {
+    "interface": "网卡",
+    "target": "目标",
+    "ports": "端口",
+    "scan": "扫描",
+    "scanning": "扫描中...",
+    "open_ports": "开放端口",
+    "host": "主机",
+    "port": "端口",
+    "service": "服务",
+    "scan_complete": "扫描完成",
+    "common_ports": "常用端口",
+    "custom_range": "自定义范围"
+  },
+  "worldclock_page": {
+    "add_clock": "添加时钟",
+    "your_local_time": "本地时间",
+    "meeting_planner": "会议规划器",
+    "timezone": "时区",
+    "search_timezone": "搜索时区...",
+    "remove_clock": "移除"
+  },
+  "ocr_page": {
+    "upload_image": "上传图片",
+    "paste_image": "粘贴图片",
+    "drop_image": "将图片拖放到此处",
+    "extract_text": "提取文字",
+    "extracted_text": "提取的文字",
+    "copy_result": "复制结果",
+    "recognizing": "正在识别文字...",
+    "no_text_found": "图片中未找到文字",
+    "supported_formats": "支持格式：PNG、JPG、BMP、WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "导入文件",
+    "download_result": "下载"
+  },
+  "aichat_page": {
+    "model": "模型",
+    "no_models": "未找到模型。Ollama 是否正在运行？",
+    "message_placeholder": "输入你的消息...",
+    "clear_chat": "清除对话",
+    "thinking": "思考中...",
+    "ollama_not_running": "无法连接到 Ollama",
+    "connection_error": "连接错误"
+  },
+  "speedtest_page": {
+    "start_test": "开始测试",
+    "ping": "Ping",
+    "download_speed": "下载",
+    "upload_speed": "上传",
+    "disk_speed": "磁盘",
+    "latency": "延迟",
+    "read_speed": "读取",
+    "write_speed": "写入",
+    "testing": "测试中...",
+    "test_complete": "测试完成"
+  },
+  "snippets_page": {
+    "new_snippet": "新建代码片段",
+    "search_placeholder": "搜索代码片段...",
+    "title_placeholder": "代码片段标题...",
+    "desc_placeholder": "描述（可选）",
+    "tags_placeholder": "标签（逗号分隔）",
+    "save_snippet": "保存",
+    "delete_snippet": "删除",
+    "copy_code": "复制代码",
+    "language": "语言",
+    "default_loaded": "默认代码片段已加载",
+    "snippet_saved": "代码片段已保存",
+    "snippet_deleted": "代码片段已删除",
+    "code_copied": "代码已复制！",
+    "no_snippets": "未找到代码片段",
+    "pinned": "已固定",
+    "all_snippets": "所有代码片段"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "内存",
+    "disk": "磁盘",
+    "network": "网络",
+    "processes": "进程",
+    "usage": "使用率",
+    "total": "总计",
+    "used": "已用",
+    "free": "空闲",
+    "available": "可用",
+    "cores": "核心",
+    "uptime": "运行时间",
+    "pid": "PID",
+    "process_name": "名称",
+    "cpu_percent": "CPU %",
+    "mem_percent": "内存 %",
+    "connecting": "连接中...",
+    "disconnected": "已断开",
+    "bytes_sent": "已发送",
+    "bytes_recv": "已接收",
+    "read_speed": "读取",
+    "write_speed": "写入"
+  },
+  "icons_page": {
+    "search_placeholder": "搜索图标...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "全部",
+    "recently_used": "最近使用",
+    "class_name": "类名",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "复制类名",
+    "copy_html": "复制 HTML",
+    "icon_count": "{count} 个图标",
+    "loading_icons": "加载图标中...",
+    "click_to_view": "点击图标查看详情"
+  },
+  "netinspect_page": {
+    "my_ip": "我的 IP",
+    "ip_lookup": "IP 查询",
+    "dns_lookup": "DNS 查询",
+    "http_headers": "HTTP 头信息",
+    "ssl_cert": "SSL 证书",
+    "lookup": "查询",
+    "check": "检查",
+    "ip_placeholder": "输入 IP 地址...",
+    "domain_placeholder": "输入域名...",
+    "url_placeholder": "输入 URL...",
+    "location": "位置",
+    "isp": "ISP",
+    "record_type": "记录类型",
+    "issuer": "颁发者",
+    "valid_from": "生效日期",
+    "valid_until": "过期日期",
+    "subject": "主体"
+  },
+  "translator_page": {
+    "source_lang": "源语言",
+    "target_lang": "目标语言",
+    "auto_detect": "自动检测",
+    "translate": "翻译",
+    "translating": "翻译中...",
+    "swap_languages": "交换语言",
+    "input_placeholder": "输入要翻译的文本...",
+    "model": "模型",
+    "copy_translation": "复制翻译",
+    "translation_copied": "翻译已复制！",
+    "clear_all": "全部清除",
+    "char_count": "{count} 个字符"
+  }
+}

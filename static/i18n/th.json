@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "คัดลอก",
+    "copied": "คัดลอกแล้ว!",
+    "clear": "ล้าง",
+    "save": "บันทึก",
+    "saved": "บันทึกแล้ว!",
+    "delete": "ลบ",
+    "cancel": "ยกเลิก",
+    "close": "ปิด",
+    "open": "เปิด",
+    "search": "ค้นหา",
+    "loading": "กำลังโหลด...",
+    "error": "ข้อผิดพลาด",
+    "success": "สำเร็จ",
+    "warning": "คำเตือน",
+    "info": "ข้อมูล",
+    "yes": "ใช่",
+    "no": "ไม่",
+    "confirm": "ยืนยัน",
+    "download": "ดาวน์โหลด",
+    "upload": "อัปโหลด",
+    "export": "ส่งออก",
+    "import": "นำเข้า",
+    "expand": "ขยาย",
+    "exit": "ออก",
+    "file": "ไฟล์",
+    "settings": "การตั้งค่า",
+    "none": "ไม่มี",
+    "all": "ทั้งหมด",
+    "reset": "รีเซ็ต",
+    "apply": "ใช้งาน",
+    "preview": "ดูตัวอย่าง",
+    "source": "ต้นฉบับ",
+    "result": "ผลลัพธ์",
+    "input": "อินพุต",
+    "output": "เอาต์พุต",
+    "generate": "สร้าง",
+    "encode": "เข้ารหัส",
+    "decode": "ถอดรหัส",
+    "paste": "วาง",
+    "swap": "สลับ",
+    "back": "กลับ",
+    "next": "ถัดไป",
+    "samples": "ตัวอย่าง",
+    "history": "ประวัติ",
+    "options": "ตัวเลือก",
+    "format": "จัดรูปแบบ",
+    "validate": "ตรวจสอบ",
+    "convert": "แปลง",
+    "raw": "ดิบ",
+    "send": "ส่ง",
+    "stop": "หยุด",
+    "start": "เริ่ม",
+    "refresh": "รีเฟรช",
+    "browse": "เรียกดู",
+    "select": "เลือก",
+    "add": "เพิ่ม",
+    "remove": "ลบออก",
+    "edit": "แก้ไข",
+    "share": "แชร์",
+    "pin": "ปักหมุด",
+    "unpin": "เลิกปักหมุด",
+    "new": "ใหม่",
+    "text": "ข้อความ",
+    "type": "ประเภท",
+    "size": "ขนาด",
+    "name": "ชื่อ",
+    "value": "ค่า",
+    "status": "สถานะ",
+    "actions": "การดำเนินการ",
+    "description": "คำอธิบาย",
+    "category": "หมวดหมู่",
+    "tags": "แท็ก",
+    "language": "ภาษา",
+    "title": "ชื่อเรื่อง",
+    "content": "เนื้อหา",
+    "count": "จำนวน",
+    "length": "ความยาว",
+    "total": "รวม",
+    "or": "หรือ",
+    "and": "และ",
+    "no_data": "ไม่มีข้อมูล",
+    "no_results": "ไม่พบผลลัพธ์",
+    "confirm_delete": "คุณแน่ใจหรือไม่ว่าต้องการลบสิ่งนี้?",
+    "drag_drop": "ลากแล้ววางไฟล์ที่นี่",
+    "processing": "กำลังประมวลผล...",
+    "done": "เสร็จ",
+    "copied_to_clipboard": "คัดลอกไปยังคลิปบอร์ดแล้ว!",
+    "failed_to_copy": "คัดลอกไม่สำเร็จ",
+    "keyboard_shortcuts": "แป้นพิมพ์ลัด",
+    "toggle_fullscreen": "สลับเต็มจอ (F11)",
+    "exit_fullscreen": "ออกจากเต็มจอ (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "ค้นหา",
+    "search_tools": "ค้นหาเครื่องมือ...",
+    "more": "เพิ่มเติม",
+    "all_tools": "เครื่องมือทั้งหมด",
+    "ask_ai": "ถาม AI",
+    "cloud_ai": "AI คลาวด์",
+    "local_ai": "AI ในเครื่อง",
+    "language": "ภาษา",
+    "pinned_to_navbar": "ปักหมุดไว้ที่แถบนำทางแล้ว",
+    "unpinned_from_navbar": "เลิกปักหมุดจากแถบนำทางแล้ว",
+    "pin_to_navbar": "ปักหมุดที่แถบนำทาง",
+    "unpin_from_navbar": "เลิกปักหมุดจากแถบนำทาง",
+    "open_navigation": "เปิดแถบนำทาง"
+  },
+  "theme": {
+    "light": "สว่าง",
+    "dark": "มืด",
+    "auto": "อัตโนมัติ",
+    "switch_theme": "เปลี่ยนธีม"
+  },
+  "spotlight": {
+    "placeholder": "ค้นหาเครื่องมือ...",
+    "no_results": "ไม่พบเครื่องมือสำหรับ \"{query}\"",
+    "navigate": "นำทาง",
+    "open": "เปิด",
+    "close": "ปิด"
+  },
+  "drawer": {
+    "search": "ค้นหา",
+    "theme": "ธีม",
+    "pinned": "ปักหมุดแล้ว",
+    "file_code": "ไฟล์และโค้ด",
+    "encode_decode": "เข้ารหัสและถอดรหัส",
+    "converters": "ตัวแปลง",
+    "generators": "ตัวสร้าง",
+    "tools_section": "เครื่องมือ",
+    "logs_network": "บันทึกและเครือข่าย",
+    "all_tools": "เครื่องมือทั้งหมด"
+  },
+  "footer": {
+    "made_by": "สร้างด้วย ❤️ โดย"
+  },
+  "ai": {
+    "ask": "ถาม",
+    "prompt_placeholder": "คุณอยากถามอะไร?",
+    "enter_to_send": "Enter เพื่อส่ง",
+    "shift_enter_newline": "Shift+Enter เพื่อขึ้นบรรทัดใหม่",
+    "open_without_prompt": "เปิดโดยไม่ต้องถาม",
+    "ollama_url": "URL ของ Ollama",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "กรอก URL เว็บ UI ของ Ollama"
+  },
+  "dashboard": {
+    "search_placeholder": "ค้นหาเครื่องมือ...",
+    "pinned_tools": "เครื่องมือที่ปักหมุด",
+    "all_tools": "เครื่องมือทั้งหมด",
+    "no_results": "ไม่พบเครื่องมือที่ตรงกับการค้นหา",
+    "open_source_toolkit": "ชุดเครื่องมือพัฒนาโอเพนซอร์ส",
+    "tools_count": "มีเครื่องมือ {count} รายการ"
+  },
+  "tools": {
+    "upload": {
+      "name": "อัปโหลด",
+      "desc": "ลากแล้ววาง วาง หรือเรียกดูไฟล์เพื่ออัปโหลด ดูตัวอย่างรูปภาพพร้อมไลท์บ็อกซ์"
+    },
+    "files": {
+      "name": "ตัวจัดการไฟล์",
+      "desc": "เรียกดู ค้นหา และจัดการไฟล์ที่อัปโหลดในมุมมองแบบกริดคล้าย Google Drive"
+    },
+    "prettify": {
+      "name": "จัดรูปแบบโค้ด",
+      "desc": "จัดรูปแบบและตกแต่งโค้ด JSON, XML, HTML, CSS, JavaScript และ SQL"
+    },
+    "logs": {
+      "name": "ตัวรวบรวมบันทึก",
+      "desc": "ตัวรวบรวมบันทึกน้ำหนักเบา รับบันทึกจากแอปใดๆ ผ่าน HTTP POST กรองตามแอปและระดับ"
+    },
+    "logviewer": {
+      "name": "ตัวดูบันทึก",
+      "desc": "อัปโหลดและค้นหาไฟล์บันทึกขนาดใหญ่ด้วยการกรองคำสำคัญ regex และบรรทัดบริบท"
+    },
+    "editor": {
+      "name": "โปรแกรมแก้ไขโค้ด",
+      "desc": "โปรแกรมแก้ไขโค้ดครบครันขับเคลื่อนด้วย Monaco (VS Code) เน้นไวยากรณ์กว่า 40 ภาษา"
+    },
+    "markdown": {
+      "name": "ตัวแสดง Markdown",
+      "desc": "เขียน Markdown พร้อมดูตัวอย่างสด บล็อกโค้ดเน้นไวยากรณ์ และรองรับ GFM"
+    },
+    "diff": {
+      "name": "เปรียบเทียบโค้ด",
+      "desc": "เปรียบเทียบไฟล์โค้ดสองไฟล์แบบเคียงข้างหรือรวมกันพร้อมมุมมองความแตกต่างเน้นไวยากรณ์"
+    },
+    "jwt": {
+      "name": "เครื่องมือ JWT",
+      "desc": "เข้ารหัส ถอดรหัส และตรวจสอบ JSON Web Tokens รองรับ HS256/384/512 พร้อมแสดงสีแยกส่วน"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "เข้ารหัสและถอดรหัสข้อความ Base64 รองรับข้อความและไฟล์ไบนารีพร้อมตัวเลือก URL-safe"
+    },
+    "urlencoder": {
+      "name": "ตัวเข้ารหัส URL",
+      "desc": "เข้ารหัสและถอดรหัส URL และพารามิเตอร์ ตัวแยกวิเคราะห์ URL แสดงโปรโตคอล โฮสต์ พาธ และพารามิเตอร์"
+    },
+    "htmleditor": {
+      "name": "โปรแกรมแก้ไข HTML",
+      "desc": "โปรแกรมแก้ไขข้อความ WYSIWYG ขับเคลื่อนด้วย TinyMCE พร้อมสลับดูซอร์สโค้ด HTML"
+    },
+    "mermaid": {
+      "name": "ไดอะแกรม Mermaid",
+      "desc": "สร้างผังงาน ไดอะแกรมลำดับ ER, Gantt และอื่นๆ พร้อมดูตัวอย่าง Mermaid.js สด"
+    },
+    "uuid": {
+      "name": "ตัวสร้าง UUID",
+      "desc": "สร้าง UUID v1, v4 และ v7 สร้างจำนวนมาก ตรวจสอบ วิเคราะห์ และคัดลอกพร้อมตัวเลือกรูปแบบ"
+    },
+    "notes": {
+      "name": "บันทึกย่อ",
+      "desc": "บันทึก Markdown พร้อมดูตัวอย่างสด แท็ก หมวดหมู่ ป้ายสี ไฟล์แนบ และบันทึกอัตโนมัติ"
+    },
+    "regex": {
+      "name": "ทดสอบ regex",
+      "desc": "ทดสอบรูปแบบ regex พร้อมเน้นการจับคู่แบบเรียลไทม์ กลุ่มจับ แทนที่ และชีตสรุป"
+    },
+    "charmap": {
+      "name": "อิโมจิและแผนผังอักขระ",
+      "desc": "ค้นหาและคัดลอกอิโมจิ สัญลักษณ์ และอักขระพิเศษ รายละเอียด Unicode, HTML entities และใช้ล่าสุด"
+    },
+    "epoch": {
+      "name": "ตัวแปลง Epoch",
+      "desc": "แปลง Unix epoch เป็นวันที่อ่านง่ายและกลับกัน นาฬิกาสด พรีเซ็ต และเครื่องคำนวณผลต่างเวลา"
+    },
+    "hash": {
+      "name": "ตัวสร้าง Hash",
+      "desc": "สร้าง MD5, SHA-1, SHA-256, SHA-512 จากข้อความหรือไฟล์ ตรวจสอบ checksum ทันที"
+    },
+    "colorpicker": {
+      "name": "ตัวเลือกสี",
+      "desc": "เลือกสีและแปลงระหว่างรูปแบบ HEX, RGB, HSL พาเลตสีและตัวตรวจสอบคอนทราสต์"
+    },
+    "cron": {
+      "name": "ตัวแยกวิเคราะห์ cron",
+      "desc": "แยกวิเคราะห์และสร้างนิพจน์ cron พร้อมคำอธิบายเข้าใจง่ายและเวลาทำงานถัดไป"
+    },
+    "password": {
+      "name": "ตัวสร้างรหัสผ่าน",
+      "desc": "สร้างรหัสผ่านสุ่มที่ปลอดภัยทางการเข้ารหัสและวลีรหัสผ่านที่จำง่าย"
+    },
+    "qrcode": {
+      "name": "ตัวสร้าง QR Code",
+      "desc": "สร้าง QR code จากข้อความ URL ข้อมูล WiFi หรือข้อมูลติดต่อ ดาวน์โหลดเป็น PNG"
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "สร้างข้อความตัวอย่าง — ย่อหน้า ประโยค หรือคำ มีหลายสไตล์ให้เลือก"
+    },
+    "baseconverter": {
+      "name": "ตัวแปลงฐานเลข",
+      "desc": "แปลงตัวเลขระหว่างฐานสอง ฐานแปด ฐานสิบ และฐานสิบหกแบบเรียลไทม์"
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "แปลงระหว่างรูปแบบ JSON และ YAML พร้อมตรวจสอบไวยากรณ์และจัดรูปแบบ"
+    },
+    "httpclient": {
+      "name": "ไคลเอนต์ HTTP",
+      "desc": "ทดสอบ API เหมือน Postman ขนาดย่อ เมธอด เฮดเดอร์ บอดี และตัวดูการตอบกลับที่กำหนดเอง"
+    },
+    "stringutils": {
+      "name": "เครื่องมือข้อความ",
+      "desc": "แปลงตัวพิมพ์ ตัด นับ กลับด้าน สร้าง slug และอื่นๆ สำหรับจัดการข้อความ"
+    },
+    "chat": {
+      "name": "แชท LAN",
+      "desc": "แชทเรียลไทม์สำหรับเครือข่ายท้องถิ่น ไม่ต้องใช้อินเทอร์เน็ต — แค่ Dev Helper บน LAN"
+    },
+    "netscan": {
+      "name": "ตัวสแกนเครือข่าย",
+      "desc": "สแกนโฮสต์และพอร์ต LAN ค้นหาอุปกรณ์ บริการ และพอร์ตที่เปิดบนเครือข่าย"
+    },
+    "worldclock": {
+      "name": "นาฬิกาโลก",
+      "desc": "นาฬิกาหลายเขตเวลาพร้อมหน้าปัดอนาล็อก วางแผนประชุม และลากเพื่อจัดเรียงใหม่"
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "ดึงข้อความจากรูปภาพและภาพหน้าจอ ลาก วาง หรืออัปโหลด — ขับเคลื่อนด้วย Tesseract.js"
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "แปลงระหว่าง application.yml และ application.properties สำหรับโปรเจกต์ Java/Spring Boot"
+    },
+    "netinspect": {
+      "name": "ตัวตรวจสอบเครือข่าย",
+      "desc": "ค้นหาตำแหน่ง IP, DNS, เฮดเดอร์การตอบกลับ HTTP และตรวจสอบใบรับรอง SSL"
+    },
+    "aichat": {
+      "name": "แชท AI",
+      "desc": "สนทนากับโมเดล Ollama ในเครื่อง การตอบกลับแบบสตรีมมิง เรนเดอร์ Markdown ประวัติสนทนา"
+    },
+    "speedtest": {
+      "name": "ทดสอบความเร็ว",
+      "desc": "ทดสอบความเร็วดาวน์โหลด/อัปโหลด ค่าหน่วงเวลา ping และประสิทธิภาพอ่าน/เขียนดิสก์"
+    },
+    "snippets": {
+      "name": "สนิปเป็ตโค้ด",
+      "desc": "บันทึกและจัดระเบียบสนิปเป็ตโค้ดที่ใช้บ่อยพร้อมเน้นไวยากรณ์และคัดลอกด่วน"
+    },
+    "sysmon": {
+      "name": "ตัวตรวจสอบระบบ",
+      "desc": "ตรวจสอบ CPU หน่วยความจำ ดิสก์ เครือข่าย และโปรเซสแบบเรียลไทม์พร้อมเกจสด"
+    },
+    "icons": {
+      "name": "สำรวจไอคอน",
+      "desc": "เรียกดูและค้นหา Bootstrap Icons, Font Awesome และ Tabler Icons คลิกเพื่อคัดลอกคลาส CSS หรือ HTML"
+    },
+    "askai": {
+      "name": "ถาม AI",
+      "desc": "เข้าถึง AI คลาวด์ 9 ตัว (Claude, ChatGPT, Gemini ฯลฯ) และ Ollama จากแถบนำทางอย่างรวดเร็ว"
+    },
+    "translator": {
+      "name": "ตัวแปลภาษา",
+      "desc": "แปลข้อความระหว่างภาษาด้วยโมเดล Ollama ในเครื่อง เหมือน Google Translate แบบออฟไลน์"
+    }
+  },
+  "upload_page": {
+    "drop_zone": "ลากแล้ววางไฟล์ที่นี่",
+    "drop_or_browse": "หรือคลิกเพื่อเรียกดู",
+    "paste_hint": "คุณยังสามารถวางจากคลิปบอร์ดได้ (Ctrl+V)",
+    "recent_uploads": "อัปโหลดล่าสุด",
+    "clear_recent": "ล้างรายการล่าสุด",
+    "copy_url": "คัดลอก URL",
+    "open_new_tab": "เปิดในแท็บใหม่",
+    "file_uploaded": "อัปโหลดไฟล์สำเร็จ",
+    "upload_failed": "อัปโหลดไม่สำเร็จ"
+  },
+  "files_page": {
+    "search_placeholder": "ค้นหาไฟล์...",
+    "grid_view": "กริด",
+    "list_view": "รายการ",
+    "delete_all": "ลบทั้งหมด",
+    "confirm_delete_all": "คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์ทั้งหมด?",
+    "no_files": "ไม่พบไฟล์",
+    "file_deleted": "ลบไฟล์แล้ว",
+    "download": "ดาวน์โหลด",
+    "file_size": "ขนาด",
+    "file_date": "วันที่"
+  },
+  "prettify_page": {
+    "input_label": "อินพุต",
+    "output_label": "เอาต์พุต",
+    "prettify": "จัดรูปแบบ",
+    "minify": "ย่อ",
+    "paste_placeholder": "วางหรือพิมพ์โค้ดที่นี่...",
+    "auto_detect": "ตรวจจับอัตโนมัติ",
+    "copy_output": "คัดลอกเอาต์พุต"
+  },
+  "logs_page": {
+    "app": "แอป",
+    "level": "ระดับ",
+    "search_placeholder": "ค้นหาบันทึก...",
+    "clear_logs": "ล้างบันทึก",
+    "auto_scroll": "เลื่อนอัตโนมัติ",
+    "no_logs": "ไม่พบบันทึก",
+    "all_apps": "ทุกแอป",
+    "all_levels": "ทุกระดับ",
+    "timestamp": "เวลา",
+    "message": "ข้อความ"
+  },
+  "logviewer_page": {
+    "upload_log": "อัปโหลดไฟล์บันทึก",
+    "search_placeholder": "ค้นหาคำสำคัญหรือ regex...",
+    "use_regex": "regex",
+    "case_sensitive": "ตรงตัวพิมพ์ใหญ่-เล็ก",
+    "context_lines": "บรรทัดบริบท",
+    "showing_lines": "แสดง {shown} จาก {total} บรรทัด",
+    "no_matches": "ไม่พบรายการที่ตรงกัน",
+    "line": "บรรทัด"
+  },
+  "editor_page": {
+    "new_file": "ใหม่",
+    "open_file": "เปิดไฟล์",
+    "save_file": "บันทึก",
+    "word_wrap": "ตัดคำ",
+    "minimap": "แผนที่ย่อ",
+    "line": "บรรทัด",
+    "column": "คอลัมน์",
+    "language": "ภาษา",
+    "fetch_url": "ดึงจาก URL",
+    "url_placeholder": "กรอก URL เพื่อดึงไฟล์..."
+  },
+  "markdown_page": {
+    "samples": "ตัวอย่าง",
+    "open_file": "เปิดไฟล์",
+    "copy_html": "คัดลอก HTML",
+    "export": "ส่งออก",
+    "export_pdf": "ส่งออกเป็น PDF",
+    "export_md": "ส่งออกเป็น Markdown",
+    "export_html": "ส่งออกเป็น HTML",
+    "clear": "ล้าง",
+    "expand": "ขยาย",
+    "editor_label": "Markdown",
+    "preview_label": "ดูตัวอย่าง",
+    "drop_zone": "ลากแล้ววางไฟล์ Markdown ที่นี่ หรือคลิกเพื่อเรียกดู",
+    "url_placeholder": "กรอก URL เพื่อดึงไฟล์ .md",
+    "fetch": "ดึง",
+    "html_copied": "คัดลอก HTML แล้ว!",
+    "readme": "README",
+    "api_docs": "เอกสาร API",
+    "changelog": "บันทึกการเปลี่ยนแปลง",
+    "blog_post": "บทความบล็อก",
+    "cheatsheet": "ชีตสรุป Markdown",
+    "meeting_notes": "บันทึกการประชุม",
+    "project_todo": "รายการสิ่งที่ต้องทำของโปรเจกต์"
+  },
+  "diff_page": {
+    "original": "ต้นฉบับ",
+    "modified": "ที่แก้ไข",
+    "side_by_side": "เคียงข้างกัน",
+    "inline": "รวมกัน",
+    "open_file": "เปิดไฟล์",
+    "paste_code": "วางโค้ดที่นี่...",
+    "swap": "สลับ",
+    "no_differences": "ไม่พบความแตกต่าง"
+  },
+  "jwt_page": {
+    "header": "เฮดเดอร์",
+    "payload": "เพย์โหลด",
+    "signature": "ลายเซ็น",
+    "secret": "คีย์ลับ",
+    "algorithm": "อัลกอริทึม",
+    "encode": "เข้ารหัส",
+    "decode": "ถอดรหัส",
+    "verify": "ตรวจสอบ",
+    "valid_signature": "ลายเซ็นถูกต้อง",
+    "invalid_signature": "ลายเซ็นไม่ถูกต้อง",
+    "paste_jwt": "วางโทเค็น JWT ที่นี่..."
+  },
+  "base64_page": {
+    "text_mode": "ข้อความ",
+    "file_mode": "ไฟล์",
+    "url_safe": "ปลอดภัยสำหรับ URL",
+    "line_breaks": "ขึ้นบรรทัดใหม่",
+    "input_placeholder": "กรอกข้อความเพื่อเข้ารหัส/ถอดรหัส...",
+    "drop_file": "วางไฟล์ที่นี่หรือคลิกเพื่อเรียกดู",
+    "download_result": "ดาวน์โหลดผลลัพธ์"
+  },
+  "urlencoder_page": {
+    "component_mode": "คอมโพเนนต์",
+    "full_url_mode": "URL แบบเต็ม",
+    "url_parser": "ตัวแยกวิเคราะห์ URL",
+    "protocol": "โปรโตคอล",
+    "host": "โฮสต์",
+    "path": "พาธ",
+    "params": "พารามิเตอร์",
+    "input_placeholder": "กรอก URL หรือข้อความเพื่อเข้ารหัส/ถอดรหัส..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "ซอร์สโค้ด",
+    "import_html": "นำเข้า HTML",
+    "export_html": "ส่งออก HTML",
+    "clear": "ล้าง"
+  },
+  "mermaid_page": {
+    "samples": "ตัวอย่าง",
+    "download_svg": "ดาวน์โหลด SVG",
+    "download_png": "ดาวน์โหลด PNG",
+    "share": "แชร์",
+    "zoom_in": "ซูมเข้า",
+    "zoom_out": "ซูมออก",
+    "reset_zoom": "รีเซ็ตซูม",
+    "diagram_label": "โค้ด Mermaid",
+    "preview_label": "ดูตัวอย่าง",
+    "link_copied": "คัดลอกลิงก์แชร์แล้ว!",
+    "flowchart": "ผังงาน",
+    "sequence": "ไดอะแกรมลำดับ",
+    "class_diagram": "ไดอะแกรมคลาส",
+    "state": "ไดอะแกรมสถานะ",
+    "er": "ไดอะแกรม ER",
+    "gantt": "แผนภูมิ Gantt",
+    "pie": "แผนภูมิวงกลม",
+    "mindmap": "แผนผังความคิด",
+    "timeline": "ไทม์ไลน์",
+    "quadrant": "แผนภูมิสี่ส่วน",
+    "git": "กราฟ Git",
+    "sankey": "ไดอะแกรม Sankey"
+  },
+  "uuid_page": {
+    "version": "เวอร์ชัน",
+    "bulk_generate": "สร้างจำนวนมาก",
+    "validate_parse": "ตรวจสอบและวิเคราะห์",
+    "count": "จำนวน",
+    "uppercase": "ตัวพิมพ์ใหญ่",
+    "braces": "วงเล็บปีกกา",
+    "hyphens": "ขีดกลาง",
+    "copy_all": "คัดลอกทั้งหมด",
+    "generated": "สร้างแล้ว",
+    "valid_uuid": "UUID ถูกต้อง",
+    "invalid_uuid": "UUID ไม่ถูกต้อง",
+    "uuid_version": "เวอร์ชัน",
+    "uuid_variant": "ตัวแปร",
+    "uuid_timestamp": "เวลา"
+  },
+  "notes_page": {
+    "new_note": "บันทึกใหม่",
+    "search_placeholder": "ค้นหาบันทึก...",
+    "categories": "หมวดหมู่",
+    "all_notes": "บันทึกทั้งหมด",
+    "pinned": "ปักหมุดแล้ว",
+    "trash": "ถังขยะ",
+    "restore": "กู้คืน",
+    "permanent_delete": "ลบถาวร",
+    "note_saved": "บันทึกแล้ว",
+    "note_deleted": "ย้ายบันทึกไปถังขยะแล้ว",
+    "untitled": "บันทึกไม่มีชื่อ",
+    "attachments": "ไฟล์แนบ",
+    "color_label": "ป้ายสี",
+    "sort_by": "เรียงตาม",
+    "date_modified": "วันที่แก้ไข",
+    "date_created": "วันที่สร้าง"
+  },
+  "regex_page": {
+    "pattern": "รูปแบบ",
+    "test_string": "ข้อความทดสอบ",
+    "flags": "แฟล็ก",
+    "matches": "การจับคู่",
+    "replace": "แทนที่",
+    "replacement": "ข้อความแทนที่",
+    "cheat_sheet": "ชีตสรุป",
+    "common_patterns": "รูปแบบที่ใช้บ่อย",
+    "no_matches": "ไม่มีการจับคู่",
+    "match_count": "พบ {count} รายการที่ตรงกัน",
+    "global": "ทั้งหมด",
+    "case_insensitive": "ไม่สนใจตัวพิมพ์",
+    "multiline": "หลายบรรทัด"
+  },
+  "charmap_page": {
+    "search_placeholder": "ค้นหาอิโมจิหรืออักขระ...",
+    "recently_used": "ใช้ล่าสุด",
+    "unicode": "Unicode",
+    "html_entity": "HTML Entity",
+    "css_code": "โค้ด CSS",
+    "copy_char": "คลิกเพื่อคัดลอก",
+    "smileys": "หน้ายิ้มและคน",
+    "animals": "สัตว์และธรรมชาติ",
+    "food": "อาหารและเครื่องดื่ม",
+    "activities": "กิจกรรม",
+    "travel": "การเดินทางและสถานที่",
+    "objects": "วัตถุ",
+    "symbols": "สัญลักษณ์",
+    "flags": "ธง",
+    "arrows": "ลูกศร",
+    "math": "คณิตศาสตร์",
+    "currency": "สกุลเงิน",
+    "latin": "ลาตินขยาย"
+  },
+  "epoch_page": {
+    "timestamp": "เวลาประทับ",
+    "date_time": "วันที่และเวลา",
+    "now": "ตอนนี้",
+    "seconds": "วินาที",
+    "milliseconds": "มิลลิวินาที",
+    "local_time": "เวลาท้องถิ่น",
+    "utc_time": "เวลา UTC",
+    "relative": "สัมพัทธ์",
+    "time_diff": "ผลต่างเวลา",
+    "presets": "พรีเซ็ต",
+    "live_clock": "นาฬิกาสด"
+  },
+  "hash_page": {
+    "text_input": "อินพุตข้อความ",
+    "file_input": "อินพุตไฟล์",
+    "compare": "เปรียบเทียบ Hash",
+    "hash_match": "Hash ตรงกัน!",
+    "hash_mismatch": "Hash ไม่ตรงกัน",
+    "drop_file": "วางไฟล์เพื่อสร้าง Hash...",
+    "computing": "กำลังคำนวณ Hash..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "ตรวจสอบคอนทราสต์",
+    "foreground": "สีหน้า",
+    "background": "สีพื้น",
+    "ratio": "อัตราส่วน",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "ผ่าน",
+    "fail": "ไม่ผ่าน",
+    "palette": "พาเลต",
+    "shades": "เฉดเข้ม",
+    "tints": "เฉดอ่อน",
+    "pick_color": "เลือกสี",
+    "eyedropper": "หยดสี"
+  },
+  "cron_page": {
+    "expression": "นิพจน์",
+    "description_label": "คำอธิบาย",
+    "next_runs": "การทำงานถัดไป",
+    "presets": "พรีเซ็ต",
+    "minute": "นาที",
+    "hour": "ชั่วโมง",
+    "day_month": "วัน (เดือน)",
+    "month": "เดือน",
+    "day_week": "วัน (สัปดาห์)",
+    "every_minute": "ทุกนาที",
+    "every_hour": "ทุกชั่วโมง",
+    "every_day": "ทุกวันตอนเที่ยงคืน",
+    "share": "แชร์"
+  },
+  "password_page": {
+    "password": "รหัสผ่าน",
+    "passphrase": "วลีรหัสผ่าน",
+    "length": "ความยาว",
+    "uppercase": "ตัวพิมพ์ใหญ่ (A-Z)",
+    "lowercase": "ตัวพิมพ์เล็ก (a-z)",
+    "numbers": "ตัวเลข (0-9)",
+    "symbols": "สัญลักษณ์ (!@#$...)",
+    "word_count": "จำนวนคำ",
+    "separator": "ตัวคั่น",
+    "strength": "ความแข็งแกร่ง",
+    "entropy": "เอนโทรปี",
+    "very_weak": "อ่อนมาก",
+    "weak": "อ่อน",
+    "fair": "พอใช้",
+    "strong": "แข็งแกร่ง",
+    "very_strong": "แข็งแกร่งมาก",
+    "bulk_generate": "สร้างจำนวนมาก",
+    "generate_count": "จำนวน"
+  },
+  "qrcode_page": {
+    "text_url": "ข้อความ / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "กรอกข้อความหรือ URL...",
+    "network_name": "ชื่อเครือข่าย (SSID)",
+    "wifi_password": "รหัสผ่าน",
+    "encryption": "การเข้ารหัส",
+    "hidden_network": "เครือข่ายที่ซ่อน",
+    "full_name": "ชื่อเต็ม",
+    "phone": "โทรศัพท์",
+    "email": "อีเมล",
+    "organization": "องค์กร",
+    "error_correction": "การแก้ไขข้อผิดพลาด",
+    "foreground_color": "สีหน้า",
+    "background_color": "สีพื้น",
+    "download_png": "ดาวน์โหลด PNG",
+    "download_svg": "ดาวน์โหลด SVG",
+    "copy_image": "คัดลอกรูปภาพ"
+  },
+  "lorem_page": {
+    "paragraphs": "ย่อหน้า",
+    "sentences": "ประโยค",
+    "words": "คำ",
+    "style": "สไตล์",
+    "classic": "คลาสสิก",
+    "hipster": "ฮิปสเตอร์",
+    "tech": "เทค / นักพัฒนา",
+    "include_html": "รวมแท็ก HTML",
+    "start_lorem": "เริ่มด้วย \"Lorem ipsum...\"",
+    "generated_text": "ข้อความที่สร้างขึ้น",
+    "copy_text": "คัดลอกข้อความ"
+  },
+  "baseconverter_page": {
+    "binary": "ฐานสอง",
+    "octal": "ฐานแปด",
+    "decimal": "ฐานสิบ",
+    "hexadecimal": "ฐานสิบหก",
+    "bit_visualization": "แสดงบิต",
+    "signed": "มีเครื่องหมาย",
+    "unsigned": "ไม่มีเครื่องหมาย",
+    "twos_complement": "ส่วนเติมเต็มสอง"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "จัดรูปแบบ",
+    "minify": "ย่อ",
+    "import_file": "นำเข้าไฟล์",
+    "invalid_json": "JSON ไม่ถูกต้อง",
+    "invalid_yaml": "YAML ไม่ถูกต้อง"
+  },
+  "httpclient_page": {
+    "url_placeholder": "กรอก URL สำหรับส่งคำขอ...",
+    "method": "เมธอด",
+    "headers": "เฮดเดอร์",
+    "body": "เนื้อหา",
+    "auth": "การยืนยันตัวตน",
+    "params": "พารามิเตอร์",
+    "response": "การตอบกลับ",
+    "status_code": "สถานะ",
+    "response_time": "เวลา",
+    "response_size": "ขนาด",
+    "send_request": "ส่ง",
+    "clear_history": "ล้างประวัติ",
+    "no_auth": "ไม่มีการยืนยัน",
+    "basic_auth": "Basic Auth",
+    "bearer_token": "Bearer Token",
+    "username": "ชื่อผู้ใช้",
+    "token": "โทเค็น",
+    "key": "คีย์",
+    "add_header": "เพิ่มเฮดเดอร์",
+    "add_param": "เพิ่มพารามิเตอร์"
+  },
+  "stringutils_page": {
+    "input_placeholder": "กรอกข้อความที่นี่...",
+    "operations": "การดำเนินการ",
+    "case_conversion": "แปลงตัวพิมพ์",
+    "text_cleanup": "ทำความสะอาดข้อความ",
+    "text_transform": "แปลงข้อความ",
+    "encode_decode": "เข้ารหัส / ถอดรหัส",
+    "extract_info": "ดึงข้อมูล",
+    "uppercase": "UPPERCASE",
+    "lowercase": "lowercase",
+    "title_case": "Title Case",
+    "sentence_case": "Sentence case",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "อักขระ",
+    "word_count": "คำ",
+    "line_count": "บรรทัด"
+  },
+  "chat_page": {
+    "username_placeholder": "กรอกชื่อของคุณ...",
+    "message_placeholder": "พิมพ์ข้อความ...",
+    "join": "เข้าร่วม",
+    "online_users": "ผู้ใช้ออนไลน์",
+    "user_joined": "{user} เข้าร่วมแชทแล้ว",
+    "user_left": "{user} ออกจากแชทแล้ว"
+  },
+  "netscan_page": {
+    "interface": "อินเทอร์เฟซ",
+    "target": "เป้าหมาย",
+    "ports": "พอร์ต",
+    "scan": "สแกน",
+    "scanning": "กำลังสแกน...",
+    "open_ports": "พอร์ตที่เปิด",
+    "host": "โฮสต์",
+    "port": "พอร์ต",
+    "service": "บริการ",
+    "scan_complete": "สแกนเสร็จสิ้น",
+    "common_ports": "พอร์ตที่ใช้บ่อย",
+    "custom_range": "ช่วงที่กำหนดเอง"
+  },
+  "worldclock_page": {
+    "add_clock": "เพิ่มนาฬิกา",
+    "your_local_time": "เวลาท้องถิ่นของคุณ",
+    "meeting_planner": "วางแผนการประชุม",
+    "timezone": "เขตเวลา",
+    "search_timezone": "ค้นหาเขตเวลา...",
+    "remove_clock": "ลบ"
+  },
+  "ocr_page": {
+    "upload_image": "อัปโหลดรูปภาพ",
+    "paste_image": "วางรูปภาพ",
+    "drop_image": "ลากแล้ววางรูปภาพที่นี่",
+    "extract_text": "ดึงข้อความ",
+    "extracted_text": "ข้อความที่ดึงออกมา",
+    "copy_result": "คัดลอกผลลัพธ์",
+    "recognizing": "กำลังรู้จำข้อความ...",
+    "no_text_found": "ไม่พบข้อความในรูปภาพ",
+    "supported_formats": "รองรับ: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "นำเข้าไฟล์",
+    "download_result": "ดาวน์โหลด"
+  },
+  "aichat_page": {
+    "model": "โมเดล",
+    "no_models": "ไม่พบโมเดล Ollama กำลังทำงานอยู่หรือไม่?",
+    "message_placeholder": "พิมพ์ข้อความของคุณ...",
+    "clear_chat": "ล้างแชท",
+    "thinking": "กำลังคิด...",
+    "ollama_not_running": "ไม่สามารถเชื่อมต่อกับ Ollama",
+    "connection_error": "ข้อผิดพลาดในการเชื่อมต่อ"
+  },
+  "speedtest_page": {
+    "start_test": "เริ่มทดสอบ",
+    "ping": "Ping",
+    "download_speed": "ดาวน์โหลด",
+    "upload_speed": "อัปโหลด",
+    "disk_speed": "ดิสก์",
+    "latency": "ค่าหน่วงเวลา",
+    "read_speed": "อ่าน",
+    "write_speed": "เขียน",
+    "testing": "กำลังทดสอบ...",
+    "test_complete": "ทดสอบเสร็จสิ้น"
+  },
+  "snippets_page": {
+    "new_snippet": "สนิปเป็ตใหม่",
+    "search_placeholder": "ค้นหาสนิปเป็ต...",
+    "title_placeholder": "ชื่อสนิปเป็ต...",
+    "desc_placeholder": "คำอธิบาย (ไม่บังคับ)",
+    "tags_placeholder": "แท็ก (คั่นด้วยจุลภาค)",
+    "save_snippet": "บันทึก",
+    "delete_snippet": "ลบ",
+    "copy_code": "คัดลอกโค้ด",
+    "language": "ภาษา",
+    "default_loaded": "โหลดสนิปเป็ตเริ่มต้นแล้ว",
+    "snippet_saved": "บันทึกสนิปเป็ตแล้ว",
+    "snippet_deleted": "ลบสนิปเป็ตแล้ว",
+    "code_copied": "คัดลอกโค้ดแล้ว!",
+    "no_snippets": "ไม่พบสนิปเป็ต",
+    "pinned": "ปักหมุดแล้ว",
+    "all_snippets": "สนิปเป็ตทั้งหมด"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "หน่วยความจำ",
+    "disk": "ดิสก์",
+    "network": "เครือข่าย",
+    "processes": "โปรเซส",
+    "usage": "การใช้งาน",
+    "total": "รวม",
+    "used": "ใช้แล้ว",
+    "free": "ว่าง",
+    "available": "พร้อมใช้",
+    "cores": "คอร์",
+    "uptime": "เวลาทำงาน",
+    "pid": "PID",
+    "process_name": "ชื่อ",
+    "cpu_percent": "CPU %",
+    "mem_percent": "หน่วยความจำ %",
+    "connecting": "กำลังเชื่อมต่อ...",
+    "disconnected": "ขาดการเชื่อมต่อ",
+    "bytes_sent": "ส่ง",
+    "bytes_recv": "รับ",
+    "read_speed": "อ่าน",
+    "write_speed": "เขียน"
+  },
+  "icons_page": {
+    "search_placeholder": "ค้นหาไอคอน...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "ทั้งหมด",
+    "recently_used": "ใช้ล่าสุด",
+    "class_name": "คลาส",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "คัดลอกคลาส",
+    "copy_html": "คัดลอก HTML",
+    "icon_count": "{count} ไอคอน",
+    "loading_icons": "กำลังโหลดไอคอน...",
+    "click_to_view": "คลิกไอคอนเพื่อดูรายละเอียด"
+  },
+  "netinspect_page": {
+    "my_ip": "IP ของฉัน",
+    "ip_lookup": "ค้นหา IP",
+    "dns_lookup": "ค้นหา DNS",
+    "http_headers": "เฮดเดอร์ HTTP",
+    "ssl_cert": "ใบรับรอง SSL",
+    "lookup": "ค้นหา",
+    "check": "ตรวจสอบ",
+    "ip_placeholder": "กรอกที่อยู่ IP...",
+    "domain_placeholder": "กรอกชื่อโดเมน...",
+    "url_placeholder": "กรอก URL...",
+    "location": "ตำแหน่ง",
+    "isp": "ผู้ให้บริการ",
+    "record_type": "ประเภทระเบียน",
+    "issuer": "ผู้ออกใบรับรอง",
+    "valid_from": "ใช้ได้ตั้งแต่",
+    "valid_until": "ใช้ได้ถึง",
+    "subject": "หัวข้อ"
+  },
+  "translator_page": {
+    "source_lang": "ภาษาต้นทาง",
+    "target_lang": "ภาษาปลายทาง",
+    "auto_detect": "ตรวจจับอัตโนมัติ",
+    "translate": "แปล",
+    "translating": "กำลังแปล...",
+    "swap_languages": "สลับภาษา",
+    "input_placeholder": "กรอกข้อความที่ต้องการแปล...",
+    "model": "โมเดล",
+    "copy_translation": "คัดลอกคำแปล",
+    "translation_copied": "คัดลอกคำแปลแล้ว!",
+    "clear_all": "ล้างทั้งหมด",
+    "char_count": "{count} อักขระ"
+  }
+}

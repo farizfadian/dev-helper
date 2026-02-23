@@ -64,13 +64,44 @@
         border-color: #0d6efd;
         color: #0d6efd;
     }
+
+    /* Print styles for Export to PDF */
+    @media print {
+        body * { visibility: hidden !important; }
+        #printContainer, #printContainer * { visibility: visible !important; }
+        #printContainer {
+            position: absolute;
+            left: 0; top: 0; width: 100%;
+            padding: 20px 40px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            color: #000 !important;
+            background: #fff !important;
+        }
+        #printContainer h1 { font-size: 22pt; border-bottom: 2px solid #333; padding-bottom: 4pt; }
+        #printContainer h2 { font-size: 18pt; border-bottom: 1px solid #999; padding-bottom: 3pt; }
+        #printContainer h3 { font-size: 14pt; }
+        #printContainer pre { background: #f5f5f5 !important; border: 1px solid #ddd; border-radius: 4px; padding: 8pt; font-size: 9pt; white-space: pre-wrap; word-break: break-all; }
+        #printContainer code { font-size: 9pt; }
+        #printContainer table { border-collapse: collapse; width: 100%; }
+        #printContainer th, #printContainer td { border: 1px solid #999; padding: 4pt 8pt; }
+        #printContainer th { background: #f0f0f0 !important; }
+        #printContainer blockquote { border-left: 3px solid #999; padding-left: 10pt; color: #555; margin-left: 0; }
+        #printContainer img { max-width: 100%; }
+        #printContainer a { color: #000; text-decoration: underline; }
+        #printContainer a::after { content: " (" attr(href) ")"; font-size: 8pt; color: #666; }
+    }
 </style>
 
+<!-- Fullscreen wrapper -->
+<div id="focusWrapper" class="focus-wrapper">
+
 <!-- Toolbar -->
-<div class="d-flex justify-content-between align-items-center mb-2">
+<div class="d-flex justify-content-between align-items-center mb-2 focus-toolbar">
     <h5 class="mb-0"><i class="bi bi-markdown"></i> Markdown Viewer <i id="pinToggle" data-tool="markdown" class="bi bi-star pin-star" onclick="togglePin('markdown')"></i></h5>
     <div class="d-flex align-items-center gap-2 flex-wrap">
-        <div class="dropdown">
+        <div class="dropdown focus-hide">
             <button class="btn btn-sm btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" title="Load sample">
                 <i class="bi bi-file-earmark-text"></i> Samples
             </button>
@@ -84,27 +115,40 @@
                 <li><a class="dropdown-item" href="#" data-sample="todo"><i class="bi bi-check2-square"></i> Project TODO</a></li>
             </ul>
         </div>
-        <button class="btn btn-sm btn-outline-secondary" id="openFileBtn" title="Open File">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="openFileBtn" title="Open File">
             <i class="bi bi-folder2-open"></i>
         </button>
-        <button class="btn btn-sm btn-outline-secondary" id="copyHtmlBtn" title="Copy rendered HTML">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="copyHtmlBtn" title="Copy rendered HTML">
             <i class="bi bi-clipboard"></i> Copy HTML
         </button>
-        <button class="btn btn-sm btn-outline-secondary" id="clearBtn" title="Clear">
+        <div class="dropdown focus-hide">
+            <button class="btn btn-sm btn-outline-success dropdown-toggle" data-bs-toggle="dropdown" title="Export">
+                <i class="bi bi-download"></i> Export
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" id="exportPdfBtn"><i class="bi bi-file-earmark-pdf"></i> Export to PDF</a></li>
+                <li><a class="dropdown-item" href="#" id="exportMdBtn"><i class="bi bi-filetype-md"></i> Export to Markdown</a></li>
+                <li><a class="dropdown-item" href="#" id="exportHtmlBtn"><i class="bi bi-filetype-html"></i> Export to HTML</a></li>
+            </ul>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="clearBtn" title="Clear">
             <i class="bi bi-x-lg"></i> Clear
+        </button>
+        <button class="btn btn-sm btn-outline-primary" id="focusModeBtn" title="Toggle fullscreen (F11)">
+            <i class="bi bi-arrows-fullscreen"></i> Expand
         </button>
         <input type="file" id="fileInput" class="d-none" accept=".md,.markdown,.mdx,.txt">
     </div>
 </div>
 
 <!-- Drop Zone -->
-<div id="dropZone" class="drop-zone mb-2">
+<div id="dropZone" class="drop-zone mb-2 focus-hide">
     <i class="bi bi-file-earmark-text" style="font-size: 1.2rem;"></i>
     Drag & drop a Markdown file here, or click to browse
 </div>
 
 <!-- URL Input -->
-<div class="input-group input-group-sm mb-2">
+<div class="input-group input-group-sm mb-2 focus-hide">
     <span class="input-group-text"><i class="bi bi-link-45deg"></i></span>
     <input type="text" id="urlInput" class="form-control" placeholder="Enter URL to fetch .md file">
     <button class="btn btn-primary" id="fetchUrlBtn">
@@ -113,16 +157,21 @@
 </div>
 
 <!-- Side by side: Editor + Preview -->
-<div class="row g-3">
+<div class="row g-3 focus-grow">
     <div class="col-md-6">
-        <label class="form-label small text-muted">Markdown</label>
-        <div id="markdownEditor" class="editor-pane" style="height: calc(100vh - 310px); min-height: 400px;"></div>
+        <label class="form-label small text-muted focus-hide">Markdown</label>
+        <div id="markdownEditor" class="editor-pane focus-fill" style="height: calc(100vh - 310px); min-height: 400px;"></div>
     </div>
     <div class="col-md-6">
-        <label class="form-label small text-muted">Preview</label>
-        <div id="previewPane" class="preview-pane" style="height: calc(100vh - 310px); min-height: 400px;"></div>
+        <label class="form-label small text-muted focus-hide">Preview</label>
+        <div id="previewPane" class="preview-pane focus-fill" style="height: calc(100vh - 310px); min-height: 400px;"></div>
     </div>
 </div>
+
+</div><!-- /focus-wrapper -->
+
+<!-- Hidden container for print/PDF export -->
+<div id="printContainer" style="display:none;"></div>
 {{end}}
 
 {{define "scripts"}}

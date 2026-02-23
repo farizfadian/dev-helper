@@ -1,0 +1,731 @@
+{{define "content"}}
+<style>
+    .aichat-wrapper {
+        display: flex;
+        height: calc(100vh - 160px);
+        min-height: 400px;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--bs-body-bg);
+    }
+
+    /* Sidebar */
+    .aichat-sidebar {
+        width: 260px;
+        min-width: 260px;
+        border-right: 1px solid var(--bs-border-color);
+        display: flex;
+        flex-direction: column;
+        background: var(--bs-tertiary-bg);
+    }
+    .aichat-sidebar-header {
+        padding: 12px;
+        border-bottom: 1px solid var(--bs-border-color);
+        flex-shrink: 0;
+    }
+    .aichat-conv-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 8px;
+    }
+    .aichat-conv-group-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--bs-secondary-color);
+        padding: 8px 8px 4px;
+    }
+    .aichat-conv-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        color: var(--bs-body-color);
+        transition: background 0.1s;
+        position: relative;
+    }
+    .aichat-conv-item:hover {
+        background: var(--bs-body-bg);
+    }
+    .aichat-conv-item.active {
+        background: var(--bs-primary);
+        color: #fff;
+    }
+    .aichat-conv-item .conv-title {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .aichat-conv-item .conv-delete {
+        opacity: 0;
+        flex-shrink: 0;
+        border: none;
+        background: none;
+        color: inherit;
+        padding: 0 2px;
+        font-size: 0.8rem;
+        cursor: pointer;
+    }
+    .aichat-conv-item:hover .conv-delete {
+        opacity: 0.6;
+    }
+    .aichat-conv-item .conv-delete:hover {
+        opacity: 1;
+    }
+
+    /* Chat area */
+    .aichat-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+    .aichat-header {
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--bs-border-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+    }
+    .aichat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .aichat-empty {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--bs-secondary-color);
+        gap: 8px;
+    }
+    .aichat-empty i {
+        font-size: 3rem;
+        opacity: 0.3;
+    }
+
+    /* Message bubbles */
+    .aichat-msg {
+        max-width: 85%;
+        position: relative;
+    }
+    .aichat-msg.user {
+        align-self: flex-end;
+    }
+    .aichat-msg.assistant {
+        align-self: flex-start;
+    }
+    .aichat-msg-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+        color: var(--bs-secondary-color);
+    }
+    .aichat-msg.user .aichat-msg-label {
+        text-align: right;
+    }
+    .aichat-msg-body {
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        word-wrap: break-word;
+    }
+    .aichat-msg.user .aichat-msg-body {
+        background: var(--bs-primary);
+        color: #fff;
+        border-bottom-right-radius: 4px;
+    }
+    .aichat-msg.assistant .aichat-msg-body {
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-bottom-left-radius: 4px;
+    }
+    .aichat-msg-actions {
+        margin-top: 4px;
+        display: flex;
+        gap: 4px;
+        opacity: 0;
+        transition: opacity 0.15s;
+    }
+    .aichat-msg:hover .aichat-msg-actions {
+        opacity: 1;
+    }
+    .aichat-msg-actions button {
+        border: none;
+        background: none;
+        color: var(--bs-secondary-color);
+        font-size: 0.75rem;
+        cursor: pointer;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+    .aichat-msg-actions button:hover {
+        background: var(--bs-tertiary-bg);
+        color: var(--bs-body-color);
+    }
+
+    /* Markdown in assistant messages */
+    .aichat-msg.assistant .aichat-msg-body p:last-child {
+        margin-bottom: 0;
+    }
+    .aichat-msg.assistant .aichat-msg-body pre {
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        padding: 12px;
+        overflow-x: auto;
+        position: relative;
+    }
+    .aichat-msg.assistant .aichat-msg-body code {
+        font-size: 0.85em;
+    }
+    .aichat-msg.assistant .aichat-msg-body p code {
+        background: var(--bs-body-bg);
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-size: 0.85em;
+        border: 1px solid var(--bs-border-color);
+    }
+    .aichat-msg.assistant .aichat-msg-body table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    .aichat-msg.assistant .aichat-msg-body th,
+    .aichat-msg.assistant .aichat-msg-body td {
+        border: 1px solid var(--bs-border-color);
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+    .aichat-msg.assistant .aichat-msg-body th {
+        background: var(--bs-tertiary-bg);
+    }
+    .aichat-msg.assistant .aichat-msg-body blockquote {
+        border-left: 3px solid var(--bs-primary);
+        padding-left: 12px;
+        color: var(--bs-secondary-color);
+    }
+
+    /* Code block copy button */
+    .code-block-wrapper {
+        position: relative;
+    }
+    .code-copy-btn {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        border: 1px solid var(--bs-border-color);
+        background: var(--bs-body-bg);
+        color: var(--bs-secondary-color);
+        font-size: 0.7rem;
+        cursor: pointer;
+        padding: 2px 8px;
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 0.15s;
+    }
+    .code-block-wrapper:hover .code-copy-btn {
+        opacity: 1;
+    }
+    .code-copy-btn:hover {
+        color: var(--bs-body-color);
+    }
+
+    /* Input area */
+    .aichat-input-area {
+        padding: 12px 16px;
+        border-top: 1px solid var(--bs-border-color);
+        flex-shrink: 0;
+    }
+    .aichat-input-row {
+        display: flex;
+        gap: 8px;
+        align-items: flex-end;
+    }
+    .aichat-textarea {
+        flex: 1;
+        resize: none;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 0.9rem;
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        outline: none;
+        max-height: 150px;
+        min-height: 42px;
+        line-height: 1.4;
+        font-family: inherit;
+    }
+    .aichat-textarea:focus {
+        border-color: var(--bs-primary);
+        box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+    }
+    .aichat-send-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
+        border: none;
+        background: var(--bs-primary);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background 0.15s;
+    }
+    .aichat-send-btn:hover:not(:disabled) {
+        background: var(--bs-primary);
+        opacity: 0.85;
+    }
+    .aichat-send-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    .aichat-send-btn.stop {
+        background: var(--bs-danger);
+    }
+
+    /* Status bar */
+    .aichat-status {
+        padding: 6px 16px;
+        border-top: 1px solid var(--bs-border-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: var(--bs-secondary-color);
+        flex-shrink: 0;
+        background: var(--bs-tertiary-bg);
+    }
+    .status-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 4px;
+    }
+    .status-dot.connected { background: #198754; }
+    .status-dot.disconnected { background: #dc3545; }
+    .status-dot.checking { background: #ffc107; }
+
+    /* Typing indicator */
+    .typing-indicator {
+        display: inline-flex;
+        gap: 4px;
+        padding: 8px 0;
+    }
+    .typing-indicator span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--bs-secondary-color);
+        animation: typing 1.4s infinite;
+    }
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing {
+        0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+        30% { opacity: 1; transform: translateY(-4px); }
+    }
+
+    /* Image attach preview strip */
+    .aichat-attach-preview {
+        display: flex;
+        gap: 8px;
+        padding: 8px 0 4px;
+        flex-wrap: wrap;
+    }
+    .aichat-attach-preview:empty {
+        display: none;
+    }
+    .aichat-attach-thumb {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--bs-border-color);
+        flex-shrink: 0;
+    }
+    .aichat-attach-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .aichat-attach-thumb .remove-img {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(0,0,0,0.6);
+        color: #fff;
+        font-size: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        padding: 0;
+    }
+    .aichat-attach-thumb .remove-img:hover {
+        background: rgba(220,53,69,0.9);
+    }
+    .aichat-attach-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: 1px solid var(--bs-border-color);
+        background: var(--bs-tertiary-bg);
+        color: var(--bs-secondary-color);
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.15s;
+        align-self: flex-end;
+        margin-bottom: 3px;
+    }
+    .aichat-attach-btn:hover {
+        color: var(--bs-body-color);
+        border-color: var(--bs-primary);
+        background: var(--bs-body-bg);
+    }
+
+    /* Drag over state */
+    .aichat-main.drag-over .aichat-messages {
+        outline: 2px dashed var(--bs-primary);
+        outline-offset: -4px;
+        background: rgba(13, 110, 253, 0.03);
+    }
+
+    /* Chat bubble thumbnails */
+    .aichat-msg-images {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+    }
+    .aichat-msg-images img {
+        max-height: 150px;
+        max-width: 200px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 1px solid rgba(255,255,255,0.2);
+        transition: transform 0.15s;
+    }
+    .aichat-msg-images img:hover {
+        transform: scale(1.03);
+    }
+    .aichat-msg.assistant .aichat-msg-images img {
+        border-color: var(--bs-border-color);
+    }
+
+    /* Listen / TTS button + speed controls */
+    .aichat-msg-actions .listen-btn {
+        border: none;
+        background: none;
+        color: var(--bs-secondary-color);
+        font-size: 0.75rem;
+        cursor: pointer;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+    .aichat-msg-actions .listen-btn:hover {
+        background: var(--bs-tertiary-bg);
+        color: var(--bs-body-color);
+    }
+    .aichat-msg-actions .listen-btn.playing {
+        color: var(--bs-danger);
+    }
+    .aichat-msg-actions .listen-btn.playing:hover {
+        color: var(--bs-danger);
+    }
+    .tts-speed-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        margin-left: 2px;
+    }
+    .tts-speed-controls button {
+        border: none;
+        background: none;
+        color: var(--bs-secondary-color);
+        font-size: 0.7rem;
+        cursor: pointer;
+        padding: 1px 4px;
+        border-radius: 3px;
+        line-height: 1;
+    }
+    .tts-speed-controls button:hover {
+        background: var(--bs-tertiary-bg);
+        color: var(--bs-body-color);
+    }
+    .tts-speed-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: var(--bs-secondary-color);
+        min-width: 30px;
+        text-align: center;
+        user-select: none;
+    }
+
+    /* Image URL modal overlay */
+    .img-url-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.4);
+        z-index: 1070;
+        align-items: center;
+        justify-content: center;
+    }
+    .img-url-overlay.show {
+        display: flex;
+    }
+    .img-url-box {
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 12px;
+        padding: 20px;
+        width: 400px;
+        max-width: 90vw;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 767.98px) {
+        .aichat-wrapper {
+            height: calc(100vh - 140px);
+        }
+        .aichat-sidebar {
+            display: none;
+        }
+        .aichat-sidebar.show {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            z-index: 1060;
+            box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+        }
+        .aichat-sidebar-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1055;
+        }
+        .aichat-sidebar-backdrop.show {
+            display: block;
+        }
+        .aichat-msg {
+            max-width: 95%;
+        }
+    }
+</style>
+
+<div class="d-flex align-items-center mb-3">
+    <button class="btn btn-sm btn-outline-secondary d-md-none me-2" id="sidebarToggle" title="Conversations">
+        <i class="bi bi-layout-sidebar"></i>
+    </button>
+    <h4 class="mb-0">
+        <i class="bi bi-robot text-primary"></i> AI Chat
+        <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="aichat" onclick="togglePin('aichat')" title="Pin to navbar" style="cursor:pointer;"></i>
+    </h4>
+    <div class="ms-auto d-flex gap-2">
+        <button class="btn btn-sm btn-outline-secondary" id="settingsBtn" title="Settings">
+            <i class="bi bi-gear"></i> Settings
+        </button>
+    </div>
+</div>
+
+<div class="aichat-sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<div class="aichat-wrapper">
+    <!-- Sidebar -->
+    <div class="aichat-sidebar" id="chatSidebar">
+        <div class="aichat-sidebar-header">
+            <button class="btn btn-primary btn-sm w-100" id="newChatBtn">
+                <i class="bi bi-plus-lg"></i> New Chat
+            </button>
+        </div>
+        <div class="aichat-conv-list" id="convList">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <!-- Main chat -->
+    <div class="aichat-main">
+        <div class="aichat-header">
+            <div>
+                <select class="form-select form-select-sm" id="modelSelect" style="min-width: 180px;">
+                    <option value="">Loading models...</option>
+                </select>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-outline-secondary" id="clearChatBtn" title="Clear current chat">
+                    <i class="bi bi-trash3"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="aichat-messages" id="chatMessages">
+            <div class="aichat-empty" id="emptyState">
+                <i class="bi bi-robot"></i>
+                <div class="fw-semibold">Start a conversation</div>
+                <div class="small">Select a model and type your message below</div>
+            </div>
+        </div>
+
+        <div class="aichat-input-area">
+            <input type="file" id="imgFileInput" accept="image/jpeg,image/png" multiple hidden>
+            <div class="aichat-attach-preview" id="attachPreview"></div>
+            <div class="aichat-input-row">
+                <button class="aichat-attach-btn" id="attachBtn" title="Attach image (JPEG/PNG)">
+                    <i class="bi bi-paperclip"></i>
+                </button>
+                <button class="aichat-attach-btn" id="imgUrlBtn" title="Image from URL">
+                    <i class="bi bi-link-45deg"></i>
+                </button>
+                <textarea class="aichat-textarea" id="chatInput" placeholder="Ask anything..." rows="1"></textarea>
+                <button class="aichat-send-btn" id="sendBtn" title="Send (Enter)">
+                    <i class="bi bi-send-fill"></i>
+                </button>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-1">
+                <small class="text-muted"><kbd>Enter</kbd> send &middot; <kbd>Shift+Enter</kbd> new line</small>
+                <small class="text-muted" id="tokenInfo"></small>
+            </div>
+        </div>
+
+        <div class="aichat-status">
+            <div>
+                <span class="status-dot checking" id="statusDot"></span>
+                <span id="statusText">Checking connection...</span>
+            </div>
+            <div>
+                Model: <strong id="statusModel">-</strong> &middot;
+                Ollama <span id="statusVersion"></span>: <span id="statusUrl">-</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image URL Overlay -->
+<div class="img-url-overlay" id="imgUrlOverlay">
+    <div class="img-url-box">
+        <h6 class="mb-3"><i class="bi bi-link-45deg"></i> Add Image from URL</h6>
+        <input type="text" class="form-control form-control-sm mb-2" id="imgUrlInput" placeholder="https://example.com/image.png">
+        <div class="form-text mb-3">JPEG or PNG image URL. Will be fetched via proxy.</div>
+        <div class="d-flex justify-content-end gap-2">
+            <button class="btn btn-sm btn-secondary" id="imgUrlCancel">Cancel</button>
+            <button class="btn btn-sm btn-primary" id="imgUrlAdd"><i class="bi bi-plus-lg"></i> Add</button>
+        </div>
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header py-2">
+                <h6 class="modal-title"><i class="bi bi-gear"></i> AI Chat Settings</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold small">Ollama URL</label>
+                    <input type="text" class="form-control form-control-sm" id="settingsOllamaUrl" placeholder="http://localhost:11434">
+                    <div class="form-text">The Ollama server address. For LAN: use the server's IP.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold small">System Prompt</label>
+                    <textarea class="form-control form-control-sm" id="settingsSystemPrompt" rows="3" placeholder="You are a helpful assistant..."></textarea>
+                    <div class="form-text">Prepended to every conversation as context.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold small">Temperature: <span id="tempValue">0.7</span></label>
+                    <input type="range" class="form-range" id="settingsTemperature" min="0" max="2" step="0.1" value="0.7">
+                    <div class="form-text">0 = focused/deterministic, 2 = creative/random</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold small">Default Language</label>
+                    <select class="form-select form-select-sm" id="settingsLanguage">
+                        <option value="en-US">English (US)</option>
+                        <option value="en-GB">English (UK)</option>
+                        <option value="id-ID">Bahasa Indonesia</option>
+                        <option value="ja-JP">Japanese</option>
+                        <option value="ko-KR">Korean</option>
+                        <option value="zh-CN">Chinese (Simplified)</option>
+                        <option value="zh-TW">Chinese (Traditional)</option>
+                        <option value="es-ES">Spanish</option>
+                        <option value="fr-FR">French</option>
+                        <option value="de-DE">German</option>
+                        <option value="pt-BR">Portuguese (Brazil)</option>
+                        <option value="ru-RU">Russian</option>
+                        <option value="ar-SA">Arabic</option>
+                        <option value="hi-IN">Hindi</option>
+                        <option value="th-TH">Thai</option>
+                        <option value="vi-VN">Vietnamese</option>
+                        <option value="nl-NL">Dutch</option>
+                        <option value="it-IT">Italian</option>
+                        <option value="tr-TR">Turkish</option>
+                        <option value="pl-PL">Polish</option>
+                    </select>
+                    <div class="form-text">Used for Text-to-Speech voice and as hint for Ollama responses.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold small">Max conversation history</label>
+                    <select class="form-select form-select-sm" id="settingsMaxHistory">
+                        <option value="10">10 messages</option>
+                        <option value="20" selected>20 messages</option>
+                        <option value="50">50 messages</option>
+                        <option value="100">100 messages</option>
+                        <option value="0">Unlimited</option>
+                    </select>
+                    <div class="form-text">Older messages are trimmed from API calls to save memory.</div>
+                </div>
+            </div>
+            <div class="modal-footer py-2">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary" id="saveSettingsBtn"><i class="bi bi-check-lg"></i> Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/lib/marked.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<script src="/static/aichat.js"></script>
+{{end}}

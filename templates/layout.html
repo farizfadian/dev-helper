@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Helper</title>
+    <title>{{if .PageTitle}}{{.PageTitle}} — Dev Helper{{else}}Dev Helper{{end}}</title>
+    <link rel="icon" type="image/svg+xml" href="/static/icons/favicon.svg">
     <script>
     // Apply theme immediately to prevent flash of wrong theme
     (function() {
@@ -55,6 +56,73 @@
             #pinnedNav > .nav-item > .nav-link { white-space: nowrap; }
         }
         .nav-overflow-hidden { display: none !important; }
+
+        /* ── Navigation Drawer (mobile) ── */
+        .nav-drawer-backdrop {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 1060;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .nav-drawer-backdrop.show { opacity: 1; visibility: visible; }
+
+        .nav-drawer {
+            position: fixed; top: 0; left: 0; width: 280px; height: 100%;
+            background: var(--bs-body-bg); z-index: 1070;
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto; overflow-x: hidden;
+            box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+            display: flex; flex-direction: column;
+        }
+        .nav-drawer.open { transform: translateX(0); }
+
+        .nav-drawer-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 20px; border-bottom: 1px solid var(--bs-border-color);
+            flex-shrink: 0;
+        }
+        .nav-drawer-header .brand {
+            font-weight: 700; font-size: 1.1rem; color: var(--bs-body-color);
+            text-decoration: none; display: flex; align-items: center; gap: 8px;
+        }
+        .nav-drawer-close {
+            border: none; background: none; font-size: 1.3rem;
+            color: var(--bs-secondary-color); cursor: pointer; padding: 4px;
+            border-radius: 6px; line-height: 1;
+        }
+        .nav-drawer-close:hover { background: var(--bs-tertiary-bg); color: var(--bs-body-color); }
+
+        .nav-drawer-body {
+            flex: 1; overflow-y: auto; padding: 8px 0;
+        }
+        .nav-drawer-section {
+            padding: 8px 20px 4px; font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--bs-secondary-color);
+        }
+        .nav-drawer-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 20px; color: var(--bs-body-color);
+            text-decoration: none; font-size: 0.9rem;
+            transition: background 0.15s;
+        }
+        .nav-drawer-item:hover { background: var(--bs-tertiary-bg); color: var(--bs-body-color); }
+        .nav-drawer-item.active { background: var(--bs-primary); color: #fff; border-radius: 0; }
+        .nav-drawer-item i { width: 20px; text-align: center; font-size: 1rem; }
+        .nav-drawer-divider { border-top: 1px solid var(--bs-border-color); margin: 8px 0; }
+
+        .nav-drawer-footer {
+            padding: 12px 20px; border-top: 1px solid var(--bs-border-color);
+            flex-shrink: 0; display: flex; gap: 8px;
+        }
+        .nav-drawer-footer .btn { flex: 1; font-size: 0.8rem; }
+
+        /* Hide default Bootstrap collapse on mobile, use drawer instead */
+        @media (max-width: 991.98px) {
+            #navbarNav { display: none !important; }
+            .navbar .navbar-brand { margin-right: auto !important; }
+        }
         /* Spotlight search */
         .spotlight-backdrop {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -122,17 +190,49 @@
             font-size: 0.6rem; padding: 1px 4px; border-radius: 3px;
             background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);
         }
+        /* Focus mode (shared fullscreen editor) */
+        .focus-wrapper.focus-active {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 1050;
+            background: var(--bs-body-bg);
+            padding: 0.75rem 1rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .focus-wrapper.focus-active .focus-hide {
+            display: none !important;
+        }
+        .focus-wrapper.focus-active .focus-toolbar {
+            margin-bottom: 0.5rem;
+            flex-shrink: 0;
+        }
+        .focus-wrapper.focus-active .focus-grow {
+            flex: 1;
+            min-height: 0;
+        }
+        .focus-wrapper.focus-active .focus-grow > [class*="col-"] {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+        .focus-wrapper.focus-active .focus-fill {
+            height: 100% !important;
+            min-height: 0 !important;
+            flex: 1;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
+            <button class="navbar-toggler me-2" type="button" id="navDrawerToggle" aria-label="Open navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <a class="navbar-brand fw-bold" href="/">
                 <i class="bi bi-tools"></i> Dev Helper
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto" id="pinnedNav">
                     <li class="nav-item d-none" data-tool="upload">
@@ -225,10 +325,120 @@
                             <i class="bi bi-clock-history"></i> Epoch
                         </a>
                     </li>
+                    <li class="nav-item d-none" data-tool="hash">
+                        <a class="nav-link {{if eq .ActivePage "hash"}}active{{end}}" href="/hash">
+                            <i class="bi bi-hash"></i> Hash
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="colorpicker">
+                        <a class="nav-link {{if eq .ActivePage "colorpicker"}}active{{end}}" href="/colorpicker">
+                            <i class="bi bi-palette"></i> Color Picker
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="cron">
+                        <a class="nav-link {{if eq .ActivePage "cron"}}active{{end}}" href="/cron">
+                            <i class="bi bi-calendar-event"></i> Cron
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="password">
+                        <a class="nav-link {{if eq .ActivePage "password"}}active{{end}}" href="/password">
+                            <i class="bi bi-key"></i> Password
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="qrcode">
+                        <a class="nav-link {{if eq .ActivePage "qrcode"}}active{{end}}" href="/qrcode">
+                            <i class="bi bi-qr-code"></i> QR Code
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="lorem">
+                        <a class="nav-link {{if eq .ActivePage "lorem"}}active{{end}}" href="/lorem">
+                            <i class="bi bi-text-paragraph"></i> Lorem
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="baseconverter">
+                        <a class="nav-link {{if eq .ActivePage "baseconverter"}}active{{end}}" href="/baseconverter">
+                            <i class="bi bi-123"></i> Base Conv
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="json2yaml">
+                        <a class="nav-link {{if eq .ActivePage "json2yaml"}}active{{end}}" href="/json2yaml">
+                            <i class="bi bi-arrow-left-right"></i> JSON↔YAML
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="httpclient">
+                        <a class="nav-link {{if eq .ActivePage "httpclient"}}active{{end}}" href="/httpclient">
+                            <i class="bi bi-send"></i> HTTP Client
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="stringutils">
+                        <a class="nav-link {{if eq .ActivePage "stringutils"}}active{{end}}" href="/stringutils">
+                            <i class="bi bi-fonts"></i> String Utils
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="chat">
+                        <a class="nav-link {{if eq .ActivePage "chat"}}active{{end}}" href="/chat">
+                            <i class="bi bi-chat-dots"></i> LAN Chat
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="netscan">
+                        <a class="nav-link {{if eq .ActivePage "netscan"}}active{{end}}" href="/netscan">
+                            <i class="bi bi-router"></i> Net Scanner
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="worldclock">
+                        <a class="nav-link {{if eq .ActivePage "worldclock"}}active{{end}}" href="/worldclock">
+                            <i class="bi bi-globe-americas"></i> World Clock
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="ocr">
+                        <a class="nav-link {{if eq .ActivePage "ocr"}}active{{end}}" href="/ocr">
+                            <i class="bi bi-eye"></i> OCR
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="yaml2props">
+                        <a class="nav-link {{if eq .ActivePage "yaml2props"}}active{{end}}" href="/yaml2props">
+                            <i class="bi bi-filetype-yml"></i> YAML↔Props
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="netinspect">
+                        <a class="nav-link {{if eq .ActivePage "netinspect"}}active{{end}}" href="/netinspect">
+                            <i class="bi bi-globe-europe-africa"></i> Net Inspector
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="aichat">
+                        <a class="nav-link {{if eq .ActivePage "aichat"}}active{{end}}" href="/aichat">
+                            <i class="bi bi-robot"></i> AI Chat
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="speedtest">
+                        <a class="nav-link {{if eq .ActivePage "speedtest"}}active{{end}}" href="/speedtest">
+                            <i class="bi bi-speedometer2"></i> Speed Test
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="snippets">
+                        <a class="nav-link {{if eq .ActivePage "snippets"}}active{{end}}" href="/snippets">
+                            <i class="bi bi-code-square"></i> Snippets
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="sysmon">
+                        <a class="nav-link {{if eq .ActivePage "sysmon"}}active{{end}}" href="/sysmon">
+                            <i class="bi bi-cpu"></i> Sys Monitor
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="icons">
+                        <a class="nav-link {{if eq .ActivePage "icons"}}active{{end}}" href="/icons">
+                            <i class="bi bi-collection"></i> Icons
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="translator">
+                        <a class="nav-link {{if eq .ActivePage "translator"}}active{{end}}" href="/translator">
+                            <i class="bi bi-translate"></i> Translator
+                        </a>
+                    </li>
                     <!-- More dropdown for overflow items -->
                     <li class="nav-item dropdown d-none" id="moreDropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            <i class="bi bi-three-dots"></i> More
+                            <i class="bi bi-three-dots"></i> <span data-i18n="nav.more">More</span>
                         </a>
                         <ul class="dropdown-menu" id="moreDropdownMenu"></ul>
                     </li>
@@ -246,17 +456,25 @@
                             <i class="bi bi-circle-half" id="themeIcon"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item theme-option" href="#" data-theme="light"><i class="bi bi-sun-fill theme-icon text-warning"></i> Light</a></li>
-                            <li><a class="dropdown-item theme-option" href="#" data-theme="dark"><i class="bi bi-moon-fill theme-icon text-primary"></i> Dark</a></li>
-                            <li><a class="dropdown-item theme-option" href="#" data-theme="auto"><i class="bi bi-circle-half theme-icon"></i> Auto</a></li>
+                            <li><a class="dropdown-item theme-option" href="#" data-theme="light"><i class="bi bi-sun-fill theme-icon text-warning"></i> <span data-i18n="theme.light">Light</span></a></li>
+                            <li><a class="dropdown-item theme-option" href="#" data-theme="dark"><i class="bi bi-moon-fill theme-icon text-primary"></i> <span data-i18n="theme.dark">Dark</span></a></li>
+                            <li><a class="dropdown-item theme-option" href="#" data-theme="auto"><i class="bi bi-circle-half theme-icon"></i> <span data-i18n="theme.auto">Auto</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="langToggle" title="Language">
+                            <i class="bi bi-translate"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" id="langMenu" style="max-height: 400px; overflow-y: auto;">
+                            <!-- Populated by JS from i18n.languages -->
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="askAiBtn">
-                            <i class="bi bi-robot"></i> Ask AI
+                            <i class="bi bi-robot"></i> <span data-i18n="nav.ask_ai">Ask AI</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><h6 class="dropdown-header">Cloud AI</h6></li>
+                            <li><h6 class="dropdown-header" data-i18n="nav.cloud_ai">Cloud AI</h6></li>
                             <li><a class="dropdown-item ai-link" href="#" data-ai="claude"><img src="/static/icons/claude.png" width="16" height="16" style="vertical-align: -2px;"> Claude</a></li>
                             <li><a class="dropdown-item ai-link" href="#" data-ai="chatgpt"><img src="/static/icons/chatgpt.svg" width="16" height="16" style="vertical-align: -2px;"> ChatGPT</a></li>
                             <li><a class="dropdown-item ai-link" href="#" data-ai="gemini"><img src="/static/icons/gemini.png" width="16" height="16" style="vertical-align: -2px;"> Gemini</a></li>
@@ -267,14 +485,9 @@
                             <li><a class="dropdown-item ai-link" href="#" data-ai="mistral"><img src="/static/icons/mistral.png" width="16" height="16" style="vertical-align: -2px;"> Mistral</a></li>
                             <li><a class="dropdown-item ai-link" href="#" data-ai="huggingchat"><img src="/static/icons/huggingchat.svg" width="16" height="16" style="vertical-align: -2px;"> HuggingChat</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><h6 class="dropdown-header">Local AI</h6></li>
+                            <li><h6 class="dropdown-header" data-i18n="nav.local_ai">Local AI</h6></li>
                             <li><a class="dropdown-item ai-link" href="#" data-ai="ollama"><img src="/static/icons/ollama.png" width="16" height="16" style="vertical-align: -2px;"> Ollama</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{if eq .ActivePage "home"}}active{{end}}" href="/" title="All Tools">
-                            <i class="bi bi-grid-3x3-gap"></i> All Tools
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -290,16 +503,36 @@
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header py-2">
-                    <h6 class="modal-title"><i class="bi bi-hdd-network"></i> Ollama URL</h6>
+                    <h6 class="modal-title"><i class="bi bi-hdd-network"></i> <span data-i18n="ai.ollama_url">Ollama URL</span></h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <input type="text" id="ollamaUrlInput" class="form-control form-control-sm" placeholder="http://localhost:11434">
-                    <div class="form-text">Enter your Ollama web UI URL</div>
+                    <div class="form-text" data-i18n="ai.enter_ollama_url">Enter your Ollama web UI URL</div>
                 </div>
                 <div class="modal-footer py-2">
                     <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-sm btn-primary" id="ollamaGoBtn">Open</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Prompt Modal -->
+    <div class="modal fade" id="aiPromptModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h6 class="modal-title" id="aiPromptTitle"><i class="bi bi-robot"></i> Ask AI</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="aiPromptInput" class="form-control" rows="3" placeholder="What would you like to ask?" data-i18n-placeholder="ai.prompt_placeholder" style="resize: vertical;"></textarea>
+                    <div class="form-text"><kbd>Enter</kbd> <span data-i18n="ai.enter_to_send">to send</span> &middot; <kbd>Shift+Enter</kbd> <span data-i18n="ai.shift_enter_newline">for new line</span></div>
+                </div>
+                <div class="modal-footer py-2 d-flex justify-content-between">
+                    <a href="#" class="text-decoration-none small text-muted" id="aiOpenDirect"><i class="bi bi-box-arrow-up-right"></i> <span data-i18n="ai.open_without_prompt">Open without prompt</span></a>
+                    <button type="button" class="btn btn-sm btn-primary" id="aiPromptGoBtn"><i class="bi bi-send"></i> <span data-i18n="ai.ask">Ask</span></button>
                 </div>
             </div>
         </div>
@@ -310,7 +543,7 @@
         <div class="spotlight-box">
             <div class="spotlight-input-wrap">
                 <i class="bi bi-search"></i>
-                <input type="text" class="spotlight-input" id="spotlightInput" placeholder="Search tools..." autocomplete="off" spellcheck="false">
+                <input type="text" class="spotlight-input" id="spotlightInput" placeholder="Search tools..." data-i18n-placeholder="spotlight.placeholder" autocomplete="off" spellcheck="false">
                 <kbd class="spotlight-kbd">ESC</kbd>
             </div>
             <div class="spotlight-results" id="spotlightResults"></div>
@@ -322,10 +555,27 @@
         </div>
     </div>
 
+    <!-- Navigation Drawer (mobile) -->
+    <div class="nav-drawer-backdrop" id="navDrawerBackdrop"></div>
+    <div class="nav-drawer" id="navDrawer">
+        <div class="nav-drawer-header">
+            <a class="brand" href="/"><i class="bi bi-tools"></i> Dev Helper</a>
+            <button class="nav-drawer-close" id="navDrawerClose" aria-label="Close">&times;</button>
+        </div>
+        <div class="nav-drawer-body" id="navDrawerBody">
+            <!-- Populated by JS -->
+        </div>
+        <div class="nav-drawer-footer">
+            <button class="btn btn-outline-secondary btn-sm" id="drawerSpotlight"><i class="bi bi-search"></i> Search</button>
+            <button class="btn btn-outline-secondary btn-sm" id="drawerThemeBtn"><i class="bi bi-circle-half"></i> Theme</button>
+        </div>
+    </div>
+
     <footer class="text-center text-muted py-3 mt-auto border-top" style="font-size: 0.85rem;">
         Made with ❤️ by <a href="https://github.com/farizfadian" target="_blank" class="text-decoration-none">Fariz</a> & <a href="https://claude.ai" target="_blank" class="text-decoration-none">Claude <img src="/static/icons/claude.png" width="16" height="16" style="vertical-align: -2px;"></a>
     </footer>
 
+    <script src="/static/i18n.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     // ── Theme ──
@@ -475,7 +725,7 @@
         savePinnedTools(pinned);
         refreshNavbar();
         refreshPinStar(toolId);
-        showToast(wasPinned ? '📌 Unpinned from navbar' : '⭐ Pinned to navbar');
+        showToast(wasPinned ? '📌 ' + t('nav.unpinned_from_navbar') : '⭐ ' + t('nav.pinned_to_navbar'));
     }
 
     function showToast(msg) {
@@ -527,33 +777,73 @@
     }
 
     // ── Ask AI ──
-    const AI_URLS = {
-        claude: 'https://claude.ai/new',
-        chatgpt: 'https://chatgpt.com',
-        gemini: 'https://gemini.google.com/app',
-        deepseek: 'https://chat.deepseek.com',
-        grok: 'https://grok.com',
-        perplexity: 'https://www.perplexity.ai',
-        copilot: 'https://copilot.microsoft.com',
-        mistral: 'https://chat.mistral.ai',
-        huggingchat: 'https://huggingface.co/chat',
+    const AI_CONFIGS = {
+        claude:     { url: 'https://claude.ai/new',          q: 'https://claude.ai/new?q=' },
+        chatgpt:    { url: 'https://chatgpt.com',            q: 'https://chatgpt.com/?q=' },
+        gemini:     { url: 'https://gemini.google.com/app',  q: 'https://gemini.google.com/app?q=' },
+        deepseek:   { url: 'https://chat.deepseek.com',      q: 'https://chat.deepseek.com/?q=' },
+        grok:       { url: 'https://grok.com',               q: null },
+        perplexity: { url: 'https://www.perplexity.ai',      q: 'https://www.perplexity.ai/?q=' },
+        copilot:    { url: 'https://copilot.microsoft.com',  q: 'https://copilot.microsoft.com/?q=' },
+        mistral:    { url: 'https://chat.mistral.ai',        q: null },
+        huggingchat:{ url: 'https://huggingface.co/chat',    q: null },
     };
     const OLLAMA_KEY = 'devhelper_ollama_url';
+    var currentAiKey = null;
 
     document.querySelectorAll('.ai-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const ai = this.dataset.ai;
             if (ai === 'ollama') {
-                const ollamaInput = document.getElementById('ollamaUrlInput');
-                ollamaInput.value = localStorage.getItem(OLLAMA_KEY) || 'http://localhost:11434';
-                new bootstrap.Modal(document.getElementById('ollamaModal')).show();
+                window.location.href = '/aichat';
+                return;
+            } else if (AI_CONFIGS[ai] && AI_CONFIGS[ai].q) {
+                // AI supports ?q= prompt — show prompt modal
+                currentAiKey = ai;
+                var aiName = this.textContent.trim();
+                var aiIcon = this.querySelector('img');
+                var iconHtml = aiIcon ? '<img src="' + aiIcon.src + '" width="20" height="20" style="vertical-align: -3px;"> ' : '';
+                document.getElementById('aiPromptTitle').innerHTML = iconHtml + 'Ask ' + aiName;
+                document.getElementById('aiPromptInput').value = '';
+                new bootstrap.Modal(document.getElementById('aiPromptModal')).show();
+                setTimeout(function() { document.getElementById('aiPromptInput').focus(); }, 300);
             } else {
-                window.open(AI_URLS[ai], 'devhelper_' + ai);
+                // No ?q= support — open directly
+                window.open(AI_CONFIGS[ai].url, 'devhelper_' + ai);
             }
         });
     });
 
+    // AI Prompt: submit
+    function submitAiPrompt() {
+        var prompt = document.getElementById('aiPromptInput').value.trim();
+        var config = AI_CONFIGS[currentAiKey];
+        bootstrap.Modal.getInstance(document.getElementById('aiPromptModal')).hide();
+        if (prompt && config.q) {
+            window.open(config.q + encodeURIComponent(prompt), 'devhelper_' + currentAiKey);
+        } else {
+            window.open(config.url, 'devhelper_' + currentAiKey);
+        }
+    }
+    document.getElementById('aiPromptGoBtn').addEventListener('click', submitAiPrompt);
+
+    // AI Prompt: open without prompt
+    document.getElementById('aiOpenDirect').addEventListener('click', function(e) {
+        e.preventDefault();
+        bootstrap.Modal.getInstance(document.getElementById('aiPromptModal')).hide();
+        window.open(AI_CONFIGS[currentAiKey].url, 'devhelper_' + currentAiKey);
+    });
+
+    // AI Prompt: Enter to send, Shift+Enter for newline
+    document.getElementById('aiPromptInput').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            submitAiPrompt();
+        }
+    });
+
+    // Ollama handlers
     document.getElementById('ollamaGoBtn').addEventListener('click', function() {
         const url = document.getElementById('ollamaUrlInput').value.trim();
         if (!url) return;
@@ -562,7 +852,6 @@
         window.open(url, 'devhelper_ollama');
     });
 
-    // Enter key in Ollama URL input
     document.getElementById('ollamaUrlInput').addEventListener('keydown', function(e) {
         if (e.key === 'Enter') document.getElementById('ollamaGoBtn').click();
     });
@@ -588,6 +877,28 @@
             { id: 'regex', name: 'Regex Tester', icon: 'bi-regex', desc: 'Test regex patterns with live highlighting and match details', url: '/regex', tags: ['regex','regular expression','pattern','test','match'] },
             { id: 'charmap', name: 'Emoji & CharMap', icon: 'bi-emoji-smile', desc: 'Search and copy emojis, symbols, and special characters', url: '/charmap', tags: ['emoji','charmap','symbol','unicode','character','arrow','currency','special'] },
             { id: 'epoch', name: 'Epoch Converter', icon: 'bi-clock-history', desc: 'Convert Unix timestamps to dates and vice versa', url: '/epoch', tags: ['epoch','timestamp','unix','date','time','converter'] },
+            { id: 'hash', name: 'Hash Generator', icon: 'bi-hash', desc: 'Generate MD5, SHA-1, SHA-256, SHA-512 hashes', url: '/hash', tags: ['hash','md5','sha','sha256','sha512','checksum','digest'] },
+            { id: 'colorpicker', name: 'Color Picker', icon: 'bi-palette', desc: 'Pick colors and convert between HEX, RGB, HSL', url: '/colorpicker', tags: ['color','picker','hex','rgb','hsl','palette','converter'] },
+            { id: 'cron', name: 'Cron Parser', icon: 'bi-calendar-event', desc: 'Parse and generate cron expressions with next run times', url: '/cron', tags: ['cron','schedule','parser','crontab','job','timer'] },
+            { id: 'password', name: 'Password Generator', icon: 'bi-key', desc: 'Generate secure random passwords and passphrases', url: '/password', tags: ['password','generator','random','secure','passphrase'] },
+            { id: 'qrcode', name: 'QR Code Generator', icon: 'bi-qr-code', desc: 'Generate QR codes from text or URLs', url: '/qrcode', tags: ['qr','qrcode','barcode','generate','scan'] },
+            { id: 'lorem', name: 'Lorem Ipsum', icon: 'bi-text-paragraph', desc: 'Generate placeholder text paragraphs, sentences, or words', url: '/lorem', tags: ['lorem','ipsum','placeholder','text','dummy','filler'] },
+            { id: 'baseconverter', name: 'Base Converter', icon: 'bi-123', desc: 'Convert numbers between binary, octal, decimal, and hex', url: '/baseconverter', tags: ['base','converter','binary','octal','decimal','hex','number'] },
+            { id: 'json2yaml', name: 'JSON ↔ YAML', icon: 'bi-arrow-left-right', desc: 'Convert between JSON and YAML formats', url: '/json2yaml', tags: ['json','yaml','convert','transform','format'] },
+            { id: 'httpclient', name: 'HTTP Client', icon: 'bi-send', desc: 'Test API endpoints with custom methods, headers, and body', url: '/httpclient', tags: ['http','client','api','rest','postman','request','fetch'] },
+            { id: 'stringutils', name: 'String Utilities', icon: 'bi-fonts', desc: 'Case converter, trim, count, reverse, slug, and more', url: '/stringutils', tags: ['string','text','case','convert','trim','reverse','slug','count'] },
+            { id: 'chat', name: 'LAN Chat', icon: 'bi-chat-dots', desc: 'Real-time chat for your local network — no internet needed', url: '/chat', tags: ['chat','lan','message','team','talk','real-time'] },
+            { id: 'netscan', name: 'Network Scanner', icon: 'bi-router', desc: 'Scan LAN hosts and ports — discover devices and services', url: '/netscan', tags: ['network','scanner','lan','port','host','ip','subnet','tcp','ping','discovery'] },
+            { id: 'worldclock', name: 'World Clock', icon: 'bi-globe-americas', desc: 'Multi-timezone clocks with meeting planner', url: '/worldclock', tags: ['world','clock','timezone','time','meeting','planner','utc','gmt'] },
+            { id: 'ocr', name: 'OCR', icon: 'bi-eye', desc: 'Extract text from images and screenshots', url: '/ocr', tags: ['ocr','text','recognition','image','screenshot','extract','scan','tesseract'] },
+            { id: 'yaml2props', name: 'YAML ↔ Properties', icon: 'bi-filetype-yml', desc: 'Convert between YAML and Properties for Java/Spring Boot', url: '/yaml2props', tags: ['yaml','properties','spring','boot','java','config','yml','convert'] },
+            { id: 'netinspect', name: 'Network Inspector', icon: 'bi-globe-europe-africa', desc: 'IP geolocation, DNS lookup, HTTP headers, and SSL certificate checker', url: '/netinspect', tags: ['network','inspector','ip','dns','ssl','headers','certificate','geolocation','tls','whois'] },
+            { id: 'aichat', name: 'AI Chat', icon: 'bi-robot', desc: 'Chat with local Ollama AI models with streaming responses', url: '/aichat', tags: ['ai','chat','ollama','llm','assistant','model','local','offline'] },
+            { id: 'speedtest', name: 'Speed Test', icon: 'bi-speedometer2', desc: 'Test network and disk speed — download, upload, ping, disk read/write', url: '/speedtest', tags: ['speed','test','download','upload','bandwidth','ping','latency','disk','io','network'] },
+            { id: 'snippets', name: 'Code Snippets', icon: 'bi-code-square', desc: 'Save and organize frequently used code snippets with syntax highlighting', url: '/snippets', tags: ['snippet','code','template','save','collection','copy','paste','boilerplate'] },
+            { id: 'sysmon', name: 'System Monitor', icon: 'bi-cpu', desc: 'Real-time CPU, memory, disk, network, and process monitoring', url: '/sysmon', tags: ['system','monitor','cpu','memory','disk','network','process','ram','task manager','htop','top'] },
+            { id: 'icons', name: 'Icon Explorer', icon: 'bi-collection', desc: 'Browse Bootstrap Icons, Font Awesome, and Tabler Icons with search and copy', url: '/icons', tags: ['icon','icons','bootstrap','font awesome','tabler','collection','browse','css','class','svg'] },
+            { id: 'translator', name: 'Translator', icon: 'bi-translate', desc: 'Translate text between languages using local Ollama AI', url: '/translator', tags: ['translate','translator','language','ollama','ai','google translate','bing','terjemahan'] },
         ];
 
         const backdrop = document.getElementById('spotlightBackdrop');
@@ -616,25 +927,37 @@
 
         function renderResults(query) {
             const q = query.toLowerCase().trim();
-            const filtered = q ? TOOLS.filter(function(t) {
-                return t.name.toLowerCase().includes(q)
-                    || t.desc.toLowerCase().includes(q)
-                    || t.tags.some(function(tag) { return tag.includes(q); });
+            const filtered = q ? TOOLS.filter(function(tool) {
+                var tName = window.t('tools.' + tool.id + '.name');
+                var tDesc = window.t('tools.' + tool.id + '.desc');
+                var name = (tName !== 'tools.' + tool.id + '.name') ? tName : tool.name;
+                var desc = (tDesc !== 'tools.' + tool.id + '.desc') ? tDesc : tool.desc;
+                return name.toLowerCase().includes(q)
+                    || desc.toLowerCase().includes(q)
+                    || tool.name.toLowerCase().includes(q)
+                    || tool.desc.toLowerCase().includes(q)
+                    || tool.tags.some(function(tag) { return tag.includes(q); });
             }) : TOOLS;
 
             if (filtered.length === 0) {
-                results.innerHTML = '<div class="spotlight-empty"><i class="bi bi-search" style="font-size:1.5rem;"></i><p class="mt-2 mb-0">No tools found for "' + escapeHtml(query) + '"</p></div>';
+                var noResultsMsg = window.t('spotlight.no_results', { query: escapeHtml(query) });
+                if (noResultsMsg === 'spotlight.no_results') noResultsMsg = 'No tools found for "' + escapeHtml(query) + '"';
+                results.innerHTML = '<div class="spotlight-empty"><i class="bi bi-search" style="font-size:1.5rem;"></i><p class="mt-2 mb-0">' + noResultsMsg + '</p></div>';
                 return;
             }
 
             activeIdx = Math.min(activeIdx, filtered.length - 1);
 
             results.innerHTML = filtered.map(function(tool, i) {
+                var tName = window.t('tools.' + tool.id + '.name');
+                var tDesc = window.t('tools.' + tool.id + '.desc');
+                var name = (tName !== 'tools.' + tool.id + '.name') ? tName : tool.name;
+                var desc = (tDesc !== 'tools.' + tool.id + '.desc') ? tDesc : tool.desc;
                 return '<a href="' + tool.url + '" class="spotlight-item' + (i === activeIdx ? ' active' : '') + '" data-idx="' + i + '">'
                     + '<span class="spotlight-item-icon"><i class="bi ' + tool.icon + '"></i></span>'
                     + '<span class="spotlight-item-text">'
-                    + '<div class="spotlight-item-name">' + highlightMatch(tool.name, q) + '</div>'
-                    + '<div class="spotlight-item-desc">' + tool.desc + '</div>'
+                    + '<div class="spotlight-item-name">' + highlightMatch(name, q) + '</div>'
+                    + '<div class="spotlight-item-desc">' + desc + '</div>'
                     + '</span></a>';
             }).join('');
 
@@ -717,6 +1040,233 @@
 
         // Trigger button in navbar
         document.getElementById('spotlightTrigger').addEventListener('click', openSpotlight);
+    })();
+
+    // ── Navigation Drawer (Android-style, mobile) ──
+    (function() {
+        const drawer = document.getElementById('navDrawer');
+        const backdrop = document.getElementById('navDrawerBackdrop');
+        const body = document.getElementById('navDrawerBody');
+        const toggle = document.getElementById('navDrawerToggle');
+        const closeBtn = document.getElementById('navDrawerClose');
+        let touchStartX = 0;
+        let touchCurrentX = 0;
+        let isDragging = false;
+
+        const DRAWER_TOOLS = [
+            { section: 'drawer.pinned', items: 'pinned' },
+            { section: 'drawer.file_code', items: [
+                { icon: 'bi-upload', name: 'Upload', url: '/upload', page: 'upload' },
+                { icon: 'bi-folder2-open', name: 'File Explorer', url: '/explorer', page: 'files' },
+                { icon: 'bi-code-slash', name: 'Code Editor', url: '/editor', page: 'editor' },
+                { icon: 'bi-braces', name: 'Prettify', url: '/prettify', page: 'prettify' },
+                { icon: 'bi-markdown', name: 'Markdown Viewer', url: '/markdown', page: 'markdown' },
+                { icon: 'bi-file-diff', name: 'Code Diff', url: '/diff', page: 'diff' },
+                { icon: 'bi-filetype-html', name: 'HTML Editor', url: '/htmleditor', page: 'htmleditor' },
+            ]},
+            { section: 'drawer.encode_decode', items: [
+                { icon: 'bi-shield-lock', name: 'JWT Tool', url: '/jwt', page: 'jwt' },
+                { icon: 'bi-file-earmark-binary', name: 'Base64', url: '/base64', page: 'base64' },
+                { icon: 'bi-link-45deg', name: 'URL Encoder', url: '/urlencoder', page: 'urlencoder' },
+                { icon: 'bi-hash', name: 'Hash Generator', url: '/hash', page: 'hash' },
+            ]},
+            { section: 'drawer.converters', items: [
+                { icon: 'bi-arrow-left-right', name: 'JSON ↔ YAML', url: '/json2yaml', page: 'json2yaml' },
+                { icon: 'bi-filetype-yml', name: 'YAML ↔ Properties', url: '/yaml2props', page: 'yaml2props' },
+                { icon: 'bi-123', name: 'Base Converter', url: '/baseconverter', page: 'baseconverter' },
+                { icon: 'bi-clock-history', name: 'Epoch Converter', url: '/epoch', page: 'epoch' },
+                { icon: 'bi-palette', name: 'Color Picker', url: '/colorpicker', page: 'colorpicker' },
+            ]},
+            { section: 'drawer.generators', items: [
+                { icon: 'bi-upc-scan', name: 'UUID Generator', url: '/uuid', page: 'uuid' },
+                { icon: 'bi-key', name: 'Password Generator', url: '/password', page: 'password' },
+                { icon: 'bi-qr-code', name: 'QR Code', url: '/qrcode', page: 'qrcode' },
+                { icon: 'bi-text-paragraph', name: 'Lorem Ipsum', url: '/lorem', page: 'lorem' },
+            ]},
+            { section: 'drawer.tools_section', items: [
+                { icon: 'bi-regex', name: 'Regex Tester', url: '/regex', page: 'regex' },
+                { icon: 'bi-calendar-event', name: 'Cron Parser', url: '/cron', page: 'cron' },
+                { icon: 'bi-fonts', name: 'String Utilities', url: '/stringutils', page: 'stringutils' },
+                { icon: 'bi-diagram-3', name: 'Mermaid Diagram', url: '/mermaid', page: 'mermaid' },
+                { icon: 'bi-emoji-smile', name: 'Emoji & CharMap', url: '/charmap', page: 'charmap' },
+                { icon: 'bi-globe-americas', name: 'World Clock', url: '/worldclock', page: 'worldclock' },
+                { icon: 'bi-send', name: 'HTTP Client', url: '/httpclient', page: 'httpclient' },
+                { icon: 'bi-eye', name: 'OCR', url: '/ocr', page: 'ocr' },
+                { icon: 'bi-robot', name: 'AI Chat', url: '/aichat', page: 'aichat' },
+                { icon: 'bi-collection', name: 'Icon Explorer', url: '/icons', page: 'icons' },
+                { icon: 'bi-translate', name: 'Translator', url: '/translator', page: 'translator' },
+            ]},
+            { section: 'drawer.logs_network', items: [
+                { icon: 'bi-terminal', name: 'Log Aggregator', url: '/logs', page: 'logs' },
+                { icon: 'bi-file-earmark-text', name: 'Log Viewer', url: '/logviewer', page: 'logviewer' },
+                { icon: 'bi-journal-text', name: 'Notes', url: '/notes', page: 'notes' },
+                { icon: 'bi-chat-dots', name: 'LAN Chat', url: '/chat', page: 'chat' },
+                { icon: 'bi-router', name: 'Net Scanner', url: '/netscan', page: 'netscan' },
+                { icon: 'bi-globe-europe-africa', name: 'Net Inspector', url: '/netinspect', page: 'netinspect' },
+                { icon: 'bi-speedometer2', name: 'Speed Test', url: '/speedtest', page: 'speedtest' },
+                { icon: 'bi-cpu', name: 'Sys Monitor', url: '/sysmon', page: 'sysmon' },
+            ]},
+        ];
+
+        // Get current page from body or active nav
+        const currentPage = (function() {
+            const active = document.querySelector('#pinnedNav .nav-link.active');
+            if (active) {
+                const li = active.closest('[data-tool]');
+                return li ? li.dataset.tool : '';
+            }
+            return '';
+        })();
+
+        function renderDrawer() {
+            let html = '';
+            const pinned = getPinnedTools();
+
+            DRAWER_TOOLS.forEach(function(group) {
+                var sectionName = window.t(group.section);
+                if (sectionName === group.section) sectionName = group.section.split('.').pop();
+                if (group.items === 'pinned') {
+                    if (pinned.length === 0) return;
+                    html += '<div class="nav-drawer-section">' + sectionName + '</div>';
+                    const allItems = [];
+                    DRAWER_TOOLS.forEach(function(g) {
+                        if (Array.isArray(g.items)) {
+                            g.items.forEach(function(item) { allItems.push(item); });
+                        }
+                    });
+                    pinned.forEach(function(toolId) {
+                        const item = allItems.find(function(it) { return it.page === toolId; });
+                        if (item) {
+                            const isActive = currentPage === item.page;
+                            var toolName = window.t('tools.' + item.page + '.name');
+                            if (toolName === 'tools.' + item.page + '.name') toolName = item.name;
+                            html += '<a class="nav-drawer-item' + (isActive ? ' active' : '') + '" href="' + item.url + '">' +
+                                '<i class="bi ' + item.icon + '"></i> ' + toolName + '</a>';
+                        }
+                    });
+                    html += '<div class="nav-drawer-divider"></div>';
+                    return;
+                }
+
+                html += '<div class="nav-drawer-section">' + sectionName + '</div>';
+                group.items.forEach(function(item) {
+                    const isActive = currentPage === item.page;
+                    var toolName = window.t('tools.' + item.page + '.name');
+                    if (toolName === 'tools.' + item.page + '.name') toolName = item.name;
+                    html += '<a class="nav-drawer-item' + (isActive ? ' active' : '') + '" href="' + item.url + '">' +
+                        '<i class="bi ' + item.icon + '"></i> ' + toolName + '</a>';
+                });
+            });
+
+            html += '<div class="nav-drawer-divider"></div>';
+            var allToolsLabel = window.t('drawer.all_tools');
+            if (allToolsLabel === 'drawer.all_tools') allToolsLabel = 'All Tools';
+            html += '<a class="nav-drawer-item" href="/"><i class="bi bi-grid-3x3-gap"></i> ' + allToolsLabel + '</a>';
+
+            body.innerHTML = html;
+        }
+
+        function openDrawer() {
+            renderDrawer();
+            backdrop.classList.add('show');
+            drawer.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            backdrop.classList.remove('show');
+            drawer.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        if (toggle) toggle.addEventListener('click', openDrawer);
+        if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+        backdrop.addEventListener('click', closeDrawer);
+
+        // Swipe to close
+        drawer.addEventListener('touchstart', function(e) {
+            touchStartX = e.touches[0].clientX;
+            isDragging = true;
+        }, { passive: true });
+
+        drawer.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            touchCurrentX = e.touches[0].clientX;
+            var diff = touchStartX - touchCurrentX;
+            if (diff > 0) {
+                drawer.style.transform = 'translateX(' + (-diff) + 'px)';
+                drawer.style.transition = 'none';
+            }
+        }, { passive: true });
+
+        drawer.addEventListener('touchend', function() {
+            if (!isDragging) return;
+            isDragging = false;
+            drawer.style.transition = '';
+            drawer.style.transform = '';
+            var diff = touchStartX - touchCurrentX;
+            if (diff > 80) {
+                closeDrawer();
+            }
+        });
+
+        // Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && drawer.classList.contains('open')) {
+                closeDrawer();
+            }
+        });
+
+        // Drawer footer buttons
+        document.getElementById('drawerSpotlight').addEventListener('click', function() {
+            closeDrawer();
+            setTimeout(function() {
+                document.getElementById('spotlightTrigger').click();
+            }, 300);
+        });
+
+        document.getElementById('drawerThemeBtn').addEventListener('click', function() {
+            var current = getThemePref();
+            var next = current === 'light' ? 'dark' : current === 'dark' ? 'auto' : 'light';
+            localStorage.setItem(THEME_KEY, next);
+            applyTheme(next);
+            var icon = this.querySelector('i');
+            icon.className = 'bi ' + (next === 'auto' ? 'bi-circle-half' : next === 'dark' ? 'bi-moon-fill' : 'bi-sun-fill');
+        });
+    })();
+
+    // ── Language Menu (i18n) ──
+    (function() {
+        var langMenu = document.getElementById('langMenu');
+        if (!langMenu || !window.i18n) return;
+
+        // Build language options using country flag images from flagcdn
+        var langs = window.i18n.languages;
+        langs.forEach(function(lang) {
+            var li = document.createElement('li');
+            li.innerHTML = '<a class="dropdown-item lang-option" href="#" data-lang="' + lang.code + '">' +
+                '<img src="https://flagcdn.com/16x12/' + lang.flag + '.png" width="16" height="12" alt="" style="vertical-align: -1px; margin-right: 6px;">' +
+                lang.name + '</a>';
+            langMenu.appendChild(li);
+        });
+
+        // Handle click
+        langMenu.addEventListener('click', function(e) {
+            var option = e.target.closest('.lang-option');
+            if (!option) return;
+            e.preventDefault();
+            window.i18n.setLanguage(option.dataset.lang);
+        });
+
+        // On language change, re-render nav overflow
+        window.addEventListener('devhelper-lang-change', function() {
+            adjustNavOverflow();
+        });
+
+        // On i18n ready, apply nav translations
+        window.addEventListener('devhelper-i18n-ready', function() {
+            adjustNavOverflow();
+        });
     })();
     </script>
     {{template "scripts" .}}

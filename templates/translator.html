@@ -1,0 +1,364 @@
+{{define "content"}}
+<style>
+    .translator-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Language bar */
+    .lang-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 0;
+    }
+    .lang-bar select {
+        flex: 1;
+        max-width: 260px;
+    }
+    .swap-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid var(--bs-border-color);
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    .swap-btn:hover {
+        background: var(--bs-primary);
+        color: #fff;
+        border-color: var(--bs-primary);
+        transform: rotate(180deg);
+    }
+
+    /* Panes */
+    .translator-panes {
+        display: flex;
+        gap: 16px;
+    }
+    .translator-pane {
+        flex: 1;
+        min-width: 0;
+    }
+    .pane-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 0;
+    }
+    .pane-header .lang-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--bs-secondary-color);
+    }
+    .pane-actions {
+        display: flex;
+        gap: 4px;
+    }
+    .pane-actions button {
+        border: none;
+        background: none;
+        color: var(--bs-secondary-color);
+        font-size: 0.8rem;
+        cursor: pointer;
+        padding: 3px 8px;
+        border-radius: 4px;
+    }
+    .pane-actions button:hover {
+        background: var(--bs-tertiary-bg);
+        color: var(--bs-body-color);
+    }
+    .translator-textarea {
+        width: 100%;
+        min-height: 260px;
+        resize: vertical;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 14px;
+        font-size: 1rem;
+        line-height: 1.6;
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        font-family: inherit;
+        outline: none;
+    }
+    .translator-textarea:focus {
+        border-color: var(--bs-primary);
+        box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+    }
+    .translator-textarea:read-only {
+        background: var(--bs-tertiary-bg);
+        cursor: default;
+    }
+    .translator-textarea:read-only:focus {
+        border-color: var(--bs-border-color);
+        box-shadow: none;
+    }
+    .pane-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4px 0;
+        font-size: 0.75rem;
+        color: var(--bs-secondary-color);
+    }
+
+    /* Translate button */
+    .translate-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 8px 0;
+    }
+
+    /* Status / model bar */
+    .translator-status {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        font-size: 0.78rem;
+        color: var(--bs-secondary-color);
+    }
+    .status-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 4px;
+    }
+    .status-dot.connected { background: #198754; }
+    .status-dot.disconnected { background: #dc3545; }
+    .status-dot.checking { background: #ffc107; }
+
+    /* Translating spinner */
+    .translating-overlay {
+        display: none;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(var(--bs-body-bg-rgb, 255,255,255), 0.7);
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+    }
+    .translating-overlay.show {
+        display: flex;
+    }
+
+    /* History */
+    .history-section {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .history-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        background: var(--bs-tertiary-bg);
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        user-select: none;
+    }
+    .history-header:hover {
+        background: var(--bs-secondary-bg);
+    }
+    .history-list {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .history-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 8px 12px;
+        border-top: 1px solid var(--bs-border-color);
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: background 0.1s;
+    }
+    .history-item:hover {
+        background: var(--bs-tertiary-bg);
+    }
+    .history-item .hist-source,
+    .history-item .hist-target {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .history-item .hist-arrow {
+        color: var(--bs-secondary-color);
+        flex-shrink: 0;
+    }
+    .history-item .hist-langs {
+        font-size: 0.7rem;
+        color: var(--bs-secondary-color);
+        white-space: nowrap;
+    }
+
+    @media (max-width: 767.98px) {
+        .translator-panes {
+            flex-direction: column;
+        }
+        .lang-bar select {
+            max-width: none;
+        }
+    }
+</style>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="mb-0"><i class="bi bi-translate"></i> Translator <i id="pinToggle" data-tool="translator" class="bi bi-star pin-star" onclick="togglePin('translator')"></i></h5>
+    <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-outline-secondary" id="settingsBtn" title="Settings">
+            <i class="bi bi-gear"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-secondary" id="clearAllBtn" title="Clear all">
+            <i class="bi bi-x-lg"></i> Clear
+        </button>
+    </div>
+</div>
+
+<div class="translator-wrapper">
+    <!-- Language selection bar -->
+    <div class="lang-bar">
+        <select class="form-select form-select-sm" id="sourceLang">
+            <option value="auto">Auto-Detect</option>
+        </select>
+        <button class="swap-btn" id="swapBtn" title="Swap languages">
+            <i class="bi bi-arrow-left-right"></i>
+        </button>
+        <select class="form-select form-select-sm" id="targetLang">
+        </select>
+    </div>
+
+    <!-- Two panes -->
+    <div class="translator-panes">
+        <!-- Source -->
+        <div class="translator-pane">
+            <div class="pane-header">
+                <span class="lang-label" id="sourceLangLabel">Source</span>
+                <div class="pane-actions">
+                    <button id="pasteBtn" title="Paste"><i class="bi bi-clipboard"></i></button>
+                    <button id="clearSourceBtn" title="Clear"><i class="bi bi-x-lg"></i></button>
+                </div>
+            </div>
+            <textarea class="translator-textarea" id="sourceText" placeholder="Enter text to translate..." spellcheck="false"></textarea>
+            <div class="pane-footer">
+                <span id="sourceCharCount">0 characters</span>
+                <span id="detectedLang"></span>
+            </div>
+        </div>
+
+        <!-- Target -->
+        <div class="translator-pane" style="position: relative;">
+            <div class="pane-header">
+                <span class="lang-label" id="targetLangLabel">Translation</span>
+                <div class="pane-actions">
+                    <button id="copyResultBtn" title="Copy"><i class="bi bi-clipboard"></i> Copy</button>
+                    <button id="listenBtn" title="Listen"><i class="bi bi-volume-up"></i></button>
+                </div>
+            </div>
+            <textarea class="translator-textarea" id="targetText" readonly placeholder="Translation will appear here..."></textarea>
+            <div class="translating-overlay" id="translatingOverlay">
+                <div class="spinner-border text-primary spinner-border-sm" role="status"></div>
+                <span class="ms-2 small text-muted">Translating...</span>
+            </div>
+            <div class="pane-footer">
+                <span id="targetCharCount">0 characters</span>
+                <span id="translationTime"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Translate button -->
+    <div class="translate-row">
+        <button class="btn btn-primary px-4" id="translateBtn">
+            <i class="bi bi-translate"></i> Translate
+        </button>
+        <div class="form-check form-check-inline ms-2">
+            <input class="form-check-input" type="checkbox" id="autoTranslate">
+            <label class="form-check-label small" for="autoTranslate">Auto-translate</label>
+        </div>
+    </div>
+
+    <!-- Status bar -->
+    <div class="translator-status mb-2">
+        <div>
+            <span class="status-dot checking" id="statusDot"></span>
+            <span id="statusText">Checking Ollama...</span>
+        </div>
+        <div>
+            Model: <select class="form-select form-select-sm d-inline-block" id="modelSelect" style="width: auto; min-width: 160px; font-size: 0.78rem; padding: 2px 8px; height: auto;">
+                <option value="">Loading...</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- History -->
+    <div class="history-section">
+        <div class="history-header" id="historyToggle">
+            <span><i class="bi bi-clock-history"></i> Recent Translations</span>
+            <div>
+                <button class="btn btn-sm p-0 border-0 text-secondary" id="clearHistoryBtn" title="Clear history" style="font-size: 0.75rem;">
+                    <i class="bi bi-trash3"></i>
+                </button>
+                <i class="bi bi-chevron-down ms-2" id="historyChevron"></i>
+            </div>
+        </div>
+        <div class="history-list" id="historyList" style="display: none;">
+        </div>
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header py-2">
+                <h6 class="modal-title"><i class="bi bi-gear"></i> Translator Settings</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold small">Ollama URL</label>
+                    <input type="text" class="form-control form-control-sm" id="settingsOllamaUrl" placeholder="http://localhost:11434">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold small">Recommended Models</label>
+                    <div class="small text-muted">
+                        <div><code>aya-expanse:8b</code> — Best multilingual accuracy</div>
+                        <div><code>gemma3:4b</code> — Faster, decent for common languages</div>
+                        <div><code>qwen2.5:7b</code> — Good for Asian languages</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-2">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary" id="saveSettingsBtn"><i class="bi bi-check-lg"></i> Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/translator.js"></script>
+{{end}}

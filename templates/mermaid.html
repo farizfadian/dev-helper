@@ -83,15 +83,18 @@
     }
 </style>
 
+<!-- Focus wrapper -->
+<div id="focusWrapper" class="focus-wrapper">
+
 <!-- Toolbar -->
-<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2 focus-toolbar">
     <h5 class="mb-0">
         <i class="bi bi-diagram-3"></i> Mermaid Diagram
         <i id="pinToggle" data-tool="mermaid" class="bi bi-star pin-star" onclick="togglePin('mermaid')"></i>
     </h5>
     <div class="d-flex gap-1 flex-wrap">
         <!-- Samples Dropdown -->
-        <div class="dropdown">
+        <div class="dropdown focus-hide">
             <button class="btn btn-sm btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
                 <i class="bi bi-lightning"></i> Samples
             </button>
@@ -110,13 +113,13 @@
                 <li><a class="dropdown-item" href="#" data-sample="timeline"><i class="bi bi-clock-history"></i> Timeline</a></li>
             </ul>
         </div>
-        <button class="btn btn-sm btn-outline-secondary" id="copyCodeBtn" title="Copy Mermaid code">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="copyCodeBtn" title="Copy Mermaid code">
             <i class="bi bi-clipboard"></i> Copy Code
         </button>
-        <button class="btn btn-sm btn-outline-secondary" id="copyImageBtn" title="Copy diagram as image">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="copyImageBtn" title="Copy diagram as image">
             <i class="bi bi-image"></i> Copy Image
         </button>
-        <div class="dropdown">
+        <div class="dropdown focus-hide">
             <button class="btn btn-sm btn-outline-success dropdown-toggle" data-bs-toggle="dropdown">
                 <i class="bi bi-download"></i> Download
             </button>
@@ -126,29 +129,32 @@
                 <li><a class="dropdown-item" href="#" id="downloadPng2x"><i class="bi bi-filetype-png"></i> PNG @2x (High-Res)</a></li>
             </ul>
         </div>
-        <button class="btn btn-sm btn-outline-secondary" id="shareBtn" title="Share via URL">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="shareBtn" title="Share via URL">
             <i class="bi bi-share"></i> Share
         </button>
-        <button class="btn btn-sm btn-outline-secondary" id="fullscreenBtn" title="Fullscreen preview">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="previewFsBtn" title="Fullscreen preview">
             <i class="bi bi-fullscreen"></i>
         </button>
-        <button class="btn btn-sm btn-outline-danger" id="clearBtn" title="Clear editor">
+        <button class="btn btn-sm btn-outline-danger focus-hide" id="clearBtn" title="Clear editor">
             <i class="bi bi-trash"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-primary" id="focusModeBtn" title="Expand (F11)">
+            <i class="bi bi-arrows-fullscreen"></i> Expand
         </button>
     </div>
 </div>
 
 <!-- Main Layout -->
-<div class="row g-3">
+<div class="row g-3 focus-grow">
     <!-- Editor -->
     <div class="col-lg-5">
-        <div class="editor-container">
-            <div id="monacoEditor"></div>
+        <div class="editor-container focus-fill">
+            <div id="monacoEditor" class="focus-fill"></div>
         </div>
     </div>
     <!-- Preview -->
     <div class="col-lg-7">
-        <div class="preview-panel" id="previewPanel">
+        <div class="preview-panel focus-fill" id="previewPanel">
             <div class="preview-placeholder">
                 <i class="bi bi-diagram-3" style="font-size: 3rem;"></i>
                 <p class="mt-2 mb-0">Select a sample or write Mermaid code</p>
@@ -158,10 +164,12 @@
 </div>
 
 <!-- Status bar -->
-<div class="d-flex justify-content-between mt-2">
+<div class="d-flex justify-content-between mt-2 focus-hide">
     <small id="statusMsg" class="text-muted"><i class="bi bi-info-circle"></i> Write Mermaid syntax on the left, preview updates live</small>
     <small class="text-muted">Powered by <a href="https://mermaid.js.org" target="_blank" class="text-decoration-none">Mermaid.js</a></small>
 </div>
+
+</div><!-- /focus-wrapper -->
 {{end}}
 
 {{define "scripts"}}

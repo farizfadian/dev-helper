@@ -6,83 +6,87 @@
         overflow: hidden;
     }
 </style>
-<div class="row">
-    <div class="col-12">
-        <!-- Header -->
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0"><i class="bi bi-braces"></i> Prettify <i id="pinToggle" data-tool="prettify" class="bi bi-star pin-star" onclick="togglePin('prettify')"></i></h4>
-            <div class="d-flex gap-2 align-items-center flex-wrap">
-                <!-- Format Selector -->
-                <div class="input-group input-group-sm" style="width: auto;">
-                    <span class="input-group-text">Format</span>
-                    <select id="formatSelect" class="form-select form-select-sm" style="min-width: 130px;">
-                        <option value="json" selected>JSON</option>
-                        <option value="xml">XML</option>
-                        <option value="html">HTML</option>
-                        <option value="css">CSS</option>
-                        <option value="javascript">JavaScript</option>
-                        <option value="typescript">TypeScript</option>
-                        <option value="sql">SQL</option>
-                        <option value="yaml">YAML</option>
-                        <option value="scss">SCSS</option>
-                        <option value="less">LESS</option>
-                    </select>
-                </div>
+<!-- Focus wrapper -->
+<div id="focusWrapper" class="focus-wrapper">
 
-                <!-- Indent -->
-                <div class="input-group input-group-sm" style="width: auto;">
-                    <span class="input-group-text">Indent</span>
-                    <select id="indentSelect" class="form-select form-select-sm">
-                        <option value="2" selected>2 spaces</option>
-                        <option value="4">4 spaces</option>
-                        <option value="tab">Tab</option>
-                    </select>
-                </div>
-
-                <!-- Actions -->
-                <button class="btn btn-sm btn-primary" id="prettifyBtn">
-                    <i class="bi bi-magic"></i> Prettify
-                </button>
-                <button class="btn btn-sm btn-outline-secondary" id="minifyBtn">
-                    <i class="bi bi-arrows-collapse"></i> Minify
-                </button>
-                <button class="btn btn-sm btn-outline-secondary" id="copyBtn">
-                    <i class="bi bi-clipboard"></i> Copy
-                </button>
-                <button class="btn btn-sm btn-outline-secondary" id="clearBtn">
-                    <i class="bi bi-x-lg"></i> Clear
-                </button>
-                <button class="btn btn-sm btn-outline-secondary" id="swapBtn" title="Copy output to input">
-                    <i class="bi bi-arrow-left-right"></i>
-                </button>
-                <button class="btn btn-sm btn-outline-secondary" id="openFileBtn" title="Open file">
-                    <i class="bi bi-folder2-open"></i>
-                </button>
-                <input type="file" id="fileInput" class="d-none">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3 focus-toolbar">
+        <h4 class="mb-0"><i class="bi bi-braces"></i> Prettify <i id="pinToggle" data-tool="prettify" class="bi bi-star pin-star" onclick="togglePin('prettify')"></i></h4>
+        <div class="d-flex gap-2 align-items-center flex-wrap">
+            <!-- Format Selector -->
+            <div class="input-group input-group-sm focus-hide" style="width: auto;">
+                <span class="input-group-text">Format</span>
+                <select id="formatSelect" class="form-select form-select-sm" style="min-width: 130px;">
+                    <option value="json" selected>JSON</option>
+                    <option value="xml">XML</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="typescript">TypeScript</option>
+                    <option value="sql">SQL</option>
+                    <option value="yaml">YAML</option>
+                    <option value="scss">SCSS</option>
+                    <option value="less">LESS</option>
+                </select>
             </div>
-        </div>
 
-        <!-- Drop zone -->
-        <div id="dropZone" class="border border-2 rounded text-center py-2 mb-2" style="border-style: dashed !important; border-color: var(--bs-border-color); cursor: pointer; color: var(--bs-secondary-color); font-size: 0.85rem; transition: all 0.15s ease;">
-            <i class="bi bi-file-earmark-arrow-up"></i> Drop or click to load file
-        </div>
-
-        <!-- Error bar -->
-        <div id="errorBar" class="alert alert-danger py-2 small d-none"></div>
-
-        <!-- Side by side Monaco editors -->
-        <div class="row g-3">
-            <div class="col-md-6">
-                <label class="form-label small text-muted">Input</label>
-                <div id="inputEditor" class="editor-pane" style="height: calc(100vh - 260px); min-height: 400px;"></div>
+            <!-- Indent -->
+            <div class="input-group input-group-sm focus-hide" style="width: auto;">
+                <span class="input-group-text">Indent</span>
+                <select id="indentSelect" class="form-select form-select-sm">
+                    <option value="2" selected>2 spaces</option>
+                    <option value="4">4 spaces</option>
+                    <option value="tab">Tab</option>
+                </select>
             </div>
-            <div class="col-md-6">
-                <label class="form-label small text-muted">Output</label>
-                <div id="outputEditor" class="editor-pane" style="height: calc(100vh - 260px); min-height: 400px;"></div>
-            </div>
+
+            <!-- Actions -->
+            <button class="btn btn-sm btn-primary focus-hide" id="prettifyBtn">
+                <i class="bi bi-magic"></i> Prettify
+            </button>
+            <button class="btn btn-sm btn-outline-secondary focus-hide" id="minifyBtn">
+                <i class="bi bi-arrows-collapse"></i> Minify
+            </button>
+            <button class="btn btn-sm btn-outline-secondary focus-hide" id="copyBtn">
+                <i class="bi bi-clipboard"></i> Copy
+            </button>
+            <button class="btn btn-sm btn-outline-secondary focus-hide" id="clearBtn">
+                <i class="bi bi-x-lg"></i> Clear
+            </button>
+            <button class="btn btn-sm btn-outline-secondary focus-hide" id="swapBtn" title="Copy output to input">
+                <i class="bi bi-arrow-left-right"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-secondary focus-hide" id="openFileBtn" title="Open file">
+                <i class="bi bi-folder2-open"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-primary" id="focusModeBtn" title="Expand (F11)">
+                <i class="bi bi-arrows-fullscreen"></i> Expand
+            </button>
+            <input type="file" id="fileInput" class="d-none">
         </div>
     </div>
-</div>
+
+    <!-- Drop zone -->
+    <div id="dropZone" class="border border-2 rounded text-center py-2 mb-2 focus-hide" style="border-style: dashed !important; border-color: var(--bs-border-color); cursor: pointer; color: var(--bs-secondary-color); font-size: 0.85rem; transition: all 0.15s ease;">
+        <i class="bi bi-file-earmark-arrow-up"></i> Drop or click to load file
+    </div>
+
+    <!-- Error bar -->
+    <div id="errorBar" class="alert alert-danger py-2 small d-none"></div>
+
+    <!-- Side by side Monaco editors -->
+    <div class="row g-3 focus-grow">
+        <div class="col-md-6">
+            <label class="form-label small text-muted focus-hide">Input</label>
+            <div id="inputEditor" class="editor-pane focus-fill" style="height: calc(100vh - 260px); min-height: 400px;"></div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label small text-muted focus-hide">Output</label>
+            <div id="outputEditor" class="editor-pane focus-fill" style="height: calc(100vh - 260px); min-height: 400px;"></div>
+        </div>
+    </div>
+
+</div><!-- /focus-wrapper -->
 {{end}}
 
 {{define "scripts"}}

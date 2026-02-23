@@ -12,6 +12,11 @@ function saveHistory(list) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Init Bootstrap tooltips
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function(el) {
+        new bootstrap.Tooltip(el);
+    });
+
     const dropZone = document.getElementById('dropZone');
     const fileInput = document.getElementById('fileInput');
     const uploadProgress = document.getElementById('uploadProgress');

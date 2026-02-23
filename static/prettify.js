@@ -236,6 +236,31 @@ require(['vs/editor/editor.main'], function () {
         reader.readAsText(file);
     }
 
+    // ── Focus mode ──
+    var LS_KEY_FOCUS = 'devhelper_prettify_fullscreen';
+    var focusWrapper = document.getElementById('focusWrapper');
+    var focusModeBtn = document.getElementById('focusModeBtn');
+    var isFocusMode = false;
+
+    function applyFocusMode(on) {
+        isFocusMode = on;
+        focusWrapper.classList.toggle('focus-active', on);
+        document.body.style.overflow = on ? 'hidden' : '';
+        focusModeBtn.innerHTML = on ? '<i class="bi bi-fullscreen-exit"></i> Exit' : '<i class="bi bi-arrows-fullscreen"></i> Expand';
+        focusModeBtn.title = on ? 'Exit expanded mode (Esc)' : 'Expand (F11)';
+        focusModeBtn.classList.toggle('btn-outline-warning', on);
+        focusModeBtn.classList.toggle('btn-outline-primary', !on);
+        localStorage.setItem(LS_KEY_FOCUS, on ? '1' : '0');
+        setTimeout(function () { inputEditor.layout(); outputEditor.layout(); }, 50);
+    }
+
+    if (localStorage.getItem(LS_KEY_FOCUS) === '1') applyFocusMode(true);
+    focusModeBtn.addEventListener('click', function () { applyFocusMode(!isFocusMode); });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && isFocusMode) { e.preventDefault(); applyFocusMode(false); }
+        if (e.key === 'F11') { e.preventDefault(); applyFocusMode(!isFocusMode); }
+    });
+
     // ── Focus input editor ──
     inputEditor.focus();
 

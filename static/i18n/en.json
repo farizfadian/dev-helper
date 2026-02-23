@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Copy",
+    "copied": "Copied!",
+    "clear": "Clear",
+    "save": "Save",
+    "saved": "Saved!",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "close": "Close",
+    "open": "Open",
+    "search": "Search",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Info",
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm",
+    "download": "Download",
+    "upload": "Upload",
+    "export": "Export",
+    "import": "Import",
+    "expand": "Expand",
+    "exit": "Exit",
+    "file": "File",
+    "settings": "Settings",
+    "none": "None",
+    "all": "All",
+    "reset": "Reset",
+    "apply": "Apply",
+    "preview": "Preview",
+    "source": "Source",
+    "result": "Result",
+    "input": "Input",
+    "output": "Output",
+    "generate": "Generate",
+    "encode": "Encode",
+    "decode": "Decode",
+    "paste": "Paste",
+    "swap": "Swap",
+    "back": "Back",
+    "next": "Next",
+    "samples": "Samples",
+    "history": "History",
+    "options": "Options",
+    "format": "Format",
+    "validate": "Validate",
+    "convert": "Convert",
+    "raw": "Raw",
+    "send": "Send",
+    "stop": "Stop",
+    "start": "Start",
+    "refresh": "Refresh",
+    "browse": "Browse",
+    "select": "Select",
+    "add": "Add",
+    "remove": "Remove",
+    "edit": "Edit",
+    "share": "Share",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "new": "New",
+    "text": "Text",
+    "type": "Type",
+    "size": "Size",
+    "name": "Name",
+    "value": "Value",
+    "status": "Status",
+    "actions": "Actions",
+    "description": "Description",
+    "category": "Category",
+    "tags": "Tags",
+    "language": "Language",
+    "title": "Title",
+    "content": "Content",
+    "count": "Count",
+    "length": "Length",
+    "total": "Total",
+    "or": "or",
+    "and": "and",
+    "no_data": "No data",
+    "no_results": "No results found",
+    "confirm_delete": "Are you sure you want to delete this?",
+    "drag_drop": "Drag & drop file here",
+    "processing": "Processing...",
+    "done": "Done",
+    "copied_to_clipboard": "Copied to clipboard!",
+    "failed_to_copy": "Failed to copy",
+    "keyboard_shortcuts": "Keyboard shortcuts",
+    "toggle_fullscreen": "Toggle fullscreen (F11)",
+    "exit_fullscreen": "Exit fullscreen (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Search",
+    "search_tools": "Search tools...",
+    "more": "More",
+    "all_tools": "All Tools",
+    "ask_ai": "Ask AI",
+    "cloud_ai": "Cloud AI",
+    "local_ai": "Local AI",
+    "language": "Language",
+    "pinned_to_navbar": "Pinned to navbar",
+    "unpinned_from_navbar": "Unpinned from navbar",
+    "pin_to_navbar": "Pin to navbar",
+    "unpin_from_navbar": "Unpin from navbar",
+    "open_navigation": "Open navigation"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "auto": "Auto",
+    "switch_theme": "Switch theme"
+  },
+  "spotlight": {
+    "placeholder": "Search tools...",
+    "no_results": "No tools found for \"{query}\"",
+    "navigate": "Navigate",
+    "open": "Open",
+    "close": "Close"
+  },
+  "drawer": {
+    "search": "Search",
+    "theme": "Theme",
+    "pinned": "Pinned",
+    "file_code": "File & Code",
+    "encode_decode": "Encode & Decode",
+    "converters": "Converters",
+    "generators": "Generators",
+    "tools_section": "Tools",
+    "logs_network": "Logs & Network",
+    "all_tools": "All Tools"
+  },
+  "footer": {
+    "made_by": "Made with ❤️ by"
+  },
+  "ai": {
+    "ask": "Ask",
+    "prompt_placeholder": "What would you like to ask?",
+    "enter_to_send": "Enter to send",
+    "shift_enter_newline": "Shift+Enter for new line",
+    "open_without_prompt": "Open without prompt",
+    "ollama_url": "Ollama URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Enter your Ollama web UI URL"
+  },
+  "dashboard": {
+    "search_placeholder": "Search tools...",
+    "pinned_tools": "Pinned Tools",
+    "all_tools": "All Tools",
+    "no_results": "No tools found matching your search.",
+    "open_source_toolkit": "Open source dev toolkit",
+    "tools_count": "{count} tools available"
+  },
+  "tools": {
+    "upload": {
+      "name": "Upload",
+      "desc": "Drag & drop, paste, or browse files to upload. Image preview with lightbox."
+    },
+    "files": {
+      "name": "File Explorer",
+      "desc": "Browse, search, and manage uploaded files in a Google Drive-like grid view."
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "Format & beautify JSON, XML, HTML, CSS, JavaScript, and SQL code."
+    },
+    "logs": {
+      "name": "Log Aggregator",
+      "desc": "Lightweight log collector. Receive logs from any app via HTTP POST, filter by app and level."
+    },
+    "logviewer": {
+      "name": "Log Viewer",
+      "desc": "Upload and search large log files with keyword filtering, regex, and context lines."
+    },
+    "editor": {
+      "name": "Code Editor",
+      "desc": "Full-featured code editor powered by Monaco (VS Code). Syntax highlighting for 40+ languages."
+    },
+    "markdown": {
+      "name": "Markdown Viewer",
+      "desc": "Write Markdown with live preview, syntax-highlighted code blocks, and GFM support."
+    },
+    "diff": {
+      "name": "Code Diff",
+      "desc": "Compare two code files side-by-side or inline with syntax-highlighted diff view."
+    },
+    "jwt": {
+      "name": "JWT Tool",
+      "desc": "Encode, decode, and verify JSON Web Tokens. Supports HS256/384/512 with color-coded display."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Encode and decode Base64 strings. Supports text and binary files with URL-safe option."
+    },
+    "urlencoder": {
+      "name": "URL Encoder",
+      "desc": "Encode and decode URLs and query parameters. URL parser shows protocol, host, path, and params."
+    },
+    "htmleditor": {
+      "name": "HTML Editor",
+      "desc": "Rich text WYSIWYG editor powered by TinyMCE with HTML source code view toggle."
+    },
+    "mermaid": {
+      "name": "Mermaid Diagram",
+      "desc": "Create flowcharts, sequence diagrams, ER diagrams, Gantt charts, and more with Mermaid.js live preview."
+    },
+    "uuid": {
+      "name": "UUID Generator",
+      "desc": "Generate UUID v1, v4, and v7. Bulk generate, validate, parse, and copy with format options."
+    },
+    "notes": {
+      "name": "Notes",
+      "desc": "Markdown notes with live preview, tags, categories, color labels, attachments, and auto-save."
+    },
+    "regex": {
+      "name": "Regex Tester",
+      "desc": "Test regex patterns with real-time match highlighting, capture groups, replace, and cheat sheet."
+    },
+    "charmap": {
+      "name": "Emoji & CharMap",
+      "desc": "Search and copy emojis, symbols, and special characters. Unicode details, HTML entities, and recently used."
+    },
+    "epoch": {
+      "name": "Epoch Converter",
+      "desc": "Convert Unix epoch timestamps to human-readable dates and vice versa. Live clock, presets, and time diff calculator."
+    },
+    "hash": {
+      "name": "Hash Generator",
+      "desc": "Generate MD5, SHA-1, SHA-256, SHA-512 hashes from text or files. Verify checksums instantly."
+    },
+    "colorpicker": {
+      "name": "Color Picker",
+      "desc": "Pick colors and convert between HEX, RGB, HSL formats. Color palette and contrast checker."
+    },
+    "cron": {
+      "name": "Cron Parser",
+      "desc": "Parse and generate cron expressions with human-readable descriptions and next run times."
+    },
+    "password": {
+      "name": "Password Generator",
+      "desc": "Generate cryptographically secure random passwords and memorable passphrases."
+    },
+    "qrcode": {
+      "name": "QR Code Generator",
+      "desc": "Generate QR codes from text, URLs, WiFi credentials, or contact info. Download as PNG."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Generate placeholder text — paragraphs, sentences, or words. Multiple styles available."
+    },
+    "baseconverter": {
+      "name": "Base Converter",
+      "desc": "Convert numbers between Binary, Octal, Decimal, and Hexadecimal bases in real-time."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Convert between JSON and YAML formats with syntax validation and formatting."
+    },
+    "httpclient": {
+      "name": "HTTP Client",
+      "desc": "Test API endpoints like a mini Postman. Custom methods, headers, body, and response viewer."
+    },
+    "stringutils": {
+      "name": "String Utilities",
+      "desc": "Case converter, trim, count, reverse, slug generator, and more string operations."
+    },
+    "chat": {
+      "name": "LAN Chat",
+      "desc": "Real-time chat for your local network. No internet needed — just Dev Helper on LAN."
+    },
+    "netscan": {
+      "name": "Network Scanner",
+      "desc": "Scan LAN hosts and ports. Discover devices, services, and open ports on your network."
+    },
+    "worldclock": {
+      "name": "World Clock",
+      "desc": "Multi-timezone clocks with analog display, meeting planner, and drag reorder."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Extract text from images and screenshots. Drag, paste, or upload — powered by Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Convert between application.yml and application.properties for Java/Spring Boot projects."
+    },
+    "netinspect": {
+      "name": "Network Inspector",
+      "desc": "IP geolocation, DNS lookup, HTTP response headers, and SSL certificate checker."
+    },
+    "aichat": {
+      "name": "AI Chat",
+      "desc": "Chat with local Ollama AI models. Streaming responses, markdown rendering, conversation history."
+    },
+    "speedtest": {
+      "name": "Speed Test",
+      "desc": "Test network download/upload speed, ping latency, and disk read/write performance."
+    },
+    "snippets": {
+      "name": "Code Snippets",
+      "desc": "Save and organize frequently used code snippets with syntax highlighting and quick copy."
+    },
+    "sysmon": {
+      "name": "System Monitor",
+      "desc": "Real-time CPU, memory, disk, network, and process monitoring with live gauges."
+    },
+    "icons": {
+      "name": "Icon Explorer",
+      "desc": "Browse and search Bootstrap Icons, Font Awesome, and Tabler Icons. Click to copy CSS class or HTML."
+    },
+    "askai": {
+      "name": "Ask AI",
+      "desc": "Quick access to 9 cloud AIs (Claude, ChatGPT, Gemini, etc.) and Ollama from the navbar."
+    },
+    "translator": {
+      "name": "Translator",
+      "desc": "Translate text between languages using local Ollama AI models. Like Google Translate, offline."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Drag & Drop Files Here",
+    "drop_or_browse": "or click to browse",
+    "paste_hint": "You can also paste from clipboard (Ctrl+V)",
+    "recent_uploads": "Recent Uploads",
+    "clear_recent": "Clear Recent",
+    "copy_url": "Copy URL",
+    "open_new_tab": "Open in New Tab",
+    "file_uploaded": "File uploaded successfully",
+    "upload_failed": "Upload failed"
+  },
+  "files_page": {
+    "search_placeholder": "Search files...",
+    "grid_view": "Grid",
+    "list_view": "List",
+    "delete_all": "Delete All",
+    "confirm_delete_all": "Are you sure you want to delete all files?",
+    "no_files": "No files found",
+    "file_deleted": "File deleted",
+    "download": "Download",
+    "file_size": "Size",
+    "file_date": "Date"
+  },
+  "prettify_page": {
+    "input_label": "Input",
+    "output_label": "Output",
+    "prettify": "Prettify",
+    "minify": "Minify",
+    "paste_placeholder": "Paste or type code here...",
+    "auto_detect": "Auto-Detect",
+    "copy_output": "Copy Output"
+  },
+  "logs_page": {
+    "app": "App",
+    "level": "Level",
+    "search_placeholder": "Search logs...",
+    "clear_logs": "Clear Logs",
+    "auto_scroll": "Auto-scroll",
+    "no_logs": "No logs found",
+    "all_apps": "All Apps",
+    "all_levels": "All Levels",
+    "timestamp": "Timestamp",
+    "message": "Message"
+  },
+  "logviewer_page": {
+    "upload_log": "Upload Log File",
+    "search_placeholder": "Search keyword or regex...",
+    "use_regex": "Regex",
+    "case_sensitive": "Case Sensitive",
+    "context_lines": "Context Lines",
+    "showing_lines": "Showing {shown} of {total} lines",
+    "no_matches": "No matches found",
+    "line": "Line"
+  },
+  "editor_page": {
+    "new_file": "New",
+    "open_file": "Open File",
+    "save_file": "Save",
+    "word_wrap": "Word Wrap",
+    "minimap": "Minimap",
+    "line": "Line",
+    "column": "Col",
+    "language": "Language",
+    "fetch_url": "Fetch from URL",
+    "url_placeholder": "Enter URL to fetch file..."
+  },
+  "markdown_page": {
+    "samples": "Samples",
+    "open_file": "Open File",
+    "copy_html": "Copy HTML",
+    "export": "Export",
+    "export_pdf": "Export to PDF",
+    "export_md": "Export to Markdown",
+    "export_html": "Export to HTML",
+    "clear": "Clear",
+    "expand": "Expand",
+    "editor_label": "Markdown",
+    "preview_label": "Preview",
+    "drop_zone": "Drag & drop a Markdown file here, or click to browse",
+    "url_placeholder": "Enter URL to fetch .md file",
+    "fetch": "Fetch",
+    "html_copied": "HTML copied!",
+    "readme": "README",
+    "api_docs": "API Documentation",
+    "changelog": "Changelog",
+    "blog_post": "Blog Post",
+    "cheatsheet": "Markdown Cheatsheet",
+    "meeting_notes": "Meeting Notes",
+    "project_todo": "Project TODO"
+  },
+  "diff_page": {
+    "original": "Original",
+    "modified": "Modified",
+    "side_by_side": "Side by Side",
+    "inline": "Inline",
+    "open_file": "Open File",
+    "paste_code": "Paste code here...",
+    "swap": "Swap",
+    "no_differences": "No differences found"
+  },
+  "jwt_page": {
+    "header": "Header",
+    "payload": "Payload",
+    "signature": "Signature",
+    "secret": "Secret Key",
+    "algorithm": "Algorithm",
+    "encode": "Encode",
+    "decode": "Decode",
+    "verify": "Verify",
+    "valid_signature": "Valid signature",
+    "invalid_signature": "Invalid signature",
+    "paste_jwt": "Paste JWT token here..."
+  },
+  "base64_page": {
+    "text_mode": "Text",
+    "file_mode": "File",
+    "url_safe": "URL-safe",
+    "line_breaks": "Line breaks",
+    "input_placeholder": "Enter text to encode/decode...",
+    "drop_file": "Drop file here or click to browse",
+    "download_result": "Download Result"
+  },
+  "urlencoder_page": {
+    "component_mode": "Component",
+    "full_url_mode": "Full URL",
+    "url_parser": "URL Parser",
+    "protocol": "Protocol",
+    "host": "Host",
+    "path": "Path",
+    "params": "Parameters",
+    "input_placeholder": "Enter URL or text to encode/decode..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Source Code",
+    "import_html": "Import HTML",
+    "export_html": "Export HTML",
+    "clear": "Clear"
+  },
+  "mermaid_page": {
+    "samples": "Samples",
+    "download_svg": "Download SVG",
+    "download_png": "Download PNG",
+    "share": "Share",
+    "zoom_in": "Zoom In",
+    "zoom_out": "Zoom Out",
+    "reset_zoom": "Reset Zoom",
+    "diagram_label": "Mermaid Code",
+    "preview_label": "Preview",
+    "link_copied": "Share link copied!",
+    "flowchart": "Flowchart",
+    "sequence": "Sequence Diagram",
+    "class_diagram": "Class Diagram",
+    "state": "State Diagram",
+    "er": "ER Diagram",
+    "gantt": "Gantt Chart",
+    "pie": "Pie Chart",
+    "mindmap": "Mindmap",
+    "timeline": "Timeline",
+    "quadrant": "Quadrant Chart",
+    "git": "Git Graph",
+    "sankey": "Sankey Diagram"
+  },
+  "uuid_page": {
+    "version": "Version",
+    "bulk_generate": "Bulk Generate",
+    "validate_parse": "Validate & Parse",
+    "count": "Count",
+    "uppercase": "Uppercase",
+    "braces": "Braces",
+    "hyphens": "Hyphens",
+    "copy_all": "Copy All",
+    "generated": "Generated",
+    "valid_uuid": "Valid UUID",
+    "invalid_uuid": "Invalid UUID",
+    "uuid_version": "Version",
+    "uuid_variant": "Variant",
+    "uuid_timestamp": "Timestamp"
+  },
+  "notes_page": {
+    "new_note": "New Note",
+    "search_placeholder": "Search notes...",
+    "categories": "Categories",
+    "all_notes": "All Notes",
+    "pinned": "Pinned",
+    "trash": "Trash",
+    "restore": "Restore",
+    "permanent_delete": "Permanently Delete",
+    "note_saved": "Note saved",
+    "note_deleted": "Note moved to trash",
+    "untitled": "Untitled Note",
+    "attachments": "Attachments",
+    "color_label": "Color Label",
+    "sort_by": "Sort by",
+    "date_modified": "Date Modified",
+    "date_created": "Date Created"
+  },
+  "regex_page": {
+    "pattern": "Pattern",
+    "test_string": "Test String",
+    "flags": "Flags",
+    "matches": "Matches",
+    "replace": "Replace",
+    "replacement": "Replacement",
+    "cheat_sheet": "Cheat Sheet",
+    "common_patterns": "Common Patterns",
+    "no_matches": "No matches",
+    "match_count": "{count} matches found",
+    "global": "Global",
+    "case_insensitive": "Case Insensitive",
+    "multiline": "Multiline"
+  },
+  "charmap_page": {
+    "search_placeholder": "Search emoji or character...",
+    "recently_used": "Recently Used",
+    "unicode": "Unicode",
+    "html_entity": "HTML Entity",
+    "css_code": "CSS Code",
+    "copy_char": "Click to copy",
+    "smileys": "Smileys & People",
+    "animals": "Animals & Nature",
+    "food": "Food & Drink",
+    "activities": "Activities",
+    "travel": "Travel & Places",
+    "objects": "Objects",
+    "symbols": "Symbols",
+    "flags": "Flags",
+    "arrows": "Arrows",
+    "math": "Math",
+    "currency": "Currency",
+    "latin": "Latin Extended"
+  },
+  "epoch_page": {
+    "timestamp": "Timestamp",
+    "date_time": "Date & Time",
+    "now": "Now",
+    "seconds": "Seconds",
+    "milliseconds": "Milliseconds",
+    "local_time": "Local Time",
+    "utc_time": "UTC Time",
+    "relative": "Relative",
+    "time_diff": "Time Difference",
+    "presets": "Presets",
+    "live_clock": "Live Clock"
+  },
+  "hash_page": {
+    "text_input": "Text Input",
+    "file_input": "File Input",
+    "compare": "Compare Hashes",
+    "hash_match": "Hashes match!",
+    "hash_mismatch": "Hashes do not match",
+    "drop_file": "Drop file to hash...",
+    "computing": "Computing hash..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Contrast Check",
+    "foreground": "Foreground",
+    "background": "Background",
+    "ratio": "Ratio",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Pass",
+    "fail": "Fail",
+    "palette": "Palette",
+    "shades": "Shades",
+    "tints": "Tints",
+    "pick_color": "Pick Color",
+    "eyedropper": "EyeDropper"
+  },
+  "cron_page": {
+    "expression": "Expression",
+    "description_label": "Description",
+    "next_runs": "Next Runs",
+    "presets": "Presets",
+    "minute": "Minute",
+    "hour": "Hour",
+    "day_month": "Day (Month)",
+    "month": "Month",
+    "day_week": "Day (Week)",
+    "every_minute": "Every minute",
+    "every_hour": "Every hour",
+    "every_day": "Every day at midnight",
+    "share": "Share"
+  },
+  "password_page": {
+    "password": "Password",
+    "passphrase": "Passphrase",
+    "length": "Length",
+    "uppercase": "Uppercase (A-Z)",
+    "lowercase": "Lowercase (a-z)",
+    "numbers": "Numbers (0-9)",
+    "symbols": "Symbols (!@#$...)",
+    "word_count": "Word Count",
+    "separator": "Separator",
+    "strength": "Strength",
+    "entropy": "Entropy",
+    "very_weak": "Very Weak",
+    "weak": "Weak",
+    "fair": "Fair",
+    "strong": "Strong",
+    "very_strong": "Very Strong",
+    "bulk_generate": "Bulk Generate",
+    "generate_count": "Count"
+  },
+  "qrcode_page": {
+    "text_url": "Text / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Enter text or URL...",
+    "network_name": "Network Name (SSID)",
+    "wifi_password": "Password",
+    "encryption": "Encryption",
+    "hidden_network": "Hidden Network",
+    "full_name": "Full Name",
+    "phone": "Phone",
+    "email": "Email",
+    "organization": "Organization",
+    "error_correction": "Error Correction",
+    "foreground_color": "Foreground",
+    "background_color": "Background",
+    "download_png": "Download PNG",
+    "download_svg": "Download SVG",
+    "copy_image": "Copy Image"
+  },
+  "lorem_page": {
+    "paragraphs": "Paragraphs",
+    "sentences": "Sentences",
+    "words": "Words",
+    "style": "Style",
+    "classic": "Classic",
+    "hipster": "Hipster",
+    "tech": "Tech / Dev",
+    "include_html": "Include HTML tags",
+    "start_lorem": "Start with \"Lorem ipsum...\"",
+    "generated_text": "Generated Text",
+    "copy_text": "Copy Text"
+  },
+  "baseconverter_page": {
+    "binary": "Binary",
+    "octal": "Octal",
+    "decimal": "Decimal",
+    "hexadecimal": "Hexadecimal",
+    "bit_visualization": "Bit Visualization",
+    "signed": "Signed",
+    "unsigned": "Unsigned",
+    "twos_complement": "Two's Complement"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Prettify",
+    "minify": "Minify",
+    "import_file": "Import File",
+    "invalid_json": "Invalid JSON",
+    "invalid_yaml": "Invalid YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "Enter request URL...",
+    "method": "Method",
+    "headers": "Headers",
+    "body": "Body",
+    "auth": "Auth",
+    "params": "Params",
+    "response": "Response",
+    "status_code": "Status",
+    "response_time": "Time",
+    "response_size": "Size",
+    "send_request": "Send",
+    "clear_history": "Clear History",
+    "no_auth": "No Auth",
+    "basic_auth": "Basic Auth",
+    "bearer_token": "Bearer Token",
+    "username": "Username",
+    "token": "Token",
+    "key": "Key",
+    "add_header": "Add Header",
+    "add_param": "Add Parameter"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Enter text here...",
+    "operations": "Operations",
+    "case_conversion": "Case Conversion",
+    "text_cleanup": "Text Cleanup",
+    "text_transform": "Text Transform",
+    "encode_decode": "Encode / Decode",
+    "extract_info": "Extract Info",
+    "uppercase": "UPPERCASE",
+    "lowercase": "lowercase",
+    "title_case": "Title Case",
+    "sentence_case": "Sentence case",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Characters",
+    "word_count": "Words",
+    "line_count": "Lines"
+  },
+  "chat_page": {
+    "username_placeholder": "Enter your name...",
+    "message_placeholder": "Type a message...",
+    "join": "Join",
+    "online_users": "Online Users",
+    "user_joined": "{user} joined the chat",
+    "user_left": "{user} left the chat"
+  },
+  "netscan_page": {
+    "interface": "Interface",
+    "target": "Target",
+    "ports": "Ports",
+    "scan": "Scan",
+    "scanning": "Scanning...",
+    "open_ports": "Open Ports",
+    "host": "Host",
+    "port": "Port",
+    "service": "Service",
+    "scan_complete": "Scan complete",
+    "common_ports": "Common Ports",
+    "custom_range": "Custom Range"
+  },
+  "worldclock_page": {
+    "add_clock": "Add Clock",
+    "your_local_time": "Your Local Time",
+    "meeting_planner": "Meeting Planner",
+    "timezone": "Timezone",
+    "search_timezone": "Search timezone...",
+    "remove_clock": "Remove"
+  },
+  "ocr_page": {
+    "upload_image": "Upload Image",
+    "paste_image": "Paste Image",
+    "drop_image": "Drag & drop an image here",
+    "extract_text": "Extract Text",
+    "extracted_text": "Extracted Text",
+    "copy_result": "Copy Result",
+    "recognizing": "Recognizing text...",
+    "no_text_found": "No text found in image",
+    "supported_formats": "Supported: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Import File",
+    "download_result": "Download"
+  },
+  "aichat_page": {
+    "model": "Model",
+    "no_models": "No models found. Is Ollama running?",
+    "message_placeholder": "Type your message...",
+    "clear_chat": "Clear Chat",
+    "thinking": "Thinking...",
+    "ollama_not_running": "Cannot connect to Ollama",
+    "connection_error": "Connection error"
+  },
+  "speedtest_page": {
+    "start_test": "Start Test",
+    "ping": "Ping",
+    "download_speed": "Download",
+    "upload_speed": "Upload",
+    "disk_speed": "Disk",
+    "latency": "Latency",
+    "read_speed": "Read",
+    "write_speed": "Write",
+    "testing": "Testing...",
+    "test_complete": "Test complete"
+  },
+  "snippets_page": {
+    "new_snippet": "New Snippet",
+    "search_placeholder": "Search snippets...",
+    "title_placeholder": "Snippet title...",
+    "desc_placeholder": "Description (optional)",
+    "tags_placeholder": "Tags (comma separated)",
+    "save_snippet": "Save",
+    "delete_snippet": "Delete",
+    "copy_code": "Copy Code",
+    "language": "Language",
+    "default_loaded": "Default snippets loaded",
+    "snippet_saved": "Snippet saved",
+    "snippet_deleted": "Snippet deleted",
+    "code_copied": "Code copied!",
+    "no_snippets": "No snippets found",
+    "pinned": "Pinned",
+    "all_snippets": "All Snippets"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Memory",
+    "disk": "Disk",
+    "network": "Network",
+    "processes": "Processes",
+    "usage": "Usage",
+    "total": "Total",
+    "used": "Used",
+    "free": "Free",
+    "available": "Available",
+    "cores": "Cores",
+    "uptime": "Uptime",
+    "pid": "PID",
+    "process_name": "Name",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Memory %",
+    "connecting": "Connecting...",
+    "disconnected": "Disconnected",
+    "bytes_sent": "Sent",
+    "bytes_recv": "Received",
+    "read_speed": "Read",
+    "write_speed": "Write"
+  },
+  "icons_page": {
+    "search_placeholder": "Search icons...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "All",
+    "recently_used": "Recently Used",
+    "class_name": "Class",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Copy Class",
+    "copy_html": "Copy HTML",
+    "icon_count": "{count} icons",
+    "loading_icons": "Loading icons...",
+    "click_to_view": "Click an icon to view details"
+  },
+  "netinspect_page": {
+    "my_ip": "My IP",
+    "ip_lookup": "IP Lookup",
+    "dns_lookup": "DNS Lookup",
+    "http_headers": "HTTP Headers",
+    "ssl_cert": "SSL Certificate",
+    "lookup": "Lookup",
+    "check": "Check",
+    "ip_placeholder": "Enter IP address...",
+    "domain_placeholder": "Enter domain name...",
+    "url_placeholder": "Enter URL...",
+    "location": "Location",
+    "isp": "ISP",
+    "record_type": "Record Type",
+    "issuer": "Issuer",
+    "valid_from": "Valid From",
+    "valid_until": "Valid Until",
+    "subject": "Subject"
+  },
+  "translator_page": {
+    "source_lang": "Source Language",
+    "target_lang": "Target Language",
+    "auto_detect": "Auto-Detect",
+    "translate": "Translate",
+    "translating": "Translating...",
+    "swap_languages": "Swap Languages",
+    "input_placeholder": "Enter text to translate...",
+    "model": "Model",
+    "copy_translation": "Copy Translation",
+    "translation_copied": "Translation copied!",
+    "clear_all": "Clear All",
+    "char_count": "{count} characters"
+  }
+}

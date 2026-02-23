@@ -1,0 +1,257 @@
+{{define "content"}}
+<style>
+    .base-input {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+    }
+    .base-prefix {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-weight: 600;
+        min-width: 32px;
+        text-align: center;
+    }
+    .bit-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
+        justify-content: center;
+    }
+    .bit-square {
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.7rem;
+        font-weight: 600;
+        border-radius: 3px;
+        border: 1px solid var(--bs-border-color);
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .bit-square.bit-1 {
+        background: #0d6efd;
+        color: #fff;
+        border-color: #0d6efd;
+    }
+    .bit-square.bit-0 {
+        background: var(--bs-tertiary-bg);
+        color: var(--bs-secondary-color);
+    }
+    .bit-separator {
+        width: 6px;
+        height: 24px;
+        display: inline-block;
+    }
+    .bit-index {
+        font-size: 0.55rem;
+        color: var(--bs-secondary-color);
+        text-align: center;
+        width: 24px;
+    }
+    .bit-index-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
+        justify-content: center;
+    }
+    .bit-index-sep {
+        width: 6px;
+        height: 12px;
+        display: inline-block;
+    }
+    .quick-values .btn {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.75rem;
+        padding: 2px 8px;
+    }
+    .error-msg {
+        font-size: 0.8rem;
+    }
+    .twos-complement-info {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+    }
+</style>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-123" style="color: #009688;"></i> Number Base Converter
+        <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="baseconverter" onclick="togglePin('baseconverter')" title="Pin to navbar"></i>
+    </h5>
+    <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-danger" id="clearBtn" title="Clear all fields">
+            <i class="bi bi-trash"></i> Clear
+        </button>
+    </div>
+</div>
+
+<!-- Error Display -->
+<div id="errorMsg" class="alert alert-danger py-2 small d-none error-msg mb-3">
+    <i class="bi bi-exclamation-triangle"></i> <span id="errorText"></span>
+</div>
+
+<!-- Base Input Cards -->
+<div class="row g-3 mb-3">
+    <!-- Binary -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body py-2">
+                <div class="d-flex align-items-center gap-2">
+                    <label class="form-label mb-0 fw-semibold small text-nowrap" style="min-width: 100px;">
+                        <i class="bi bi-0-circle"></i> Binary
+                        <span class="text-muted">(base 2)</span>
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text base-prefix">0b</span>
+                        <input type="text" id="binaryInput" class="form-control base-input" placeholder="e.g. 10101010" data-base="2" autocomplete="off" spellcheck="false">
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary copy-btn flex-shrink-0" data-target="binaryInput" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Octal -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body py-2">
+                <div class="d-flex align-items-center gap-2">
+                    <label class="form-label mb-0 fw-semibold small text-nowrap" style="min-width: 100px;">
+                        <i class="bi bi-8-circle"></i> Octal
+                        <span class="text-muted">(base 8)</span>
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text base-prefix">0o</span>
+                        <input type="text" id="octalInput" class="form-control base-input" placeholder="e.g. 252" data-base="8" autocomplete="off" spellcheck="false">
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary copy-btn flex-shrink-0" data-target="octalInput" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decimal -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body py-2">
+                <div class="d-flex align-items-center gap-2">
+                    <label class="form-label mb-0 fw-semibold small text-nowrap" style="min-width: 100px;">
+                        <i class="bi bi-hash"></i> Decimal
+                        <span class="text-muted">(base 10)</span>
+                    </label>
+                    <div class="input-group">
+                        <input type="text" id="decimalInput" class="form-control base-input" placeholder="e.g. 170" data-base="10" autocomplete="off" spellcheck="false">
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary copy-btn flex-shrink-0" data-target="decimalInput" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hexadecimal -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body py-2">
+                <div class="d-flex align-items-center gap-2">
+                    <label class="form-label mb-0 fw-semibold small text-nowrap" style="min-width: 100px;">
+                        <i class="bi bi-hexagon"></i> Hex
+                        <span class="text-muted">(base 16)</span>
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text base-prefix">0x</span>
+                        <input type="text" id="hexInput" class="form-control base-input" placeholder="e.g. AA" data-base="16" autocomplete="off" spellcheck="false">
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary copy-btn flex-shrink-0" data-target="hexInput" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Values -->
+<div class="card mb-3">
+    <div class="card-header py-2">
+        <span class="fw-semibold small"><i class="bi bi-lightning"></i> Quick Values</span>
+    </div>
+    <div class="card-body py-2 quick-values">
+        <div class="d-flex flex-wrap gap-1">
+            <button class="btn btn-outline-secondary" data-value="0">0</button>
+            <button class="btn btn-outline-secondary" data-value="1">1</button>
+            <button class="btn btn-outline-secondary" data-value="42">42</button>
+            <button class="btn btn-outline-secondary" data-value="127">127</button>
+            <button class="btn btn-outline-secondary" data-value="128">128</button>
+            <button class="btn btn-outline-secondary" data-value="255">255</button>
+            <button class="btn btn-outline-secondary" data-value="256">256</button>
+            <button class="btn btn-outline-secondary" data-value="512">512</button>
+            <button class="btn btn-outline-secondary" data-value="1024">1024</button>
+            <button class="btn btn-outline-secondary" data-value="4096">4096</button>
+            <button class="btn btn-outline-secondary" data-value="32767">32767</button>
+            <button class="btn btn-outline-secondary" data-value="32768">32768</button>
+            <button class="btn btn-outline-secondary" data-value="65535">65535</button>
+            <button class="btn btn-outline-secondary" data-value="65536">65536</button>
+            <button class="btn btn-outline-secondary" data-value="16777215">16777215</button>
+            <button class="btn btn-outline-secondary" data-value="2147483647">2^31-1</button>
+            <button class="btn btn-outline-secondary" data-value="4294967295">2^32-1</button>
+            <button class="btn btn-outline-secondary" data-value="-1">-1</button>
+            <button class="btn btn-outline-secondary" data-value="-128">-128</button>
+            <button class="btn btn-outline-secondary" data-value="-32768">-32768</button>
+        </div>
+    </div>
+</div>
+
+<!-- Bit Visualization -->
+<div class="card mb-3">
+    <div class="card-header py-2 d-flex justify-content-between align-items-center">
+        <span class="fw-semibold small"><i class="bi bi-grid-3x3"></i> Bit Visualization</span>
+        <div class="d-flex gap-2 align-items-center">
+            <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input" type="radio" name="bitWidth" id="bit8" value="8">
+                <label class="form-check-label small" for="bit8">8-bit</label>
+            </div>
+            <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input" type="radio" name="bitWidth" id="bit16" value="16">
+                <label class="form-check-label small" for="bit16">16-bit</label>
+            </div>
+            <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input" type="radio" name="bitWidth" id="bit32" value="32" checked>
+                <label class="form-check-label small" for="bit32">32-bit</label>
+            </div>
+            <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input" type="radio" name="bitWidth" id="bit64" value="64">
+                <label class="form-check-label small" for="bit64">64-bit</label>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="bitGrid" class="bit-grid mb-1">
+            <!-- Filled by JS -->
+        </div>
+        <div id="bitIndexRow" class="bit-index-row mb-2">
+            <!-- Filled by JS -->
+        </div>
+        <div id="twosComplementInfo" class="text-center twos-complement-info d-none">
+            <!-- Two's complement info for negative numbers -->
+        </div>
+    </div>
+</div>
+
+<!-- Info -->
+<div class="text-center">
+    <small id="infoText" class="text-muted"></small>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/baseconverter.js"></script>
+{{end}}

@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "clear": "Leeren",
+    "save": "Speichern",
+    "saved": "Gespeichert!",
+    "delete": "Löschen",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "open": "Öffnen",
+    "search": "Suchen",
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "warning": "Warnung",
+    "info": "Info",
+    "yes": "Ja",
+    "no": "Nein",
+    "confirm": "Bestätigen",
+    "download": "Herunterladen",
+    "upload": "Hochladen",
+    "export": "Exportieren",
+    "import": "Importieren",
+    "expand": "Erweitern",
+    "exit": "Beenden",
+    "file": "Datei",
+    "settings": "Einstellungen",
+    "none": "Keine",
+    "all": "Alle",
+    "reset": "Zurücksetzen",
+    "apply": "Anwenden",
+    "preview": "Vorschau",
+    "source": "Quelle",
+    "result": "Ergebnis",
+    "input": "Eingabe",
+    "output": "Ausgabe",
+    "generate": "Generieren",
+    "encode": "Kodieren",
+    "decode": "Dekodieren",
+    "paste": "Einfügen",
+    "swap": "Tauschen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "samples": "Beispiele",
+    "history": "Verlauf",
+    "options": "Optionen",
+    "format": "Formatieren",
+    "validate": "Validieren",
+    "convert": "Konvertieren",
+    "raw": "Roh",
+    "send": "Senden",
+    "stop": "Stoppen",
+    "start": "Starten",
+    "refresh": "Aktualisieren",
+    "browse": "Durchsuchen",
+    "select": "Auswählen",
+    "add": "Hinzufügen",
+    "remove": "Entfernen",
+    "edit": "Bearbeiten",
+    "share": "Teilen",
+    "pin": "Anheften",
+    "unpin": "Loslösen",
+    "new": "Neu",
+    "text": "Text",
+    "type": "Typ",
+    "size": "Größe",
+    "name": "Name",
+    "value": "Wert",
+    "status": "Status",
+    "actions": "Aktionen",
+    "description": "Beschreibung",
+    "category": "Kategorie",
+    "tags": "Tags",
+    "language": "Sprache",
+    "title": "Titel",
+    "content": "Inhalt",
+    "count": "Anzahl",
+    "length": "Länge",
+    "total": "Gesamt",
+    "or": "oder",
+    "and": "und",
+    "no_data": "Keine Daten",
+    "no_results": "Keine Ergebnisse gefunden",
+    "confirm_delete": "Möchtest du das wirklich löschen?",
+    "drag_drop": "Datei hierher ziehen und ablegen",
+    "processing": "Verarbeitung...",
+    "done": "Fertig",
+    "copied_to_clipboard": "In die Zwischenablage kopiert!",
+    "failed_to_copy": "Kopieren fehlgeschlagen",
+    "keyboard_shortcuts": "Tastenkombinationen",
+    "toggle_fullscreen": "Vollbild umschalten (F11)",
+    "exit_fullscreen": "Vollbild verlassen (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Suchen",
+    "search_tools": "Tools suchen...",
+    "more": "Mehr",
+    "all_tools": "Alle Tools",
+    "ask_ai": "KI fragen",
+    "cloud_ai": "Cloud-KI",
+    "local_ai": "Lokale KI",
+    "language": "Sprache",
+    "pinned_to_navbar": "An Navigationsleiste angeheftet",
+    "unpinned_from_navbar": "Von Navigationsleiste gelöst",
+    "pin_to_navbar": "An Navigationsleiste anheften",
+    "unpin_from_navbar": "Von Navigationsleiste lösen",
+    "open_navigation": "Navigation öffnen"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "auto": "Automatisch",
+    "switch_theme": "Design wechseln"
+  },
+  "spotlight": {
+    "placeholder": "Tools suchen...",
+    "no_results": "Keine Tools gefunden für \"{query}\"",
+    "navigate": "Navigieren",
+    "open": "Öffnen",
+    "close": "Schließen"
+  },
+  "drawer": {
+    "search": "Suchen",
+    "theme": "Design",
+    "pinned": "Angeheftet",
+    "file_code": "Datei & Code",
+    "encode_decode": "Kodieren & Dekodieren",
+    "converters": "Konverter",
+    "generators": "Generatoren",
+    "tools_section": "Tools",
+    "logs_network": "Logs & Netzwerk",
+    "all_tools": "Alle Tools"
+  },
+  "footer": {
+    "made_by": "Erstellt mit ❤️ von"
+  },
+  "ai": {
+    "ask": "Fragen",
+    "prompt_placeholder": "Was möchtest du fragen?",
+    "enter_to_send": "Enter zum Senden",
+    "shift_enter_newline": "Shift+Enter für neue Zeile",
+    "open_without_prompt": "Ohne Eingabe öffnen",
+    "ollama_url": "Ollama URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Gib die URL der Ollama Web-Oberfläche ein"
+  },
+  "dashboard": {
+    "search_placeholder": "Tools suchen...",
+    "pinned_tools": "Angeheftete Tools",
+    "all_tools": "Alle Tools",
+    "no_results": "Keine Tools für deine Suche gefunden.",
+    "open_source_toolkit": "Open-Source-Entwickler-Toolkit",
+    "tools_count": "{count} Tools verfügbar"
+  },
+  "tools": {
+    "upload": {
+      "name": "Upload",
+      "desc": "Dateien per Drag & Drop, Einfügen oder Durchsuchen hochladen. Bildvorschau mit Lightbox."
+    },
+    "files": {
+      "name": "Datei-Explorer",
+      "desc": "Hochgeladene Dateien in einer Google-Drive-ähnlichen Rasteransicht durchsuchen und verwalten."
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "JSON, XML, HTML, CSS, JavaScript und SQL Code formatieren und verschönern."
+    },
+    "logs": {
+      "name": "Log-Aggregator",
+      "desc": "Leichtgewichtiger Log-Sammler. Empfange Logs von jeder App per HTTP POST, filtere nach App und Level."
+    },
+    "logviewer": {
+      "name": "Log-Viewer",
+      "desc": "Große Log-Dateien hochladen und durchsuchen mit Stichwortfilterung, regex und Kontextzeilen."
+    },
+    "editor": {
+      "name": "Code-Editor",
+      "desc": "Vollwertiger Code-Editor mit Monaco (VS Code). Syntaxhervorhebung für über 40 Sprachen."
+    },
+    "markdown": {
+      "name": "Markdown-Viewer",
+      "desc": "Markdown schreiben mit Live-Vorschau, syntaxhervorgehobenen Code-Blöcken und GFM-Unterstützung."
+    },
+    "diff": {
+      "name": "Code-Diff",
+      "desc": "Zwei Code-Dateien nebeneinander oder inline mit syntaxhervorgehobener Diff-Ansicht vergleichen."
+    },
+    "jwt": {
+      "name": "JWT Tool",
+      "desc": "JSON Web Tokens kodieren, dekodieren und verifizieren. Unterstützt HS256/384/512 mit farbiger Anzeige."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Base64-Strings kodieren und dekodieren. Unterstützt Text und Binärdateien mit URL-safe Option."
+    },
+    "urlencoder": {
+      "name": "URL-Encoder",
+      "desc": "URLs und Abfrageparameter kodieren und dekodieren. URL-Parser zeigt Protokoll, Host, Pfad und Parameter."
+    },
+    "htmleditor": {
+      "name": "HTML-Editor",
+      "desc": "Rich-Text WYSIWYG-Editor mit TinyMCE und umschaltbarer HTML-Quellcode-Ansicht."
+    },
+    "mermaid": {
+      "name": "Mermaid-Diagramm",
+      "desc": "Flussdiagramme, Sequenzdiagramme, ER-Diagramme, Gantt-Diagramme und mehr mit Mermaid.js Live-Vorschau erstellen."
+    },
+    "uuid": {
+      "name": "UUID-Generator",
+      "desc": "UUID v1, v4 und v7 generieren. Massengenerierung, Validierung, Analyse und Kopieren mit Formatoptionen."
+    },
+    "notes": {
+      "name": "Notizen",
+      "desc": "Markdown-Notizen mit Live-Vorschau, Tags, Kategorien, Farblabels, Anhängen und automatischem Speichern."
+    },
+    "regex": {
+      "name": "Regex-Tester",
+      "desc": "Regex-Muster testen mit Echtzeit-Hervorhebung, Erfassungsgruppen, Ersetzen und Spickzettel."
+    },
+    "charmap": {
+      "name": "Emoji & Zeichentabelle",
+      "desc": "Emojis, Symbole und Sonderzeichen suchen und kopieren. Unicode-Details, HTML-Entitäten und zuletzt verwendet."
+    },
+    "epoch": {
+      "name": "Epoch-Konverter",
+      "desc": "Unix-Epoch-Zeitstempel in lesbare Daten umwandeln und umgekehrt. Live-Uhr, Vorlagen und Zeitdifferenz-Rechner."
+    },
+    "hash": {
+      "name": "Hash-Generator",
+      "desc": "MD5, SHA-1, SHA-256, SHA-512 Hashes aus Text oder Dateien generieren. Prüfsummen sofort verifizieren."
+    },
+    "colorpicker": {
+      "name": "Farbwähler",
+      "desc": "Farben auswählen und zwischen HEX, RGB, HSL Formaten konvertieren. Farbpalette und Kontrastprüfer."
+    },
+    "cron": {
+      "name": "Cron-Parser",
+      "desc": "Cron-Ausdrücke parsen und generieren mit lesbaren Beschreibungen und nächsten Ausführungszeiten."
+    },
+    "password": {
+      "name": "Passwort-Generator",
+      "desc": "Kryptografisch sichere Zufallspasswörter und einprägsame Passphrasen generieren."
+    },
+    "qrcode": {
+      "name": "QR-Code-Generator",
+      "desc": "QR-Codes aus Text, URLs, WiFi-Zugangsdaten oder Kontaktinfos generieren. Als PNG herunterladen."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Platzhaltertext generieren — Absätze, Sätze oder Wörter. Verschiedene Stile verfügbar."
+    },
+    "baseconverter": {
+      "name": "Zahlensystem-Konverter",
+      "desc": "Zahlen zwischen Binär, Oktal, Dezimal und Hexadezimal in Echtzeit konvertieren."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Zwischen JSON und YAML Formaten konvertieren mit Syntaxvalidierung und Formatierung."
+    },
+    "httpclient": {
+      "name": "HTTP-Client",
+      "desc": "API-Endpunkte testen wie ein Mini-Postman. Eigene Methoden, Headers, Body und Antwort-Viewer."
+    },
+    "stringutils": {
+      "name": "String-Werkzeuge",
+      "desc": "Groß-/Kleinschreibung, Trim, Zählen, Umkehren, Slug-Generator und weitere String-Operationen."
+    },
+    "chat": {
+      "name": "LAN-Chat",
+      "desc": "Echtzeit-Chat für dein lokales Netzwerk. Kein Internet nötig — nur Dev Helper im LAN."
+    },
+    "netscan": {
+      "name": "Netzwerk-Scanner",
+      "desc": "LAN-Hosts und Ports scannen. Geräte, Dienste und offene Ports im Netzwerk entdecken."
+    },
+    "worldclock": {
+      "name": "Weltzeituhr",
+      "desc": "Uhren in mehreren Zeitzonen mit Analoganzeige, Besprechungsplaner und Drag-Sortierung."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Text aus Bildern und Screenshots extrahieren. Ziehen, einfügen oder hochladen — powered by Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Zwischen application.yml und application.properties für Java/Spring Boot Projekte konvertieren."
+    },
+    "netinspect": {
+      "name": "Netzwerk-Inspektor",
+      "desc": "IP-Geolokalisierung, DNS-Abfrage, HTTP-Antwort-Headers und SSL-Zertifikatsprüfer."
+    },
+    "aichat": {
+      "name": "KI-Chat",
+      "desc": "Mit lokalen Ollama KI-Modellen chatten. Streaming-Antworten, Markdown-Darstellung, Gesprächsverlauf."
+    },
+    "speedtest": {
+      "name": "Geschwindigkeitstest",
+      "desc": "Netzwerk-Download-/Upload-Geschwindigkeit, Ping-Latenz und Festplatten-Lese-/Schreibgeschwindigkeit testen."
+    },
+    "snippets": {
+      "name": "Code-Snippets",
+      "desc": "Häufig verwendete Code-Snippets speichern und organisieren mit Syntaxhervorhebung und Schnellkopie."
+    },
+    "sysmon": {
+      "name": "Systemmonitor",
+      "desc": "Echtzeit-Überwachung von CPU, Arbeitsspeicher, Festplatte, Netzwerk und Prozessen mit Live-Anzeigen."
+    },
+    "icons": {
+      "name": "Icon-Explorer",
+      "desc": "Bootstrap Icons, Font Awesome und Tabler Icons durchsuchen. Klicken zum Kopieren von CSS-Klasse oder HTML."
+    },
+    "askai": {
+      "name": "KI fragen",
+      "desc": "Schnellzugriff auf 9 Cloud-KIs (Claude, ChatGPT, Gemini usw.) und Ollama über die Navigationsleiste."
+    },
+    "translator": {
+      "name": "Übersetzer",
+      "desc": "Text zwischen Sprachen übersetzen mit lokalen Ollama KI-Modellen. Wie Google Translate, aber offline."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Dateien hierher ziehen und ablegen",
+    "drop_or_browse": "oder klicken zum Durchsuchen",
+    "paste_hint": "Du kannst auch aus der Zwischenablage einfügen (Ctrl+V)",
+    "recent_uploads": "Letzte Uploads",
+    "clear_recent": "Letzte leeren",
+    "copy_url": "URL kopieren",
+    "open_new_tab": "In neuem Tab öffnen",
+    "file_uploaded": "Datei erfolgreich hochgeladen",
+    "upload_failed": "Upload fehlgeschlagen"
+  },
+  "files_page": {
+    "search_placeholder": "Dateien suchen...",
+    "grid_view": "Raster",
+    "list_view": "Liste",
+    "delete_all": "Alle löschen",
+    "confirm_delete_all": "Möchtest du wirklich alle Dateien löschen?",
+    "no_files": "Keine Dateien gefunden",
+    "file_deleted": "Datei gelöscht",
+    "download": "Herunterladen",
+    "file_size": "Größe",
+    "file_date": "Datum"
+  },
+  "prettify_page": {
+    "input_label": "Eingabe",
+    "output_label": "Ausgabe",
+    "prettify": "Formatieren",
+    "minify": "Minifizieren",
+    "paste_placeholder": "Code hier einfügen oder eintippen...",
+    "auto_detect": "Automatisch erkennen",
+    "copy_output": "Ausgabe kopieren"
+  },
+  "logs_page": {
+    "app": "App",
+    "level": "Level",
+    "search_placeholder": "Logs suchen...",
+    "clear_logs": "Logs leeren",
+    "auto_scroll": "Automatisches Scrollen",
+    "no_logs": "Keine Logs gefunden",
+    "all_apps": "Alle Apps",
+    "all_levels": "Alle Level",
+    "timestamp": "Zeitstempel",
+    "message": "Nachricht"
+  },
+  "logviewer_page": {
+    "upload_log": "Log-Datei hochladen",
+    "search_placeholder": "Stichwort oder regex suchen...",
+    "use_regex": "Regex",
+    "case_sensitive": "Groß-/Kleinschreibung",
+    "context_lines": "Kontextzeilen",
+    "showing_lines": "{shown} von {total} Zeilen angezeigt",
+    "no_matches": "Keine Treffer gefunden",
+    "line": "Zeile"
+  },
+  "editor_page": {
+    "new_file": "Neu",
+    "open_file": "Datei öffnen",
+    "save_file": "Speichern",
+    "word_wrap": "Zeilenumbruch",
+    "minimap": "Minimap",
+    "line": "Zeile",
+    "column": "Spalte",
+    "language": "Sprache",
+    "fetch_url": "Von URL laden",
+    "url_placeholder": "URL eingeben, um Datei zu laden..."
+  },
+  "markdown_page": {
+    "samples": "Beispiele",
+    "open_file": "Datei öffnen",
+    "copy_html": "HTML kopieren",
+    "export": "Exportieren",
+    "export_pdf": "Als PDF exportieren",
+    "export_md": "Als Markdown exportieren",
+    "export_html": "Als HTML exportieren",
+    "clear": "Leeren",
+    "expand": "Erweitern",
+    "editor_label": "Markdown",
+    "preview_label": "Vorschau",
+    "drop_zone": "Markdown-Datei hierher ziehen, oder klicken zum Durchsuchen",
+    "url_placeholder": "URL eingeben, um .md-Datei zu laden",
+    "fetch": "Laden",
+    "html_copied": "HTML kopiert!",
+    "readme": "README",
+    "api_docs": "API-Dokumentation",
+    "changelog": "Changelog",
+    "blog_post": "Blogbeitrag",
+    "cheatsheet": "Markdown-Spickzettel",
+    "meeting_notes": "Besprechungsnotizen",
+    "project_todo": "Projekt-TODO"
+  },
+  "diff_page": {
+    "original": "Original",
+    "modified": "Geändert",
+    "side_by_side": "Nebeneinander",
+    "inline": "Inline",
+    "open_file": "Datei öffnen",
+    "paste_code": "Code hier einfügen...",
+    "swap": "Tauschen",
+    "no_differences": "Keine Unterschiede gefunden"
+  },
+  "jwt_page": {
+    "header": "Header",
+    "payload": "Payload",
+    "signature": "Signatur",
+    "secret": "Geheimer Schlüssel",
+    "algorithm": "Algorithmus",
+    "encode": "Kodieren",
+    "decode": "Dekodieren",
+    "verify": "Verifizieren",
+    "valid_signature": "Gültige Signatur",
+    "invalid_signature": "Ungültige Signatur",
+    "paste_jwt": "JWT-Token hier einfügen..."
+  },
+  "base64_page": {
+    "text_mode": "Text",
+    "file_mode": "Datei",
+    "url_safe": "URL-safe",
+    "line_breaks": "Zeilenumbrüche",
+    "input_placeholder": "Text zum Kodieren/Dekodieren eingeben...",
+    "drop_file": "Datei hierher ziehen oder klicken zum Durchsuchen",
+    "download_result": "Ergebnis herunterladen"
+  },
+  "urlencoder_page": {
+    "component_mode": "Komponente",
+    "full_url_mode": "Vollständige URL",
+    "url_parser": "URL-Parser",
+    "protocol": "Protokoll",
+    "host": "Host",
+    "path": "Pfad",
+    "params": "Parameter",
+    "input_placeholder": "URL oder Text zum Kodieren/Dekodieren eingeben..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Quellcode",
+    "import_html": "HTML importieren",
+    "export_html": "HTML exportieren",
+    "clear": "Leeren"
+  },
+  "mermaid_page": {
+    "samples": "Beispiele",
+    "download_svg": "SVG herunterladen",
+    "download_png": "PNG herunterladen",
+    "share": "Teilen",
+    "zoom_in": "Vergrößern",
+    "zoom_out": "Verkleinern",
+    "reset_zoom": "Zoom zurücksetzen",
+    "diagram_label": "Mermaid-Code",
+    "preview_label": "Vorschau",
+    "link_copied": "Teilen-Link kopiert!",
+    "flowchart": "Flussdiagramm",
+    "sequence": "Sequenzdiagramm",
+    "class_diagram": "Klassendiagramm",
+    "state": "Zustandsdiagramm",
+    "er": "ER-Diagramm",
+    "gantt": "Gantt-Diagramm",
+    "pie": "Tortendiagramm",
+    "mindmap": "Mindmap",
+    "timeline": "Zeitleiste",
+    "quadrant": "Quadrantendiagramm",
+    "git": "Git-Graph",
+    "sankey": "Sankey-Diagramm"
+  },
+  "uuid_page": {
+    "version": "Version",
+    "bulk_generate": "Massengenerierung",
+    "validate_parse": "Validieren & Analysieren",
+    "count": "Anzahl",
+    "uppercase": "Großbuchstaben",
+    "braces": "Klammern",
+    "hyphens": "Bindestriche",
+    "copy_all": "Alle kopieren",
+    "generated": "Generiert",
+    "valid_uuid": "Gültiger UUID",
+    "invalid_uuid": "Ungültiger UUID",
+    "uuid_version": "Version",
+    "uuid_variant": "Variante",
+    "uuid_timestamp": "Zeitstempel"
+  },
+  "notes_page": {
+    "new_note": "Neue Notiz",
+    "search_placeholder": "Notizen suchen...",
+    "categories": "Kategorien",
+    "all_notes": "Alle Notizen",
+    "pinned": "Angeheftet",
+    "trash": "Papierkorb",
+    "restore": "Wiederherstellen",
+    "permanent_delete": "Endgültig löschen",
+    "note_saved": "Notiz gespeichert",
+    "note_deleted": "Notiz in Papierkorb verschoben",
+    "untitled": "Unbenannte Notiz",
+    "attachments": "Anhänge",
+    "color_label": "Farblabel",
+    "sort_by": "Sortieren nach",
+    "date_modified": "Änderungsdatum",
+    "date_created": "Erstellungsdatum"
+  },
+  "regex_page": {
+    "pattern": "Muster",
+    "test_string": "Testtext",
+    "flags": "Flags",
+    "matches": "Treffer",
+    "replace": "Ersetzen",
+    "replacement": "Ersetzung",
+    "cheat_sheet": "Spickzettel",
+    "common_patterns": "Häufige Muster",
+    "no_matches": "Keine Treffer",
+    "match_count": "{count} Treffer gefunden",
+    "global": "Global",
+    "case_insensitive": "Groß-/Kleinschreibung ignorieren",
+    "multiline": "Mehrzeilig"
+  },
+  "charmap_page": {
+    "search_placeholder": "Emoji oder Zeichen suchen...",
+    "recently_used": "Zuletzt verwendet",
+    "unicode": "Unicode",
+    "html_entity": "HTML-Entität",
+    "css_code": "CSS-Code",
+    "copy_char": "Klicken zum Kopieren",
+    "smileys": "Smileys & Personen",
+    "animals": "Tiere & Natur",
+    "food": "Essen & Trinken",
+    "activities": "Aktivitäten",
+    "travel": "Reisen & Orte",
+    "objects": "Objekte",
+    "symbols": "Symbole",
+    "flags": "Flaggen",
+    "arrows": "Pfeile",
+    "math": "Mathematik",
+    "currency": "Währung",
+    "latin": "Latein Erweitert"
+  },
+  "epoch_page": {
+    "timestamp": "Zeitstempel",
+    "date_time": "Datum & Uhrzeit",
+    "now": "Jetzt",
+    "seconds": "Sekunden",
+    "milliseconds": "Millisekunden",
+    "local_time": "Ortszeit",
+    "utc_time": "UTC-Zeit",
+    "relative": "Relativ",
+    "time_diff": "Zeitdifferenz",
+    "presets": "Vorlagen",
+    "live_clock": "Live-Uhr"
+  },
+  "hash_page": {
+    "text_input": "Texteingabe",
+    "file_input": "Dateieingabe",
+    "compare": "Hashes vergleichen",
+    "hash_match": "Hashes stimmen überein!",
+    "hash_mismatch": "Hashes stimmen nicht überein",
+    "drop_file": "Datei zum Hashen ablegen...",
+    "computing": "Hash wird berechnet..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Kontrastprüfung",
+    "foreground": "Vordergrund",
+    "background": "Hintergrund",
+    "ratio": "Verhältnis",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Bestanden",
+    "fail": "Nicht bestanden",
+    "palette": "Palette",
+    "shades": "Schattierungen",
+    "tints": "Aufhellungen",
+    "pick_color": "Farbe wählen",
+    "eyedropper": "Pipette"
+  },
+  "cron_page": {
+    "expression": "Ausdruck",
+    "description_label": "Beschreibung",
+    "next_runs": "Nächste Ausführungen",
+    "presets": "Vorlagen",
+    "minute": "Minute",
+    "hour": "Stunde",
+    "day_month": "Tag (Monat)",
+    "month": "Monat",
+    "day_week": "Tag (Woche)",
+    "every_minute": "Jede Minute",
+    "every_hour": "Jede Stunde",
+    "every_day": "Jeden Tag um Mitternacht",
+    "share": "Teilen"
+  },
+  "password_page": {
+    "password": "Passwort",
+    "passphrase": "Passphrase",
+    "length": "Länge",
+    "uppercase": "Großbuchstaben (A-Z)",
+    "lowercase": "Kleinbuchstaben (a-z)",
+    "numbers": "Zahlen (0-9)",
+    "symbols": "Symbole (!@#$...)",
+    "word_count": "Wortanzahl",
+    "separator": "Trennzeichen",
+    "strength": "Stärke",
+    "entropy": "Entropie",
+    "very_weak": "Sehr schwach",
+    "weak": "Schwach",
+    "fair": "Mittel",
+    "strong": "Stark",
+    "very_strong": "Sehr stark",
+    "bulk_generate": "Massengenerierung",
+    "generate_count": "Anzahl"
+  },
+  "qrcode_page": {
+    "text_url": "Text / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Text oder URL eingeben...",
+    "network_name": "Netzwerkname (SSID)",
+    "wifi_password": "Passwort",
+    "encryption": "Verschlüsselung",
+    "hidden_network": "Verstecktes Netzwerk",
+    "full_name": "Vollständiger Name",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "organization": "Organisation",
+    "error_correction": "Fehlerkorrektur",
+    "foreground_color": "Vordergrund",
+    "background_color": "Hintergrund",
+    "download_png": "PNG herunterladen",
+    "download_svg": "SVG herunterladen",
+    "copy_image": "Bild kopieren"
+  },
+  "lorem_page": {
+    "paragraphs": "Absätze",
+    "sentences": "Sätze",
+    "words": "Wörter",
+    "style": "Stil",
+    "classic": "Klassisch",
+    "hipster": "Hipster",
+    "tech": "Tech / Dev",
+    "include_html": "HTML-Tags einschließen",
+    "start_lorem": "Mit \"Lorem ipsum...\" beginnen",
+    "generated_text": "Generierter Text",
+    "copy_text": "Text kopieren"
+  },
+  "baseconverter_page": {
+    "binary": "Binär",
+    "octal": "Oktal",
+    "decimal": "Dezimal",
+    "hexadecimal": "Hexadezimal",
+    "bit_visualization": "Bit-Visualisierung",
+    "signed": "Vorzeichenbehaftet",
+    "unsigned": "Vorzeichenlos",
+    "twos_complement": "Zweierkomplement"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Formatieren",
+    "minify": "Minifizieren",
+    "import_file": "Datei importieren",
+    "invalid_json": "Ungültiges JSON",
+    "invalid_yaml": "Ungültiges YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "Anfrage-URL eingeben...",
+    "method": "Methode",
+    "headers": "Headers",
+    "body": "Body",
+    "auth": "Authentifizierung",
+    "params": "Parameter",
+    "response": "Antwort",
+    "status_code": "Status",
+    "response_time": "Zeit",
+    "response_size": "Größe",
+    "send_request": "Senden",
+    "clear_history": "Verlauf leeren",
+    "no_auth": "Keine Authentifizierung",
+    "basic_auth": "Basic Auth",
+    "bearer_token": "Bearer Token",
+    "username": "Benutzername",
+    "token": "Token",
+    "key": "Schlüssel",
+    "add_header": "Header hinzufügen",
+    "add_param": "Parameter hinzufügen"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Text hier eingeben...",
+    "operations": "Operationen",
+    "case_conversion": "Groß-/Kleinschreibung",
+    "text_cleanup": "Textbereinigung",
+    "text_transform": "Texttransformation",
+    "encode_decode": "Kodieren / Dekodieren",
+    "extract_info": "Informationen extrahieren",
+    "uppercase": "GROSSBUCHSTABEN",
+    "lowercase": "kleinbuchstaben",
+    "title_case": "Jedes Wort Groß",
+    "sentence_case": "Erster buchstabe groß",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Zeichen",
+    "word_count": "Wörter",
+    "line_count": "Zeilen"
+  },
+  "chat_page": {
+    "username_placeholder": "Gib deinen Namen ein...",
+    "message_placeholder": "Nachricht eingeben...",
+    "join": "Beitreten",
+    "online_users": "Online-Benutzer",
+    "user_joined": "{user} ist dem Chat beigetreten",
+    "user_left": "{user} hat den Chat verlassen"
+  },
+  "netscan_page": {
+    "interface": "Schnittstelle",
+    "target": "Ziel",
+    "ports": "Ports",
+    "scan": "Scannen",
+    "scanning": "Scanne...",
+    "open_ports": "Offene Ports",
+    "host": "Host",
+    "port": "Port",
+    "service": "Dienst",
+    "scan_complete": "Scan abgeschlossen",
+    "common_ports": "Häufige Ports",
+    "custom_range": "Eigener Bereich"
+  },
+  "worldclock_page": {
+    "add_clock": "Uhr hinzufügen",
+    "your_local_time": "Deine Ortszeit",
+    "meeting_planner": "Besprechungsplaner",
+    "timezone": "Zeitzone",
+    "search_timezone": "Zeitzone suchen...",
+    "remove_clock": "Entfernen"
+  },
+  "ocr_page": {
+    "upload_image": "Bild hochladen",
+    "paste_image": "Bild einfügen",
+    "drop_image": "Bild hierher ziehen und ablegen",
+    "extract_text": "Text extrahieren",
+    "extracted_text": "Extrahierter Text",
+    "copy_result": "Ergebnis kopieren",
+    "recognizing": "Text wird erkannt...",
+    "no_text_found": "Kein Text im Bild gefunden",
+    "supported_formats": "Unterstützt: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Datei importieren",
+    "download_result": "Herunterladen"
+  },
+  "aichat_page": {
+    "model": "Modell",
+    "no_models": "Keine Modelle gefunden. Läuft Ollama?",
+    "message_placeholder": "Nachricht eingeben...",
+    "clear_chat": "Chat leeren",
+    "thinking": "Denke nach...",
+    "ollama_not_running": "Verbindung zu Ollama nicht möglich",
+    "connection_error": "Verbindungsfehler"
+  },
+  "speedtest_page": {
+    "start_test": "Test starten",
+    "ping": "Ping",
+    "download_speed": "Download",
+    "upload_speed": "Upload",
+    "disk_speed": "Festplatte",
+    "latency": "Latenz",
+    "read_speed": "Lesen",
+    "write_speed": "Schreiben",
+    "testing": "Teste...",
+    "test_complete": "Test abgeschlossen"
+  },
+  "snippets_page": {
+    "new_snippet": "Neues Snippet",
+    "search_placeholder": "Snippets suchen...",
+    "title_placeholder": "Snippet-Titel...",
+    "desc_placeholder": "Beschreibung (optional)",
+    "tags_placeholder": "Tags (kommagetrennt)",
+    "save_snippet": "Speichern",
+    "delete_snippet": "Löschen",
+    "copy_code": "Code kopieren",
+    "language": "Sprache",
+    "default_loaded": "Standard-Snippets geladen",
+    "snippet_saved": "Snippet gespeichert",
+    "snippet_deleted": "Snippet gelöscht",
+    "code_copied": "Code kopiert!",
+    "no_snippets": "Keine Snippets gefunden",
+    "pinned": "Angeheftet",
+    "all_snippets": "Alle Snippets"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Arbeitsspeicher",
+    "disk": "Festplatte",
+    "network": "Netzwerk",
+    "processes": "Prozesse",
+    "usage": "Auslastung",
+    "total": "Gesamt",
+    "used": "Belegt",
+    "free": "Frei",
+    "available": "Verfügbar",
+    "cores": "Kerne",
+    "uptime": "Betriebszeit",
+    "pid": "PID",
+    "process_name": "Name",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Speicher %",
+    "connecting": "Verbinde...",
+    "disconnected": "Getrennt",
+    "bytes_sent": "Gesendet",
+    "bytes_recv": "Empfangen",
+    "read_speed": "Lesen",
+    "write_speed": "Schreiben"
+  },
+  "icons_page": {
+    "search_placeholder": "Icons suchen...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "Alle",
+    "recently_used": "Zuletzt verwendet",
+    "class_name": "Klasse",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Klasse kopieren",
+    "copy_html": "HTML kopieren",
+    "icon_count": "{count} Icons",
+    "loading_icons": "Icons werden geladen...",
+    "click_to_view": "Klicke auf ein Icon für Details"
+  },
+  "netinspect_page": {
+    "my_ip": "Meine IP",
+    "ip_lookup": "IP-Abfrage",
+    "dns_lookup": "DNS-Abfrage",
+    "http_headers": "HTTP-Headers",
+    "ssl_cert": "SSL-Zertifikat",
+    "lookup": "Abfragen",
+    "check": "Prüfen",
+    "ip_placeholder": "IP-Adresse eingeben...",
+    "domain_placeholder": "Domainname eingeben...",
+    "url_placeholder": "URL eingeben...",
+    "location": "Standort",
+    "isp": "ISP",
+    "record_type": "Eintragstyp",
+    "issuer": "Aussteller",
+    "valid_from": "Gültig ab",
+    "valid_until": "Gültig bis",
+    "subject": "Betreff"
+  },
+  "translator_page": {
+    "source_lang": "Ausgangssprache",
+    "target_lang": "Zielsprache",
+    "auto_detect": "Automatisch erkennen",
+    "translate": "Übersetzen",
+    "translating": "Übersetze...",
+    "swap_languages": "Sprachen tauschen",
+    "input_placeholder": "Text zum Übersetzen eingeben...",
+    "model": "Modell",
+    "copy_translation": "Übersetzung kopieren",
+    "translation_copied": "Übersetzung kopiert!",
+    "clear_all": "Alles leeren",
+    "char_count": "{count} Zeichen"
+  }
+}

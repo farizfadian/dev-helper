@@ -1,0 +1,226 @@
+{{define "content"}}
+<style>
+    .hash-textarea {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+        min-height: 160px;
+        resize: vertical;
+    }
+    .hash-value {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.82rem;
+        word-break: break-all;
+        padding: 10px 12px;
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: border-color 0.15s;
+        line-height: 1.5;
+    }
+    .hash-value:hover {
+        border-color: var(--bs-primary);
+    }
+    .hash-value .copied-toast {
+        font-size: 0.7rem;
+        color: var(--bs-success);
+    }
+    .algo-badge {
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 4px;
+        min-width: 60px;
+        text-align: center;
+    }
+    .drop-zone {
+        border: 2px dashed var(--bs-border-color);
+        border-radius: 8px;
+        padding: 2rem 1rem;
+        text-align: center;
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s;
+        color: var(--bs-secondary-color);
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+        border-color: var(--bs-primary);
+        background: var(--bs-tertiary-bg);
+    }
+    .drop-zone i {
+        font-size: 2rem;
+        opacity: 0.5;
+    }
+    .char-count {
+        font-size: 0.7rem;
+        color: var(--bs-secondary-color);
+    }
+    .hash-compare-match {
+        border-color: var(--bs-success) !important;
+        background: rgba(25, 135, 84, 0.05);
+    }
+    .hash-compare-mismatch {
+        border-color: var(--bs-danger) !important;
+        background: rgba(220, 53, 69, 0.05);
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-hash text-primary"></i> Hash Generator
+        <i id="pinToggle" data-tool="hash" class="bi bi-star pin-star" onclick="togglePin('hash')"></i>
+    </h5>
+</div>
+
+<div class="row g-3">
+    <!-- Left: Input -->
+    <div class="col-lg-6">
+        <!-- Text Input -->
+        <div class="card mb-3">
+            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                <span class="fw-semibold"><i class="bi bi-input-cursor-text"></i> Text Input</span>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-outline-secondary" id="pasteBtn" title="Paste from clipboard">
+                        <i class="bi bi-clipboard-plus"></i> Paste
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" id="clearBtn" title="Clear input">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <textarea id="inputText" class="form-control hash-textarea border-0 rounded-0" placeholder="Type or paste text to hash..."></textarea>
+            </div>
+            <div class="card-footer py-1 d-flex justify-content-between align-items-center">
+                <small id="inputStats" class="text-muted">0 characters, 0 bytes</small>
+                <div class="form-check form-check-inline mb-0">
+                    <input class="form-check-input" type="checkbox" id="autoHash" checked>
+                    <label class="form-check-label small" for="autoHash">Auto-hash</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- File Input -->
+        <div class="card mb-3">
+            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                <span class="fw-semibold"><i class="bi bi-file-earmark-binary"></i> File Input</span>
+                <div class="d-flex gap-1">
+                    <label class="btn btn-sm btn-outline-secondary mb-0" title="Choose file">
+                        <i class="bi bi-folder2-open"></i> Browse
+                        <input type="file" id="fileInput" class="d-none">
+                    </label>
+                    <button class="btn btn-sm btn-outline-secondary" id="clearFileBtn" title="Clear file" disabled>
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="dropZone" class="drop-zone">
+                    <i class="bi bi-cloud-arrow-up d-block mb-2"></i>
+                    <div>Drop file here or click Browse</div>
+                    <div class="small mt-1">Any file type supported</div>
+                </div>
+                <div id="fileInfo" class="mt-2 d-none">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-file-earmark text-primary"></i>
+                        <span id="fileName" class="fw-semibold small"></span>
+                        <span id="fileSize" class="text-muted small"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Algorithms -->
+        <div class="card mb-3">
+            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                <span class="fw-semibold"><i class="bi bi-gear"></i> Algorithms</span>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-outline-secondary" id="selectAllAlgo" title="Select all">All</button>
+                    <button class="btn btn-sm btn-outline-secondary" id="selectNoneAlgo" title="Deselect all">None</button>
+                </div>
+            </div>
+            <div class="card-body py-2">
+                <div class="d-flex flex-wrap gap-3">
+                    <div class="form-check">
+                        <input class="form-check-input algo-check" type="checkbox" id="algoMD5" value="MD5" checked>
+                        <label class="form-check-label small" for="algoMD5">MD5</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input algo-check" type="checkbox" id="algoSHA1" value="SHA-1" checked>
+                        <label class="form-check-label small" for="algoSHA1">SHA-1</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input algo-check" type="checkbox" id="algoSHA256" value="SHA-256" checked>
+                        <label class="form-check-label small" for="algoSHA256">SHA-256</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input algo-check" type="checkbox" id="algoSHA512" value="SHA-512" checked>
+                        <label class="form-check-label small" for="algoSHA512">SHA-512</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Options -->
+        <div class="card">
+            <div class="card-header py-2">
+                <span class="fw-semibold"><i class="bi bi-sliders"></i> Options</span>
+            </div>
+            <div class="card-body py-2">
+                <div class="d-flex flex-wrap gap-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="optUppercase">
+                        <label class="form-check-label small" for="optUppercase">UPPERCASE</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="optNoSpaces">
+                        <label class="form-check-label small" for="optNoSpaces">No separators</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: Results -->
+    <div class="col-lg-6">
+        <!-- Hash Button (mobile: show above results) -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <button class="btn btn-primary" id="hashBtn">
+                <i class="bi bi-hash"></i> Hash Now
+            </button>
+            <div class="d-flex gap-1">
+                <button class="btn btn-outline-secondary btn-sm" id="copyAllBtn" title="Copy all hashes" disabled>
+                    <i class="bi bi-clipboard"></i> Copy All
+                </button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div id="resultsContainer">
+            <div class="text-center text-muted py-5">
+                <i class="bi bi-hash" style="font-size: 3rem; opacity: 0.2;"></i>
+                <div class="mt-2">Enter text or drop a file to generate hashes</div>
+            </div>
+        </div>
+
+        <!-- Compare -->
+        <div class="card mt-3">
+            <div class="card-header py-2">
+                <span class="fw-semibold"><i class="bi bi-arrow-left-right"></i> Compare Hash</span>
+            </div>
+            <div class="card-body">
+                <div class="input-group input-group-sm">
+                    <input type="text" id="compareInput" class="form-control font-monospace" placeholder="Paste a hash to compare against results...">
+                    <button class="btn btn-outline-primary" id="compareBtn">Compare</button>
+                    <button class="btn btn-outline-secondary" id="clearCompareBtn" title="Clear"><i class="bi bi-x-lg"></i></button>
+                </div>
+                <div id="compareResult" class="mt-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/hash.js"></script>
+{{end}}

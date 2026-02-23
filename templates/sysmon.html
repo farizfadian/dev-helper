@@ -1,0 +1,160 @@
+{{define "content"}}
+<h4 class="mb-3">
+    <i class="bi bi-cpu"></i> System Monitor
+    <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="sysmon" title="Pin to navbar" onclick="togglePin(this.dataset.tool)"></i>
+    <span class="badge rounded-pill ms-2" id="connStatus" style="font-size: 0.6rem;">
+        <i class="bi bi-circle-fill" style="font-size: 0.5rem;"></i> Connecting...
+    </span>
+</h4>
+
+<!-- Top Row: Host + CPU Gauge + Memory Gauge -->
+<div class="row g-3 mb-3">
+    <!-- Host Info -->
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h6 class="card-title mb-3"><i class="bi bi-pc-display"></i> Host Info</h6>
+                <table class="table table-sm table-borderless mb-0" style="font-size: 0.85rem;">
+                    <tr><td class="text-muted" style="width:110px;">Hostname</td><td class="fw-semibold" id="hostName">-</td></tr>
+                    <tr><td class="text-muted">OS</td><td id="hostOS">-</td></tr>
+                    <tr><td class="text-muted">Arch</td><td id="hostArch">-</td></tr>
+                    <tr><td class="text-muted">Uptime</td><td id="hostUptime">-</td></tr>
+                    <tr><td class="text-muted">Processes</td><td id="hostProcs">-</td></tr>
+                    <tr><td class="text-muted">CPU Cores</td><td id="hostCores">-</td></tr>
+                    <tr><td class="text-muted">Go Runtime</td><td id="hostGo">-</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- CPU Gauge -->
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h6 class="card-title mb-2"><i class="bi bi-cpu"></i> CPU</h6>
+                <svg viewBox="0 0 200 130" width="220" id="cpuGaugeSvg">
+                    <defs>
+                        <linearGradient id="cpuGrad" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#00C851"/>
+                            <stop offset="60%" stop-color="#ffbb33"/>
+                            <stop offset="100%" stop-color="#ff4444"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M 20 105 A 80 80 0 0 1 180 105" fill="none" stroke="var(--bs-border-color)" stroke-width="14" stroke-linecap="round"/>
+                    <path d="M 20 105 A 80 80 0 0 1 180 105" fill="none" stroke="url(#cpuGrad)" stroke-width="14" stroke-linecap="round"
+                        id="cpuGaugeArc" style="stroke-dasharray: 251.33; stroke-dashoffset: 251.33; transition: stroke-dashoffset 0.5s ease-out;"/>
+                    <text x="100" y="78" text-anchor="middle" font-size="32" font-weight="bold" fill="currentColor" id="cpuGaugeValue">0%</text>
+                    <text x="100" y="98" text-anchor="middle" font-size="10" fill="var(--bs-secondary-color)" id="cpuGaugeLabel">-</text>
+                    <text x="18" y="120" text-anchor="middle" font-size="8" fill="var(--bs-secondary-color)">0%</text>
+                    <text x="182" y="120" text-anchor="middle" font-size="8" fill="var(--bs-secondary-color)">100%</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Memory Gauge -->
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h6 class="card-title mb-2"><i class="bi bi-memory"></i> Memory</h6>
+                <svg viewBox="0 0 200 130" width="220" id="memGaugeSvg">
+                    <defs>
+                        <linearGradient id="memGrad" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#0dcaf0"/>
+                            <stop offset="60%" stop-color="#ffc107"/>
+                            <stop offset="100%" stop-color="#dc3545"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M 20 105 A 80 80 0 0 1 180 105" fill="none" stroke="var(--bs-border-color)" stroke-width="14" stroke-linecap="round"/>
+                    <path d="M 20 105 A 80 80 0 0 1 180 105" fill="none" stroke="url(#memGrad)" stroke-width="14" stroke-linecap="round"
+                        id="memGaugeArc" style="stroke-dasharray: 251.33; stroke-dashoffset: 251.33; transition: stroke-dashoffset 0.5s ease-out;"/>
+                    <text x="100" y="78" text-anchor="middle" font-size="32" font-weight="bold" fill="currentColor" id="memGaugeValue">0%</text>
+                    <text x="100" y="98" text-anchor="middle" font-size="10" fill="var(--bs-secondary-color)" id="memGaugeLabel">-</text>
+                    <text x="18" y="120" text-anchor="middle" font-size="8" fill="var(--bs-secondary-color)">0%</text>
+                    <text x="182" y="120" text-anchor="middle" font-size="8" fill="var(--bs-secondary-color)">100%</text>
+                </svg>
+                <div class="text-muted small mt-1" id="memSwapInfo"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Middle Row: Per-Core CPU + Disk -->
+<div class="row g-3 mb-3">
+    <!-- Per-Core CPU -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h6 class="card-title mb-3"><i class="bi bi-bar-chart"></i> CPU per Core</h6>
+                <div id="perCoreBars" style="max-height: 300px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disk Partitions -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h6 class="card-title mb-3"><i class="bi bi-hdd"></i> Disk Partitions</h6>
+                <div id="diskPartitions"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bottom Row: Network + Processes -->
+<div class="row g-3 mb-3">
+    <!-- Network I/O -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h6 class="card-title mb-3"><i class="bi bi-ethernet"></i> Network I/O</h6>
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover mb-0" style="font-size: 0.82rem;">
+                        <thead>
+                            <tr>
+                                <th>Interface</th>
+                                <th class="text-end"><i class="bi bi-arrow-up text-success"></i> Send</th>
+                                <th class="text-end"><i class="bi bi-arrow-down text-primary"></i> Recv</th>
+                                <th class="text-end">Total Sent</th>
+                                <th class="text-end">Total Recv</th>
+                            </tr>
+                        </thead>
+                        <tbody id="netTableBody">
+                            <tr><td colspan="5" class="text-center text-muted">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Processes -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h6 class="card-title mb-3"><i class="bi bi-list-task"></i> Top Processes <span class="text-muted small">(by memory)</span></h6>
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover mb-0" style="font-size: 0.82rem;">
+                        <thead>
+                            <tr>
+                                <th style="width:60px;">PID</th>
+                                <th>Name</th>
+                                <th class="text-end">RSS</th>
+                                <th class="text-end">Mem %</th>
+                            </tr>
+                        </thead>
+                        <tbody id="procTableBody">
+                            <tr><td colspan="4" class="text-center text-muted">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/sysmon.js"></script>
+{{end}}

@@ -1,0 +1,162 @@
+{{define "content"}}
+<style>
+    .output-area {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        min-height: 250px;
+        max-height: 500px;
+        overflow-y: auto;
+        padding: 1rem;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        background: var(--bs-tertiary-bg);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    .output-area.html-mode {
+        font-family: inherit;
+    }
+    .output-area p {
+        margin-bottom: 0.8rem;
+    }
+    .output-area p:last-child {
+        margin-bottom: 0;
+    }
+    .stat-badge {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+    .style-btn.active {
+        font-weight: 600;
+    }
+    .type-btn.active {
+        font-weight: 600;
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-text-paragraph" style="color: #795548;"></i> Lorem Ipsum Generator
+        <i id="pinToggle" data-tool="lorem" class="bi bi-star pin-star" onclick="togglePin('lorem')"></i>
+    </h5>
+</div>
+
+<div class="row g-4">
+    <!-- Left: Controls -->
+    <div class="col-lg-4">
+        <!-- Style Selector -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold small"><i class="bi bi-palette"></i> Style</label>
+            <div class="btn-group w-100" role="group">
+                <button class="btn btn-outline-primary style-btn active" data-style="classic" title="Traditional Latin lorem ipsum">
+                    <i class="bi bi-mortarboard"></i> Classic
+                </button>
+                <button class="btn btn-outline-primary style-btn" data-style="hipster" title="Trendy hipster words">
+                    <i class="bi bi-cup-hot"></i> Hipster
+                </button>
+                <button class="btn btn-outline-primary style-btn" data-style="tech" title="Developer & tech terms">
+                    <i class="bi bi-code-slash"></i> Tech
+                </button>
+            </div>
+        </div>
+
+        <!-- Type Selector -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold small"><i class="bi bi-list-ol"></i> Generate</label>
+            <div class="btn-group w-100" role="group">
+                <button class="btn btn-outline-secondary type-btn active" data-type="paragraphs">
+                    Paragraphs
+                </button>
+                <button class="btn btn-outline-secondary type-btn" data-type="sentences">
+                    Sentences
+                </button>
+                <button class="btn btn-outline-secondary type-btn" data-type="words">
+                    Words
+                </button>
+            </div>
+        </div>
+
+        <!-- Count -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold small" for="countInput"><i class="bi bi-hash"></i> Count</label>
+            <div class="input-group">
+                <button class="btn btn-outline-secondary" id="countMinus" type="button"><i class="bi bi-dash"></i></button>
+                <input type="number" id="countInput" class="form-control text-center" value="3" min="1" max="100">
+                <button class="btn btn-outline-secondary" id="countPlus" type="button"><i class="bi bi-plus"></i></button>
+            </div>
+        </div>
+
+        <!-- Options -->
+        <div class="card mb-3">
+            <div class="card-header py-2">
+                <span class="fw-semibold small"><i class="bi bi-gear"></i> Options</span>
+            </div>
+            <div class="card-body py-2">
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="optStartLorem" checked>
+                    <label class="form-check-label small" for="optStartLorem">
+                        Start with "Lorem ipsum dolor sit amet..."
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="optHtmlTags">
+                    <label class="form-check-label small" for="optHtmlTags">
+                        Wrap in <code>&lt;p&gt;</code> tags
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generate Button -->
+        <button class="btn btn-primary w-100 mb-3" id="generateBtn">
+            <i class="bi bi-arrow-clockwise"></i> Generate
+        </button>
+    </div>
+
+    <!-- Right: Output -->
+    <div class="col-lg-8">
+        <!-- Output Toolbar -->
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <label class="form-label mb-0 fw-semibold small"><i class="bi bi-file-text"></i> Output</label>
+            <div class="d-flex gap-1">
+                <button class="btn btn-sm btn-outline-secondary" id="copyBtn" title="Copy to clipboard">
+                    <i class="bi bi-clipboard"></i> Copy
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="selectAllBtn" title="Select all text">
+                    <i class="bi bi-cursor-text"></i> Select All
+                </button>
+                <button class="btn btn-sm btn-outline-danger" id="clearBtn" title="Clear output">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Output Area -->
+        <div id="outputArea" class="output-area">
+            <span class="text-muted">Click "Generate" or change options to create lorem ipsum text...</span>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="d-flex gap-2 mt-2 flex-wrap justify-content-center">
+            <span class="badge bg-secondary stat-badge" id="statParagraphs" title="Paragraphs">
+                <i class="bi bi-text-paragraph"></i> <span>0</span> paragraphs
+            </span>
+            <span class="badge bg-secondary stat-badge" id="statSentences" title="Sentences">
+                <i class="bi bi-chat-left-text"></i> <span>0</span> sentences
+            </span>
+            <span class="badge bg-secondary stat-badge" id="statWords" title="Words">
+                <i class="bi bi-fonts"></i> <span>0</span> words
+            </span>
+            <span class="badge bg-secondary stat-badge" id="statChars" title="Characters">
+                <i class="bi bi-123"></i> <span>0</span> chars
+            </span>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/lorem.js"></script>
+{{end}}

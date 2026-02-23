@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "コピー",
+    "copied": "コピーしました！",
+    "clear": "クリア",
+    "save": "保存",
+    "saved": "保存しました！",
+    "delete": "削除",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "open": "開く",
+    "search": "検索",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "warning": "警告",
+    "info": "情報",
+    "yes": "はい",
+    "no": "いいえ",
+    "confirm": "確認",
+    "download": "ダウンロード",
+    "upload": "アップロード",
+    "export": "エクスポート",
+    "import": "インポート",
+    "expand": "展開",
+    "exit": "終了",
+    "file": "ファイル",
+    "settings": "設定",
+    "none": "なし",
+    "all": "すべて",
+    "reset": "リセット",
+    "apply": "適用",
+    "preview": "プレビュー",
+    "source": "ソース",
+    "result": "結果",
+    "input": "入力",
+    "output": "出力",
+    "generate": "生成",
+    "encode": "エンコード",
+    "decode": "デコード",
+    "paste": "貼り付け",
+    "swap": "入れ替え",
+    "back": "戻る",
+    "next": "次へ",
+    "samples": "サンプル",
+    "history": "履歴",
+    "options": "オプション",
+    "format": "フォーマット",
+    "validate": "検証",
+    "convert": "変換",
+    "raw": "生データ",
+    "send": "送信",
+    "stop": "停止",
+    "start": "開始",
+    "refresh": "更新",
+    "browse": "参照",
+    "select": "選択",
+    "add": "追加",
+    "remove": "削除",
+    "edit": "編集",
+    "share": "共有",
+    "pin": "ピン留め",
+    "unpin": "ピン留め解除",
+    "new": "新規",
+    "text": "テキスト",
+    "type": "タイプ",
+    "size": "サイズ",
+    "name": "名前",
+    "value": "値",
+    "status": "ステータス",
+    "actions": "操作",
+    "description": "説明",
+    "category": "カテゴリ",
+    "tags": "タグ",
+    "language": "言語",
+    "title": "タイトル",
+    "content": "コンテンツ",
+    "count": "件数",
+    "length": "長さ",
+    "total": "合計",
+    "or": "または",
+    "and": "および",
+    "no_data": "データなし",
+    "no_results": "結果が見つかりません",
+    "confirm_delete": "本当に削除しますか？",
+    "drag_drop": "ファイルをここにドラッグ＆ドロップ",
+    "processing": "処理中...",
+    "done": "完了",
+    "copied_to_clipboard": "クリップボードにコピーしました！",
+    "failed_to_copy": "コピーに失敗しました",
+    "keyboard_shortcuts": "キーボードショートカット",
+    "toggle_fullscreen": "全画面切り替え (F11)",
+    "exit_fullscreen": "全画面終了 (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "検索",
+    "search_tools": "ツールを検索...",
+    "more": "もっと見る",
+    "all_tools": "すべてのツール",
+    "ask_ai": "AI に聞く",
+    "cloud_ai": "クラウド AI",
+    "local_ai": "ローカル AI",
+    "language": "言語",
+    "pinned_to_navbar": "ナビバーにピン留めしました",
+    "unpinned_from_navbar": "ナビバーのピン留めを解除しました",
+    "pin_to_navbar": "ナビバーにピン留め",
+    "unpin_from_navbar": "ナビバーのピン留めを解除",
+    "open_navigation": "ナビゲーションを開く"
+  },
+  "theme": {
+    "light": "ライト",
+    "dark": "ダーク",
+    "auto": "自動",
+    "switch_theme": "テーマを切り替え"
+  },
+  "spotlight": {
+    "placeholder": "ツールを検索...",
+    "no_results": "「{query}」に一致するツールが見つかりません",
+    "navigate": "移動",
+    "open": "開く",
+    "close": "閉じる"
+  },
+  "drawer": {
+    "search": "検索",
+    "theme": "テーマ",
+    "pinned": "ピン留め",
+    "file_code": "ファイル＆コード",
+    "encode_decode": "エンコード＆デコード",
+    "converters": "変換ツール",
+    "generators": "生成ツール",
+    "tools_section": "ツール",
+    "logs_network": "ログ＆ネットワーク",
+    "all_tools": "すべてのツール"
+  },
+  "footer": {
+    "made_by": "❤️ を込めて作成"
+  },
+  "ai": {
+    "ask": "質問する",
+    "prompt_placeholder": "何を聞きたいですか？",
+    "enter_to_send": "Enter で送信",
+    "shift_enter_newline": "Shift+Enter で改行",
+    "open_without_prompt": "プロンプトなしで開く",
+    "ollama_url": "Ollama URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Ollama ウェブ UI の URL を入力してください"
+  },
+  "dashboard": {
+    "search_placeholder": "ツールを検索...",
+    "pinned_tools": "ピン留めしたツール",
+    "all_tools": "すべてのツール",
+    "no_results": "検索に一致するツールが見つかりません。",
+    "open_source_toolkit": "オープンソース開発ツールキット",
+    "tools_count": "{count} 個のツールが利用可能"
+  },
+  "tools": {
+    "upload": {
+      "name": "アップロード",
+      "desc": "ファイルをドラッグ＆ドロップ、貼り付け、または参照してアップロード。画像プレビューとライトボックス付き。"
+    },
+    "files": {
+      "name": "ファイルエクスプローラー",
+      "desc": "Google Drive 風のグリッド表示でアップロード済みファイルを閲覧、検索、管理。"
+    },
+    "prettify": {
+      "name": "コード整形",
+      "desc": "JSON、XML、HTML、CSS、JavaScript、SQL コードをフォーマット＆整形。"
+    },
+    "logs": {
+      "name": "ログアグリゲーター",
+      "desc": "軽量ログ収集ツール。HTTP POST でアプリからログを受信し、アプリやレベルでフィルタリング。"
+    },
+    "logviewer": {
+      "name": "ログビューア",
+      "desc": "大きなログファイルをアップロードして検索。キーワードフィルタリング、regex、コンテキスト行に対応。"
+    },
+    "editor": {
+      "name": "コードエディタ",
+      "desc": "Monaco（VS Code）搭載のフル機能コードエディタ。40 以上の言語のシンタックスハイライトに対応。"
+    },
+    "markdown": {
+      "name": "Markdown ビューア",
+      "desc": "Markdown をリアルタイムプレビューで編集。シンタックスハイライト付きコードブロックと GFM に対応。"
+    },
+    "diff": {
+      "name": "コード差分",
+      "desc": "2 つのコードファイルをサイドバイサイドまたはインラインで比較。シンタックスハイライト付き差分表示。"
+    },
+    "jwt": {
+      "name": "JWT ツール",
+      "desc": "JSON Web Token のエンコード、デコード、検証。HS256/384/512 対応、カラー表示。"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Base64 文字列のエンコードとデコード。テキストとバイナリファイル対応、URL セーフオプション付き。"
+    },
+    "urlencoder": {
+      "name": "URL エンコーダー",
+      "desc": "URL とクエリパラメータのエンコード・デコード。URL パーサーでプロトコル、ホスト、パス、パラメータを表示。"
+    },
+    "htmleditor": {
+      "name": "HTML エディタ",
+      "desc": "TinyMCE 搭載のリッチテキスト WYSIWYG エディタ。HTML ソースコード表示切り替え付き。"
+    },
+    "mermaid": {
+      "name": "Mermaid ダイアグラム",
+      "desc": "Mermaid.js のリアルタイムプレビューでフローチャート、シーケンス図、ER 図、ガントチャートなどを作成。"
+    },
+    "uuid": {
+      "name": "UUID ジェネレーター",
+      "desc": "UUID v1、v4、v7 を生成。一括生成、検証、解析、コピー、フォーマットオプション付き。"
+    },
+    "notes": {
+      "name": "ノート",
+      "desc": "Markdown ノート。リアルタイムプレビュー、タグ、カテゴリ、カラーラベル、添付ファイル、自動保存に対応。"
+    },
+    "regex": {
+      "name": "Regex テスター",
+      "desc": "リアルタイムマッチハイライトで regex パターンをテスト。キャプチャグループ、置換、チートシート付き。"
+    },
+    "charmap": {
+      "name": "絵文字＆文字マップ",
+      "desc": "絵文字、記号、特殊文字を検索してコピー。Unicode 詳細、HTML エンティティ、最近使った文字を表示。"
+    },
+    "epoch": {
+      "name": "エポック変換器",
+      "desc": "Unix エポックタイムスタンプと人間が読める日付を相互変換。ライブクロック、プリセット、時間差計算機付き。"
+    },
+    "hash": {
+      "name": "ハッシュジェネレーター",
+      "desc": "テキストやファイルから MD5、SHA-1、SHA-256、SHA-512 ハッシュを生成。チェックサムを即座に検証。"
+    },
+    "colorpicker": {
+      "name": "カラーピッカー",
+      "desc": "色を選択して HEX、RGB、HSL フォーマット間で変換。カラーパレットとコントラストチェッカー付き。"
+    },
+    "cron": {
+      "name": "Cron パーサー",
+      "desc": "cron 式の解析と生成。人間が読める説明と次回実行時間を表示。"
+    },
+    "password": {
+      "name": "パスワードジェネレーター",
+      "desc": "暗号学的に安全なランダムパスワードと覚えやすいパスフレーズを生成。"
+    },
+    "qrcode": {
+      "name": "QR コードジェネレーター",
+      "desc": "テキスト、URL、WiFi 認証情報、連絡先から QR コードを生成。PNG でダウンロード。"
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "プレースホルダーテキストを生成 — 段落、文、単語。複数のスタイルから選択可能。"
+    },
+    "baseconverter": {
+      "name": "基数変換器",
+      "desc": "2 進数、8 進数、10 進数、16 進数間でリアルタイムに数値を変換。"
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "JSON と YAML フォーマット間の相互変換。構文検証とフォーマット付き。"
+    },
+    "httpclient": {
+      "name": "HTTP クライアント",
+      "desc": "ミニ Postman のように API エンドポイントをテスト。メソッド、ヘッダー、ボディ、レスポンスビューアをカスタマイズ。"
+    },
+    "stringutils": {
+      "name": "文字列ユーティリティ",
+      "desc": "大文字小文字変換、トリム、カウント、反転、slug 生成など多数の文字列操作。"
+    },
+    "chat": {
+      "name": "LAN チャット",
+      "desc": "ローカルネットワーク用リアルタイムチャット。インターネット不要 — LAN 上の Dev Helper だけで OK。"
+    },
+    "netscan": {
+      "name": "ネットワークスキャナー",
+      "desc": "LAN ホストとポートをスキャン。ネットワーク上のデバイス、サービス、オープンポートを検出。"
+    },
+    "worldclock": {
+      "name": "世界時計",
+      "desc": "アナログ表示付きマルチタイムゾーン時計。会議プランナーとドラッグ並べ替え対応。"
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "画像やスクリーンショットからテキストを抽出。ドラッグ、貼り付け、アップロードに対応。Tesseract.js 搭載。"
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Java/Spring Boot プロジェクト向けに application.yml と application.properties を相互変換。"
+    },
+    "netinspect": {
+      "name": "ネットワークインスペクター",
+      "desc": "IP ジオロケーション、DNS ルックアップ、HTTP レスポンスヘッダー、SSL 証明書チェッカー。"
+    },
+    "aichat": {
+      "name": "AI チャット",
+      "desc": "ローカル Ollama AI モデルとチャット。ストリーミング応答、Markdown レンダリング、会話履歴。"
+    },
+    "speedtest": {
+      "name": "スピードテスト",
+      "desc": "ネットワークのダウンロード/アップロード速度、ping レイテンシ、ディスク読み書き性能をテスト。"
+    },
+    "snippets": {
+      "name": "コードスニペット",
+      "desc": "よく使うコードスニペットをシンタックスハイライト付きで保存・整理。ワンクリックコピー。"
+    },
+    "sysmon": {
+      "name": "システムモニター",
+      "desc": "CPU、メモリ、ディスク、ネットワーク、プロセスをライブゲージでリアルタイム監視。"
+    },
+    "icons": {
+      "name": "アイコンエクスプローラー",
+      "desc": "Bootstrap Icons、Font Awesome、Tabler Icons を閲覧・検索。クリックで CSS クラスや HTML をコピー。"
+    },
+    "askai": {
+      "name": "AI に聞く",
+      "desc": "ナビバーから 9 つのクラウド AI（Claude、ChatGPT、Gemini など）と Ollama にすぐアクセス。"
+    },
+    "translator": {
+      "name": "翻訳ツール",
+      "desc": "ローカル Ollama AI モデルでテキストを翻訳。Google 翻訳のように使えて、オフラインで動作。"
+    }
+  },
+  "upload_page": {
+    "drop_zone": "ファイルをここにドラッグ＆ドロップ",
+    "drop_or_browse": "またはクリックして参照",
+    "paste_hint": "クリップボードから貼り付けもできます (Ctrl+V)",
+    "recent_uploads": "最近のアップロード",
+    "clear_recent": "履歴をクリア",
+    "copy_url": "URL をコピー",
+    "open_new_tab": "新しいタブで開く",
+    "file_uploaded": "ファイルのアップロードに成功しました",
+    "upload_failed": "アップロードに失敗しました"
+  },
+  "files_page": {
+    "search_placeholder": "ファイルを検索...",
+    "grid_view": "グリッド",
+    "list_view": "リスト",
+    "delete_all": "すべて削除",
+    "confirm_delete_all": "すべてのファイルを削除してもよろしいですか？",
+    "no_files": "ファイルが見つかりません",
+    "file_deleted": "ファイルを削除しました",
+    "download": "ダウンロード",
+    "file_size": "サイズ",
+    "file_date": "日付"
+  },
+  "prettify_page": {
+    "input_label": "入力",
+    "output_label": "出力",
+    "prettify": "整形",
+    "minify": "圧縮",
+    "paste_placeholder": "ここにコードを貼り付けまたは入力...",
+    "auto_detect": "自動検出",
+    "copy_output": "出力をコピー"
+  },
+  "logs_page": {
+    "app": "アプリ",
+    "level": "レベル",
+    "search_placeholder": "ログを検索...",
+    "clear_logs": "ログをクリア",
+    "auto_scroll": "自動スクロール",
+    "no_logs": "ログが見つかりません",
+    "all_apps": "すべてのアプリ",
+    "all_levels": "すべてのレベル",
+    "timestamp": "タイムスタンプ",
+    "message": "メッセージ"
+  },
+  "logviewer_page": {
+    "upload_log": "ログファイルをアップロード",
+    "search_placeholder": "キーワードまたは regex で検索...",
+    "use_regex": "Regex",
+    "case_sensitive": "大文字小文字を区別",
+    "context_lines": "コンテキスト行数",
+    "showing_lines": "{total} 行中 {shown} 行を表示",
+    "no_matches": "一致するものが見つかりません",
+    "line": "行"
+  },
+  "editor_page": {
+    "new_file": "新規",
+    "open_file": "ファイルを開く",
+    "save_file": "保存",
+    "word_wrap": "折り返し",
+    "minimap": "ミニマップ",
+    "line": "行",
+    "column": "列",
+    "language": "言語",
+    "fetch_url": "URL から取得",
+    "url_placeholder": "ファイルを取得する URL を入力..."
+  },
+  "markdown_page": {
+    "samples": "サンプル",
+    "open_file": "ファイルを開く",
+    "copy_html": "HTML をコピー",
+    "export": "エクスポート",
+    "export_pdf": "PDF にエクスポート",
+    "export_md": "Markdown にエクスポート",
+    "export_html": "HTML にエクスポート",
+    "clear": "クリア",
+    "expand": "展開",
+    "editor_label": "Markdown",
+    "preview_label": "プレビュー",
+    "drop_zone": "Markdown ファイルをここにドラッグ＆ドロップ、またはクリックして参照",
+    "url_placeholder": ".md ファイルを取得する URL を入力",
+    "fetch": "取得",
+    "html_copied": "HTML をコピーしました！",
+    "readme": "README",
+    "api_docs": "API ドキュメント",
+    "changelog": "変更履歴",
+    "blog_post": "ブログ記事",
+    "cheatsheet": "Markdown チートシート",
+    "meeting_notes": "議事録",
+    "project_todo": "プロジェクト TODO"
+  },
+  "diff_page": {
+    "original": "元のファイル",
+    "modified": "変更後",
+    "side_by_side": "サイドバイサイド",
+    "inline": "インライン",
+    "open_file": "ファイルを開く",
+    "paste_code": "ここにコードを貼り付け...",
+    "swap": "入れ替え",
+    "no_differences": "差分はありません"
+  },
+  "jwt_page": {
+    "header": "ヘッダー",
+    "payload": "ペイロード",
+    "signature": "署名",
+    "secret": "秘密鍵",
+    "algorithm": "アルゴリズム",
+    "encode": "エンコード",
+    "decode": "デコード",
+    "verify": "検証",
+    "valid_signature": "有効な署名",
+    "invalid_signature": "無効な署名",
+    "paste_jwt": "ここに JWT トークンを貼り付け..."
+  },
+  "base64_page": {
+    "text_mode": "テキスト",
+    "file_mode": "ファイル",
+    "url_safe": "URL セーフ",
+    "line_breaks": "改行",
+    "input_placeholder": "エンコード/デコードするテキストを入力...",
+    "drop_file": "ファイルをここにドロップまたはクリックして参照",
+    "download_result": "結果をダウンロード"
+  },
+  "urlencoder_page": {
+    "component_mode": "コンポーネント",
+    "full_url_mode": "完全 URL",
+    "url_parser": "URL パーサー",
+    "protocol": "プロトコル",
+    "host": "ホスト",
+    "path": "パス",
+    "params": "パラメータ",
+    "input_placeholder": "エンコード/デコードする URL またはテキストを入力..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "ソースコード",
+    "import_html": "HTML をインポート",
+    "export_html": "HTML をエクスポート",
+    "clear": "クリア"
+  },
+  "mermaid_page": {
+    "samples": "サンプル",
+    "download_svg": "SVG をダウンロード",
+    "download_png": "PNG をダウンロード",
+    "share": "共有",
+    "zoom_in": "拡大",
+    "zoom_out": "縮小",
+    "reset_zoom": "ズームをリセット",
+    "diagram_label": "Mermaid コード",
+    "preview_label": "プレビュー",
+    "link_copied": "共有リンクをコピーしました！",
+    "flowchart": "フローチャート",
+    "sequence": "シーケンス図",
+    "class_diagram": "クラス図",
+    "state": "状態図",
+    "er": "ER 図",
+    "gantt": "ガントチャート",
+    "pie": "円グラフ",
+    "mindmap": "マインドマップ",
+    "timeline": "タイムライン",
+    "quadrant": "象限チャート",
+    "git": "Git グラフ",
+    "sankey": "サンキーダイアグラム"
+  },
+  "uuid_page": {
+    "version": "バージョン",
+    "bulk_generate": "一括生成",
+    "validate_parse": "検証＆解析",
+    "count": "件数",
+    "uppercase": "大文字",
+    "braces": "波括弧",
+    "hyphens": "ハイフン",
+    "copy_all": "すべてコピー",
+    "generated": "生成済み",
+    "valid_uuid": "有効な UUID",
+    "invalid_uuid": "無効な UUID",
+    "uuid_version": "バージョン",
+    "uuid_variant": "バリアント",
+    "uuid_timestamp": "タイムスタンプ"
+  },
+  "notes_page": {
+    "new_note": "新規ノート",
+    "search_placeholder": "ノートを検索...",
+    "categories": "カテゴリ",
+    "all_notes": "すべてのノート",
+    "pinned": "ピン留め",
+    "trash": "ゴミ箱",
+    "restore": "復元",
+    "permanent_delete": "完全に削除",
+    "note_saved": "ノートを保存しました",
+    "note_deleted": "ノートをゴミ箱に移動しました",
+    "untitled": "無題のノート",
+    "attachments": "添付ファイル",
+    "color_label": "カラーラベル",
+    "sort_by": "並べ替え",
+    "date_modified": "更新日",
+    "date_created": "作成日"
+  },
+  "regex_page": {
+    "pattern": "パターン",
+    "test_string": "テスト文字列",
+    "flags": "フラグ",
+    "matches": "マッチ",
+    "replace": "置換",
+    "replacement": "置換テキスト",
+    "cheat_sheet": "チートシート",
+    "common_patterns": "よく使うパターン",
+    "no_matches": "マッチなし",
+    "match_count": "{count} 件のマッチ",
+    "global": "グローバル",
+    "case_insensitive": "大文字小文字を区別しない",
+    "multiline": "複数行"
+  },
+  "charmap_page": {
+    "search_placeholder": "絵文字や文字を検索...",
+    "recently_used": "最近使ったもの",
+    "unicode": "Unicode",
+    "html_entity": "HTML エンティティ",
+    "css_code": "CSS コード",
+    "copy_char": "クリックでコピー",
+    "smileys": "スマイリー＆人物",
+    "animals": "動物＆自然",
+    "food": "食べ物＆飲み物",
+    "activities": "アクティビティ",
+    "travel": "旅行＆場所",
+    "objects": "物",
+    "symbols": "記号",
+    "flags": "旗",
+    "arrows": "矢印",
+    "math": "数学",
+    "currency": "通貨",
+    "latin": "ラテン拡張"
+  },
+  "epoch_page": {
+    "timestamp": "タイムスタンプ",
+    "date_time": "日付と時刻",
+    "now": "現在",
+    "seconds": "秒",
+    "milliseconds": "ミリ秒",
+    "local_time": "ローカル時間",
+    "utc_time": "UTC 時間",
+    "relative": "相対時間",
+    "time_diff": "時間差",
+    "presets": "プリセット",
+    "live_clock": "ライブクロック"
+  },
+  "hash_page": {
+    "text_input": "テキスト入力",
+    "file_input": "ファイル入力",
+    "compare": "ハッシュを比較",
+    "hash_match": "ハッシュが一致しました！",
+    "hash_mismatch": "ハッシュが一致しません",
+    "drop_file": "ファイルをドロップしてハッシュ計算...",
+    "computing": "ハッシュを計算中..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "コントラストチェック",
+    "foreground": "前景色",
+    "background": "背景色",
+    "ratio": "比率",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "合格",
+    "fail": "不合格",
+    "palette": "パレット",
+    "shades": "シェード",
+    "tints": "ティント",
+    "pick_color": "色を選択",
+    "eyedropper": "スポイト"
+  },
+  "cron_page": {
+    "expression": "式",
+    "description_label": "説明",
+    "next_runs": "次回の実行",
+    "presets": "プリセット",
+    "minute": "分",
+    "hour": "時",
+    "day_month": "日（月）",
+    "month": "月",
+    "day_week": "曜日",
+    "every_minute": "毎分",
+    "every_hour": "毎時",
+    "every_day": "毎日午前0時",
+    "share": "共有"
+  },
+  "password_page": {
+    "password": "パスワード",
+    "passphrase": "パスフレーズ",
+    "length": "長さ",
+    "uppercase": "大文字 (A-Z)",
+    "lowercase": "小文字 (a-z)",
+    "numbers": "数字 (0-9)",
+    "symbols": "記号 (!@#$...)",
+    "word_count": "単語数",
+    "separator": "区切り文字",
+    "strength": "強度",
+    "entropy": "エントロピー",
+    "very_weak": "非常に弱い",
+    "weak": "弱い",
+    "fair": "普通",
+    "strong": "強い",
+    "very_strong": "非常に強い",
+    "bulk_generate": "一括生成",
+    "generate_count": "件数"
+  },
+  "qrcode_page": {
+    "text_url": "テキスト / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "テキストまたは URL を入力...",
+    "network_name": "ネットワーク名 (SSID)",
+    "wifi_password": "パスワード",
+    "encryption": "暗号化",
+    "hidden_network": "非公開ネットワーク",
+    "full_name": "氏名",
+    "phone": "電話番号",
+    "email": "メール",
+    "organization": "組織",
+    "error_correction": "誤り訂正",
+    "foreground_color": "前景色",
+    "background_color": "背景色",
+    "download_png": "PNG をダウンロード",
+    "download_svg": "SVG をダウンロード",
+    "copy_image": "画像をコピー"
+  },
+  "lorem_page": {
+    "paragraphs": "段落",
+    "sentences": "文",
+    "words": "単語",
+    "style": "スタイル",
+    "classic": "クラシック",
+    "hipster": "ヒップスター",
+    "tech": "テック / 開発",
+    "include_html": "HTML タグを含める",
+    "start_lorem": "\"Lorem ipsum...\" で開始",
+    "generated_text": "生成されたテキスト",
+    "copy_text": "テキストをコピー"
+  },
+  "baseconverter_page": {
+    "binary": "2 進数",
+    "octal": "8 進数",
+    "decimal": "10 進数",
+    "hexadecimal": "16 進数",
+    "bit_visualization": "ビット可視化",
+    "signed": "符号付き",
+    "unsigned": "符号なし",
+    "twos_complement": "2 の補数"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "整形",
+    "minify": "圧縮",
+    "import_file": "ファイルをインポート",
+    "invalid_json": "無効な JSON",
+    "invalid_yaml": "無効な YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "リクエスト URL を入力...",
+    "method": "メソッド",
+    "headers": "ヘッダー",
+    "body": "ボディ",
+    "auth": "認証",
+    "params": "パラメータ",
+    "response": "レスポンス",
+    "status_code": "ステータス",
+    "response_time": "応答時間",
+    "response_size": "サイズ",
+    "send_request": "送信",
+    "clear_history": "履歴をクリア",
+    "no_auth": "認証なし",
+    "basic_auth": "Basic 認証",
+    "bearer_token": "Bearer Token",
+    "username": "ユーザー名",
+    "token": "Token",
+    "key": "キー",
+    "add_header": "ヘッダーを追加",
+    "add_param": "パラメータを追加"
+  },
+  "stringutils_page": {
+    "input_placeholder": "ここにテキストを入力...",
+    "operations": "操作",
+    "case_conversion": "大文字小文字変換",
+    "text_cleanup": "テキスト整理",
+    "text_transform": "テキスト変換",
+    "encode_decode": "エンコード / デコード",
+    "extract_info": "情報抽出",
+    "uppercase": "大文字",
+    "lowercase": "小文字",
+    "title_case": "タイトルケース",
+    "sentence_case": "センテンスケース",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "文字数",
+    "word_count": "単語数",
+    "line_count": "行数"
+  },
+  "chat_page": {
+    "username_placeholder": "名前を入力...",
+    "message_placeholder": "メッセージを入力...",
+    "join": "参加",
+    "online_users": "オンラインユーザー",
+    "user_joined": "{user} がチャットに参加しました",
+    "user_left": "{user} がチャットから退出しました"
+  },
+  "netscan_page": {
+    "interface": "インターフェース",
+    "target": "ターゲット",
+    "ports": "ポート",
+    "scan": "スキャン",
+    "scanning": "スキャン中...",
+    "open_ports": "オープンポート",
+    "host": "ホスト",
+    "port": "ポート",
+    "service": "サービス",
+    "scan_complete": "スキャン完了",
+    "common_ports": "一般的なポート",
+    "custom_range": "カスタム範囲"
+  },
+  "worldclock_page": {
+    "add_clock": "時計を追加",
+    "your_local_time": "ローカル時間",
+    "meeting_planner": "会議プランナー",
+    "timezone": "タイムゾーン",
+    "search_timezone": "タイムゾーンを検索...",
+    "remove_clock": "削除"
+  },
+  "ocr_page": {
+    "upload_image": "画像をアップロード",
+    "paste_image": "画像を貼り付け",
+    "drop_image": "ここに画像をドラッグ＆ドロップ",
+    "extract_text": "テキストを抽出",
+    "extracted_text": "抽出されたテキスト",
+    "copy_result": "結果をコピー",
+    "recognizing": "テキストを認識中...",
+    "no_text_found": "画像からテキストが見つかりません",
+    "supported_formats": "対応形式：PNG、JPG、BMP、WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "ファイルをインポート",
+    "download_result": "ダウンロード"
+  },
+  "aichat_page": {
+    "model": "モデル",
+    "no_models": "モデルが見つかりません。Ollama は起動していますか？",
+    "message_placeholder": "メッセージを入力...",
+    "clear_chat": "チャットをクリア",
+    "thinking": "考え中...",
+    "ollama_not_running": "Ollama に接続できません",
+    "connection_error": "接続エラー"
+  },
+  "speedtest_page": {
+    "start_test": "テスト開始",
+    "ping": "Ping",
+    "download_speed": "ダウンロード",
+    "upload_speed": "アップロード",
+    "disk_speed": "ディスク",
+    "latency": "レイテンシ",
+    "read_speed": "読み取り",
+    "write_speed": "書き込み",
+    "testing": "テスト中...",
+    "test_complete": "テスト完了"
+  },
+  "snippets_page": {
+    "new_snippet": "新規スニペット",
+    "search_placeholder": "スニペットを検索...",
+    "title_placeholder": "スニペットのタイトル...",
+    "desc_placeholder": "説明（任意）",
+    "tags_placeholder": "タグ（カンマ区切り）",
+    "save_snippet": "保存",
+    "delete_snippet": "削除",
+    "copy_code": "コードをコピー",
+    "language": "言語",
+    "default_loaded": "デフォルトスニペットを読み込みました",
+    "snippet_saved": "スニペットを保存しました",
+    "snippet_deleted": "スニペットを削除しました",
+    "code_copied": "コードをコピーしました！",
+    "no_snippets": "スニペットが見つかりません",
+    "pinned": "ピン留め",
+    "all_snippets": "すべてのスニペット"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "メモリ",
+    "disk": "ディスク",
+    "network": "ネットワーク",
+    "processes": "プロセス",
+    "usage": "使用率",
+    "total": "合計",
+    "used": "使用中",
+    "free": "空き",
+    "available": "利用可能",
+    "cores": "コア",
+    "uptime": "稼働時間",
+    "pid": "PID",
+    "process_name": "名前",
+    "cpu_percent": "CPU %",
+    "mem_percent": "メモリ %",
+    "connecting": "接続中...",
+    "disconnected": "切断されました",
+    "bytes_sent": "送信",
+    "bytes_recv": "受信",
+    "read_speed": "読み取り",
+    "write_speed": "書き込み"
+  },
+  "icons_page": {
+    "search_placeholder": "アイコンを検索...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "すべて",
+    "recently_used": "最近使ったもの",
+    "class_name": "クラス名",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "クラスをコピー",
+    "copy_html": "HTML をコピー",
+    "icon_count": "{count} 個のアイコン",
+    "loading_icons": "アイコンを読み込み中...",
+    "click_to_view": "アイコンをクリックして詳細を表示"
+  },
+  "netinspect_page": {
+    "my_ip": "マイ IP",
+    "ip_lookup": "IP ルックアップ",
+    "dns_lookup": "DNS ルックアップ",
+    "http_headers": "HTTP ヘッダー",
+    "ssl_cert": "SSL 証明書",
+    "lookup": "検索",
+    "check": "チェック",
+    "ip_placeholder": "IP アドレスを入力...",
+    "domain_placeholder": "ドメイン名を入力...",
+    "url_placeholder": "URL を入力...",
+    "location": "場所",
+    "isp": "ISP",
+    "record_type": "レコードタイプ",
+    "issuer": "発行者",
+    "valid_from": "有効期間開始",
+    "valid_until": "有効期間終了",
+    "subject": "サブジェクト"
+  },
+  "translator_page": {
+    "source_lang": "翻訳元の言語",
+    "target_lang": "翻訳先の言語",
+    "auto_detect": "自動検出",
+    "translate": "翻訳",
+    "translating": "翻訳中...",
+    "swap_languages": "言語を入れ替え",
+    "input_placeholder": "翻訳するテキストを入力...",
+    "model": "モデル",
+    "copy_translation": "翻訳をコピー",
+    "translation_copied": "翻訳をコピーしました！",
+    "clear_all": "すべてクリア",
+    "char_count": "{count} 文字"
+  }
+}

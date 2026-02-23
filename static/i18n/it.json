@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Copia",
+    "copied": "Copiato!",
+    "clear": "Cancella",
+    "save": "Salva",
+    "saved": "Salvato!",
+    "delete": "Elimina",
+    "cancel": "Annulla",
+    "close": "Chiudi",
+    "open": "Apri",
+    "search": "Cerca",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "warning": "Avviso",
+    "info": "Info",
+    "yes": "Sì",
+    "no": "No",
+    "confirm": "Conferma",
+    "download": "Scarica",
+    "upload": "Carica",
+    "export": "Esporta",
+    "import": "Importa",
+    "expand": "Espandi",
+    "exit": "Esci",
+    "file": "File",
+    "settings": "Impostazioni",
+    "none": "Nessuno",
+    "all": "Tutti",
+    "reset": "Reimposta",
+    "apply": "Applica",
+    "preview": "Anteprima",
+    "source": "Sorgente",
+    "result": "Risultato",
+    "input": "Input",
+    "output": "Output",
+    "generate": "Genera",
+    "encode": "Codifica",
+    "decode": "Decodifica",
+    "paste": "Incolla",
+    "swap": "Scambia",
+    "back": "Indietro",
+    "next": "Avanti",
+    "samples": "Esempi",
+    "history": "Cronologia",
+    "options": "Opzioni",
+    "format": "Formato",
+    "validate": "Valida",
+    "convert": "Converti",
+    "raw": "Grezzo",
+    "send": "Invia",
+    "stop": "Ferma",
+    "start": "Avvia",
+    "refresh": "Aggiorna",
+    "browse": "Sfoglia",
+    "select": "Seleziona",
+    "add": "Aggiungi",
+    "remove": "Rimuovi",
+    "edit": "Modifica",
+    "share": "Condividi",
+    "pin": "Fissa",
+    "unpin": "Rimuovi fissaggio",
+    "new": "Nuovo",
+    "text": "Testo",
+    "type": "Tipo",
+    "size": "Dimensione",
+    "name": "Nome",
+    "value": "Valore",
+    "status": "Stato",
+    "actions": "Azioni",
+    "description": "Descrizione",
+    "category": "Categoria",
+    "tags": "Tag",
+    "language": "Lingua",
+    "title": "Titolo",
+    "content": "Contenuto",
+    "count": "Conteggio",
+    "length": "Lunghezza",
+    "total": "Totale",
+    "or": "o",
+    "and": "e",
+    "no_data": "Nessun dato",
+    "no_results": "Nessun risultato trovato",
+    "confirm_delete": "Sei sicuro di voler eliminare questo elemento?",
+    "drag_drop": "Trascina e rilascia il file qui",
+    "processing": "Elaborazione...",
+    "done": "Fatto",
+    "copied_to_clipboard": "Copiato negli appunti!",
+    "failed_to_copy": "Copia non riuscita",
+    "keyboard_shortcuts": "Scorciatoie da tastiera",
+    "toggle_fullscreen": "Attiva/disattiva schermo intero (F11)",
+    "exit_fullscreen": "Esci dallo schermo intero (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Cerca",
+    "search_tools": "Cerca strumenti...",
+    "more": "Altro",
+    "all_tools": "Tutti gli strumenti",
+    "ask_ai": "Chiedi all'AI",
+    "cloud_ai": "AI Cloud",
+    "local_ai": "AI Locale",
+    "language": "Lingua",
+    "pinned_to_navbar": "Fissato nella barra di navigazione",
+    "unpinned_from_navbar": "Rimosso dalla barra di navigazione",
+    "pin_to_navbar": "Fissa nella barra di navigazione",
+    "unpin_from_navbar": "Rimuovi dalla barra di navigazione",
+    "open_navigation": "Apri navigazione"
+  },
+  "theme": {
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "auto": "Automatico",
+    "switch_theme": "Cambia tema"
+  },
+  "spotlight": {
+    "placeholder": "Cerca strumenti...",
+    "no_results": "Nessuno strumento trovato per \"{query}\"",
+    "navigate": "Naviga",
+    "open": "Apri",
+    "close": "Chiudi"
+  },
+  "drawer": {
+    "search": "Cerca",
+    "theme": "Tema",
+    "pinned": "Fissati",
+    "file_code": "File e Codice",
+    "encode_decode": "Codifica e Decodifica",
+    "converters": "Convertitori",
+    "generators": "Generatori",
+    "tools_section": "Strumenti",
+    "logs_network": "Log e Rete",
+    "all_tools": "Tutti gli strumenti"
+  },
+  "footer": {
+    "made_by": "Fatto con ❤️ da"
+  },
+  "ai": {
+    "ask": "Chiedi",
+    "prompt_placeholder": "Cosa vuoi chiedere?",
+    "enter_to_send": "Invio per inviare",
+    "shift_enter_newline": "Shift+Invio per nuova riga",
+    "open_without_prompt": "Apri senza prompt",
+    "ollama_url": "URL di Ollama",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Inserisci l'URL della web UI di Ollama"
+  },
+  "dashboard": {
+    "search_placeholder": "Cerca strumenti...",
+    "pinned_tools": "Strumenti fissati",
+    "all_tools": "Tutti gli strumenti",
+    "no_results": "Nessuno strumento corrisponde alla ricerca.",
+    "open_source_toolkit": "Toolkit open source per sviluppatori",
+    "tools_count": "{count} strumenti disponibili"
+  },
+  "tools": {
+    "upload": {
+      "name": "Caricamento",
+      "desc": "Trascina, rilascia, incolla o sfoglia i file da caricare. Anteprima immagini con lightbox."
+    },
+    "files": {
+      "name": "Esplora File",
+      "desc": "Sfoglia, cerca e gestisci i file caricati in una vista a griglia stile Google Drive."
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "Formatta e abbellisci codice JSON, XML, HTML, CSS, JavaScript e SQL."
+    },
+    "logs": {
+      "name": "Aggregatore Log",
+      "desc": "Raccoglitore di log leggero. Ricevi log da qualsiasi app via HTTP POST, filtra per app e livello."
+    },
+    "logviewer": {
+      "name": "Visualizzatore Log",
+      "desc": "Carica e cerca file di log di grandi dimensioni con filtraggio per parole chiave, regex e righe di contesto."
+    },
+    "editor": {
+      "name": "Editor di Codice",
+      "desc": "Editor di codice completo basato su Monaco (VS Code). Evidenziazione della sintassi per oltre 40 linguaggi."
+    },
+    "markdown": {
+      "name": "Visualizzatore Markdown",
+      "desc": "Scrivi Markdown con anteprima live, blocchi di codice con evidenziazione della sintassi e supporto GFM."
+    },
+    "diff": {
+      "name": "Confronto Codice",
+      "desc": "Confronta due file di codice affiancati o in linea con vista diff con evidenziazione della sintassi."
+    },
+    "jwt": {
+      "name": "Strumento JWT",
+      "desc": "Codifica, decodifica e verifica i JSON Web Token. Supporta HS256/384/512 con visualizzazione a colori."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Codifica e decodifica stringhe Base64. Supporta testo e file binari con opzione URL-safe."
+    },
+    "urlencoder": {
+      "name": "Codificatore URL",
+      "desc": "Codifica e decodifica URL e parametri di query. Il parser URL mostra protocollo, host, percorso e parametri."
+    },
+    "htmleditor": {
+      "name": "Editor HTML",
+      "desc": "Editor di testo WYSIWYG basato su TinyMCE con alternanza alla vista codice sorgente HTML."
+    },
+    "mermaid": {
+      "name": "Diagrammi Mermaid",
+      "desc": "Crea diagrammi di flusso, di sequenza, ER, Gantt e altro con anteprima live di Mermaid.js."
+    },
+    "uuid": {
+      "name": "Generatore UUID",
+      "desc": "Genera UUID v1, v4 e v7. Generazione massiva, validazione, analisi e copia con opzioni di formato."
+    },
+    "notes": {
+      "name": "Note",
+      "desc": "Note Markdown con anteprima live, tag, categorie, etichette colorate, allegati e salvataggio automatico."
+    },
+    "regex": {
+      "name": "Tester Regex",
+      "desc": "Testa le espressioni regex con evidenziazione delle corrispondenze in tempo reale, gruppi di cattura, sostituzione e prontuario."
+    },
+    "charmap": {
+      "name": "Emoji e Mappa Caratteri",
+      "desc": "Cerca e copia emoji, simboli e caratteri speciali. Dettagli Unicode, entità HTML e usati di recente."
+    },
+    "epoch": {
+      "name": "Convertitore Epoch",
+      "desc": "Converti timestamp Unix epoch in date leggibili e viceversa. Orologio live, preset e calcolatore di differenza temporale."
+    },
+    "hash": {
+      "name": "Generatore Hash",
+      "desc": "Genera hash MD5, SHA-1, SHA-256, SHA-512 da testo o file. Verifica i checksum istantaneamente."
+    },
+    "colorpicker": {
+      "name": "Selettore Colore",
+      "desc": "Seleziona colori e converti tra formati HEX, RGB, HSL. Tavolozza colori e verifica contrasto."
+    },
+    "cron": {
+      "name": "Parser Cron",
+      "desc": "Analizza e genera espressioni cron con descrizioni leggibili e prossime esecuzioni."
+    },
+    "password": {
+      "name": "Generatore Password",
+      "desc": "Genera password casuali crittograficamente sicure e passphrase facili da ricordare."
+    },
+    "qrcode": {
+      "name": "Generatore QR Code",
+      "desc": "Genera QR Code da testo, URL, credenziali WiFi o informazioni di contatto. Scarica come PNG."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Genera testo segnaposto — paragrafi, frasi o parole. Diversi stili disponibili."
+    },
+    "baseconverter": {
+      "name": "Convertitore di Base",
+      "desc": "Converti numeri tra basi Binaria, Ottale, Decimale ed Esadecimale in tempo reale."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Converti tra formati JSON e YAML con validazione della sintassi e formattazione."
+    },
+    "httpclient": {
+      "name": "Client HTTP",
+      "desc": "Testa endpoint API come un mini Postman. Metodi personalizzati, header, body e visualizzatore di risposta."
+    },
+    "stringutils": {
+      "name": "Utilità Stringhe",
+      "desc": "Conversione maiuscole/minuscole, trim, conteggio, inversione, generatore di slug e altre operazioni sulle stringhe."
+    },
+    "chat": {
+      "name": "Chat LAN",
+      "desc": "Chat in tempo reale per la rete locale. Nessuna connessione internet necessaria — basta Dev Helper sulla LAN."
+    },
+    "netscan": {
+      "name": "Scanner di Rete",
+      "desc": "Scansiona host e porte nella LAN. Scopri dispositivi, servizi e porte aperte nella tua rete."
+    },
+    "worldclock": {
+      "name": "Orologio Mondiale",
+      "desc": "Orologi multi-fuso orario con display analogico, pianificatore riunioni e riordinamento tramite trascinamento."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Estrai testo da immagini e screenshot. Trascina, incolla o carica — basato su Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Converti tra application.yml e application.properties per progetti Java/Spring Boot."
+    },
+    "netinspect": {
+      "name": "Ispettore di Rete",
+      "desc": "Geolocalizzazione IP, ricerca DNS, header di risposta HTTP e verifica certificati SSL."
+    },
+    "aichat": {
+      "name": "Chat AI",
+      "desc": "Chatta con modelli AI locali di Ollama. Risposte in streaming, rendering Markdown, cronologia conversazioni."
+    },
+    "speedtest": {
+      "name": "Test di Velocità",
+      "desc": "Testa velocità di download/upload, latenza ping e prestazioni di lettura/scrittura del disco."
+    },
+    "snippets": {
+      "name": "Frammenti di Codice",
+      "desc": "Salva e organizza frammenti di codice usati frequentemente con evidenziazione della sintassi e copia rapida."
+    },
+    "sysmon": {
+      "name": "Monitor di Sistema",
+      "desc": "Monitoraggio in tempo reale di CPU, memoria, disco, rete e processi con indicatori live."
+    },
+    "icons": {
+      "name": "Esplora Icone",
+      "desc": "Sfoglia e cerca Bootstrap Icons, Font Awesome e Tabler Icons. Clicca per copiare classe CSS o HTML."
+    },
+    "askai": {
+      "name": "Chiedi all'AI",
+      "desc": "Accesso rapido a 9 AI cloud (Claude, ChatGPT, Gemini, ecc.) e Ollama dalla barra di navigazione."
+    },
+    "translator": {
+      "name": "Traduttore",
+      "desc": "Traduci testo tra lingue usando modelli AI locali di Ollama. Come Google Translate, offline."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Trascina e Rilascia i File Qui",
+    "drop_or_browse": "o clicca per sfogliare",
+    "paste_hint": "Puoi anche incollare dagli appunti (Ctrl+V)",
+    "recent_uploads": "Caricamenti Recenti",
+    "clear_recent": "Cancella Recenti",
+    "copy_url": "Copia URL",
+    "open_new_tab": "Apri in Nuova Scheda",
+    "file_uploaded": "File caricato con successo",
+    "upload_failed": "Caricamento non riuscito"
+  },
+  "files_page": {
+    "search_placeholder": "Cerca file...",
+    "grid_view": "Griglia",
+    "list_view": "Lista",
+    "delete_all": "Elimina Tutti",
+    "confirm_delete_all": "Sei sicuro di voler eliminare tutti i file?",
+    "no_files": "Nessun file trovato",
+    "file_deleted": "File eliminato",
+    "download": "Scarica",
+    "file_size": "Dimensione",
+    "file_date": "Data"
+  },
+  "prettify_page": {
+    "input_label": "Input",
+    "output_label": "Output",
+    "prettify": "Formatta",
+    "minify": "Minifica",
+    "paste_placeholder": "Incolla o scrivi il codice qui...",
+    "auto_detect": "Rilevamento automatico",
+    "copy_output": "Copia Output"
+  },
+  "logs_page": {
+    "app": "App",
+    "level": "Livello",
+    "search_placeholder": "Cerca nei log...",
+    "clear_logs": "Cancella Log",
+    "auto_scroll": "Scorrimento automatico",
+    "no_logs": "Nessun log trovato",
+    "all_apps": "Tutte le App",
+    "all_levels": "Tutti i Livelli",
+    "timestamp": "Timestamp",
+    "message": "Messaggio"
+  },
+  "logviewer_page": {
+    "upload_log": "Carica File di Log",
+    "search_placeholder": "Cerca parola chiave o regex...",
+    "use_regex": "Regex",
+    "case_sensitive": "Maiuscole/Minuscole",
+    "context_lines": "Righe di Contesto",
+    "showing_lines": "Mostrando {shown} di {total} righe",
+    "no_matches": "Nessuna corrispondenza trovata",
+    "line": "Riga"
+  },
+  "editor_page": {
+    "new_file": "Nuovo",
+    "open_file": "Apri File",
+    "save_file": "Salva",
+    "word_wrap": "A capo automatico",
+    "minimap": "Minimappa",
+    "line": "Riga",
+    "column": "Col",
+    "language": "Linguaggio",
+    "fetch_url": "Scarica da URL",
+    "url_placeholder": "Inserisci URL per scaricare il file..."
+  },
+  "markdown_page": {
+    "samples": "Esempi",
+    "open_file": "Apri File",
+    "copy_html": "Copia HTML",
+    "export": "Esporta",
+    "export_pdf": "Esporta in PDF",
+    "export_md": "Esporta in Markdown",
+    "export_html": "Esporta in HTML",
+    "clear": "Cancella",
+    "expand": "Espandi",
+    "editor_label": "Markdown",
+    "preview_label": "Anteprima",
+    "drop_zone": "Trascina e rilascia un file Markdown qui, o clicca per sfogliare",
+    "url_placeholder": "Inserisci URL per scaricare un file .md",
+    "fetch": "Scarica",
+    "html_copied": "HTML copiato!",
+    "readme": "README",
+    "api_docs": "Documentazione API",
+    "changelog": "Registro Modifiche",
+    "blog_post": "Articolo Blog",
+    "cheatsheet": "Prontuario Markdown",
+    "meeting_notes": "Note Riunione",
+    "project_todo": "TODO Progetto"
+  },
+  "diff_page": {
+    "original": "Originale",
+    "modified": "Modificato",
+    "side_by_side": "Affiancato",
+    "inline": "In linea",
+    "open_file": "Apri File",
+    "paste_code": "Incolla il codice qui...",
+    "swap": "Scambia",
+    "no_differences": "Nessuna differenza trovata"
+  },
+  "jwt_page": {
+    "header": "Header",
+    "payload": "Payload",
+    "signature": "Firma",
+    "secret": "Chiave Segreta",
+    "algorithm": "Algoritmo",
+    "encode": "Codifica",
+    "decode": "Decodifica",
+    "verify": "Verifica",
+    "valid_signature": "Firma valida",
+    "invalid_signature": "Firma non valida",
+    "paste_jwt": "Incolla il token JWT qui..."
+  },
+  "base64_page": {
+    "text_mode": "Testo",
+    "file_mode": "File",
+    "url_safe": "URL-safe",
+    "line_breaks": "Interruzioni di riga",
+    "input_placeholder": "Inserisci testo da codificare/decodificare...",
+    "drop_file": "Rilascia il file qui o clicca per sfogliare",
+    "download_result": "Scarica Risultato"
+  },
+  "urlencoder_page": {
+    "component_mode": "Componente",
+    "full_url_mode": "URL Completo",
+    "url_parser": "Parser URL",
+    "protocol": "Protocollo",
+    "host": "Host",
+    "path": "Percorso",
+    "params": "Parametri",
+    "input_placeholder": "Inserisci URL o testo da codificare/decodificare..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Codice Sorgente",
+    "import_html": "Importa HTML",
+    "export_html": "Esporta HTML",
+    "clear": "Cancella"
+  },
+  "mermaid_page": {
+    "samples": "Esempi",
+    "download_svg": "Scarica SVG",
+    "download_png": "Scarica PNG",
+    "share": "Condividi",
+    "zoom_in": "Ingrandisci",
+    "zoom_out": "Riduci",
+    "reset_zoom": "Reimposta Zoom",
+    "diagram_label": "Codice Mermaid",
+    "preview_label": "Anteprima",
+    "link_copied": "Link di condivisione copiato!",
+    "flowchart": "Diagramma di Flusso",
+    "sequence": "Diagramma di Sequenza",
+    "class_diagram": "Diagramma delle Classi",
+    "state": "Diagramma di Stato",
+    "er": "Diagramma ER",
+    "gantt": "Diagramma di Gantt",
+    "pie": "Grafico a Torta",
+    "mindmap": "Mappa Mentale",
+    "timeline": "Linea Temporale",
+    "quadrant": "Grafico a Quadranti",
+    "git": "Grafico Git",
+    "sankey": "Diagramma Sankey"
+  },
+  "uuid_page": {
+    "version": "Versione",
+    "bulk_generate": "Generazione Massiva",
+    "validate_parse": "Valida e Analizza",
+    "count": "Quantità",
+    "uppercase": "Maiuscolo",
+    "braces": "Parentesi",
+    "hyphens": "Trattini",
+    "copy_all": "Copia Tutti",
+    "generated": "Generato",
+    "valid_uuid": "UUID valido",
+    "invalid_uuid": "UUID non valido",
+    "uuid_version": "Versione",
+    "uuid_variant": "Variante",
+    "uuid_timestamp": "Timestamp"
+  },
+  "notes_page": {
+    "new_note": "Nuova Nota",
+    "search_placeholder": "Cerca note...",
+    "categories": "Categorie",
+    "all_notes": "Tutte le Note",
+    "pinned": "Fissate",
+    "trash": "Cestino",
+    "restore": "Ripristina",
+    "permanent_delete": "Elimina Definitivamente",
+    "note_saved": "Nota salvata",
+    "note_deleted": "Nota spostata nel cestino",
+    "untitled": "Nota Senza Titolo",
+    "attachments": "Allegati",
+    "color_label": "Etichetta Colore",
+    "sort_by": "Ordina per",
+    "date_modified": "Data Modifica",
+    "date_created": "Data Creazione"
+  },
+  "regex_page": {
+    "pattern": "Pattern",
+    "test_string": "Stringa di Test",
+    "flags": "Flag",
+    "matches": "Corrispondenze",
+    "replace": "Sostituisci",
+    "replacement": "Sostituzione",
+    "cheat_sheet": "Prontuario",
+    "common_patterns": "Pattern Comuni",
+    "no_matches": "Nessuna corrispondenza",
+    "match_count": "{count} corrispondenze trovate",
+    "global": "Globale",
+    "case_insensitive": "Ignora Maiuscole/Minuscole",
+    "multiline": "Multiriga"
+  },
+  "charmap_page": {
+    "search_placeholder": "Cerca emoji o carattere...",
+    "recently_used": "Usati di Recente",
+    "unicode": "Unicode",
+    "html_entity": "Entità HTML",
+    "css_code": "Codice CSS",
+    "copy_char": "Clicca per copiare",
+    "smileys": "Faccine e Persone",
+    "animals": "Animali e Natura",
+    "food": "Cibo e Bevande",
+    "activities": "Attività",
+    "travel": "Viaggi e Luoghi",
+    "objects": "Oggetti",
+    "symbols": "Simboli",
+    "flags": "Bandiere",
+    "arrows": "Frecce",
+    "math": "Matematica",
+    "currency": "Valuta",
+    "latin": "Latino Esteso"
+  },
+  "epoch_page": {
+    "timestamp": "Timestamp",
+    "date_time": "Data e Ora",
+    "now": "Adesso",
+    "seconds": "Secondi",
+    "milliseconds": "Millisecondi",
+    "local_time": "Ora Locale",
+    "utc_time": "Ora UTC",
+    "relative": "Relativo",
+    "time_diff": "Differenza Temporale",
+    "presets": "Preset",
+    "live_clock": "Orologio Live"
+  },
+  "hash_page": {
+    "text_input": "Input Testo",
+    "file_input": "Input File",
+    "compare": "Confronta Hash",
+    "hash_match": "Gli hash corrispondono!",
+    "hash_mismatch": "Gli hash non corrispondono",
+    "drop_file": "Rilascia il file per calcolare l'hash...",
+    "computing": "Calcolo hash in corso..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Verifica Contrasto",
+    "foreground": "Primo Piano",
+    "background": "Sfondo",
+    "ratio": "Rapporto",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Superato",
+    "fail": "Non Superato",
+    "palette": "Tavolozza",
+    "shades": "Tonalità Scure",
+    "tints": "Tonalità Chiare",
+    "pick_color": "Seleziona Colore",
+    "eyedropper": "Contagocce"
+  },
+  "cron_page": {
+    "expression": "Espressione",
+    "description_label": "Descrizione",
+    "next_runs": "Prossime Esecuzioni",
+    "presets": "Preset",
+    "minute": "Minuto",
+    "hour": "Ora",
+    "day_month": "Giorno (Mese)",
+    "month": "Mese",
+    "day_week": "Giorno (Settimana)",
+    "every_minute": "Ogni minuto",
+    "every_hour": "Ogni ora",
+    "every_day": "Ogni giorno a mezzanotte",
+    "share": "Condividi"
+  },
+  "password_page": {
+    "password": "Password",
+    "passphrase": "Passphrase",
+    "length": "Lunghezza",
+    "uppercase": "Maiuscole (A-Z)",
+    "lowercase": "Minuscole (a-z)",
+    "numbers": "Numeri (0-9)",
+    "symbols": "Simboli (!@#$...)",
+    "word_count": "Numero di Parole",
+    "separator": "Separatore",
+    "strength": "Robustezza",
+    "entropy": "Entropia",
+    "very_weak": "Molto Debole",
+    "weak": "Debole",
+    "fair": "Discreta",
+    "strong": "Forte",
+    "very_strong": "Molto Forte",
+    "bulk_generate": "Generazione Massiva",
+    "generate_count": "Quantità"
+  },
+  "qrcode_page": {
+    "text_url": "Testo / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Inserisci testo o URL...",
+    "network_name": "Nome Rete (SSID)",
+    "wifi_password": "Password",
+    "encryption": "Crittografia",
+    "hidden_network": "Rete Nascosta",
+    "full_name": "Nome Completo",
+    "phone": "Telefono",
+    "email": "Email",
+    "organization": "Organizzazione",
+    "error_correction": "Correzione Errori",
+    "foreground_color": "Primo Piano",
+    "background_color": "Sfondo",
+    "download_png": "Scarica PNG",
+    "download_svg": "Scarica SVG",
+    "copy_image": "Copia Immagine"
+  },
+  "lorem_page": {
+    "paragraphs": "Paragrafi",
+    "sentences": "Frasi",
+    "words": "Parole",
+    "style": "Stile",
+    "classic": "Classico",
+    "hipster": "Hipster",
+    "tech": "Tech / Dev",
+    "include_html": "Includi tag HTML",
+    "start_lorem": "Inizia con \"Lorem ipsum...\"",
+    "generated_text": "Testo Generato",
+    "copy_text": "Copia Testo"
+  },
+  "baseconverter_page": {
+    "binary": "Binario",
+    "octal": "Ottale",
+    "decimal": "Decimale",
+    "hexadecimal": "Esadecimale",
+    "bit_visualization": "Visualizzazione Bit",
+    "signed": "Con Segno",
+    "unsigned": "Senza Segno",
+    "twos_complement": "Complemento a Due"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Formatta",
+    "minify": "Minifica",
+    "import_file": "Importa File",
+    "invalid_json": "JSON non valido",
+    "invalid_yaml": "YAML non valido"
+  },
+  "httpclient_page": {
+    "url_placeholder": "Inserisci URL della richiesta...",
+    "method": "Metodo",
+    "headers": "Header",
+    "body": "Body",
+    "auth": "Autenticazione",
+    "params": "Parametri",
+    "response": "Risposta",
+    "status_code": "Stato",
+    "response_time": "Tempo",
+    "response_size": "Dimensione",
+    "send_request": "Invia",
+    "clear_history": "Cancella Cronologia",
+    "no_auth": "Nessuna Autenticazione",
+    "basic_auth": "Autenticazione Base",
+    "bearer_token": "Bearer Token",
+    "username": "Nome Utente",
+    "token": "Token",
+    "key": "Chiave",
+    "add_header": "Aggiungi Header",
+    "add_param": "Aggiungi Parametro"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Inserisci testo qui...",
+    "operations": "Operazioni",
+    "case_conversion": "Conversione Maiuscole/Minuscole",
+    "text_cleanup": "Pulizia Testo",
+    "text_transform": "Trasformazione Testo",
+    "encode_decode": "Codifica / Decodifica",
+    "extract_info": "Estrai Informazioni",
+    "uppercase": "MAIUSCOLO",
+    "lowercase": "minuscolo",
+    "title_case": "Iniziali Maiuscole",
+    "sentence_case": "Prima lettera maiuscola",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Caratteri",
+    "word_count": "Parole",
+    "line_count": "Righe"
+  },
+  "chat_page": {
+    "username_placeholder": "Inserisci il tuo nome...",
+    "message_placeholder": "Scrivi un messaggio...",
+    "join": "Entra",
+    "online_users": "Utenti Online",
+    "user_joined": "{user} è entrato nella chat",
+    "user_left": "{user} ha lasciato la chat"
+  },
+  "netscan_page": {
+    "interface": "Interfaccia",
+    "target": "Destinazione",
+    "ports": "Porte",
+    "scan": "Scansiona",
+    "scanning": "Scansione in corso...",
+    "open_ports": "Porte Aperte",
+    "host": "Host",
+    "port": "Porta",
+    "service": "Servizio",
+    "scan_complete": "Scansione completata",
+    "common_ports": "Porte Comuni",
+    "custom_range": "Intervallo Personalizzato"
+  },
+  "worldclock_page": {
+    "add_clock": "Aggiungi Orologio",
+    "your_local_time": "La Tua Ora Locale",
+    "meeting_planner": "Pianificatore Riunioni",
+    "timezone": "Fuso Orario",
+    "search_timezone": "Cerca fuso orario...",
+    "remove_clock": "Rimuovi"
+  },
+  "ocr_page": {
+    "upload_image": "Carica Immagine",
+    "paste_image": "Incolla Immagine",
+    "drop_image": "Trascina e rilascia un'immagine qui",
+    "extract_text": "Estrai Testo",
+    "extracted_text": "Testo Estratto",
+    "copy_result": "Copia Risultato",
+    "recognizing": "Riconoscimento testo in corso...",
+    "no_text_found": "Nessun testo trovato nell'immagine",
+    "supported_formats": "Formati supportati: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Importa File",
+    "download_result": "Scarica"
+  },
+  "aichat_page": {
+    "model": "Modello",
+    "no_models": "Nessun modello trovato. Ollama è in esecuzione?",
+    "message_placeholder": "Scrivi il tuo messaggio...",
+    "clear_chat": "Cancella Chat",
+    "thinking": "In elaborazione...",
+    "ollama_not_running": "Impossibile connettersi a Ollama",
+    "connection_error": "Errore di connessione"
+  },
+  "speedtest_page": {
+    "start_test": "Avvia Test",
+    "ping": "Ping",
+    "download_speed": "Download",
+    "upload_speed": "Upload",
+    "disk_speed": "Disco",
+    "latency": "Latenza",
+    "read_speed": "Lettura",
+    "write_speed": "Scrittura",
+    "testing": "Test in corso...",
+    "test_complete": "Test completato"
+  },
+  "snippets_page": {
+    "new_snippet": "Nuovo Frammento",
+    "search_placeholder": "Cerca frammenti...",
+    "title_placeholder": "Titolo del frammento...",
+    "desc_placeholder": "Descrizione (opzionale)",
+    "tags_placeholder": "Tag (separati da virgola)",
+    "save_snippet": "Salva",
+    "delete_snippet": "Elimina",
+    "copy_code": "Copia Codice",
+    "language": "Linguaggio",
+    "default_loaded": "Frammenti predefiniti caricati",
+    "snippet_saved": "Frammento salvato",
+    "snippet_deleted": "Frammento eliminato",
+    "code_copied": "Codice copiato!",
+    "no_snippets": "Nessun frammento trovato",
+    "pinned": "Fissati",
+    "all_snippets": "Tutti i Frammenti"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Memoria",
+    "disk": "Disco",
+    "network": "Rete",
+    "processes": "Processi",
+    "usage": "Utilizzo",
+    "total": "Totale",
+    "used": "In Uso",
+    "free": "Libero",
+    "available": "Disponibile",
+    "cores": "Core",
+    "uptime": "Tempo di Attività",
+    "pid": "PID",
+    "process_name": "Nome",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Memoria %",
+    "connecting": "Connessione in corso...",
+    "disconnected": "Disconnesso",
+    "bytes_sent": "Inviati",
+    "bytes_recv": "Ricevuti",
+    "read_speed": "Lettura",
+    "write_speed": "Scrittura"
+  },
+  "icons_page": {
+    "search_placeholder": "Cerca icone...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "Tutte",
+    "recently_used": "Usate di Recente",
+    "class_name": "Classe",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Copia Classe",
+    "copy_html": "Copia HTML",
+    "icon_count": "{count} icone",
+    "loading_icons": "Caricamento icone...",
+    "click_to_view": "Clicca su un'icona per vedere i dettagli"
+  },
+  "netinspect_page": {
+    "my_ip": "Il Mio IP",
+    "ip_lookup": "Ricerca IP",
+    "dns_lookup": "Ricerca DNS",
+    "http_headers": "Header HTTP",
+    "ssl_cert": "Certificato SSL",
+    "lookup": "Cerca",
+    "check": "Verifica",
+    "ip_placeholder": "Inserisci indirizzo IP...",
+    "domain_placeholder": "Inserisci nome dominio...",
+    "url_placeholder": "Inserisci URL...",
+    "location": "Posizione",
+    "isp": "ISP",
+    "record_type": "Tipo di Record",
+    "issuer": "Emittente",
+    "valid_from": "Valido Da",
+    "valid_until": "Valido Fino",
+    "subject": "Soggetto"
+  },
+  "translator_page": {
+    "source_lang": "Lingua di Origine",
+    "target_lang": "Lingua di Destinazione",
+    "auto_detect": "Rilevamento Automatico",
+    "translate": "Traduci",
+    "translating": "Traduzione in corso...",
+    "swap_languages": "Scambia Lingue",
+    "input_placeholder": "Inserisci testo da tradurre...",
+    "model": "Modello",
+    "copy_translation": "Copia Traduzione",
+    "translation_copied": "Traduzione copiata!",
+    "clear_all": "Cancella Tutto",
+    "char_count": "{count} caratteri"
+  }
+}

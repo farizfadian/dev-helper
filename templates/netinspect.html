@@ -1,0 +1,245 @@
+{{define "content"}}
+<style>
+    .result-card {
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 1rem;
+    }
+    .result-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--bs-secondary-color);
+        margin-bottom: 2px;
+    }
+    .result-value {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.9rem;
+        word-break: break-all;
+    }
+    .result-value-lg {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+    .badge-pass { background-color: #198754; }
+    .badge-warn { background-color: #fd7e14; }
+    .badge-fail { background-color: #dc3545; }
+    .badge-info { background-color: #0dcaf0; color: #000; }
+    .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-size: 0.85rem;
+    }
+    .header-row:last-child { border-bottom: none; }
+    .header-name {
+        font-weight: 600;
+        color: var(--bs-primary);
+        min-width: 200px;
+        flex-shrink: 0;
+    }
+    .header-value {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.8rem;
+        word-break: break-all;
+        text-align: right;
+    }
+    .cert-chain-item {
+        border-left: 3px solid var(--bs-primary);
+        padding: 10px 14px;
+        margin-bottom: 8px;
+        background: var(--bs-tertiary-bg);
+        border-radius: 0 6px 6px 0;
+    }
+    .cert-chain-item:last-child { margin-bottom: 0; }
+    .dns-table th { font-size: 0.8rem; }
+    .dns-table td {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.82rem;
+        word-break: break-all;
+    }
+    .tab-loading {
+        text-align: center;
+        padding: 3rem;
+        color: var(--bs-secondary-color);
+    }
+    .tab-loading .spinner-border { width: 2rem; height: 2rem; }
+    .security-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 8px;
+    }
+    .security-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        background: var(--bs-tertiary-bg);
+        border-radius: 6px;
+        font-size: 0.85rem;
+    }
+    .security-item .badge { font-size: 0.65rem; min-width: 40px; text-align: center; }
+    .copy-btn {
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.15s;
+    }
+    .copy-btn:hover { opacity: 1; }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-globe-europe-africa text-primary"></i> Network Inspector
+        <i id="pinToggle" data-tool="netinspect" class="bi bi-star pin-star" onclick="togglePin('netinspect')"></i>
+    </h5>
+</div>
+
+<!-- Tabs -->
+<ul class="nav nav-tabs mb-3" id="inspectTabs" role="tablist">
+    <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabMyIP" type="button">
+            <i class="bi bi-pc-display"></i> My IP
+        </button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabIPLookup" type="button">
+            <i class="bi bi-geo-alt"></i> IP Lookup
+        </button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabDNS" type="button">
+            <i class="bi bi-signpost-2"></i> DNS Lookup
+        </button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabHeaders" type="button">
+            <i class="bi bi-list-check"></i> HTTP Headers
+        </button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabSSL" type="button">
+            <i class="bi bi-shield-check"></i> SSL Check
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <!-- Tab 1: My IP -->
+    <div class="tab-pane fade show active" id="tabMyIP">
+        <div class="d-flex justify-content-end mb-3">
+            <button class="btn btn-sm btn-outline-primary" id="refreshMyIP">
+                <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+        </div>
+        <div id="myIPResult">
+            <div class="tab-loading">
+                <div class="spinner-border text-primary" role="status"></div>
+                <div class="mt-2">Detecting your public IP...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 2: IP Lookup -->
+    <div class="tab-pane fade" id="tabIPLookup">
+        <div class="row g-2 mb-3">
+            <div class="col">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                    <input type="text" id="ipLookupInput" class="form-control" placeholder="Enter IP address (e.g. 8.8.8.8)">
+                    <button class="btn btn-primary" id="ipLookupBtn">
+                        <i class="bi bi-search"></i> Lookup
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-1 mb-3">
+            <button class="btn btn-sm btn-outline-secondary ip-preset" data-ip="8.8.8.8">8.8.8.8 (Google)</button>
+            <button class="btn btn-sm btn-outline-secondary ip-preset" data-ip="1.1.1.1">1.1.1.1 (Cloudflare)</button>
+            <button class="btn btn-sm btn-outline-secondary ip-preset" data-ip="208.67.222.222">208.67.222.222 (OpenDNS)</button>
+        </div>
+        <div id="ipLookupResult"></div>
+    </div>
+
+    <!-- Tab 3: DNS Lookup -->
+    <div class="tab-pane fade" id="tabDNS">
+        <div class="row g-2 mb-3">
+            <div class="col">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-signpost-2"></i></span>
+                    <input type="text" id="dnsInput" class="form-control" placeholder="Enter domain (e.g. google.com)">
+                    <select class="form-select" id="dnsType" style="max-width: 120px;">
+                        <option value="ALL">ALL</option>
+                        <option value="A" selected>A</option>
+                        <option value="AAAA">AAAA</option>
+                        <option value="MX">MX</option>
+                        <option value="NS">NS</option>
+                        <option value="TXT">TXT</option>
+                        <option value="CNAME">CNAME</option>
+                    </select>
+                    <button class="btn btn-primary" id="dnsLookupBtn">
+                        <i class="bi bi-search"></i> Lookup
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-1 mb-3">
+            <button class="btn btn-sm btn-outline-secondary dns-preset" data-domain="google.com">google.com</button>
+            <button class="btn btn-sm btn-outline-secondary dns-preset" data-domain="github.com">github.com</button>
+            <button class="btn btn-sm btn-outline-secondary dns-preset" data-domain="cloudflare.com">cloudflare.com</button>
+        </div>
+        <div id="dnsResult"></div>
+    </div>
+
+    <!-- Tab 4: HTTP Headers -->
+    <div class="tab-pane fade" id="tabHeaders">
+        <div class="row g-2 mb-3">
+            <div class="col">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-list-check"></i></span>
+                    <input type="text" id="headersInput" class="form-control" placeholder="Enter URL (e.g. https://github.com)">
+                    <button class="btn btn-primary" id="headersCheckBtn">
+                        <i class="bi bi-search"></i> Check
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-1 mb-3">
+            <button class="btn btn-sm btn-outline-secondary headers-preset" data-url="https://github.com">github.com</button>
+            <button class="btn btn-sm btn-outline-secondary headers-preset" data-url="https://google.com">google.com</button>
+            <button class="btn btn-sm btn-outline-secondary headers-preset" data-url="https://cloudflare.com">cloudflare.com</button>
+        </div>
+        <div id="headersResult"></div>
+    </div>
+
+    <!-- Tab 5: SSL Check -->
+    <div class="tab-pane fade" id="tabSSL">
+        <div class="row g-2 mb-3">
+            <div class="col">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-shield-check"></i></span>
+                    <input type="text" id="sslInput" class="form-control" placeholder="Enter hostname (e.g. github.com)">
+                    <button class="btn btn-primary" id="sslCheckBtn">
+                        <i class="bi bi-search"></i> Check
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-1 mb-3">
+            <button class="btn btn-sm btn-outline-secondary ssl-preset" data-host="github.com">github.com</button>
+            <button class="btn btn-sm btn-outline-secondary ssl-preset" data-host="google.com">google.com</button>
+            <button class="btn btn-sm btn-outline-secondary ssl-preset" data-host="cloudflare.com">cloudflare.com</button>
+        </div>
+        <div id="sslResult"></div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/netinspect.js"></script>
+{{end}}

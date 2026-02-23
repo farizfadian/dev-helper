@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Kopiera",
+    "copied": "Kopierat!",
+    "clear": "Rensa",
+    "save": "Spara",
+    "saved": "Sparat!",
+    "delete": "Ta bort",
+    "cancel": "Avbryt",
+    "close": "Stäng",
+    "open": "Öppna",
+    "search": "Sök",
+    "loading": "Laddar...",
+    "error": "Fel",
+    "success": "Klart",
+    "warning": "Varning",
+    "info": "Info",
+    "yes": "Ja",
+    "no": "Nej",
+    "confirm": "Bekräfta",
+    "download": "Ladda ner",
+    "upload": "Ladda upp",
+    "export": "Exportera",
+    "import": "Importera",
+    "expand": "Expandera",
+    "exit": "Avsluta",
+    "file": "Fil",
+    "settings": "Inställningar",
+    "none": "Ingen",
+    "all": "Alla",
+    "reset": "Återställ",
+    "apply": "Tillämpa",
+    "preview": "Förhandsgranska",
+    "source": "Källa",
+    "result": "Resultat",
+    "input": "Indata",
+    "output": "Utdata",
+    "generate": "Generera",
+    "encode": "Koda",
+    "decode": "Avkoda",
+    "paste": "Klistra in",
+    "swap": "Byt",
+    "back": "Tillbaka",
+    "next": "Nästa",
+    "samples": "Exempel",
+    "history": "Historik",
+    "options": "Alternativ",
+    "format": "Formatera",
+    "validate": "Validera",
+    "convert": "Konvertera",
+    "raw": "Rå",
+    "send": "Skicka",
+    "stop": "Stoppa",
+    "start": "Starta",
+    "refresh": "Uppdatera",
+    "browse": "Bläddra",
+    "select": "Välj",
+    "add": "Lägg till",
+    "remove": "Ta bort",
+    "edit": "Redigera",
+    "share": "Dela",
+    "pin": "Fäst",
+    "unpin": "Lossa",
+    "new": "Ny",
+    "text": "Text",
+    "type": "Typ",
+    "size": "Storlek",
+    "name": "Namn",
+    "value": "Värde",
+    "status": "Status",
+    "actions": "Åtgärder",
+    "description": "Beskrivning",
+    "category": "Kategori",
+    "tags": "Taggar",
+    "language": "Språk",
+    "title": "Titel",
+    "content": "Innehåll",
+    "count": "Antal",
+    "length": "Längd",
+    "total": "Totalt",
+    "or": "eller",
+    "and": "och",
+    "no_data": "Inga data",
+    "no_results": "Inga resultat hittades",
+    "confirm_delete": "Är du säker på att du vill ta bort detta?",
+    "drag_drop": "Dra och släpp fil här",
+    "processing": "Bearbetar...",
+    "done": "Klart",
+    "copied_to_clipboard": "Kopierat till urklipp!",
+    "failed_to_copy": "Kunde inte kopiera",
+    "keyboard_shortcuts": "Tangentbordsgenvägar",
+    "toggle_fullscreen": "Växla helskärm (F11)",
+    "exit_fullscreen": "Avsluta helskärm (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Sök",
+    "search_tools": "Sök verktyg...",
+    "more": "Mer",
+    "all_tools": "Alla verktyg",
+    "ask_ai": "Fråga AI",
+    "cloud_ai": "Moln-AI",
+    "local_ai": "Lokal AI",
+    "language": "Språk",
+    "pinned_to_navbar": "Fäst i navigeringsfältet",
+    "unpinned_from_navbar": "Borttagen från navigeringsfältet",
+    "pin_to_navbar": "Fäst i navigeringsfältet",
+    "unpin_from_navbar": "Ta bort från navigeringsfältet",
+    "open_navigation": "Öppna navigering"
+  },
+  "theme": {
+    "light": "Ljust",
+    "dark": "Mörkt",
+    "auto": "Auto",
+    "switch_theme": "Byt tema"
+  },
+  "spotlight": {
+    "placeholder": "Sök verktyg...",
+    "no_results": "Inga verktyg hittades för \"{query}\"",
+    "navigate": "Navigera",
+    "open": "Öppna",
+    "close": "Stäng"
+  },
+  "drawer": {
+    "search": "Sök",
+    "theme": "Tema",
+    "pinned": "Fästa",
+    "file_code": "Filer & Kod",
+    "encode_decode": "Koda & Avkoda",
+    "converters": "Konverterare",
+    "generators": "Generatorer",
+    "tools_section": "Verktyg",
+    "logs_network": "Loggar & Nätverk",
+    "all_tools": "Alla verktyg"
+  },
+  "footer": {
+    "made_by": "Skapad med ❤️ av"
+  },
+  "ai": {
+    "ask": "Fråga",
+    "prompt_placeholder": "Vad vill du fråga?",
+    "enter_to_send": "Enter för att skicka",
+    "shift_enter_newline": "Shift+Enter för ny rad",
+    "open_without_prompt": "Öppna utan fråga",
+    "ollama_url": "Ollama-URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Ange din Ollama-webbgränssnitts-URL"
+  },
+  "dashboard": {
+    "search_placeholder": "Sök verktyg...",
+    "pinned_tools": "Fästa verktyg",
+    "all_tools": "Alla verktyg",
+    "no_results": "Inga verktyg matchar din sökning.",
+    "open_source_toolkit": "Utvecklarverktygslåda med öppen källkod",
+    "tools_count": "{count} verktyg tillgängliga"
+  },
+  "tools": {
+    "upload": {
+      "name": "Uppladdning",
+      "desc": "Dra och släpp, klistra in eller bläddra bland filer att ladda upp. Bildförhandsvisning med lightbox."
+    },
+    "files": {
+      "name": "Filutforskare",
+      "desc": "Bläddra, sök och hantera uppladdade filer i en Google Drive-liknande rutnätsvy."
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "Formatera och förfina JSON, XML, HTML, CSS, JavaScript och SQL-kod."
+    },
+    "logs": {
+      "name": "Loggsamlare",
+      "desc": "Lättviktig logginsamlare. Ta emot loggar från valfri app via HTTP POST, filtrera efter app och nivå."
+    },
+    "logviewer": {
+      "name": "Loggvisare",
+      "desc": "Ladda upp och sök i stora loggfiler med nyckelordsfiltrering, regex och kontextrader."
+    },
+    "editor": {
+      "name": "Kodredigerare",
+      "desc": "Fullfjädrad kodredigerare driven av Monaco (VS Code). Syntaxmarkering för 40+ språk."
+    },
+    "markdown": {
+      "name": "Markdown-visare",
+      "desc": "Skriv Markdown med liveförhandsvisning, syntaxmarkerade kodblock och GFM-stöd."
+    },
+    "diff": {
+      "name": "Kodjämförelse",
+      "desc": "Jämför två kodfiler sida vid sida eller infogat med syntaxmarkerad diff-vy."
+    },
+    "jwt": {
+      "name": "JWT-verktyg",
+      "desc": "Koda, avkoda och verifiera JSON Web Tokens. Stöder HS256/384/512 med färgkodad visning."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Koda och avkoda Base64-strängar. Stöder text och binära filer med URL-säkert alternativ."
+    },
+    "urlencoder": {
+      "name": "URL-kodare",
+      "desc": "Koda och avkoda URL:er och frågeparametrar. URL-tolkare visar protokoll, värd, sökväg och parametrar."
+    },
+    "htmleditor": {
+      "name": "HTML-redigerare",
+      "desc": "Visuell textredigerare (WYSIWYG) driven av TinyMCE med växling till HTML-källkodsvy."
+    },
+    "mermaid": {
+      "name": "Mermaid-diagram",
+      "desc": "Skapa flödesscheman, sekvensdiagram, ER-diagram, Gantt-diagram och mer med Mermaid.js liveförhandsvisning."
+    },
+    "uuid": {
+      "name": "UUID-generator",
+      "desc": "Generera UUID v1, v4 och v7. Massgenerera, validera, tolka och kopiera med formatalternativ."
+    },
+    "notes": {
+      "name": "Anteckningar",
+      "desc": "Markdown-anteckningar med liveförhandsvisning, taggar, kategorier, färgetiketter, bilagor och autosparande."
+    },
+    "regex": {
+      "name": "Regex-testare",
+      "desc": "Testa regex-mönster med matchmarkering i realtid, fångstgrupper, ersättning och fuskblad."
+    },
+    "charmap": {
+      "name": "Emoji & Teckenuppsättning",
+      "desc": "Sök och kopiera emojis, symboler och specialtecken. Unicode-detaljer, HTML-entiteter och nyligen använda."
+    },
+    "epoch": {
+      "name": "Epoch-konverterare",
+      "desc": "Konvertera Unix epoch-tidsstämplar till läsbara datum och vice versa. Levande klocka, förinställningar och tidsskillnadskalkylator."
+    },
+    "hash": {
+      "name": "Hash-generator",
+      "desc": "Generera MD5, SHA-1, SHA-256, SHA-512-hashar från text eller filer. Verifiera kontrollsummor direkt."
+    },
+    "colorpicker": {
+      "name": "Färgväljare",
+      "desc": "Välj färger och konvertera mellan HEX, RGB, HSL-format. Färgpalett och kontrastgranskare."
+    },
+    "cron": {
+      "name": "Cron-tolkare",
+      "desc": "Tolka och generera cron-uttryck med läsbara beskrivningar och nästa körtider."
+    },
+    "password": {
+      "name": "Lösenordsgenerator",
+      "desc": "Generera kryptografiskt säkra slumpmässiga lösenord och minnesvärda lösenfraser."
+    },
+    "qrcode": {
+      "name": "QR-kodgenerator",
+      "desc": "Generera QR-koder från text, URL:er, WiFi-uppgifter eller kontaktinformation. Ladda ner som PNG."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Generera platshållartext — stycken, meningar eller ord. Flera stilar tillgängliga."
+    },
+    "baseconverter": {
+      "name": "Baskonverterare",
+      "desc": "Konvertera tal mellan binärt, oktalt, decimalt och hexadecimalt i realtid."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Konvertera mellan JSON och YAML-format med syntaxvalidering och formatering."
+    },
+    "httpclient": {
+      "name": "HTTP-klient",
+      "desc": "Testa API-slutpunkter som en mini-Postman. Anpassade metoder, headers, body och svarsvisare."
+    },
+    "stringutils": {
+      "name": "Strängverktyg",
+      "desc": "Versalkonvertering, trimning, räkning, reversering, slug-generator och fler strängoperationer."
+    },
+    "chat": {
+      "name": "LAN-chatt",
+      "desc": "Realtidschatt för ditt lokala nätverk. Inget internet behövs — bara Dev Helper på LAN."
+    },
+    "netscan": {
+      "name": "Nätverksskanner",
+      "desc": "Skanna LAN-värdar och portar. Upptäck enheter, tjänster och öppna portar i ditt nätverk."
+    },
+    "worldclock": {
+      "name": "Världsklocka",
+      "desc": "Klockor med flera tidszoner med analog visning, mötesplanerare och dra-och-ordna."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Extrahera text från bilder och skärmdumpar. Dra, klistra in eller ladda upp — drivs av Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Konvertera mellan application.yml och application.properties för Java/Spring Boot-projekt."
+    },
+    "netinspect": {
+      "name": "Nätverksinspektör",
+      "desc": "IP-geolokalisering, DNS-sökning, HTTP-svarsrubriker och SSL-certifikatsgranskare."
+    },
+    "aichat": {
+      "name": "AI-chatt",
+      "desc": "Chatta med lokala Ollama AI-modeller. Strömmande svar, markdown-rendering, konversationshistorik."
+    },
+    "speedtest": {
+      "name": "Hastighetstest",
+      "desc": "Testa nätverkets nedladdnings-/uppladdningshastighet, ping-latens och diskens läs-/skrivprestanda."
+    },
+    "snippets": {
+      "name": "Kodsnuttar",
+      "desc": "Spara och organisera ofta använda kodsnuttar med syntaxmarkering och snabbkopiering."
+    },
+    "sysmon": {
+      "name": "Systemövervakning",
+      "desc": "Realtidsövervakning av CPU, minne, disk, nätverk och processer med levande mätare."
+    },
+    "icons": {
+      "name": "Ikonutforskare",
+      "desc": "Bläddra och sök bland Bootstrap Icons, Font Awesome och Tabler Icons. Klicka för att kopiera CSS-klass eller HTML."
+    },
+    "askai": {
+      "name": "Fråga AI",
+      "desc": "Snabb åtkomst till 9 moln-AI:er (Claude, ChatGPT, Gemini, m.fl.) och Ollama från navigeringsfältet."
+    },
+    "translator": {
+      "name": "Översättare",
+      "desc": "Översätt text mellan språk med lokala Ollama AI-modeller. Som Google Translate, offline."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Dra och släpp filer här",
+    "drop_or_browse": "eller klicka för att bläddra",
+    "paste_hint": "Du kan också klistra in från urklipp (Ctrl+V)",
+    "recent_uploads": "Senaste uppladdningar",
+    "clear_recent": "Rensa senaste",
+    "copy_url": "Kopiera URL",
+    "open_new_tab": "Öppna i ny flik",
+    "file_uploaded": "Filen laddades upp",
+    "upload_failed": "Uppladdningen misslyckades"
+  },
+  "files_page": {
+    "search_placeholder": "Sök filer...",
+    "grid_view": "Rutnät",
+    "list_view": "Lista",
+    "delete_all": "Ta bort alla",
+    "confirm_delete_all": "Är du säker på att du vill ta bort alla filer?",
+    "no_files": "Inga filer hittades",
+    "file_deleted": "Filen borttagen",
+    "download": "Ladda ner",
+    "file_size": "Storlek",
+    "file_date": "Datum"
+  },
+  "prettify_page": {
+    "input_label": "Indata",
+    "output_label": "Utdata",
+    "prettify": "Formatera",
+    "minify": "Minifiera",
+    "paste_placeholder": "Klistra in eller skriv kod här...",
+    "auto_detect": "Automatisk identifiering",
+    "copy_output": "Kopiera utdata"
+  },
+  "logs_page": {
+    "app": "App",
+    "level": "Nivå",
+    "search_placeholder": "Sök loggar...",
+    "clear_logs": "Rensa loggar",
+    "auto_scroll": "Automatisk rullning",
+    "no_logs": "Inga loggar hittades",
+    "all_apps": "Alla appar",
+    "all_levels": "Alla nivåer",
+    "timestamp": "Tidsstämpel",
+    "message": "Meddelande"
+  },
+  "logviewer_page": {
+    "upload_log": "Ladda upp loggfil",
+    "search_placeholder": "Sök nyckelord eller regex...",
+    "use_regex": "Regex",
+    "case_sensitive": "Skiftlägeskänslig",
+    "context_lines": "Kontextrader",
+    "showing_lines": "Visar {shown} av {total} rader",
+    "no_matches": "Inga matchningar hittades",
+    "line": "Rad"
+  },
+  "editor_page": {
+    "new_file": "Ny",
+    "open_file": "Öppna fil",
+    "save_file": "Spara",
+    "word_wrap": "Radbrytning",
+    "minimap": "Minikarta",
+    "line": "Rad",
+    "column": "Kolumn",
+    "language": "Språk",
+    "fetch_url": "Hämta från URL",
+    "url_placeholder": "Ange URL för att hämta fil..."
+  },
+  "markdown_page": {
+    "samples": "Exempel",
+    "open_file": "Öppna fil",
+    "copy_html": "Kopiera HTML",
+    "export": "Exportera",
+    "export_pdf": "Exportera till PDF",
+    "export_md": "Exportera till Markdown",
+    "export_html": "Exportera till HTML",
+    "clear": "Rensa",
+    "expand": "Expandera",
+    "editor_label": "Markdown",
+    "preview_label": "Förhandsvisning",
+    "drop_zone": "Dra och släpp en Markdown-fil här, eller klicka för att bläddra",
+    "url_placeholder": "Ange URL för att hämta .md-fil",
+    "fetch": "Hämta",
+    "html_copied": "HTML kopierad!",
+    "readme": "README",
+    "api_docs": "API-dokumentation",
+    "changelog": "Ändringslogg",
+    "blog_post": "Blogginlägg",
+    "cheatsheet": "Markdown-fuskblad",
+    "meeting_notes": "Mötesanteckningar",
+    "project_todo": "Projektuppgifter"
+  },
+  "diff_page": {
+    "original": "Original",
+    "modified": "Ändrad",
+    "side_by_side": "Sida vid sida",
+    "inline": "Infogat",
+    "open_file": "Öppna fil",
+    "paste_code": "Klistra in kod här...",
+    "swap": "Byt",
+    "no_differences": "Inga skillnader hittades"
+  },
+  "jwt_page": {
+    "header": "Huvud",
+    "payload": "Nyttolast",
+    "signature": "Signatur",
+    "secret": "Hemlig nyckel",
+    "algorithm": "Algoritm",
+    "encode": "Koda",
+    "decode": "Avkoda",
+    "verify": "Verifiera",
+    "valid_signature": "Giltig signatur",
+    "invalid_signature": "Ogiltig signatur",
+    "paste_jwt": "Klistra in JWT-token här..."
+  },
+  "base64_page": {
+    "text_mode": "Text",
+    "file_mode": "Fil",
+    "url_safe": "URL-säker",
+    "line_breaks": "Radbrytningar",
+    "input_placeholder": "Ange text att koda/avkoda...",
+    "drop_file": "Släpp fil här eller klicka för att bläddra",
+    "download_result": "Ladda ner resultat"
+  },
+  "urlencoder_page": {
+    "component_mode": "Komponent",
+    "full_url_mode": "Fullständig URL",
+    "url_parser": "URL-tolkare",
+    "protocol": "Protokoll",
+    "host": "Värd",
+    "path": "Sökväg",
+    "params": "Parametrar",
+    "input_placeholder": "Ange URL eller text att koda/avkoda..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Källkod",
+    "import_html": "Importera HTML",
+    "export_html": "Exportera HTML",
+    "clear": "Rensa"
+  },
+  "mermaid_page": {
+    "samples": "Exempel",
+    "download_svg": "Ladda ner SVG",
+    "download_png": "Ladda ner PNG",
+    "share": "Dela",
+    "zoom_in": "Zooma in",
+    "zoom_out": "Zooma ut",
+    "reset_zoom": "Återställ zoom",
+    "diagram_label": "Mermaid-kod",
+    "preview_label": "Förhandsvisning",
+    "link_copied": "Delningslänk kopierad!",
+    "flowchart": "Flödesschema",
+    "sequence": "Sekvensdiagram",
+    "class_diagram": "Klassdiagram",
+    "state": "Tillståndsdiagram",
+    "er": "ER-diagram",
+    "gantt": "Gantt-diagram",
+    "pie": "Cirkeldiagram",
+    "mindmap": "Tankekarta",
+    "timeline": "Tidslinje",
+    "quadrant": "Kvadrantdiagram",
+    "git": "Git-graf",
+    "sankey": "Sankey-diagram"
+  },
+  "uuid_page": {
+    "version": "Version",
+    "bulk_generate": "Massgenerera",
+    "validate_parse": "Validera & Tolka",
+    "count": "Antal",
+    "uppercase": "Versaler",
+    "braces": "Klamrar",
+    "hyphens": "Bindestreck",
+    "copy_all": "Kopiera alla",
+    "generated": "Genererade",
+    "valid_uuid": "Giltig UUID",
+    "invalid_uuid": "Ogiltig UUID",
+    "uuid_version": "Version",
+    "uuid_variant": "Variant",
+    "uuid_timestamp": "Tidsstämpel"
+  },
+  "notes_page": {
+    "new_note": "Ny anteckning",
+    "search_placeholder": "Sök anteckningar...",
+    "categories": "Kategorier",
+    "all_notes": "Alla anteckningar",
+    "pinned": "Fästa",
+    "trash": "Papperskorg",
+    "restore": "Återställ",
+    "permanent_delete": "Ta bort permanent",
+    "note_saved": "Anteckning sparad",
+    "note_deleted": "Anteckning flyttad till papperskorgen",
+    "untitled": "Namnlös anteckning",
+    "attachments": "Bilagor",
+    "color_label": "Färgetikett",
+    "sort_by": "Sortera efter",
+    "date_modified": "Ändringsdatum",
+    "date_created": "Skapandedatum"
+  },
+  "regex_page": {
+    "pattern": "Mönster",
+    "test_string": "Teststräng",
+    "flags": "Flaggor",
+    "matches": "Matchningar",
+    "replace": "Ersätt",
+    "replacement": "Ersättning",
+    "cheat_sheet": "Fuskblad",
+    "common_patterns": "Vanliga mönster",
+    "no_matches": "Inga matchningar",
+    "match_count": "{count} matchningar hittades",
+    "global": "Global",
+    "case_insensitive": "Skiftlägesokänslig",
+    "multiline": "Flerradig"
+  },
+  "charmap_page": {
+    "search_placeholder": "Sök emoji eller tecken...",
+    "recently_used": "Nyligen använda",
+    "unicode": "Unicode",
+    "html_entity": "HTML-entitet",
+    "css_code": "CSS-kod",
+    "copy_char": "Klicka för att kopiera",
+    "smileys": "Smileys & Människor",
+    "animals": "Djur & Natur",
+    "food": "Mat & Dryck",
+    "activities": "Aktiviteter",
+    "travel": "Resor & Platser",
+    "objects": "Föremål",
+    "symbols": "Symboler",
+    "flags": "Flaggor",
+    "arrows": "Pilar",
+    "math": "Matematik",
+    "currency": "Valuta",
+    "latin": "Utökat latinskt"
+  },
+  "epoch_page": {
+    "timestamp": "Tidsstämpel",
+    "date_time": "Datum & Tid",
+    "now": "Nu",
+    "seconds": "Sekunder",
+    "milliseconds": "Millisekunder",
+    "local_time": "Lokal tid",
+    "utc_time": "UTC-tid",
+    "relative": "Relativ",
+    "time_diff": "Tidsskillnad",
+    "presets": "Förinställningar",
+    "live_clock": "Levande klocka"
+  },
+  "hash_page": {
+    "text_input": "Textinmatning",
+    "file_input": "Filinmatning",
+    "compare": "Jämför hashar",
+    "hash_match": "Hasharna matchar!",
+    "hash_mismatch": "Hasharna matchar inte",
+    "drop_file": "Släpp fil för att hasha...",
+    "computing": "Beräknar hash..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Kontrastkontroll",
+    "foreground": "Förgrund",
+    "background": "Bakgrund",
+    "ratio": "Förhållande",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Godkänd",
+    "fail": "Underkänd",
+    "palette": "Palett",
+    "shades": "Nyanser",
+    "tints": "Toner",
+    "pick_color": "Välj färg",
+    "eyedropper": "Pipett"
+  },
+  "cron_page": {
+    "expression": "Uttryck",
+    "description_label": "Beskrivning",
+    "next_runs": "Nästa körningar",
+    "presets": "Förinställningar",
+    "minute": "Minut",
+    "hour": "Timme",
+    "day_month": "Dag (Månad)",
+    "month": "Månad",
+    "day_week": "Dag (Vecka)",
+    "every_minute": "Varje minut",
+    "every_hour": "Varje timme",
+    "every_day": "Varje dag vid midnatt",
+    "share": "Dela"
+  },
+  "password_page": {
+    "password": "Lösenord",
+    "passphrase": "Lösenfras",
+    "length": "Längd",
+    "uppercase": "Versaler (A-Z)",
+    "lowercase": "Gemener (a-z)",
+    "numbers": "Siffror (0-9)",
+    "symbols": "Symboler (!@#$...)",
+    "word_count": "Antal ord",
+    "separator": "Avskiljare",
+    "strength": "Styrka",
+    "entropy": "Entropi",
+    "very_weak": "Mycket svagt",
+    "weak": "Svagt",
+    "fair": "Acceptabelt",
+    "strong": "Starkt",
+    "very_strong": "Mycket starkt",
+    "bulk_generate": "Massgenerera",
+    "generate_count": "Antal"
+  },
+  "qrcode_page": {
+    "text_url": "Text / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Ange text eller URL...",
+    "network_name": "Nätverksnamn (SSID)",
+    "wifi_password": "Lösenord",
+    "encryption": "Kryptering",
+    "hidden_network": "Dolt nätverk",
+    "full_name": "Fullständigt namn",
+    "phone": "Telefon",
+    "email": "E-post",
+    "organization": "Organisation",
+    "error_correction": "Felkorrigering",
+    "foreground_color": "Förgrund",
+    "background_color": "Bakgrund",
+    "download_png": "Ladda ner PNG",
+    "download_svg": "Ladda ner SVG",
+    "copy_image": "Kopiera bild"
+  },
+  "lorem_page": {
+    "paragraphs": "Stycken",
+    "sentences": "Meningar",
+    "words": "Ord",
+    "style": "Stil",
+    "classic": "Klassisk",
+    "hipster": "Hipster",
+    "tech": "Teknik / Utveckling",
+    "include_html": "Inkludera HTML-taggar",
+    "start_lorem": "Börja med \"Lorem ipsum...\"",
+    "generated_text": "Genererad text",
+    "copy_text": "Kopiera text"
+  },
+  "baseconverter_page": {
+    "binary": "Binärt",
+    "octal": "Oktalt",
+    "decimal": "Decimalt",
+    "hexadecimal": "Hexadecimalt",
+    "bit_visualization": "Bitvisualisering",
+    "signed": "Med tecken",
+    "unsigned": "Utan tecken",
+    "twos_complement": "Tvåkomplement"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Formatera",
+    "minify": "Minifiera",
+    "import_file": "Importera fil",
+    "invalid_json": "Ogiltig JSON",
+    "invalid_yaml": "Ogiltig YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "Ange förfrågnings-URL...",
+    "method": "Metod",
+    "headers": "Rubriker",
+    "body": "Kropp",
+    "auth": "Autentisering",
+    "params": "Parametrar",
+    "response": "Svar",
+    "status_code": "Status",
+    "response_time": "Tid",
+    "response_size": "Storlek",
+    "send_request": "Skicka",
+    "clear_history": "Rensa historik",
+    "no_auth": "Ingen autentisering",
+    "basic_auth": "Basic Auth",
+    "bearer_token": "Bearer Token",
+    "username": "Användarnamn",
+    "token": "Token",
+    "key": "Nyckel",
+    "add_header": "Lägg till rubrik",
+    "add_param": "Lägg till parameter"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Ange text här...",
+    "operations": "Operationer",
+    "case_conversion": "Versalkonvertering",
+    "text_cleanup": "Textrensning",
+    "text_transform": "Texttransformering",
+    "encode_decode": "Koda / Avkoda",
+    "extract_info": "Extrahera info",
+    "uppercase": "VERSALER",
+    "lowercase": "gemener",
+    "title_case": "Rubrikstil",
+    "sentence_case": "Mening",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Tecken",
+    "word_count": "Ord",
+    "line_count": "Rader"
+  },
+  "chat_page": {
+    "username_placeholder": "Ange ditt namn...",
+    "message_placeholder": "Skriv ett meddelande...",
+    "join": "Anslut",
+    "online_users": "Användare online",
+    "user_joined": "{user} anslöt till chatten",
+    "user_left": "{user} lämnade chatten"
+  },
+  "netscan_page": {
+    "interface": "Gränssnitt",
+    "target": "Mål",
+    "ports": "Portar",
+    "scan": "Skanna",
+    "scanning": "Skannar...",
+    "open_ports": "Öppna portar",
+    "host": "Värd",
+    "port": "Port",
+    "service": "Tjänst",
+    "scan_complete": "Skanning klar",
+    "common_ports": "Vanliga portar",
+    "custom_range": "Anpassat intervall"
+  },
+  "worldclock_page": {
+    "add_clock": "Lägg till klocka",
+    "your_local_time": "Din lokala tid",
+    "meeting_planner": "Mötesplanerare",
+    "timezone": "Tidszon",
+    "search_timezone": "Sök tidszon...",
+    "remove_clock": "Ta bort"
+  },
+  "ocr_page": {
+    "upload_image": "Ladda upp bild",
+    "paste_image": "Klistra in bild",
+    "drop_image": "Dra och släpp en bild här",
+    "extract_text": "Extrahera text",
+    "extracted_text": "Extraherad text",
+    "copy_result": "Kopiera resultat",
+    "recognizing": "Känner igen text...",
+    "no_text_found": "Ingen text hittades i bilden",
+    "supported_formats": "Stöds: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Importera fil",
+    "download_result": "Ladda ner"
+  },
+  "aichat_page": {
+    "model": "Modell",
+    "no_models": "Inga modeller hittades. Körs Ollama?",
+    "message_placeholder": "Skriv ditt meddelande...",
+    "clear_chat": "Rensa chatt",
+    "thinking": "Tänker...",
+    "ollama_not_running": "Kan inte ansluta till Ollama",
+    "connection_error": "Anslutningsfel"
+  },
+  "speedtest_page": {
+    "start_test": "Starta test",
+    "ping": "Ping",
+    "download_speed": "Nedladdning",
+    "upload_speed": "Uppladdning",
+    "disk_speed": "Disk",
+    "latency": "Latens",
+    "read_speed": "Läsning",
+    "write_speed": "Skrivning",
+    "testing": "Testar...",
+    "test_complete": "Test klart"
+  },
+  "snippets_page": {
+    "new_snippet": "Ny kodsnutt",
+    "search_placeholder": "Sök kodsnuttar...",
+    "title_placeholder": "Titel på kodsnutt...",
+    "desc_placeholder": "Beskrivning (valfritt)",
+    "tags_placeholder": "Taggar (kommaseparerade)",
+    "save_snippet": "Spara",
+    "delete_snippet": "Ta bort",
+    "copy_code": "Kopiera kod",
+    "language": "Språk",
+    "default_loaded": "Standardkodsnuttar laddade",
+    "snippet_saved": "Kodsnutt sparad",
+    "snippet_deleted": "Kodsnutt borttagen",
+    "code_copied": "Kod kopierad!",
+    "no_snippets": "Inga kodsnuttar hittades",
+    "pinned": "Fästa",
+    "all_snippets": "Alla kodsnuttar"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Minne",
+    "disk": "Disk",
+    "network": "Nätverk",
+    "processes": "Processer",
+    "usage": "Användning",
+    "total": "Totalt",
+    "used": "Använt",
+    "free": "Ledigt",
+    "available": "Tillgängligt",
+    "cores": "Kärnor",
+    "uptime": "Drifttid",
+    "pid": "PID",
+    "process_name": "Namn",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Minne %",
+    "connecting": "Ansluter...",
+    "disconnected": "Frånkopplad",
+    "bytes_sent": "Skickat",
+    "bytes_recv": "Mottaget",
+    "read_speed": "Läsning",
+    "write_speed": "Skrivning"
+  },
+  "icons_page": {
+    "search_placeholder": "Sök ikoner...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "Alla",
+    "recently_used": "Nyligen använda",
+    "class_name": "Klass",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Kopiera klass",
+    "copy_html": "Kopiera HTML",
+    "icon_count": "{count} ikoner",
+    "loading_icons": "Laddar ikoner...",
+    "click_to_view": "Klicka på en ikon för att se detaljer"
+  },
+  "netinspect_page": {
+    "my_ip": "Min IP",
+    "ip_lookup": "IP-sökning",
+    "dns_lookup": "DNS-sökning",
+    "http_headers": "HTTP-rubriker",
+    "ssl_cert": "SSL-certifikat",
+    "lookup": "Sök",
+    "check": "Kontrollera",
+    "ip_placeholder": "Ange IP-adress...",
+    "domain_placeholder": "Ange domännamn...",
+    "url_placeholder": "Ange URL...",
+    "location": "Plats",
+    "isp": "ISP",
+    "record_type": "Posttyp",
+    "issuer": "Utfärdare",
+    "valid_from": "Giltig från",
+    "valid_until": "Giltig till",
+    "subject": "Ämne"
+  },
+  "translator_page": {
+    "source_lang": "Källspråk",
+    "target_lang": "Målspråk",
+    "auto_detect": "Automatisk identifiering",
+    "translate": "Översätt",
+    "translating": "Översätter...",
+    "swap_languages": "Byt språk",
+    "input_placeholder": "Ange text att översätta...",
+    "model": "Modell",
+    "copy_translation": "Kopiera översättning",
+    "translation_copied": "Översättning kopierad!",
+    "clear_all": "Rensa allt",
+    "char_count": "{count} tecken"
+  }
+}

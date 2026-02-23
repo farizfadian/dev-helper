@@ -7,6 +7,7 @@ dist/
 files/
 logs/
 notes/
+snippets/
 
 # OS files
 .DS_Store

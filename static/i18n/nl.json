@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd!",
+    "clear": "Wissen",
+    "save": "Opslaan",
+    "saved": "Opgeslagen!",
+    "delete": "Verwijderen",
+    "cancel": "Annuleren",
+    "close": "Sluiten",
+    "open": "Openen",
+    "search": "Zoeken",
+    "loading": "Laden...",
+    "error": "Fout",
+    "success": "Gelukt",
+    "warning": "Waarschuwing",
+    "info": "Info",
+    "yes": "Ja",
+    "no": "Nee",
+    "confirm": "Bevestigen",
+    "download": "Downloaden",
+    "upload": "Uploaden",
+    "export": "Exporteren",
+    "import": "Importeren",
+    "expand": "Uitvouwen",
+    "exit": "Afsluiten",
+    "file": "Bestand",
+    "settings": "Instellingen",
+    "none": "Geen",
+    "all": "Alles",
+    "reset": "Resetten",
+    "apply": "Toepassen",
+    "preview": "Voorbeeld",
+    "source": "Bron",
+    "result": "Resultaat",
+    "input": "Invoer",
+    "output": "Uitvoer",
+    "generate": "Genereren",
+    "encode": "Coderen",
+    "decode": "Decoderen",
+    "paste": "Plakken",
+    "swap": "Wisselen",
+    "back": "Terug",
+    "next": "Volgende",
+    "samples": "Voorbeelden",
+    "history": "Geschiedenis",
+    "options": "Opties",
+    "format": "Formatteren",
+    "validate": "Valideren",
+    "convert": "Converteren",
+    "raw": "Raw",
+    "send": "Verzenden",
+    "stop": "Stoppen",
+    "start": "Starten",
+    "refresh": "Vernieuwen",
+    "browse": "Bladeren",
+    "select": "Selecteren",
+    "add": "Toevoegen",
+    "remove": "Verwijderen",
+    "edit": "Bewerken",
+    "share": "Delen",
+    "pin": "Vastpinnen",
+    "unpin": "Losmaken",
+    "new": "Nieuw",
+    "text": "Tekst",
+    "type": "Type",
+    "size": "Grootte",
+    "name": "Naam",
+    "value": "Waarde",
+    "status": "Status",
+    "actions": "Acties",
+    "description": "Beschrijving",
+    "category": "Categorie",
+    "tags": "Tags",
+    "language": "Taal",
+    "title": "Titel",
+    "content": "Inhoud",
+    "count": "Aantal",
+    "length": "Lengte",
+    "total": "Totaal",
+    "or": "of",
+    "and": "en",
+    "no_data": "Geen gegevens",
+    "no_results": "Geen resultaten gevonden",
+    "confirm_delete": "Weet je zeker dat je dit wilt verwijderen?",
+    "drag_drop": "Sleep een bestand hierheen",
+    "processing": "Verwerken...",
+    "done": "Klaar",
+    "copied_to_clipboard": "Gekopieerd naar klembord!",
+    "failed_to_copy": "Kopiëren mislukt",
+    "keyboard_shortcuts": "Sneltoetsen",
+    "toggle_fullscreen": "Volledig scherm aan/uit (F11)",
+    "exit_fullscreen": "Volledig scherm verlaten (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Zoeken",
+    "search_tools": "Tools zoeken...",
+    "more": "Meer",
+    "all_tools": "Alle Tools",
+    "ask_ai": "Vraag AI",
+    "cloud_ai": "Cloud AI",
+    "local_ai": "Lokale AI",
+    "language": "Taal",
+    "pinned_to_navbar": "Vastgepind aan navigatiebalk",
+    "unpinned_from_navbar": "Losgemaakt van navigatiebalk",
+    "pin_to_navbar": "Vastpinnen aan navigatiebalk",
+    "unpin_from_navbar": "Losmaken van navigatiebalk",
+    "open_navigation": "Navigatie openen"
+  },
+  "theme": {
+    "light": "Licht",
+    "dark": "Donker",
+    "auto": "Automatisch",
+    "switch_theme": "Thema wisselen"
+  },
+  "spotlight": {
+    "placeholder": "Tools zoeken...",
+    "no_results": "Geen tools gevonden voor \"{query}\"",
+    "navigate": "Navigeren",
+    "open": "Openen",
+    "close": "Sluiten"
+  },
+  "drawer": {
+    "search": "Zoeken",
+    "theme": "Thema",
+    "pinned": "Vastgepind",
+    "file_code": "Bestanden & Code",
+    "encode_decode": "Coderen & Decoderen",
+    "converters": "Converters",
+    "generators": "Generators",
+    "tools_section": "Tools",
+    "logs_network": "Logs & Netwerk",
+    "all_tools": "Alle Tools"
+  },
+  "footer": {
+    "made_by": "Gemaakt met ❤️ door"
+  },
+  "ai": {
+    "ask": "Vraag",
+    "prompt_placeholder": "Wat wil je vragen?",
+    "enter_to_send": "Enter om te verzenden",
+    "shift_enter_newline": "Shift+Enter voor nieuwe regel",
+    "open_without_prompt": "Openen zonder vraag",
+    "ollama_url": "Ollama URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Voer je Ollama web UI URL in"
+  },
+  "dashboard": {
+    "search_placeholder": "Tools zoeken...",
+    "pinned_tools": "Vastgepinde Tools",
+    "all_tools": "Alle Tools",
+    "no_results": "Geen tools gevonden die overeenkomen met je zoekopdracht.",
+    "open_source_toolkit": "Open source ontwikkelaars toolkit",
+    "tools_count": "{count} tools beschikbaar"
+  },
+  "tools": {
+    "upload": {
+      "name": "Uploaden",
+      "desc": "Sleep, plak of blader door bestanden om te uploaden. Afbeeldingsvoorbeeld met lightbox."
+    },
+    "files": {
+      "name": "Bestandsverkenner",
+      "desc": "Blader, zoek en beheer geüploade bestanden in een Google Drive-achtige rasterweergave."
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "Formatteer en verfraai JSON, XML, HTML, CSS, JavaScript en SQL code."
+    },
+    "logs": {
+      "name": "Log Verzamelaar",
+      "desc": "Lichtgewicht log verzamelaar. Ontvang logs van elke app via HTTP POST, filter op app en niveau."
+    },
+    "logviewer": {
+      "name": "Log Viewer",
+      "desc": "Upload en doorzoek grote logbestanden met trefwoorden, regex en contextregels."
+    },
+    "editor": {
+      "name": "Code Editor",
+      "desc": "Volledige code editor op basis van Monaco (VS Code). Syntaxmarkering voor 40+ talen."
+    },
+    "markdown": {
+      "name": "Markdown Viewer",
+      "desc": "Schrijf Markdown met live voorbeeld, syntaxgekleurde codeblokken en GFM-ondersteuning."
+    },
+    "diff": {
+      "name": "Code Diff",
+      "desc": "Vergelijk twee codebestanden naast elkaar of inline met syntaxgekleurde diff-weergave."
+    },
+    "jwt": {
+      "name": "JWT Tool",
+      "desc": "Codeer, decodeer en verifieer JSON Web Tokens. Ondersteunt HS256/384/512 met kleurgecodeerde weergave."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Codeer en decodeer Base64 strings. Ondersteunt tekst en binaire bestanden met URL-veilige optie."
+    },
+    "urlencoder": {
+      "name": "URL Encoder",
+      "desc": "Codeer en decodeer URL's en queryparameters. URL parser toont protocol, host, pad en parameters."
+    },
+    "htmleditor": {
+      "name": "HTML Editor",
+      "desc": "Rijke tekst WYSIWYG editor op basis van TinyMCE met HTML broncode weergave."
+    },
+    "mermaid": {
+      "name": "Mermaid Diagram",
+      "desc": "Maak flowcharts, sequentiediagrammen, ER-diagrammen, Gantt-grafieken en meer met Mermaid.js live voorbeeld."
+    },
+    "uuid": {
+      "name": "UUID Generator",
+      "desc": "Genereer UUID v1, v4 en v7. Bulk genereren, valideren, parsen en kopiëren met opmaakopties."
+    },
+    "notes": {
+      "name": "Notities",
+      "desc": "Markdown notities met live voorbeeld, tags, categorieën, kleurlabels, bijlagen en automatisch opslaan."
+    },
+    "regex": {
+      "name": "Regex Tester",
+      "desc": "Test regex patronen met realtime markering, capture groups, vervangen en spiekbriefje."
+    },
+    "charmap": {
+      "name": "Emoji & Tekentabel",
+      "desc": "Zoek en kopieer emoji's, symbolen en speciale tekens. Unicode details, HTML entities en recent gebruikt."
+    },
+    "epoch": {
+      "name": "Epoch Converter",
+      "desc": "Converteer Unix epoch timestamps naar leesbare datums en vice versa. Live klok, presets en tijdsverschil calculator."
+    },
+    "hash": {
+      "name": "Hash Generator",
+      "desc": "Genereer MD5, SHA-1, SHA-256, SHA-512 hashes van tekst of bestanden. Controleer checksums direct."
+    },
+    "colorpicker": {
+      "name": "Kleurkiezer",
+      "desc": "Kies kleuren en converteer tussen HEX, RGB, HSL formaten. Kleurenpalet en contrastchecker."
+    },
+    "cron": {
+      "name": "Cron Parser",
+      "desc": "Parseer en genereer cron expressies met leesbare beschrijvingen en volgende uitvoertijden."
+    },
+    "password": {
+      "name": "Wachtwoord Generator",
+      "desc": "Genereer cryptografisch veilige willekeurige wachtwoorden en memorabele wachtzinnen."
+    },
+    "qrcode": {
+      "name": "QR Code Generator",
+      "desc": "Genereer QR codes van tekst, URL's, WiFi inloggegevens of contactinfo. Download als PNG."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Genereer opvultekst — alinea's, zinnen of woorden. Meerdere stijlen beschikbaar."
+    },
+    "baseconverter": {
+      "name": "Talconverter",
+      "desc": "Converteer getallen realtime tussen binair, octaal, decimaal en hexadecimaal."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Converteer tussen JSON en YAML formaten met syntaxvalidatie en opmaak."
+    },
+    "httpclient": {
+      "name": "HTTP Client",
+      "desc": "Test API endpoints als een mini Postman. Aangepaste methoden, headers, body en response viewer."
+    },
+    "stringutils": {
+      "name": "Tekst Hulpmiddelen",
+      "desc": "Hoofdletterconversie, trim, tellen, omkeren, slug generator en meer tekstbewerkingen."
+    },
+    "chat": {
+      "name": "LAN Chat",
+      "desc": "Realtime chat voor je lokale netwerk. Geen internet nodig — alleen Dev Helper op LAN."
+    },
+    "netscan": {
+      "name": "Netwerk Scanner",
+      "desc": "Scan LAN hosts en poorten. Ontdek apparaten, services en open poorten op je netwerk."
+    },
+    "worldclock": {
+      "name": "Wereldklok",
+      "desc": "Meerdere tijdzone klokken met analoge weergave, vergaderplanner en drag-and-drop volgorde."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Extraheer tekst uit afbeeldingen en screenshots. Sleep, plak of upload — aangedreven door Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Converteer tussen application.yml en application.properties voor Java/Spring Boot projecten."
+    },
+    "netinspect": {
+      "name": "Netwerk Inspecteur",
+      "desc": "IP geolocatie, DNS lookup, HTTP response headers en SSL certificaat checker."
+    },
+    "aichat": {
+      "name": "AI Chat",
+      "desc": "Chat met lokale Ollama AI modellen. Streaming antwoorden, Markdown weergave, gespreksgeschiedenis."
+    },
+    "speedtest": {
+      "name": "Snelheidstest",
+      "desc": "Test netwerk download/upload snelheid, ping latentie en schijf lees/schrijf prestaties."
+    },
+    "snippets": {
+      "name": "Code Snippets",
+      "desc": "Bewaar en organiseer veelgebruikte code snippets met syntaxmarkering en snel kopiëren."
+    },
+    "sysmon": {
+      "name": "Systeemmonitor",
+      "desc": "Realtime CPU, geheugen, schijf, netwerk en procesmonitoring met live meters."
+    },
+    "icons": {
+      "name": "Icoon Verkenner",
+      "desc": "Blader en zoek Bootstrap Icons, Font Awesome en Tabler Icons. Klik om CSS class of HTML te kopiëren."
+    },
+    "askai": {
+      "name": "Vraag AI",
+      "desc": "Snelle toegang tot 9 cloud AI's (Claude, ChatGPT, Gemini, etc.) en Ollama vanuit de navigatiebalk."
+    },
+    "translator": {
+      "name": "Vertaler",
+      "desc": "Vertaal tekst tussen talen met lokale Ollama AI modellen. Zoals Google Translate, offline."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Sleep Bestanden Hierheen",
+    "drop_or_browse": "of klik om te bladeren",
+    "paste_hint": "Je kunt ook plakken vanuit het klembord (Ctrl+V)",
+    "recent_uploads": "Recente Uploads",
+    "clear_recent": "Recent Wissen",
+    "copy_url": "URL Kopiëren",
+    "open_new_tab": "Openen in Nieuw Tabblad",
+    "file_uploaded": "Bestand succesvol geüpload",
+    "upload_failed": "Upload mislukt"
+  },
+  "files_page": {
+    "search_placeholder": "Bestanden zoeken...",
+    "grid_view": "Raster",
+    "list_view": "Lijst",
+    "delete_all": "Alles Verwijderen",
+    "confirm_delete_all": "Weet je zeker dat je alle bestanden wilt verwijderen?",
+    "no_files": "Geen bestanden gevonden",
+    "file_deleted": "Bestand verwijderd",
+    "download": "Downloaden",
+    "file_size": "Grootte",
+    "file_date": "Datum"
+  },
+  "prettify_page": {
+    "input_label": "Invoer",
+    "output_label": "Uitvoer",
+    "prettify": "Verfraai",
+    "minify": "Minify",
+    "paste_placeholder": "Plak of typ code hier...",
+    "auto_detect": "Automatisch Detecteren",
+    "copy_output": "Uitvoer Kopiëren"
+  },
+  "logs_page": {
+    "app": "App",
+    "level": "Niveau",
+    "search_placeholder": "Logs zoeken...",
+    "clear_logs": "Logs Wissen",
+    "auto_scroll": "Automatisch scrollen",
+    "no_logs": "Geen logs gevonden",
+    "all_apps": "Alle Apps",
+    "all_levels": "Alle Niveaus",
+    "timestamp": "Tijdstempel",
+    "message": "Bericht"
+  },
+  "logviewer_page": {
+    "upload_log": "Logbestand Uploaden",
+    "search_placeholder": "Zoek op trefwoord of regex...",
+    "use_regex": "Regex",
+    "case_sensitive": "Hoofdlettergevoelig",
+    "context_lines": "Contextregels",
+    "showing_lines": "{shown} van {total} regels weergegeven",
+    "no_matches": "Geen overeenkomsten gevonden",
+    "line": "Regel"
+  },
+  "editor_page": {
+    "new_file": "Nieuw",
+    "open_file": "Bestand Openen",
+    "save_file": "Opslaan",
+    "word_wrap": "Tekstterugloop",
+    "minimap": "Minimap",
+    "line": "Regel",
+    "column": "Kolom",
+    "language": "Taal",
+    "fetch_url": "Ophalen van URL",
+    "url_placeholder": "Voer URL in om bestand op te halen..."
+  },
+  "markdown_page": {
+    "samples": "Voorbeelden",
+    "open_file": "Bestand Openen",
+    "copy_html": "HTML Kopiëren",
+    "export": "Exporteren",
+    "export_pdf": "Exporteren als PDF",
+    "export_md": "Exporteren als Markdown",
+    "export_html": "Exporteren als HTML",
+    "clear": "Wissen",
+    "expand": "Uitvouwen",
+    "editor_label": "Markdown",
+    "preview_label": "Voorbeeld",
+    "drop_zone": "Sleep een Markdown bestand hierheen, of klik om te bladeren",
+    "url_placeholder": "Voer URL in om .md bestand op te halen",
+    "fetch": "Ophalen",
+    "html_copied": "HTML gekopieerd!",
+    "readme": "README",
+    "api_docs": "API Documentatie",
+    "changelog": "Changelog",
+    "blog_post": "Blogbericht",
+    "cheatsheet": "Markdown Spiekbriefje",
+    "meeting_notes": "Vergadernotities",
+    "project_todo": "Project TODO"
+  },
+  "diff_page": {
+    "original": "Origineel",
+    "modified": "Gewijzigd",
+    "side_by_side": "Naast Elkaar",
+    "inline": "Inline",
+    "open_file": "Bestand Openen",
+    "paste_code": "Plak code hier...",
+    "swap": "Wisselen",
+    "no_differences": "Geen verschillen gevonden"
+  },
+  "jwt_page": {
+    "header": "Header",
+    "payload": "Payload",
+    "signature": "Handtekening",
+    "secret": "Geheime Sleutel",
+    "algorithm": "Algoritme",
+    "encode": "Coderen",
+    "decode": "Decoderen",
+    "verify": "Verifiëren",
+    "valid_signature": "Geldige handtekening",
+    "invalid_signature": "Ongeldige handtekening",
+    "paste_jwt": "Plak JWT token hier..."
+  },
+  "base64_page": {
+    "text_mode": "Tekst",
+    "file_mode": "Bestand",
+    "url_safe": "URL-veilig",
+    "line_breaks": "Regelafbrekingen",
+    "input_placeholder": "Voer tekst in om te coderen/decoderen...",
+    "drop_file": "Sleep bestand hierheen of klik om te bladeren",
+    "download_result": "Resultaat Downloaden"
+  },
+  "urlencoder_page": {
+    "component_mode": "Component",
+    "full_url_mode": "Volledige URL",
+    "url_parser": "URL Parser",
+    "protocol": "Protocol",
+    "host": "Host",
+    "path": "Pad",
+    "params": "Parameters",
+    "input_placeholder": "Voer URL of tekst in om te coderen/decoderen..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Broncode",
+    "import_html": "HTML Importeren",
+    "export_html": "HTML Exporteren",
+    "clear": "Wissen"
+  },
+  "mermaid_page": {
+    "samples": "Voorbeelden",
+    "download_svg": "SVG Downloaden",
+    "download_png": "PNG Downloaden",
+    "share": "Delen",
+    "zoom_in": "Inzoomen",
+    "zoom_out": "Uitzoomen",
+    "reset_zoom": "Zoom Resetten",
+    "diagram_label": "Mermaid Code",
+    "preview_label": "Voorbeeld",
+    "link_copied": "Deellink gekopieerd!",
+    "flowchart": "Flowchart",
+    "sequence": "Sequentiediagram",
+    "class_diagram": "Klassendiagram",
+    "state": "Statusdiagram",
+    "er": "ER Diagram",
+    "gantt": "Gantt-grafiek",
+    "pie": "Cirkeldiagram",
+    "mindmap": "Mindmap",
+    "timeline": "Tijdlijn",
+    "quadrant": "Kwadrantgrafiek",
+    "git": "Git Grafiek",
+    "sankey": "Sankey Diagram"
+  },
+  "uuid_page": {
+    "version": "Versie",
+    "bulk_generate": "Bulk Genereren",
+    "validate_parse": "Valideren & Parsen",
+    "count": "Aantal",
+    "uppercase": "Hoofdletters",
+    "braces": "Accolades",
+    "hyphens": "Koppeltekens",
+    "copy_all": "Alles Kopiëren",
+    "generated": "Gegenereerd",
+    "valid_uuid": "Geldig UUID",
+    "invalid_uuid": "Ongeldig UUID",
+    "uuid_version": "Versie",
+    "uuid_variant": "Variant",
+    "uuid_timestamp": "Tijdstempel"
+  },
+  "notes_page": {
+    "new_note": "Nieuwe Notitie",
+    "search_placeholder": "Notities zoeken...",
+    "categories": "Categorieën",
+    "all_notes": "Alle Notities",
+    "pinned": "Vastgepind",
+    "trash": "Prullenbak",
+    "restore": "Herstellen",
+    "permanent_delete": "Permanent Verwijderen",
+    "note_saved": "Notitie opgeslagen",
+    "note_deleted": "Notitie naar prullenbak verplaatst",
+    "untitled": "Naamloze Notitie",
+    "attachments": "Bijlagen",
+    "color_label": "Kleurlabel",
+    "sort_by": "Sorteren op",
+    "date_modified": "Datum Gewijzigd",
+    "date_created": "Datum Aangemaakt"
+  },
+  "regex_page": {
+    "pattern": "Patroon",
+    "test_string": "Testtekst",
+    "flags": "Vlaggen",
+    "matches": "Overeenkomsten",
+    "replace": "Vervangen",
+    "replacement": "Vervanging",
+    "cheat_sheet": "Spiekbriefje",
+    "common_patterns": "Veelgebruikte Patronen",
+    "no_matches": "Geen overeenkomsten",
+    "match_count": "{count} overeenkomsten gevonden",
+    "global": "Globaal",
+    "case_insensitive": "Hoofdletterongevoelig",
+    "multiline": "Meerdere Regels"
+  },
+  "charmap_page": {
+    "search_placeholder": "Zoek emoji of teken...",
+    "recently_used": "Recent Gebruikt",
+    "unicode": "Unicode",
+    "html_entity": "HTML Entity",
+    "css_code": "CSS Code",
+    "copy_char": "Klik om te kopiëren",
+    "smileys": "Smileys & Mensen",
+    "animals": "Dieren & Natuur",
+    "food": "Eten & Drinken",
+    "activities": "Activiteiten",
+    "travel": "Reizen & Plaatsen",
+    "objects": "Objecten",
+    "symbols": "Symbolen",
+    "flags": "Vlaggen",
+    "arrows": "Pijlen",
+    "math": "Wiskunde",
+    "currency": "Valuta",
+    "latin": "Uitgebreid Latijn"
+  },
+  "epoch_page": {
+    "timestamp": "Tijdstempel",
+    "date_time": "Datum & Tijd",
+    "now": "Nu",
+    "seconds": "Seconden",
+    "milliseconds": "Milliseconden",
+    "local_time": "Lokale Tijd",
+    "utc_time": "UTC Tijd",
+    "relative": "Relatief",
+    "time_diff": "Tijdsverschil",
+    "presets": "Presets",
+    "live_clock": "Live Klok"
+  },
+  "hash_page": {
+    "text_input": "Tekstinvoer",
+    "file_input": "Bestandsinvoer",
+    "compare": "Hashes Vergelijken",
+    "hash_match": "Hashes komen overeen!",
+    "hash_mismatch": "Hashes komen niet overeen",
+    "drop_file": "Sleep bestand om te hashen...",
+    "computing": "Hash berekenen..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Contrastcontrole",
+    "foreground": "Voorgrond",
+    "background": "Achtergrond",
+    "ratio": "Verhouding",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Geslaagd",
+    "fail": "Niet geslaagd",
+    "palette": "Palet",
+    "shades": "Donkere tinten",
+    "tints": "Lichte tinten",
+    "pick_color": "Kleur Kiezen",
+    "eyedropper": "EyeDropper"
+  },
+  "cron_page": {
+    "expression": "Expressie",
+    "description_label": "Beschrijving",
+    "next_runs": "Volgende Uitvoeringen",
+    "presets": "Presets",
+    "minute": "Minuut",
+    "hour": "Uur",
+    "day_month": "Dag (Maand)",
+    "month": "Maand",
+    "day_week": "Dag (Week)",
+    "every_minute": "Elke minuut",
+    "every_hour": "Elk uur",
+    "every_day": "Elke dag om middernacht",
+    "share": "Delen"
+  },
+  "password_page": {
+    "password": "Wachtwoord",
+    "passphrase": "Wachtzin",
+    "length": "Lengte",
+    "uppercase": "Hoofdletters (A-Z)",
+    "lowercase": "Kleine letters (a-z)",
+    "numbers": "Cijfers (0-9)",
+    "symbols": "Symbolen (!@#$...)",
+    "word_count": "Aantal Woorden",
+    "separator": "Scheidingsteken",
+    "strength": "Sterkte",
+    "entropy": "Entropie",
+    "very_weak": "Zeer Zwak",
+    "weak": "Zwak",
+    "fair": "Redelijk",
+    "strong": "Sterk",
+    "very_strong": "Zeer Sterk",
+    "bulk_generate": "Bulk Genereren",
+    "generate_count": "Aantal"
+  },
+  "qrcode_page": {
+    "text_url": "Tekst / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Voer tekst of URL in...",
+    "network_name": "Netwerknaam (SSID)",
+    "wifi_password": "Wachtwoord",
+    "encryption": "Versleuteling",
+    "hidden_network": "Verborgen Netwerk",
+    "full_name": "Volledige Naam",
+    "phone": "Telefoon",
+    "email": "E-mail",
+    "organization": "Organisatie",
+    "error_correction": "Foutcorrectie",
+    "foreground_color": "Voorgrond",
+    "background_color": "Achtergrond",
+    "download_png": "PNG Downloaden",
+    "download_svg": "SVG Downloaden",
+    "copy_image": "Afbeelding Kopiëren"
+  },
+  "lorem_page": {
+    "paragraphs": "Alinea's",
+    "sentences": "Zinnen",
+    "words": "Woorden",
+    "style": "Stijl",
+    "classic": "Klassiek",
+    "hipster": "Hipster",
+    "tech": "Tech / Dev",
+    "include_html": "HTML tags toevoegen",
+    "start_lorem": "Begin met \"Lorem ipsum...\"",
+    "generated_text": "Gegenereerde Tekst",
+    "copy_text": "Tekst Kopiëren"
+  },
+  "baseconverter_page": {
+    "binary": "Binair",
+    "octal": "Octaal",
+    "decimal": "Decimaal",
+    "hexadecimal": "Hexadecimaal",
+    "bit_visualization": "Bit Visualisatie",
+    "signed": "Signed",
+    "unsigned": "Unsigned",
+    "twos_complement": "Two's Complement"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Verfraai",
+    "minify": "Minify",
+    "import_file": "Bestand Importeren",
+    "invalid_json": "Ongeldige JSON",
+    "invalid_yaml": "Ongeldige YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "Voer request URL in...",
+    "method": "Methode",
+    "headers": "Headers",
+    "body": "Body",
+    "auth": "Authenticatie",
+    "params": "Parameters",
+    "response": "Response",
+    "status_code": "Status",
+    "response_time": "Tijd",
+    "response_size": "Grootte",
+    "send_request": "Verzenden",
+    "clear_history": "Geschiedenis Wissen",
+    "no_auth": "Geen Authenticatie",
+    "basic_auth": "Basic Auth",
+    "bearer_token": "Bearer Token",
+    "username": "Gebruikersnaam",
+    "token": "Token",
+    "key": "Sleutel",
+    "add_header": "Header Toevoegen",
+    "add_param": "Parameter Toevoegen"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Voer tekst in...",
+    "operations": "Bewerkingen",
+    "case_conversion": "Hoofdletterconversie",
+    "text_cleanup": "Tekst Opschonen",
+    "text_transform": "Tekst Transformatie",
+    "encode_decode": "Coderen / Decoderen",
+    "extract_info": "Info Extraheren",
+    "uppercase": "HOOFDLETTERS",
+    "lowercase": "kleine letters",
+    "title_case": "Titel Notatie",
+    "sentence_case": "Zin notatie",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Tekens",
+    "word_count": "Woorden",
+    "line_count": "Regels"
+  },
+  "chat_page": {
+    "username_placeholder": "Voer je naam in...",
+    "message_placeholder": "Typ een bericht...",
+    "join": "Deelnemen",
+    "online_users": "Online Gebruikers",
+    "user_joined": "{user} is toegetreden tot de chat",
+    "user_left": "{user} heeft de chat verlaten"
+  },
+  "netscan_page": {
+    "interface": "Interface",
+    "target": "Doel",
+    "ports": "Poorten",
+    "scan": "Scannen",
+    "scanning": "Scannen...",
+    "open_ports": "Open Poorten",
+    "host": "Host",
+    "port": "Poort",
+    "service": "Service",
+    "scan_complete": "Scan voltooid",
+    "common_ports": "Veelgebruikte Poorten",
+    "custom_range": "Aangepast Bereik"
+  },
+  "worldclock_page": {
+    "add_clock": "Klok Toevoegen",
+    "your_local_time": "Jouw Lokale Tijd",
+    "meeting_planner": "Vergaderplanner",
+    "timezone": "Tijdzone",
+    "search_timezone": "Tijdzone zoeken...",
+    "remove_clock": "Verwijderen"
+  },
+  "ocr_page": {
+    "upload_image": "Afbeelding Uploaden",
+    "paste_image": "Afbeelding Plakken",
+    "drop_image": "Sleep een afbeelding hierheen",
+    "extract_text": "Tekst Extraheren",
+    "extracted_text": "Geëxtraheerde Tekst",
+    "copy_result": "Resultaat Kopiëren",
+    "recognizing": "Tekst herkennen...",
+    "no_text_found": "Geen tekst gevonden in afbeelding",
+    "supported_formats": "Ondersteund: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Bestand Importeren",
+    "download_result": "Downloaden"
+  },
+  "aichat_page": {
+    "model": "Model",
+    "no_models": "Geen modellen gevonden. Draait Ollama?",
+    "message_placeholder": "Typ je bericht...",
+    "clear_chat": "Chat Wissen",
+    "thinking": "Aan het denken...",
+    "ollama_not_running": "Kan geen verbinding maken met Ollama",
+    "connection_error": "Verbindingsfout"
+  },
+  "speedtest_page": {
+    "start_test": "Test Starten",
+    "ping": "Ping",
+    "download_speed": "Download",
+    "upload_speed": "Upload",
+    "disk_speed": "Schijf",
+    "latency": "Latentie",
+    "read_speed": "Lezen",
+    "write_speed": "Schrijven",
+    "testing": "Testen...",
+    "test_complete": "Test voltooid"
+  },
+  "snippets_page": {
+    "new_snippet": "Nieuw Snippet",
+    "search_placeholder": "Snippets zoeken...",
+    "title_placeholder": "Snippet titel...",
+    "desc_placeholder": "Beschrijving (optioneel)",
+    "tags_placeholder": "Tags (komma gescheiden)",
+    "save_snippet": "Opslaan",
+    "delete_snippet": "Verwijderen",
+    "copy_code": "Code Kopiëren",
+    "language": "Taal",
+    "default_loaded": "Standaard snippets geladen",
+    "snippet_saved": "Snippet opgeslagen",
+    "snippet_deleted": "Snippet verwijderd",
+    "code_copied": "Code gekopieerd!",
+    "no_snippets": "Geen snippets gevonden",
+    "pinned": "Vastgepind",
+    "all_snippets": "Alle Snippets"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Geheugen",
+    "disk": "Schijf",
+    "network": "Netwerk",
+    "processes": "Processen",
+    "usage": "Gebruik",
+    "total": "Totaal",
+    "used": "Gebruikt",
+    "free": "Vrij",
+    "available": "Beschikbaar",
+    "cores": "Kernen",
+    "uptime": "Uptime",
+    "pid": "PID",
+    "process_name": "Naam",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Geheugen %",
+    "connecting": "Verbinden...",
+    "disconnected": "Verbinding verbroken",
+    "bytes_sent": "Verzonden",
+    "bytes_recv": "Ontvangen",
+    "read_speed": "Lezen",
+    "write_speed": "Schrijven"
+  },
+  "icons_page": {
+    "search_placeholder": "Iconen zoeken...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "Alles",
+    "recently_used": "Recent Gebruikt",
+    "class_name": "Class",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Class Kopiëren",
+    "copy_html": "HTML Kopiëren",
+    "icon_count": "{count} iconen",
+    "loading_icons": "Iconen laden...",
+    "click_to_view": "Klik op een icoon voor details"
+  },
+  "netinspect_page": {
+    "my_ip": "Mijn IP",
+    "ip_lookup": "IP Lookup",
+    "dns_lookup": "DNS Lookup",
+    "http_headers": "HTTP Headers",
+    "ssl_cert": "SSL Certificaat",
+    "lookup": "Opzoeken",
+    "check": "Controleren",
+    "ip_placeholder": "Voer IP adres in...",
+    "domain_placeholder": "Voer domeinnaam in...",
+    "url_placeholder": "Voer URL in...",
+    "location": "Locatie",
+    "isp": "ISP",
+    "record_type": "Record Type",
+    "issuer": "Uitgever",
+    "valid_from": "Geldig Vanaf",
+    "valid_until": "Geldig Tot",
+    "subject": "Onderwerp"
+  },
+  "translator_page": {
+    "source_lang": "Brontaal",
+    "target_lang": "Doeltaal",
+    "auto_detect": "Automatisch Detecteren",
+    "translate": "Vertalen",
+    "translating": "Vertalen...",
+    "swap_languages": "Talen Wisselen",
+    "input_placeholder": "Voer tekst in om te vertalen...",
+    "model": "Model",
+    "copy_translation": "Vertaling Kopiëren",
+    "translation_copied": "Vertaling gekopieerd!",
+    "clear_all": "Alles Wissen",
+    "char_count": "{count} tekens"
+  }
+}

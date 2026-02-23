@@ -1,0 +1,145 @@
+{{define "content"}}
+<h4 class="mb-3">
+    <i class="bi bi-router"></i> Network Scanner
+    <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="netscan" onclick="togglePin('netscan')" title="Pin to navbar"></i>
+</h4>
+
+<!-- Scan Config -->
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-4">
+                <label class="form-label fw-semibold mb-1"><i class="bi bi-crosshair"></i> Target</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" id="targetInput" placeholder="192.168.1.0/24 or single IP">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" id="ifaceDropdownBtn" title="Auto-detect from server interfaces">
+                        <i class="bi bi-hdd-network"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" id="ifaceDropdown">
+                        <li><span class="dropdown-item text-muted">Loading...</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-semibold mb-1"><i class="bi bi-list-ol"></i> Ports</label>
+                <select class="form-select form-select-sm" id="portPreset">
+                    <option value="quick" selected>Quick (~50 dev ports)</option>
+                    <option value="common">Common (1-1024)</option>
+                    <option value="full">Full (1-65535)</option>
+                    <option value="custom">Custom...</option>
+                </select>
+            </div>
+            <div class="col-md-3" id="customPortsWrap" style="display:none;">
+                <label class="form-label fw-semibold mb-1">Custom Ports</label>
+                <input type="text" class="form-control form-control-sm" id="customPorts" placeholder="80,443,3000-3100">
+            </div>
+            <div class="col-md-2">
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-primary flex-fill" id="startBtn">
+                        <i class="bi bi-play-fill"></i> Scan
+                    </button>
+                    <button class="btn btn-sm btn-danger d-none" id="stopBtn">
+                        <i class="bi bi-stop-fill"></i> Stop
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced options (collapsed) -->
+        <div class="mt-2">
+            <a class="small text-decoration-none" data-bs-toggle="collapse" href="#advancedOpts" role="button">
+                <i class="bi bi-gear"></i> Advanced options
+            </a>
+            <div class="collapse" id="advancedOpts">
+                <div class="row g-2 mt-1">
+                    <div class="col-md-4">
+                        <label class="form-label small mb-1">Timeout: <span id="timeoutLabel">500</span>ms</label>
+                        <input type="range" class="form-range" id="timeoutSlider" min="100" max="5000" step="100" value="500">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label small mb-1">Workers: <span id="workersLabel">100</span></label>
+                        <input type="range" class="form-range" id="workersSlider" min="10" max="500" step="10" value="100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Progress -->
+<div class="mb-3 d-none" id="progressSection">
+    <div class="progress" style="height: 22px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressBar" role="progressbar" style="width: 0%;">0%</div>
+    </div>
+    <div class="d-flex justify-content-between mt-1">
+        <small class="text-muted" id="progressStats">Scanned 0/0</small>
+        <small class="text-muted" id="progressOpen">0 open ports</small>
+    </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row g-3 mb-3 d-none" id="summarySection">
+    <div class="col-sm-4">
+        <div class="card text-center">
+            <div class="card-body py-2">
+                <div class="fs-3 fw-bold text-primary" id="sumHosts">0</div>
+                <small class="text-muted">Hosts Found</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card text-center">
+            <div class="card-body py-2">
+                <div class="fs-3 fw-bold text-success" id="sumPorts">0</div>
+                <small class="text-muted">Open Ports</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card text-center">
+            <div class="card-body py-2">
+                <div class="fs-3 fw-bold text-info" id="sumTime">0s</div>
+                <small class="text-muted">Scan Time</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Results -->
+<div class="card d-none" id="resultsSection">
+    <div class="card-header d-flex flex-wrap align-items-center gap-2 py-2">
+        <span class="fw-semibold"><i class="bi bi-table"></i> Results <span class="badge bg-secondary" id="resultCount">0</span></span>
+        <input type="text" class="form-control form-control-sm" id="filterInput" placeholder="Filter results..." style="max-width: 200px;">
+        <div class="form-check form-switch ms-auto">
+            <input class="form-check-input" type="checkbox" id="groupByHost">
+            <label class="form-check-label small" for="groupByHost">Group by host</label>
+        </div>
+        <div class="btn-group btn-group-sm">
+            <button class="btn btn-outline-secondary" id="copyTextBtn" title="Copy as text"><i class="bi bi-clipboard"></i> Text</button>
+            <button class="btn btn-outline-secondary" id="copyJsonBtn" title="Copy as JSON"><i class="bi bi-braces"></i> JSON</button>
+            <button class="btn btn-outline-secondary" id="exportCsvBtn" title="Export CSV"><i class="bi bi-filetype-csv"></i> CSV</button>
+        </div>
+        <button class="btn btn-sm btn-outline-danger" id="clearBtn" title="Clear results"><i class="bi bi-trash"></i></button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-sm table-hover mb-0" id="resultsTable">
+            <thead>
+                <tr>
+                    <th role="button" data-sort="ip" class="user-select-none">IP <i class="bi bi-arrow-down-up text-muted small"></i></th>
+                    <th role="button" data-sort="port" class="user-select-none">Port <i class="bi bi-arrow-down-up text-muted small"></i></th>
+                    <th role="button" data-sort="service" class="user-select-none">Service <i class="bi bi-arrow-down-up text-muted small"></i></th>
+                    <th role="button" data-sort="latency" class="user-select-none">Latency <i class="bi bi-arrow-down-up text-muted small"></i></th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Toast container -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;" id="toastContainer"></div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/netscan.js"></script>
+{{end}}

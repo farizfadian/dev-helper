@@ -1,0 +1,166 @@
+{{define "content"}}
+<style>
+    .ocr-drop {
+        border: 2px dashed var(--bs-border-color); border-radius: 12px;
+        padding: 40px 20px; text-align: center; cursor: pointer;
+        transition: all 0.2s; background: var(--bs-tertiary-bg);
+        color: var(--bs-secondary-color); min-height: 200px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .ocr-drop:hover, .ocr-drop.drag-active {
+        border-color: var(--bs-primary); background: rgba(13,110,253,0.05);
+        color: var(--bs-primary);
+    }
+    .ocr-drop i { font-size: 2.5rem; margin-bottom: 8px; }
+    .ocr-drop .drop-text { font-size: 0.95rem; }
+    .ocr-drop .drop-hint { font-size: 0.78rem; margin-top: 6px; }
+
+    .ocr-preview-wrap {
+        position: relative; border: 1px solid var(--bs-border-color);
+        border-radius: 10px; overflow: hidden; background: var(--bs-tertiary-bg);
+    }
+    .ocr-preview-wrap img {
+        max-width: 100%; max-height: 400px; display: block; margin: 0 auto;
+    }
+    .ocr-preview-clear {
+        position: absolute; top: 8px; right: 8px;
+    }
+
+    .ocr-progress {
+        margin-top: 12px;
+    }
+    .ocr-progress .progress { height: 24px; border-radius: 8px; }
+    .ocr-progress .progress-bar { font-size: 0.82rem; font-weight: 600; transition: width 0.2s; }
+    .ocr-status { font-size: 0.82rem; color: var(--bs-secondary-color); margin-top: 4px; }
+
+    .ocr-result {
+        border: 1px solid var(--bs-border-color); border-radius: 10px;
+        background: var(--bs-body-bg); padding: 16px; min-height: 200px;
+    }
+    .ocr-result textarea {
+        width: 100%; min-height: 250px; border: none; background: transparent;
+        color: var(--bs-body-color); font-family: 'Consolas', monospace; font-size: 0.9rem;
+        resize: vertical; outline: none;
+    }
+    .ocr-confidence {
+        display: inline-block; padding: 2px 10px; border-radius: 20px;
+        font-size: 0.78rem; font-weight: 600;
+    }
+    .ocr-confidence.high { background: #28a74520; color: #28a745; }
+    .ocr-confidence.medium { background: #ffc10720; color: #e6a800; }
+    .ocr-confidence.low { background: #dc354520; color: #dc3545; }
+
+    .ocr-lang-badge {
+        display: inline-block; padding: 2px 8px; border-radius: 4px;
+        font-size: 0.75rem; background: var(--bs-tertiary-bg);
+        color: var(--bs-secondary-color); margin-left: 4px;
+    }
+</style>
+
+<div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+    <h4 class="mb-0">
+        <i class="bi bi-eye text-success"></i> OCR — Text Recognition
+        <button class="btn btn-link p-0 ms-2 pin-star" data-tool="ocr" title="Pin to navbar">
+            <i class="bi bi-star"></i>
+        </button>
+    </h4>
+    <div class="d-flex align-items-center gap-2">
+        <select class="form-select form-select-sm" id="ocrLang" style="width:auto;">
+            <option value="eng" selected>English</option>
+            <option value="ind">Indonesian</option>
+            <option value="jpn">Japanese</option>
+            <option value="kor">Korean</option>
+            <option value="chi_sim">Chinese (Simplified)</option>
+            <option value="chi_tra">Chinese (Traditional)</option>
+            <option value="ara">Arabic</option>
+            <option value="hin">Hindi</option>
+            <option value="tha">Thai</option>
+            <option value="vie">Vietnamese</option>
+            <option value="fra">French</option>
+            <option value="deu">German</option>
+            <option value="spa">Spanish</option>
+            <option value="por">Portuguese</option>
+            <option value="rus">Russian</option>
+        </select>
+        <span class="ocr-lang-badge" id="langBadge">CDN</span>
+    </div>
+</div>
+
+<div class="row g-3">
+    <!-- Left: Image Input -->
+    <div class="col-lg-5">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <label class="form-label fw-semibold mb-0">Image Input</label>
+            <div class="d-flex gap-1">
+                <button class="btn btn-outline-secondary btn-sm" id="btnBrowse" title="Browse files">
+                    <i class="bi bi-folder2-open"></i>
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" id="btnPaste" title="Paste from clipboard (Ctrl+V)">
+                    <i class="bi bi-clipboard"></i> Paste
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" id="btnCamera" title="Capture from camera" style="display:none;">
+                    <i class="bi bi-camera"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="ocr-drop" id="dropZone">
+            <i class="bi bi-image"></i>
+            <div class="drop-text">Drop image here or click to browse</div>
+            <div class="drop-hint">Supports PNG, JPG, WEBP, BMP, GIF &middot; Ctrl+V to paste</div>
+        </div>
+        <input type="file" id="fileInput" class="d-none" accept="image/*">
+
+        <div class="ocr-preview-wrap d-none mt-2" id="previewWrap">
+            <img id="previewImg" src="" alt="Preview">
+            <button class="btn btn-sm btn-danger ocr-preview-clear" id="btnClear" title="Clear">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="ocr-progress d-none" id="progressWrap">
+            <div class="progress">
+                <div class="progress-bar bg-success" id="progressBar" role="progressbar" style="width:0%">0%</div>
+            </div>
+            <div class="ocr-status" id="statusText">Initializing...</div>
+        </div>
+
+        <button class="btn btn-success w-100 mt-3" id="btnRecognize" disabled>
+            <i class="bi bi-eye"></i> Recognize Text
+        </button>
+    </div>
+
+    <!-- Right: Result -->
+    <div class="col-lg-7">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <label class="form-label fw-semibold mb-0">
+                Extracted Text
+                <span class="ocr-confidence d-none" id="confidenceBadge"></span>
+            </label>
+            <div class="d-flex gap-1">
+                <button class="btn btn-outline-secondary btn-sm" id="btnCopy" title="Copy text" disabled>
+                    <i class="bi bi-clipboard"></i> Copy
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" id="btnDownload" title="Download as .txt" disabled>
+                    <i class="bi bi-download"></i>
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" id="btnClearResult" title="Clear result" disabled>
+                    <i class="bi bi-trash3"></i>
+                </button>
+            </div>
+        </div>
+        <div class="ocr-result">
+            <textarea id="resultText" placeholder="Recognized text will appear here..." readonly></textarea>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2">
+            <small class="text-muted" id="resultInfo"></small>
+            <small class="text-muted">Powered by <a href="https://github.com/naptha/tesseract.js" target="_blank" class="text-decoration-none">Tesseract.js</a></small>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+<script src="/static/ocr.js"></script>
+{{end}}

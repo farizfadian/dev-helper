@@ -754,11 +754,110 @@ require(['vs/editor/editor.main'], function () {
         });
     });
 
+    // ── Export to PDF ──
+    document.getElementById('exportPdfBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        const html = previewPane.innerHTML;
+        if (!html.trim()) return;
+        const printContainer = document.getElementById('printContainer');
+        printContainer.innerHTML = html;
+        printContainer.style.display = 'block';
+        window.print();
+        setTimeout(() => { printContainer.style.display = 'none'; }, 500);
+    });
+
+    // ── Export to Markdown ──
+    document.getElementById('exportMdBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        const md = editor.getValue();
+        if (!md.trim()) return;
+        downloadFile(md, 'document.md', 'text/markdown');
+    });
+
+    // ── Export to HTML ──
+    document.getElementById('exportHtmlBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        const html = previewPane.innerHTML;
+        if (!html.trim()) return;
+        const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+        const fullHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markdown Export</title>
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem;
+    line-height: 1.6;
+    color: ${isDark ? '#e0e0e0' : '#24292f'};
+    background: ${isDark ? '#1e1e1e' : '#fff'};
+}
+h1, h2 { border-bottom: 1px solid ${isDark ? '#444' : '#d1d9e0'}; padding-bottom: 0.3em; }
+pre { background: ${isDark ? '#2d2d2d' : '#f6f8fa'}; border-radius: 6px; padding: 1rem; overflow-x: auto; }
+code { font-size: 0.875em; font-family: 'Consolas', 'Monaco', monospace; }
+table { border-collapse: collapse; width: 100%; margin-bottom: 1rem; }
+th, td { border: 1px solid ${isDark ? '#444' : '#d1d9e0'}; padding: 0.5rem; }
+th { background: ${isDark ? '#2d2d2d' : '#f6f8fa'}; }
+blockquote { border-left: 4px solid ${isDark ? '#444' : '#d1d9e0'}; padding-left: 1rem; color: ${isDark ? '#999' : '#656d76'}; margin-left: 0; }
+img { max-width: 100%; }
+a { color: ${isDark ? '#58a6ff' : '#0969da'}; }
+input[type="checkbox"] { margin-right: 0.3rem; }
+</style>
+</head>
+<body>
+${html}
+</body>
+</html>`;
+        downloadFile(fullHtml, 'document.html', 'text/html');
+    });
+
+    function downloadFile(content, filename, mimeType) {
+        const blob = new Blob([content], { type: mimeType + ';charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
+    }
+
     // ── Clear ──
     document.getElementById('clearBtn').addEventListener('click', () => {
         editor.setValue('');
         localStorage.removeItem(LS_KEY_MD);
         editor.focus();
+    });
+
+    // ── Focus mode ──
+    var LS_KEY_FOCUS = 'devhelper_markdown_fullscreen';
+    var focusWrapper = document.getElementById('focusWrapper');
+    var focusModeBtn = document.getElementById('focusModeBtn');
+    var isFocusMode = false;
+
+    function applyFocusMode(on) {
+        isFocusMode = on;
+        focusWrapper.classList.toggle('focus-active', on);
+        document.body.style.overflow = on ? 'hidden' : '';
+        focusModeBtn.innerHTML = on ? '<i class="bi bi-fullscreen-exit"></i> Exit' : '<i class="bi bi-arrows-fullscreen"></i> Expand';
+        focusModeBtn.title = on ? 'Exit expanded mode (Esc)' : 'Expand (F11)';
+        focusModeBtn.classList.toggle('btn-outline-warning', on);
+        focusModeBtn.classList.toggle('btn-outline-primary', !on);
+        localStorage.setItem(LS_KEY_FOCUS, on ? '1' : '0');
+        setTimeout(function () { editor.layout(); }, 50);
+    }
+
+    if (localStorage.getItem(LS_KEY_FOCUS) === '1') applyFocusMode(true);
+
+    focusModeBtn.addEventListener('click', function () { applyFocusMode(!isFocusMode); });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && isFocusMode) { e.preventDefault(); applyFocusMode(false); }
+        if (e.key === 'F11') { e.preventDefault(); applyFocusMode(!isFocusMode); }
     });
 
     // ── Focus editor ──

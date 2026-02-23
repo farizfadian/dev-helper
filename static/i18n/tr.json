@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Kopyala",
+    "copied": "Kopyalandı!",
+    "clear": "Temizle",
+    "save": "Kaydet",
+    "saved": "Kaydedildi!",
+    "delete": "Sil",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "open": "Aç",
+    "search": "Ara",
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "warning": "Uyarı",
+    "info": "Bilgi",
+    "yes": "Evet",
+    "no": "Hayır",
+    "confirm": "Onayla",
+    "download": "İndir",
+    "upload": "Yükle",
+    "export": "Dışa Aktar",
+    "import": "İçe Aktar",
+    "expand": "Genişlet",
+    "exit": "Çık",
+    "file": "Dosya",
+    "settings": "Ayarlar",
+    "none": "Yok",
+    "all": "Tümü",
+    "reset": "Sıfırla",
+    "apply": "Uygula",
+    "preview": "Önizleme",
+    "source": "Kaynak",
+    "result": "Sonuç",
+    "input": "Girdi",
+    "output": "Çıktı",
+    "generate": "Oluştur",
+    "encode": "Kodla",
+    "decode": "Çöz",
+    "paste": "Yapıştır",
+    "swap": "Değiştir",
+    "back": "Geri",
+    "next": "İleri",
+    "samples": "Örnekler",
+    "history": "Geçmiş",
+    "options": "Seçenekler",
+    "format": "Biçimlendir",
+    "validate": "Doğrula",
+    "convert": "Dönüştür",
+    "raw": "Ham",
+    "send": "Gönder",
+    "stop": "Durdur",
+    "start": "Başlat",
+    "refresh": "Yenile",
+    "browse": "Gözat",
+    "select": "Seç",
+    "add": "Ekle",
+    "remove": "Kaldır",
+    "edit": "Düzenle",
+    "share": "Paylaş",
+    "pin": "Sabitle",
+    "unpin": "Sabitlemeyi Kaldır",
+    "new": "Yeni",
+    "text": "Metin",
+    "type": "Tür",
+    "size": "Boyut",
+    "name": "Ad",
+    "value": "Değer",
+    "status": "Durum",
+    "actions": "İşlemler",
+    "description": "Açıklama",
+    "category": "Kategori",
+    "tags": "Etiketler",
+    "language": "Dil",
+    "title": "Başlık",
+    "content": "İçerik",
+    "count": "Adet",
+    "length": "Uzunluk",
+    "total": "Toplam",
+    "or": "veya",
+    "and": "ve",
+    "no_data": "Veri yok",
+    "no_results": "Sonuç bulunamadı",
+    "confirm_delete": "Bunu silmek istediğinizden emin misiniz?",
+    "drag_drop": "Dosyayı buraya sürükleyip bırakın",
+    "processing": "İşleniyor...",
+    "done": "Tamamlandı",
+    "copied_to_clipboard": "Panoya kopyalandı!",
+    "failed_to_copy": "Kopyalama başarısız",
+    "keyboard_shortcuts": "Klavye kısayolları",
+    "toggle_fullscreen": "Tam ekranı aç/kapat (F11)",
+    "exit_fullscreen": "Tam ekrandan çık (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Ara",
+    "search_tools": "Araçlarda ara...",
+    "more": "Daha Fazla",
+    "all_tools": "Tüm Araçlar",
+    "ask_ai": "AI'a Sor",
+    "cloud_ai": "Bulut AI",
+    "local_ai": "Yerel AI",
+    "language": "Dil",
+    "pinned_to_navbar": "Gezinme çubuğuna sabitlendi",
+    "unpinned_from_navbar": "Gezinme çubuğundan kaldırıldı",
+    "pin_to_navbar": "Gezinme çubuğuna sabitle",
+    "unpin_from_navbar": "Gezinme çubuğundan kaldır",
+    "open_navigation": "Gezinmeyi aç"
+  },
+  "theme": {
+    "light": "Açık",
+    "dark": "Koyu",
+    "auto": "Otomatik",
+    "switch_theme": "Tema değiştir"
+  },
+  "spotlight": {
+    "placeholder": "Araçlarda ara...",
+    "no_results": "\"{query}\" için araç bulunamadı",
+    "navigate": "Gezin",
+    "open": "Aç",
+    "close": "Kapat"
+  },
+  "drawer": {
+    "search": "Ara",
+    "theme": "Tema",
+    "pinned": "Sabitlenmiş",
+    "file_code": "Dosya & Kod",
+    "encode_decode": "Kodla & Çöz",
+    "converters": "Dönüştürücüler",
+    "generators": "Oluşturucular",
+    "tools_section": "Araçlar",
+    "logs_network": "Loglar & Ağ",
+    "all_tools": "Tüm Araçlar"
+  },
+  "footer": {
+    "made_by": "❤️ ile yapan"
+  },
+  "ai": {
+    "ask": "Sor",
+    "prompt_placeholder": "Ne sormak istersiniz?",
+    "enter_to_send": "Göndermek için Enter",
+    "shift_enter_newline": "Yeni satır için Shift+Enter",
+    "open_without_prompt": "Soru sormadan aç",
+    "ollama_url": "Ollama URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Ollama web arayüzü URL'sini girin"
+  },
+  "dashboard": {
+    "search_placeholder": "Araçlarda ara...",
+    "pinned_tools": "Sabitlenmiş Araçlar",
+    "all_tools": "Tüm Araçlar",
+    "no_results": "Aramanızla eşleşen araç bulunamadı.",
+    "open_source_toolkit": "Açık kaynak geliştirici araç seti",
+    "tools_count": "{count} araç mevcut"
+  },
+  "tools": {
+    "upload": {
+      "name": "Yükleme",
+      "desc": "Dosyaları sürükle & bırak, yapıştır veya gözat ile yükleyin. Resim önizlemesi ve lightbox."
+    },
+    "files": {
+      "name": "Dosya Gezgini",
+      "desc": "Yüklenen dosyalara Google Drive benzeri ızgara görünümünde göz atın, arayın ve yönetin."
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "JSON, XML, HTML, CSS, JavaScript ve SQL kodlarını biçimlendirin ve güzelleştirin."
+    },
+    "logs": {
+      "name": "Log Toplayıcı",
+      "desc": "Hafif log toplayıcı. Herhangi bir uygulamadan HTTP POST ile log alın, uygulama ve seviyeye göre filtreleyin."
+    },
+    "logviewer": {
+      "name": "Log Görüntüleyici",
+      "desc": "Büyük log dosyalarını yükleyin, anahtar kelime filtreleme, regex ve bağlam satırları ile arama yapın."
+    },
+    "editor": {
+      "name": "Kod Editörü",
+      "desc": "Monaco (VS Code) destekli tam donanımlı kod editörü. 40'tan fazla dilde sözdizimi renklendirme."
+    },
+    "markdown": {
+      "name": "Markdown Görüntüleyici",
+      "desc": "Canlı önizleme, sözdizimi renkli kod blokları ve GFM desteği ile Markdown yazın."
+    },
+    "diff": {
+      "name": "Kod Farkı",
+      "desc": "İki kod dosyasını sözdizimi renkli fark görünümünde yan yana veya satır içi karşılaştırın."
+    },
+    "jwt": {
+      "name": "JWT Aracı",
+      "desc": "JSON Web Token'ları kodlayın, çözün ve doğrulayın. HS256/384/512 desteği ile renkli görünüm."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Base64 dizelerini kodlayın ve çözün. Metin ve ikili dosya desteği, URL güvenli seçeneği."
+    },
+    "urlencoder": {
+      "name": "URL Kodlayıcı",
+      "desc": "URL'leri ve sorgu parametrelerini kodlayın ve çözün. URL ayrıştırıcı: protokol, host, yol ve parametreler."
+    },
+    "htmleditor": {
+      "name": "HTML Editörü",
+      "desc": "TinyMCE destekli zengin metin WYSIWYG editörü, HTML kaynak kodu görünümü değiştirme ile."
+    },
+    "mermaid": {
+      "name": "Mermaid Diyagram",
+      "desc": "Mermaid.js canlı önizleme ile akış şemaları, sıra diyagramları, ER diyagramları, Gantt grafikleri ve daha fazlasını oluşturun."
+    },
+    "uuid": {
+      "name": "UUID Oluşturucu",
+      "desc": "UUID v1, v4 ve v7 oluşturun. Toplu oluşturma, doğrulama, ayrıştırma ve biçim seçenekleri ile kopyalama."
+    },
+    "notes": {
+      "name": "Notlar",
+      "desc": "Canlı önizleme, etiketler, kategoriler, renk işaretleri, ekler ve otomatik kayıt ile Markdown notlar."
+    },
+    "regex": {
+      "name": "Regex Test",
+      "desc": "Gerçek zamanlı eşleşme vurgulama, yakalama grupları, değiştirme ve kopya kağıdı ile regex kalıplarını test edin."
+    },
+    "charmap": {
+      "name": "Emoji & Karakter Haritası",
+      "desc": "Emoji, sembol ve özel karakterleri arayın ve kopyalayın. Unicode detayları, HTML varlıkları ve son kullanılanlar."
+    },
+    "epoch": {
+      "name": "Epoch Dönüştürücü",
+      "desc": "Unix epoch zaman damgalarını okunabilir tarihe ve tersine dönüştürün. Canlı saat, hazır ayarlar ve zaman farkı hesaplayıcı."
+    },
+    "hash": {
+      "name": "Hash Oluşturucu",
+      "desc": "Metinden veya dosyadan MD5, SHA-1, SHA-256, SHA-512 hash'leri oluşturun. Sağlama toplamlarını anında doğrulayın."
+    },
+    "colorpicker": {
+      "name": "Renk Seçici",
+      "desc": "Renk seçin ve HEX, RGB, HSL formatları arasında dönüştürün. Renk paleti ve kontrast denetleyici."
+    },
+    "cron": {
+      "name": "Cron Ayrıştırıcı",
+      "desc": "cron ifadelerini okunabilir açıklamalar ve sonraki çalışma zamanları ile ayrıştırın ve oluşturun."
+    },
+    "password": {
+      "name": "Şifre Oluşturucu",
+      "desc": "Kriptografik olarak güvenli rastgele şifreler ve akılda kalıcı parola öbekleri oluşturun."
+    },
+    "qrcode": {
+      "name": "QR Kod Oluşturucu",
+      "desc": "Metin, URL, WiFi kimlik bilgileri veya kişi bilgisinden QR kod oluşturun. PNG olarak indirin."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Yer tutucu metin oluşturun — paragraf, cümle veya kelime. Birden fazla stil mevcut."
+    },
+    "baseconverter": {
+      "name": "Taban Dönüştürücü",
+      "desc": "Sayıları gerçek zamanlı olarak Binary, Octal, Decimal ve Hexadecimal tabanlar arasında dönüştürün."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Sözdizimi doğrulama ve biçimlendirme ile JSON ve YAML formatları arasında dönüştürün."
+    },
+    "httpclient": {
+      "name": "HTTP İstemci",
+      "desc": "Mini Postman gibi API uç noktalarını test edin. Özel yöntemler, başlıklar, gövde ve yanıt görüntüleyici."
+    },
+    "stringutils": {
+      "name": "Metin Araçları",
+      "desc": "Büyük/küçük harf dönüştürücü, kırpma, sayma, ters çevirme, slug oluşturucu ve daha fazla metin işlemi."
+    },
+    "chat": {
+      "name": "LAN Sohbet",
+      "desc": "Yerel ağınız için gerçek zamanlı sohbet. İnternete gerek yok — sadece LAN üzerinde Dev Helper."
+    },
+    "netscan": {
+      "name": "Ağ Tarayıcı",
+      "desc": "LAN ana bilgisayarlarını ve portlarını tarayın. Ağınızdaki cihazları, servisleri ve açık portları keşfedin."
+    },
+    "worldclock": {
+      "name": "Dünya Saati",
+      "desc": "Analog ekranlı çoklu saat dilimi saatleri, toplantı planlayıcısı ve sürükle-bırak sıralama."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Resim ve ekran görüntülerinden metin çıkarın. Sürükleyin, yapıştırın veya yükleyin — Tesseract.js ile çalışır."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Java/Spring Boot projeleri için application.yml ve application.properties arasında dönüştürme."
+    },
+    "netinspect": {
+      "name": "Ağ Denetçisi",
+      "desc": "IP konum belirleme, DNS sorgusu, HTTP yanıt başlıkları ve SSL sertifika denetleyici."
+    },
+    "aichat": {
+      "name": "AI Sohbet",
+      "desc": "Yerel Ollama AI modelleri ile sohbet edin. Akış yanıtları, Markdown görüntüleme, konuşma geçmişi."
+    },
+    "speedtest": {
+      "name": "Hız Testi",
+      "desc": "Ağ indirme/yükleme hızını, ping gecikmesini ve disk okuma/yazma performansını test edin."
+    },
+    "snippets": {
+      "name": "Kod Parçacıkları",
+      "desc": "Sık kullanılan kod parçacıklarını sözdizimi renklendirme ve hızlı kopyalama ile kaydedin ve düzenleyin."
+    },
+    "sysmon": {
+      "name": "Sistem Monitörü",
+      "desc": "Canlı göstergelerle gerçek zamanlı CPU, bellek, disk, ağ ve süreç izleme."
+    },
+    "icons": {
+      "name": "İkon Gezgini",
+      "desc": "Bootstrap Icons, Font Awesome ve Tabler Icons'a göz atın ve arayın. CSS sınıfını veya HTML'i kopyalamak için tıklayın."
+    },
+    "askai": {
+      "name": "AI'a Sor",
+      "desc": "Gezinme çubuğundan 9 bulut AI'a (Claude, ChatGPT, Gemini, vb.) ve Ollama'ya hızlı erişim."
+    },
+    "translator": {
+      "name": "Çevirmen",
+      "desc": "Yerel Ollama AI modelleri ile diller arası metin çevirisi. Google Translate gibi, çevrimdışı."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Dosyaları Buraya Sürükle & Bırak",
+    "drop_or_browse": "veya dosya seçmek için tıklayın",
+    "paste_hint": "Panodan da yapıştırabilirsiniz (Ctrl+V)",
+    "recent_uploads": "Son Yüklemeler",
+    "clear_recent": "Geçmişi Temizle",
+    "copy_url": "URL Kopyala",
+    "open_new_tab": "Yeni Sekmede Aç",
+    "file_uploaded": "Dosya başarıyla yüklendi",
+    "upload_failed": "Yükleme başarısız"
+  },
+  "files_page": {
+    "search_placeholder": "Dosyalarda ara...",
+    "grid_view": "Izgara",
+    "list_view": "Liste",
+    "delete_all": "Tümünü Sil",
+    "confirm_delete_all": "Tüm dosyaları silmek istediğinizden emin misiniz?",
+    "no_files": "Dosya bulunamadı",
+    "file_deleted": "Dosya silindi",
+    "download": "İndir",
+    "file_size": "Boyut",
+    "file_date": "Tarih"
+  },
+  "prettify_page": {
+    "input_label": "Girdi",
+    "output_label": "Çıktı",
+    "prettify": "Güzelleştir",
+    "minify": "Küçült",
+    "paste_placeholder": "Kodu buraya yapıştırın veya yazın...",
+    "auto_detect": "Otomatik Algıla",
+    "copy_output": "Çıktıyı Kopyala"
+  },
+  "logs_page": {
+    "app": "Uygulama",
+    "level": "Seviye",
+    "search_placeholder": "Loglarda ara...",
+    "clear_logs": "Logları Temizle",
+    "auto_scroll": "Otomatik kaydırma",
+    "no_logs": "Log bulunamadı",
+    "all_apps": "Tüm Uygulamalar",
+    "all_levels": "Tüm Seviyeler",
+    "timestamp": "Zaman Damgası",
+    "message": "Mesaj"
+  },
+  "logviewer_page": {
+    "upload_log": "Log Dosyası Yükle",
+    "search_placeholder": "Anahtar kelime veya regex ara...",
+    "use_regex": "Regex",
+    "case_sensitive": "Büyük/Küçük Harf Duyarlı",
+    "context_lines": "Bağlam Satırları",
+    "showing_lines": "{total} satırdan {shown} tanesi gösteriliyor",
+    "no_matches": "Eşleşme bulunamadı",
+    "line": "Satır"
+  },
+  "editor_page": {
+    "new_file": "Yeni",
+    "open_file": "Dosya Aç",
+    "save_file": "Kaydet",
+    "word_wrap": "Sözcük Kaydırma",
+    "minimap": "Minimap",
+    "line": "Satır",
+    "column": "Sütun",
+    "language": "Dil",
+    "fetch_url": "URL'den Getir",
+    "url_placeholder": "Dosya getirmek için URL girin..."
+  },
+  "markdown_page": {
+    "samples": "Örnekler",
+    "open_file": "Dosya Aç",
+    "copy_html": "HTML Kopyala",
+    "export": "Dışa Aktar",
+    "export_pdf": "PDF Olarak Aktar",
+    "export_md": "Markdown Olarak Aktar",
+    "export_html": "HTML Olarak Aktar",
+    "clear": "Temizle",
+    "expand": "Genişlet",
+    "editor_label": "Markdown",
+    "preview_label": "Önizleme",
+    "drop_zone": "Markdown dosyasını buraya sürükle bırakın veya dosya seçmek için tıklayın",
+    "url_placeholder": ".md dosyası getirmek için URL girin",
+    "fetch": "Getir",
+    "html_copied": "HTML kopyalandı!",
+    "readme": "README",
+    "api_docs": "API Dokümantasyonu",
+    "changelog": "Değişiklik Günlüğü",
+    "blog_post": "Blog Yazısı",
+    "cheatsheet": "Markdown Kopya Kağıdı",
+    "meeting_notes": "Toplantı Notları",
+    "project_todo": "Proje Yapılacaklar"
+  },
+  "diff_page": {
+    "original": "Orijinal",
+    "modified": "Değiştirilmiş",
+    "side_by_side": "Yan Yana",
+    "inline": "Satır İçi",
+    "open_file": "Dosya Aç",
+    "paste_code": "Kodu buraya yapıştırın...",
+    "swap": "Değiştir",
+    "no_differences": "Fark bulunamadı"
+  },
+  "jwt_page": {
+    "header": "Başlık",
+    "payload": "Yük",
+    "signature": "İmza",
+    "secret": "Gizli Anahtar",
+    "algorithm": "Algoritma",
+    "encode": "Kodla",
+    "decode": "Çöz",
+    "verify": "Doğrula",
+    "valid_signature": "Geçerli imza",
+    "invalid_signature": "Geçersiz imza",
+    "paste_jwt": "JWT token'ı buraya yapıştırın..."
+  },
+  "base64_page": {
+    "text_mode": "Metin",
+    "file_mode": "Dosya",
+    "url_safe": "URL güvenli",
+    "line_breaks": "Satır sonları",
+    "input_placeholder": "Kodlamak/çözmek için metin girin...",
+    "drop_file": "Dosyayı buraya bırakın veya gözat için tıklayın",
+    "download_result": "Sonucu İndir"
+  },
+  "urlencoder_page": {
+    "component_mode": "Bileşen",
+    "full_url_mode": "Tam URL",
+    "url_parser": "URL Ayrıştırıcı",
+    "protocol": "Protokol",
+    "host": "Host",
+    "path": "Yol",
+    "params": "Parametreler",
+    "input_placeholder": "Kodlamak/çözmek için URL veya metin girin..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Kaynak Kodu",
+    "import_html": "HTML İçe Aktar",
+    "export_html": "HTML Dışa Aktar",
+    "clear": "Temizle"
+  },
+  "mermaid_page": {
+    "samples": "Örnekler",
+    "download_svg": "SVG İndir",
+    "download_png": "PNG İndir",
+    "share": "Paylaş",
+    "zoom_in": "Yakınlaştır",
+    "zoom_out": "Uzaklaştır",
+    "reset_zoom": "Yakınlaşmayı Sıfırla",
+    "diagram_label": "Mermaid Kodu",
+    "preview_label": "Önizleme",
+    "link_copied": "Paylaşım bağlantısı kopyalandı!",
+    "flowchart": "Akış Şeması",
+    "sequence": "Sıra Diyagramı",
+    "class_diagram": "Sınıf Diyagramı",
+    "state": "Durum Diyagramı",
+    "er": "ER Diyagramı",
+    "gantt": "Gantt Grafiği",
+    "pie": "Pasta Grafiği",
+    "mindmap": "Zihin Haritası",
+    "timeline": "Zaman Çizelgesi",
+    "quadrant": "Kadran Grafiği",
+    "git": "Git Grafiği",
+    "sankey": "Sankey Diyagramı"
+  },
+  "uuid_page": {
+    "version": "Sürüm",
+    "bulk_generate": "Toplu Oluştur",
+    "validate_parse": "Doğrula & Ayrıştır",
+    "count": "Adet",
+    "uppercase": "Büyük Harf",
+    "braces": "Süslü Parantez",
+    "hyphens": "Tireler",
+    "copy_all": "Tümünü Kopyala",
+    "generated": "Oluşturuldu",
+    "valid_uuid": "Geçerli UUID",
+    "invalid_uuid": "Geçersiz UUID",
+    "uuid_version": "Sürüm",
+    "uuid_variant": "Varyant",
+    "uuid_timestamp": "Zaman Damgası"
+  },
+  "notes_page": {
+    "new_note": "Yeni Not",
+    "search_placeholder": "Notlarda ara...",
+    "categories": "Kategoriler",
+    "all_notes": "Tüm Notlar",
+    "pinned": "Sabitlenmiş",
+    "trash": "Çöp Kutusu",
+    "restore": "Geri Yükle",
+    "permanent_delete": "Kalıcı Olarak Sil",
+    "note_saved": "Not kaydedildi",
+    "note_deleted": "Not çöp kutusuna taşındı",
+    "untitled": "Başlıksız Not",
+    "attachments": "Ekler",
+    "color_label": "Renk Etiketi",
+    "sort_by": "Sıralama",
+    "date_modified": "Değiştirilme Tarihi",
+    "date_created": "Oluşturulma Tarihi"
+  },
+  "regex_page": {
+    "pattern": "Kalıp",
+    "test_string": "Test Metni",
+    "flags": "Bayraklar",
+    "matches": "Eşleşmeler",
+    "replace": "Değiştir",
+    "replacement": "Yerine Koyma",
+    "cheat_sheet": "Kopya Kağıdı",
+    "common_patterns": "Yaygın Kalıplar",
+    "no_matches": "Eşleşme yok",
+    "match_count": "{count} eşleşme bulundu",
+    "global": "Global",
+    "case_insensitive": "Büyük/Küçük Harf Duyarsız",
+    "multiline": "Çok Satırlı"
+  },
+  "charmap_page": {
+    "search_placeholder": "Emoji veya karakter ara...",
+    "recently_used": "Son Kullanılanlar",
+    "unicode": "Unicode",
+    "html_entity": "HTML Varlığı",
+    "css_code": "CSS Kodu",
+    "copy_char": "Kopyalamak için tıklayın",
+    "smileys": "Suratlar & İnsanlar",
+    "animals": "Hayvanlar & Doğa",
+    "food": "Yiyecek & İçecek",
+    "activities": "Aktiviteler",
+    "travel": "Seyahat & Yerler",
+    "objects": "Nesneler",
+    "symbols": "Semboller",
+    "flags": "Bayraklar",
+    "arrows": "Oklar",
+    "math": "Matematik",
+    "currency": "Para Birimi",
+    "latin": "Genişletilmiş Latin"
+  },
+  "epoch_page": {
+    "timestamp": "Zaman Damgası",
+    "date_time": "Tarih & Saat",
+    "now": "Şimdi",
+    "seconds": "Saniye",
+    "milliseconds": "Milisaniye",
+    "local_time": "Yerel Saat",
+    "utc_time": "UTC Saati",
+    "relative": "Göreceli",
+    "time_diff": "Zaman Farkı",
+    "presets": "Hazır Ayarlar",
+    "live_clock": "Canlı Saat"
+  },
+  "hash_page": {
+    "text_input": "Metin Girdisi",
+    "file_input": "Dosya Girdisi",
+    "compare": "Hash Karşılaştır",
+    "hash_match": "Hash'ler eşleşiyor!",
+    "hash_mismatch": "Hash'ler eşleşmiyor",
+    "drop_file": "Hash'lemek için dosyayı bırakın...",
+    "computing": "Hash hesaplanıyor..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Kontrast Kontrolü",
+    "foreground": "Ön Plan",
+    "background": "Arka Plan",
+    "ratio": "Oran",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Geçer",
+    "fail": "Başarısız",
+    "palette": "Palet",
+    "shades": "Koyu Tonlar",
+    "tints": "Açık Tonlar",
+    "pick_color": "Renk Seç",
+    "eyedropper": "EyeDropper"
+  },
+  "cron_page": {
+    "expression": "İfade",
+    "description_label": "Açıklama",
+    "next_runs": "Sonraki Çalışmalar",
+    "presets": "Hazır Ayarlar",
+    "minute": "Dakika",
+    "hour": "Saat",
+    "day_month": "Gün (Ay)",
+    "month": "Ay",
+    "day_week": "Gün (Hafta)",
+    "every_minute": "Her dakika",
+    "every_hour": "Her saat",
+    "every_day": "Her gün gece yarısı",
+    "share": "Paylaş"
+  },
+  "password_page": {
+    "password": "Şifre",
+    "passphrase": "Parola Öbeği",
+    "length": "Uzunluk",
+    "uppercase": "Büyük Harf (A-Z)",
+    "lowercase": "Küçük Harf (a-z)",
+    "numbers": "Rakamlar (0-9)",
+    "symbols": "Semboller (!@#$...)",
+    "word_count": "Kelime Sayısı",
+    "separator": "Ayırıcı",
+    "strength": "Güç",
+    "entropy": "Entropi",
+    "very_weak": "Çok Zayıf",
+    "weak": "Zayıf",
+    "fair": "Orta",
+    "strong": "Güçlü",
+    "very_strong": "Çok Güçlü",
+    "bulk_generate": "Toplu Oluştur",
+    "generate_count": "Adet"
+  },
+  "qrcode_page": {
+    "text_url": "Metin / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Metin veya URL girin...",
+    "network_name": "Ağ Adı (SSID)",
+    "wifi_password": "Şifre",
+    "encryption": "Şifreleme",
+    "hidden_network": "Gizli Ağ",
+    "full_name": "Ad Soyad",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "organization": "Kuruluş",
+    "error_correction": "Hata Düzeltme",
+    "foreground_color": "Ön Plan",
+    "background_color": "Arka Plan",
+    "download_png": "PNG İndir",
+    "download_svg": "SVG İndir",
+    "copy_image": "Resmi Kopyala"
+  },
+  "lorem_page": {
+    "paragraphs": "Paragraflar",
+    "sentences": "Cümleler",
+    "words": "Kelimeler",
+    "style": "Stil",
+    "classic": "Klasik",
+    "hipster": "Hipster",
+    "tech": "Teknoloji / Geliştirici",
+    "include_html": "HTML etiketleri dahil et",
+    "start_lorem": "\"Lorem ipsum...\" ile başla",
+    "generated_text": "Oluşturulan Metin",
+    "copy_text": "Metni Kopyala"
+  },
+  "baseconverter_page": {
+    "binary": "İkili",
+    "octal": "Sekizli",
+    "decimal": "Ondalık",
+    "hexadecimal": "On Altılı",
+    "bit_visualization": "Bit Görselleştirme",
+    "signed": "İşaretli",
+    "unsigned": "İşaretsiz",
+    "twos_complement": "İkiye Tümleyen"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Güzelleştir",
+    "minify": "Küçült",
+    "import_file": "Dosya İçe Aktar",
+    "invalid_json": "Geçersiz JSON",
+    "invalid_yaml": "Geçersiz YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "İstek URL'sini girin...",
+    "method": "Yöntem",
+    "headers": "Başlıklar",
+    "body": "Gövde",
+    "auth": "Kimlik Doğrulama",
+    "params": "Parametreler",
+    "response": "Yanıt",
+    "status_code": "Durum",
+    "response_time": "Süre",
+    "response_size": "Boyut",
+    "send_request": "Gönder",
+    "clear_history": "Geçmişi Temizle",
+    "no_auth": "Kimlik Doğrulama Yok",
+    "basic_auth": "Basic Auth",
+    "bearer_token": "Bearer Token",
+    "username": "Kullanıcı Adı",
+    "token": "Token",
+    "key": "Anahtar",
+    "add_header": "Başlık Ekle",
+    "add_param": "Parametre Ekle"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Metni buraya girin...",
+    "operations": "İşlemler",
+    "case_conversion": "Büyük/Küçük Harf Dönüşümü",
+    "text_cleanup": "Metin Temizleme",
+    "text_transform": "Metin Dönüşümü",
+    "encode_decode": "Kodla / Çöz",
+    "extract_info": "Bilgi Çıkart",
+    "uppercase": "BÜYÜK HARF",
+    "lowercase": "küçük harf",
+    "title_case": "Başlık Düzeni",
+    "sentence_case": "Cümle düzeni",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Karakter",
+    "word_count": "Kelime",
+    "line_count": "Satır"
+  },
+  "chat_page": {
+    "username_placeholder": "Adınızı girin...",
+    "message_placeholder": "Mesaj yazın...",
+    "join": "Katıl",
+    "online_users": "Çevrimiçi Kullanıcılar",
+    "user_joined": "{user} sohbete katıldı",
+    "user_left": "{user} sohbetten ayrıldı"
+  },
+  "netscan_page": {
+    "interface": "Arayüz",
+    "target": "Hedef",
+    "ports": "Portlar",
+    "scan": "Tara",
+    "scanning": "Taranıyor...",
+    "open_ports": "Açık Portlar",
+    "host": "Host",
+    "port": "Port",
+    "service": "Servis",
+    "scan_complete": "Tarama tamamlandı",
+    "common_ports": "Yaygın Portlar",
+    "custom_range": "Özel Aralık"
+  },
+  "worldclock_page": {
+    "add_clock": "Saat Ekle",
+    "your_local_time": "Yerel Saatiniz",
+    "meeting_planner": "Toplantı Planlayıcı",
+    "timezone": "Saat Dilimi",
+    "search_timezone": "Saat dilimi ara...",
+    "remove_clock": "Kaldır"
+  },
+  "ocr_page": {
+    "upload_image": "Resim Yükle",
+    "paste_image": "Resim Yapıştır",
+    "drop_image": "Resmi buraya sürükle & bırakın",
+    "extract_text": "Metin Çıkart",
+    "extracted_text": "Çıkartılan Metin",
+    "copy_result": "Sonucu Kopyala",
+    "recognizing": "Metin tanınıyor...",
+    "no_text_found": "Resimde metin bulunamadı",
+    "supported_formats": "Desteklenen formatlar: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Dosya İçe Aktar",
+    "download_result": "İndir"
+  },
+  "aichat_page": {
+    "model": "Model",
+    "no_models": "Model bulunamadı. Ollama çalışıyor mu?",
+    "message_placeholder": "Mesajınızı yazın...",
+    "clear_chat": "Sohbeti Temizle",
+    "thinking": "Düşünüyor...",
+    "ollama_not_running": "Ollama'ya bağlanılamıyor",
+    "connection_error": "Bağlantı hatası"
+  },
+  "speedtest_page": {
+    "start_test": "Testi Başlat",
+    "ping": "Ping",
+    "download_speed": "İndirme",
+    "upload_speed": "Yükleme",
+    "disk_speed": "Disk",
+    "latency": "Gecikme",
+    "read_speed": "Okuma",
+    "write_speed": "Yazma",
+    "testing": "Test ediliyor...",
+    "test_complete": "Test tamamlandı"
+  },
+  "snippets_page": {
+    "new_snippet": "Yeni Parçacık",
+    "search_placeholder": "Parçacıklarda ara...",
+    "title_placeholder": "Parçacık başlığı...",
+    "desc_placeholder": "Açıklama (isteğe bağlı)",
+    "tags_placeholder": "Etiketler (virgülle ayırın)",
+    "save_snippet": "Kaydet",
+    "delete_snippet": "Sil",
+    "copy_code": "Kodu Kopyala",
+    "language": "Dil",
+    "default_loaded": "Varsayılan parçacıklar yüklendi",
+    "snippet_saved": "Parçacık kaydedildi",
+    "snippet_deleted": "Parçacık silindi",
+    "code_copied": "Kod kopyalandı!",
+    "no_snippets": "Parçacık bulunamadı",
+    "pinned": "Sabitlenmiş",
+    "all_snippets": "Tüm Parçacıklar"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Bellek",
+    "disk": "Disk",
+    "network": "Ağ",
+    "processes": "Süreçler",
+    "usage": "Kullanım",
+    "total": "Toplam",
+    "used": "Kullanılan",
+    "free": "Boş",
+    "available": "Kullanılabilir",
+    "cores": "Çekirdek",
+    "uptime": "Çalışma Süresi",
+    "pid": "PID",
+    "process_name": "Ad",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Bellek %",
+    "connecting": "Bağlanılıyor...",
+    "disconnected": "Bağlantı kesildi",
+    "bytes_sent": "Gönderilen",
+    "bytes_recv": "Alınan",
+    "read_speed": "Okuma",
+    "write_speed": "Yazma"
+  },
+  "icons_page": {
+    "search_placeholder": "İkon ara...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "Tümü",
+    "recently_used": "Son Kullanılanlar",
+    "class_name": "Sınıf",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Sınıf Kopyala",
+    "copy_html": "HTML Kopyala",
+    "icon_count": "{count} ikon",
+    "loading_icons": "İkonlar yükleniyor...",
+    "click_to_view": "Detayları görmek için bir ikona tıklayın"
+  },
+  "netinspect_page": {
+    "my_ip": "IP Adresim",
+    "ip_lookup": "IP Sorgusu",
+    "dns_lookup": "DNS Sorgusu",
+    "http_headers": "HTTP Başlıkları",
+    "ssl_cert": "SSL Sertifikası",
+    "lookup": "Sorgula",
+    "check": "Kontrol Et",
+    "ip_placeholder": "IP adresi girin...",
+    "domain_placeholder": "Alan adı girin...",
+    "url_placeholder": "URL girin...",
+    "location": "Konum",
+    "isp": "ISP",
+    "record_type": "Kayıt Türü",
+    "issuer": "Veren",
+    "valid_from": "Geçerlilik Başlangıcı",
+    "valid_until": "Geçerlilik Sonu",
+    "subject": "Konu"
+  },
+  "translator_page": {
+    "source_lang": "Kaynak Dil",
+    "target_lang": "Hedef Dil",
+    "auto_detect": "Otomatik Algıla",
+    "translate": "Çevir",
+    "translating": "Çevriliyor...",
+    "swap_languages": "Dilleri Değiştir",
+    "input_placeholder": "Çevrilecek metni girin...",
+    "model": "Model",
+    "copy_translation": "Çeviriyi Kopyala",
+    "translation_copied": "Çeviri kopyalandı!",
+    "clear_all": "Tümünü Temizle",
+    "char_count": "{count} karakter"
+  }
+}

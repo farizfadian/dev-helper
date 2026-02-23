@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "복사",
+    "copied": "복사됨!",
+    "clear": "지우기",
+    "save": "저장",
+    "saved": "저장됨!",
+    "delete": "삭제",
+    "cancel": "취소",
+    "close": "닫기",
+    "open": "열기",
+    "search": "검색",
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공",
+    "warning": "경고",
+    "info": "정보",
+    "yes": "예",
+    "no": "아니오",
+    "confirm": "확인",
+    "download": "다운로드",
+    "upload": "업로드",
+    "export": "내보내기",
+    "import": "가져오기",
+    "expand": "확장",
+    "exit": "종료",
+    "file": "파일",
+    "settings": "설정",
+    "none": "없음",
+    "all": "전체",
+    "reset": "초기화",
+    "apply": "적용",
+    "preview": "미리보기",
+    "source": "소스",
+    "result": "결과",
+    "input": "입력",
+    "output": "출력",
+    "generate": "생성",
+    "encode": "인코딩",
+    "decode": "디코딩",
+    "paste": "붙여넣기",
+    "swap": "교체",
+    "back": "뒤로",
+    "next": "다음",
+    "samples": "샘플",
+    "history": "기록",
+    "options": "옵션",
+    "format": "포맷",
+    "validate": "유효성 검사",
+    "convert": "변환",
+    "raw": "원본",
+    "send": "보내기",
+    "stop": "중지",
+    "start": "시작",
+    "refresh": "새로고침",
+    "browse": "찾아보기",
+    "select": "선택",
+    "add": "추가",
+    "remove": "제거",
+    "edit": "편집",
+    "share": "공유",
+    "pin": "고정",
+    "unpin": "고정 해제",
+    "new": "새로 만들기",
+    "text": "텍스트",
+    "type": "유형",
+    "size": "크기",
+    "name": "이름",
+    "value": "값",
+    "status": "상태",
+    "actions": "작업",
+    "description": "설명",
+    "category": "카테고리",
+    "tags": "태그",
+    "language": "언어",
+    "title": "제목",
+    "content": "내용",
+    "count": "개수",
+    "length": "길이",
+    "total": "합계",
+    "or": "또는",
+    "and": "그리고",
+    "no_data": "데이터 없음",
+    "no_results": "검색 결과 없음",
+    "confirm_delete": "정말로 삭제하시겠습니까?",
+    "drag_drop": "여기에 파일을 끌어다 놓으세요",
+    "processing": "처리 중...",
+    "done": "완료",
+    "copied_to_clipboard": "클립보드에 복사됨!",
+    "failed_to_copy": "복사 실패",
+    "keyboard_shortcuts": "키보드 단축키",
+    "toggle_fullscreen": "전체화면 전환 (F11)",
+    "exit_fullscreen": "전체화면 종료 (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "검색",
+    "search_tools": "도구 검색...",
+    "more": "더 보기",
+    "all_tools": "전체 도구",
+    "ask_ai": "AI에게 물어보기",
+    "cloud_ai": "클라우드 AI",
+    "local_ai": "로컬 AI",
+    "language": "언어",
+    "pinned_to_navbar": "네비게이션에 고정됨",
+    "unpinned_from_navbar": "네비게이션에서 고정 해제됨",
+    "pin_to_navbar": "네비게이션에 고정",
+    "unpin_from_navbar": "네비게이션에서 고정 해제",
+    "open_navigation": "네비게이션 열기"
+  },
+  "theme": {
+    "light": "라이트",
+    "dark": "다크",
+    "auto": "자동",
+    "switch_theme": "테마 변경"
+  },
+  "spotlight": {
+    "placeholder": "도구 검색...",
+    "no_results": "\"{query}\"에 대한 도구를 찾을 수 없습니다",
+    "navigate": "이동",
+    "open": "열기",
+    "close": "닫기"
+  },
+  "drawer": {
+    "search": "검색",
+    "theme": "테마",
+    "pinned": "고정됨",
+    "file_code": "파일 & 코드",
+    "encode_decode": "인코딩 & 디코딩",
+    "converters": "변환기",
+    "generators": "생성기",
+    "tools_section": "도구",
+    "logs_network": "로그 & 네트워크",
+    "all_tools": "전체 도구"
+  },
+  "footer": {
+    "made_by": "❤️를 담아 만든이"
+  },
+  "ai": {
+    "ask": "질문하기",
+    "prompt_placeholder": "무엇을 물어보시겠습니까?",
+    "enter_to_send": "Enter로 보내기",
+    "shift_enter_newline": "Shift+Enter로 줄바꿈",
+    "open_without_prompt": "질문 없이 열기",
+    "ollama_url": "Ollama URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Ollama 웹 UI URL을 입력하세요"
+  },
+  "dashboard": {
+    "search_placeholder": "도구 검색...",
+    "pinned_tools": "고정된 도구",
+    "all_tools": "전체 도구",
+    "no_results": "검색과 일치하는 도구가 없습니다.",
+    "open_source_toolkit": "오픈소스 개발자 도구",
+    "tools_count": "{count}개의 도구 사용 가능"
+  },
+  "tools": {
+    "upload": {
+      "name": "업로드",
+      "desc": "드래그 앤 드롭, 붙여넣기 또는 파일 탐색으로 업로드. 이미지 미리보기와 라이트박스 지원."
+    },
+    "files": {
+      "name": "파일 탐색기",
+      "desc": "구글 드라이브 스타일의 그리드 뷰에서 업로드된 파일을 탐색, 검색, 관리합니다."
+    },
+    "prettify": {
+      "name": "코드 정리",
+      "desc": "JSON, XML, HTML, CSS, JavaScript, SQL 코드를 포맷하고 정리합니다."
+    },
+    "logs": {
+      "name": "로그 수집기",
+      "desc": "경량 로그 수집기. HTTP POST로 앱에서 로그를 수신하고, 앱과 레벨별로 필터링합니다."
+    },
+    "logviewer": {
+      "name": "로그 뷰어",
+      "desc": "대용량 로그 파일을 업로드하고 키워드, regex, 문맥 라인으로 검색합니다."
+    },
+    "editor": {
+      "name": "코드 편집기",
+      "desc": "Monaco(VS Code) 기반의 완전한 코드 편집기. 40개 이상의 언어 구문 강조 지원."
+    },
+    "markdown": {
+      "name": "Markdown 뷰어",
+      "desc": "구문 강조 코드 블록과 GFM을 지원하는 실시간 미리보기로 Markdown을 작성합니다."
+    },
+    "diff": {
+      "name": "코드 비교",
+      "desc": "두 코드 파일을 구문 강조된 차이점 보기로 나란히 또는 인라인으로 비교합니다."
+    },
+    "jwt": {
+      "name": "JWT 도구",
+      "desc": "JSON Web Token을 인코딩, 디코딩, 검증합니다. HS256/384/512 및 색상 코드 표시 지원."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Base64 문자열을 인코딩하고 디코딩합니다. 텍스트와 바이너리 파일, URL 안전 옵션 지원."
+    },
+    "urlencoder": {
+      "name": "URL 인코더",
+      "desc": "URL과 쿼리 파라미터를 인코딩/디코딩합니다. URL 파서가 프로토콜, 호스트, 경로, 파라미터를 표시합니다."
+    },
+    "htmleditor": {
+      "name": "HTML 편집기",
+      "desc": "TinyMCE 기반의 WYSIWYG 리치 텍스트 편집기, HTML 소스 코드 보기 전환 가능."
+    },
+    "mermaid": {
+      "name": "Mermaid 다이어그램",
+      "desc": "Mermaid.js 실시간 미리보기로 플로우차트, 시퀀스 다이어그램, ER 다이어그램, 간트 차트 등을 생성합니다."
+    },
+    "uuid": {
+      "name": "UUID 생성기",
+      "desc": "UUID v1, v4, v7을 생성합니다. 대량 생성, 유효성 검사, 파싱, 포맷 옵션 지원."
+    },
+    "notes": {
+      "name": "노트",
+      "desc": "실시간 미리보기, 태그, 카테고리, 색상 라벨, 첨부파일, 자동 저장을 지원하는 Markdown 노트."
+    },
+    "regex": {
+      "name": "Regex 테스터",
+      "desc": "실시간 매치 강조, 캡처 그룹, 치환, 치트시트로 regex 패턴을 테스트합니다."
+    },
+    "charmap": {
+      "name": "이모지 & 문자표",
+      "desc": "이모지, 기호, 특수문자를 검색하고 복사합니다. 유니코드 상세 정보, HTML 엔티티, 최근 사용 기록."
+    },
+    "epoch": {
+      "name": "Epoch 변환기",
+      "desc": "Unix epoch 타임스탬프를 사람이 읽을 수 있는 날짜로 변환하거나 그 반대로. 실시간 시계, 프리셋, 시간 차이 계산기."
+    },
+    "hash": {
+      "name": "해시 생성기",
+      "desc": "텍스트 또는 파일에서 MD5, SHA-1, SHA-256, SHA-512 해시를 생성합니다. 체크섬 즉시 검증."
+    },
+    "colorpicker": {
+      "name": "색상 선택기",
+      "desc": "색상을 선택하고 HEX, RGB, HSL 형식 간에 변환합니다. 색상 팔레트와 명암비 검사기."
+    },
+    "cron": {
+      "name": "Cron 파서",
+      "desc": "사람이 읽을 수 있는 설명과 다음 실행 시간으로 cron 표현식을 파싱하고 생성합니다."
+    },
+    "password": {
+      "name": "비밀번호 생성기",
+      "desc": "암호학적으로 안전한 랜덤 비밀번호와 기억하기 쉬운 패스프레이즈를 생성합니다."
+    },
+    "qrcode": {
+      "name": "QR 코드 생성기",
+      "desc": "텍스트, URL, WiFi 정보 또는 연락처로 QR 코드를 생성합니다. PNG 다운로드 지원."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "플레이스홀더 텍스트 생성 — 단락, 문장, 또는 단어. 여러 스타일 사용 가능."
+    },
+    "baseconverter": {
+      "name": "진법 변환기",
+      "desc": "2진수, 8진수, 10진수, 16진수 사이에서 숫자를 실시간으로 변환합니다."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "구문 유효성 검사와 포맷팅으로 JSON과 YAML 형식 간에 변환합니다."
+    },
+    "httpclient": {
+      "name": "HTTP 클라이언트",
+      "desc": "미니 Postman처럼 API 엔드포인트를 테스트합니다. 커스텀 메서드, 헤더, 바디, 응답 뷰어."
+    },
+    "stringutils": {
+      "name": "문자열 유틸리티",
+      "desc": "대소문자 변환, 트림, 카운트, 반전, 슬러그 생성 등 다양한 문자열 작업."
+    },
+    "chat": {
+      "name": "LAN 채팅",
+      "desc": "로컬 네트워크 실시간 채팅. 인터넷 불필요 — LAN의 Dev Helper만 있으면 됩니다."
+    },
+    "netscan": {
+      "name": "네트워크 스캐너",
+      "desc": "LAN 호스트와 포트를 스캔합니다. 네트워크의 장치, 서비스, 열린 포트를 검색합니다."
+    },
+    "worldclock": {
+      "name": "세계 시계",
+      "desc": "아날로그 표시, 미팅 플래너, 드래그 재정렬을 지원하는 다중 시간대 시계."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "이미지와 스크린샷에서 텍스트를 추출합니다. 드래그, 붙여넣기, 업로드 — Tesseract.js 기반."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Java/Spring Boot 프로젝트용 application.yml과 application.properties 간에 변환합니다."
+    },
+    "netinspect": {
+      "name": "네트워크 검사기",
+      "desc": "IP 위치 조회, DNS 조회, HTTP 응답 헤더, SSL 인증서 확인기."
+    },
+    "aichat": {
+      "name": "AI 채팅",
+      "desc": "로컬 Ollama AI 모델과 채팅합니다. 스트리밍 응답, Markdown 렌더링, 대화 기록."
+    },
+    "speedtest": {
+      "name": "속도 테스트",
+      "desc": "네트워크 다운로드/업로드 속도, 핑 지연 시간, 디스크 읽기/쓰기 성능을 테스트합니다."
+    },
+    "snippets": {
+      "name": "코드 스니펫",
+      "desc": "자주 사용하는 코드 스니펫을 구문 강조와 빠른 복사로 저장하고 관리합니다."
+    },
+    "sysmon": {
+      "name": "시스템 모니터",
+      "desc": "실시간 CPU, 메모리, 디스크, 네트워크, 프로세스 모니터링과 라이브 게이지."
+    },
+    "icons": {
+      "name": "아이콘 탐색기",
+      "desc": "Bootstrap Icons, Font Awesome, Tabler Icons를 탐색하고 검색합니다. 클릭으로 CSS 클래스나 HTML을 복사."
+    },
+    "askai": {
+      "name": "AI에게 물어보기",
+      "desc": "네비게이션 바에서 9개의 클라우드 AI(Claude, ChatGPT, Gemini 등)와 Ollama에 빠르게 접근."
+    },
+    "translator": {
+      "name": "번역기",
+      "desc": "로컬 Ollama AI 모델을 사용하여 언어 간 텍스트를 번역합니다. 오프라인 Google 번역기처럼."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "여기에 파일을 끌어다 놓으세요",
+    "drop_or_browse": "또는 클릭하여 찾아보기",
+    "paste_hint": "클립보드에서 붙여넣기도 가능합니다 (Ctrl+V)",
+    "recent_uploads": "최근 업로드",
+    "clear_recent": "최근 항목 지우기",
+    "copy_url": "URL 복사",
+    "open_new_tab": "새 탭에서 열기",
+    "file_uploaded": "파일이 성공적으로 업로드되었습니다",
+    "upload_failed": "업로드 실패"
+  },
+  "files_page": {
+    "search_placeholder": "파일 검색...",
+    "grid_view": "그리드",
+    "list_view": "목록",
+    "delete_all": "전체 삭제",
+    "confirm_delete_all": "모든 파일을 삭제하시겠습니까?",
+    "no_files": "파일을 찾을 수 없습니다",
+    "file_deleted": "파일 삭제됨",
+    "download": "다운로드",
+    "file_size": "크기",
+    "file_date": "날짜"
+  },
+  "prettify_page": {
+    "input_label": "입력",
+    "output_label": "출력",
+    "prettify": "정리",
+    "minify": "압축",
+    "paste_placeholder": "여기에 코드를 붙여넣거나 입력하세요...",
+    "auto_detect": "자동 감지",
+    "copy_output": "출력 복사"
+  },
+  "logs_page": {
+    "app": "앱",
+    "level": "레벨",
+    "search_placeholder": "로그 검색...",
+    "clear_logs": "로그 지우기",
+    "auto_scroll": "자동 스크롤",
+    "no_logs": "로그를 찾을 수 없습니다",
+    "all_apps": "전체 앱",
+    "all_levels": "전체 레벨",
+    "timestamp": "타임스탬프",
+    "message": "메시지"
+  },
+  "logviewer_page": {
+    "upload_log": "로그 파일 업로드",
+    "search_placeholder": "키워드 또는 regex 검색...",
+    "use_regex": "Regex",
+    "case_sensitive": "대소문자 구분",
+    "context_lines": "문맥 줄 수",
+    "showing_lines": "{total}줄 중 {shown}줄 표시",
+    "no_matches": "일치하는 항목 없음",
+    "line": "줄"
+  },
+  "editor_page": {
+    "new_file": "새 파일",
+    "open_file": "파일 열기",
+    "save_file": "저장",
+    "word_wrap": "자동 줄바꿈",
+    "minimap": "미니맵",
+    "line": "줄",
+    "column": "열",
+    "language": "언어",
+    "fetch_url": "URL에서 가져오기",
+    "url_placeholder": "파일을 가져올 URL을 입력하세요..."
+  },
+  "markdown_page": {
+    "samples": "샘플",
+    "open_file": "파일 열기",
+    "copy_html": "HTML 복사",
+    "export": "내보내기",
+    "export_pdf": "PDF로 내보내기",
+    "export_md": "Markdown으로 내보내기",
+    "export_html": "HTML로 내보내기",
+    "clear": "지우기",
+    "expand": "확장",
+    "editor_label": "Markdown",
+    "preview_label": "미리보기",
+    "drop_zone": "여기에 Markdown 파일을 끌어다 놓거나, 클릭하여 찾아보세요",
+    "url_placeholder": ".md 파일을 가져올 URL 입력",
+    "fetch": "가져오기",
+    "html_copied": "HTML 복사됨!",
+    "readme": "README",
+    "api_docs": "API 문서",
+    "changelog": "변경 이력",
+    "blog_post": "블로그 글",
+    "cheatsheet": "Markdown 치트시트",
+    "meeting_notes": "회의록",
+    "project_todo": "프로젝트 할 일"
+  },
+  "diff_page": {
+    "original": "원본",
+    "modified": "수정본",
+    "side_by_side": "나란히 보기",
+    "inline": "인라인",
+    "open_file": "파일 열기",
+    "paste_code": "여기에 코드를 붙여넣으세요...",
+    "swap": "교체",
+    "no_differences": "차이점이 없습니다"
+  },
+  "jwt_page": {
+    "header": "헤더",
+    "payload": "페이로드",
+    "signature": "서명",
+    "secret": "비밀 키",
+    "algorithm": "알고리즘",
+    "encode": "인코딩",
+    "decode": "디코딩",
+    "verify": "검증",
+    "valid_signature": "유효한 서명",
+    "invalid_signature": "유효하지 않은 서명",
+    "paste_jwt": "여기에 JWT 토큰을 붙여넣으세요..."
+  },
+  "base64_page": {
+    "text_mode": "텍스트",
+    "file_mode": "파일",
+    "url_safe": "URL 안전",
+    "line_breaks": "줄바꿈",
+    "input_placeholder": "인코딩/디코딩할 텍스트를 입력하세요...",
+    "drop_file": "파일을 여기에 놓거나 클릭하여 찾아보기",
+    "download_result": "결과 다운로드"
+  },
+  "urlencoder_page": {
+    "component_mode": "컴포넌트",
+    "full_url_mode": "전체 URL",
+    "url_parser": "URL 파서",
+    "protocol": "프로토콜",
+    "host": "호스트",
+    "path": "경로",
+    "params": "파라미터",
+    "input_placeholder": "인코딩/디코딩할 URL 또는 텍스트를 입력하세요..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "소스 코드",
+    "import_html": "HTML 가져오기",
+    "export_html": "HTML 내보내기",
+    "clear": "지우기"
+  },
+  "mermaid_page": {
+    "samples": "샘플",
+    "download_svg": "SVG 다운로드",
+    "download_png": "PNG 다운로드",
+    "share": "공유",
+    "zoom_in": "확대",
+    "zoom_out": "축소",
+    "reset_zoom": "확대/축소 초기화",
+    "diagram_label": "Mermaid 코드",
+    "preview_label": "미리보기",
+    "link_copied": "공유 링크가 복사되었습니다!",
+    "flowchart": "플로우차트",
+    "sequence": "시퀀스 다이어그램",
+    "class_diagram": "클래스 다이어그램",
+    "state": "상태 다이어그램",
+    "er": "ER 다이어그램",
+    "gantt": "간트 차트",
+    "pie": "파이 차트",
+    "mindmap": "마인드맵",
+    "timeline": "타임라인",
+    "quadrant": "사분면 차트",
+    "git": "Git 그래프",
+    "sankey": "생키 다이어그램"
+  },
+  "uuid_page": {
+    "version": "버전",
+    "bulk_generate": "대량 생성",
+    "validate_parse": "유효성 검사 & 파싱",
+    "count": "개수",
+    "uppercase": "대문자",
+    "braces": "중괄호",
+    "hyphens": "하이픈",
+    "copy_all": "전체 복사",
+    "generated": "생성됨",
+    "valid_uuid": "유효한 UUID",
+    "invalid_uuid": "유효하지 않은 UUID",
+    "uuid_version": "버전",
+    "uuid_variant": "변형",
+    "uuid_timestamp": "타임스탬프"
+  },
+  "notes_page": {
+    "new_note": "새 노트",
+    "search_placeholder": "노트 검색...",
+    "categories": "카테고리",
+    "all_notes": "전체 노트",
+    "pinned": "고정됨",
+    "trash": "휴지통",
+    "restore": "복원",
+    "permanent_delete": "영구 삭제",
+    "note_saved": "노트 저장됨",
+    "note_deleted": "노트가 휴지통으로 이동됨",
+    "untitled": "제목 없는 노트",
+    "attachments": "첨부파일",
+    "color_label": "색상 라벨",
+    "sort_by": "정렬 기준",
+    "date_modified": "수정일",
+    "date_created": "생성일"
+  },
+  "regex_page": {
+    "pattern": "패턴",
+    "test_string": "테스트 문자열",
+    "flags": "플래그",
+    "matches": "일치 항목",
+    "replace": "치환",
+    "replacement": "치환 텍스트",
+    "cheat_sheet": "치트시트",
+    "common_patterns": "자주 쓰는 패턴",
+    "no_matches": "일치 없음",
+    "match_count": "{count}개 일치",
+    "global": "전역",
+    "case_insensitive": "대소문자 무시",
+    "multiline": "멀티라인"
+  },
+  "charmap_page": {
+    "search_placeholder": "이모지 또는 문자 검색...",
+    "recently_used": "최근 사용",
+    "unicode": "유니코드",
+    "html_entity": "HTML 엔티티",
+    "css_code": "CSS 코드",
+    "copy_char": "클릭하여 복사",
+    "smileys": "스마일리 & 사람",
+    "animals": "동물 & 자연",
+    "food": "음식 & 음료",
+    "activities": "활동",
+    "travel": "여행 & 장소",
+    "objects": "사물",
+    "symbols": "기호",
+    "flags": "국기",
+    "arrows": "화살표",
+    "math": "수학",
+    "currency": "통화",
+    "latin": "라틴 확장"
+  },
+  "epoch_page": {
+    "timestamp": "타임스탬프",
+    "date_time": "날짜 & 시간",
+    "now": "현재",
+    "seconds": "초",
+    "milliseconds": "밀리초",
+    "local_time": "로컬 시간",
+    "utc_time": "UTC 시간",
+    "relative": "상대 시간",
+    "time_diff": "시간 차이",
+    "presets": "프리셋",
+    "live_clock": "실시간 시계"
+  },
+  "hash_page": {
+    "text_input": "텍스트 입력",
+    "file_input": "파일 입력",
+    "compare": "해시 비교",
+    "hash_match": "해시가 일치합니다!",
+    "hash_mismatch": "해시가 일치하지 않습니다",
+    "drop_file": "해시할 파일을 놓으세요...",
+    "computing": "해시 계산 중..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "명암비 확인",
+    "foreground": "전경색",
+    "background": "배경색",
+    "ratio": "비율",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "통과",
+    "fail": "실패",
+    "palette": "팔레트",
+    "shades": "어두운 색조",
+    "tints": "밝은 색조",
+    "pick_color": "색상 선택",
+    "eyedropper": "스포이드"
+  },
+  "cron_page": {
+    "expression": "표현식",
+    "description_label": "설명",
+    "next_runs": "다음 실행",
+    "presets": "프리셋",
+    "minute": "분",
+    "hour": "시",
+    "day_month": "일 (월 기준)",
+    "month": "월",
+    "day_week": "요일 (주 기준)",
+    "every_minute": "매 분",
+    "every_hour": "매 시간",
+    "every_day": "매일 자정",
+    "share": "공유"
+  },
+  "password_page": {
+    "password": "비밀번호",
+    "passphrase": "패스프레이즈",
+    "length": "길이",
+    "uppercase": "대문자 (A-Z)",
+    "lowercase": "소문자 (a-z)",
+    "numbers": "숫자 (0-9)",
+    "symbols": "기호 (!@#$...)",
+    "word_count": "단어 수",
+    "separator": "구분자",
+    "strength": "강도",
+    "entropy": "엔트로피",
+    "very_weak": "매우 약함",
+    "weak": "약함",
+    "fair": "보통",
+    "strong": "강함",
+    "very_strong": "매우 강함",
+    "bulk_generate": "대량 생성",
+    "generate_count": "개수"
+  },
+  "qrcode_page": {
+    "text_url": "텍스트 / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "텍스트 또는 URL을 입력하세요...",
+    "network_name": "네트워크 이름 (SSID)",
+    "wifi_password": "비밀번호",
+    "encryption": "암호화",
+    "hidden_network": "숨겨진 네트워크",
+    "full_name": "이름",
+    "phone": "전화번호",
+    "email": "이메일",
+    "organization": "조직",
+    "error_correction": "오류 정정",
+    "foreground_color": "전경색",
+    "background_color": "배경색",
+    "download_png": "PNG 다운로드",
+    "download_svg": "SVG 다운로드",
+    "copy_image": "이미지 복사"
+  },
+  "lorem_page": {
+    "paragraphs": "단락",
+    "sentences": "문장",
+    "words": "단어",
+    "style": "스타일",
+    "classic": "클래식",
+    "hipster": "힙스터",
+    "tech": "기술 / 개발",
+    "include_html": "HTML 태그 포함",
+    "start_lorem": "\"Lorem ipsum...\"으로 시작",
+    "generated_text": "생성된 텍스트",
+    "copy_text": "텍스트 복사"
+  },
+  "baseconverter_page": {
+    "binary": "2진수",
+    "octal": "8진수",
+    "decimal": "10진수",
+    "hexadecimal": "16진수",
+    "bit_visualization": "비트 시각화",
+    "signed": "부호 있음",
+    "unsigned": "부호 없음",
+    "twos_complement": "2의 보수"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "정리",
+    "minify": "압축",
+    "import_file": "파일 가져오기",
+    "invalid_json": "유효하지 않은 JSON",
+    "invalid_yaml": "유효하지 않은 YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "요청 URL을 입력하세요...",
+    "method": "메서드",
+    "headers": "헤더",
+    "body": "바디",
+    "auth": "인증",
+    "params": "파라미터",
+    "response": "응답",
+    "status_code": "상태",
+    "response_time": "시간",
+    "response_size": "크기",
+    "send_request": "보내기",
+    "clear_history": "기록 지우기",
+    "no_auth": "인증 없음",
+    "basic_auth": "기본 인증",
+    "bearer_token": "Bearer 토큰",
+    "username": "사용자명",
+    "token": "토큰",
+    "key": "키",
+    "add_header": "헤더 추가",
+    "add_param": "파라미터 추가"
+  },
+  "stringutils_page": {
+    "input_placeholder": "여기에 텍스트를 입력하세요...",
+    "operations": "작업",
+    "case_conversion": "대소문자 변환",
+    "text_cleanup": "텍스트 정리",
+    "text_transform": "텍스트 변환",
+    "encode_decode": "인코딩 / 디코딩",
+    "extract_info": "정보 추출",
+    "uppercase": "대문자",
+    "lowercase": "소문자",
+    "title_case": "제목 형식",
+    "sentence_case": "문장 형식",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "문자 수",
+    "word_count": "단어 수",
+    "line_count": "줄 수"
+  },
+  "chat_page": {
+    "username_placeholder": "이름을 입력하세요...",
+    "message_placeholder": "메시지를 입력하세요...",
+    "join": "참여",
+    "online_users": "온라인 사용자",
+    "user_joined": "{user}님이 채팅에 참여했습니다",
+    "user_left": "{user}님이 채팅에서 나갔습니다"
+  },
+  "netscan_page": {
+    "interface": "인터페이스",
+    "target": "대상",
+    "ports": "포트",
+    "scan": "스캔",
+    "scanning": "스캔 중...",
+    "open_ports": "열린 포트",
+    "host": "호스트",
+    "port": "포트",
+    "service": "서비스",
+    "scan_complete": "스캔 완료",
+    "common_ports": "일반 포트",
+    "custom_range": "사용자 지정 범위"
+  },
+  "worldclock_page": {
+    "add_clock": "시계 추가",
+    "your_local_time": "현재 로컬 시간",
+    "meeting_planner": "미팅 플래너",
+    "timezone": "시간대",
+    "search_timezone": "시간대 검색...",
+    "remove_clock": "제거"
+  },
+  "ocr_page": {
+    "upload_image": "이미지 업로드",
+    "paste_image": "이미지 붙여넣기",
+    "drop_image": "여기에 이미지를 끌어다 놓으세요",
+    "extract_text": "텍스트 추출",
+    "extracted_text": "추출된 텍스트",
+    "copy_result": "결과 복사",
+    "recognizing": "텍스트 인식 중...",
+    "no_text_found": "이미지에서 텍스트를 찾을 수 없습니다",
+    "supported_formats": "지원 형식: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "파일 가져오기",
+    "download_result": "다운로드"
+  },
+  "aichat_page": {
+    "model": "모델",
+    "no_models": "모델을 찾을 수 없습니다. Ollama가 실행 중인가요?",
+    "message_placeholder": "메시지를 입력하세요...",
+    "clear_chat": "채팅 지우기",
+    "thinking": "생각 중...",
+    "ollama_not_running": "Ollama에 연결할 수 없습니다",
+    "connection_error": "연결 오류"
+  },
+  "speedtest_page": {
+    "start_test": "테스트 시작",
+    "ping": "핑",
+    "download_speed": "다운로드",
+    "upload_speed": "업로드",
+    "disk_speed": "디스크",
+    "latency": "지연 시간",
+    "read_speed": "읽기",
+    "write_speed": "쓰기",
+    "testing": "테스트 중...",
+    "test_complete": "테스트 완료"
+  },
+  "snippets_page": {
+    "new_snippet": "새 스니펫",
+    "search_placeholder": "스니펫 검색...",
+    "title_placeholder": "스니펫 제목...",
+    "desc_placeholder": "설명 (선택사항)",
+    "tags_placeholder": "태그 (쉼표로 구분)",
+    "save_snippet": "저장",
+    "delete_snippet": "삭제",
+    "copy_code": "코드 복사",
+    "language": "언어",
+    "default_loaded": "기본 스니펫 로드됨",
+    "snippet_saved": "스니펫 저장됨",
+    "snippet_deleted": "스니펫 삭제됨",
+    "code_copied": "코드 복사됨!",
+    "no_snippets": "스니펫을 찾을 수 없습니다",
+    "pinned": "고정됨",
+    "all_snippets": "전체 스니펫"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "메모리",
+    "disk": "디스크",
+    "network": "네트워크",
+    "processes": "프로세스",
+    "usage": "사용량",
+    "total": "전체",
+    "used": "사용 중",
+    "free": "여유",
+    "available": "가용",
+    "cores": "코어",
+    "uptime": "가동 시간",
+    "pid": "PID",
+    "process_name": "이름",
+    "cpu_percent": "CPU %",
+    "mem_percent": "메모리 %",
+    "connecting": "연결 중...",
+    "disconnected": "연결 끊김",
+    "bytes_sent": "보냄",
+    "bytes_recv": "받음",
+    "read_speed": "읽기",
+    "write_speed": "쓰기"
+  },
+  "icons_page": {
+    "search_placeholder": "아이콘 검색...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "전체",
+    "recently_used": "최근 사용",
+    "class_name": "클래스",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "유니코드",
+    "copy_class": "클래스 복사",
+    "copy_html": "HTML 복사",
+    "icon_count": "{count}개 아이콘",
+    "loading_icons": "아이콘 로딩 중...",
+    "click_to_view": "아이콘을 클릭하여 상세 보기"
+  },
+  "netinspect_page": {
+    "my_ip": "내 IP",
+    "ip_lookup": "IP 조회",
+    "dns_lookup": "DNS 조회",
+    "http_headers": "HTTP 헤더",
+    "ssl_cert": "SSL 인증서",
+    "lookup": "조회",
+    "check": "확인",
+    "ip_placeholder": "IP 주소를 입력하세요...",
+    "domain_placeholder": "도메인 이름을 입력하세요...",
+    "url_placeholder": "URL을 입력하세요...",
+    "location": "위치",
+    "isp": "ISP",
+    "record_type": "레코드 유형",
+    "issuer": "발급자",
+    "valid_from": "유효 시작",
+    "valid_until": "유효 만료",
+    "subject": "주체"
+  },
+  "translator_page": {
+    "source_lang": "원본 언어",
+    "target_lang": "대상 언어",
+    "auto_detect": "자동 감지",
+    "translate": "번역",
+    "translating": "번역 중...",
+    "swap_languages": "언어 교체",
+    "input_placeholder": "번역할 텍스트를 입력하세요...",
+    "model": "모델",
+    "copy_translation": "번역 복사",
+    "translation_copied": "번역 복사됨!",
+    "clear_all": "전체 지우기",
+    "char_count": "{count}자"
+  }
+}

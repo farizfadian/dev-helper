@@ -1,0 +1,265 @@
+{{define "content"}}
+<style>
+    .color-preview {
+        height: 220px;
+        border-radius: 12px;
+        border: 2px solid var(--bs-border-color);
+        transition: background-color 0.15s ease, border-color 0.15s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    .color-preview:hover {
+        border-color: var(--bs-primary);
+    }
+    .color-preview-text {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        letter-spacing: 1px;
+        user-select: all;
+    }
+    .color-input-native {
+        width: 60px;
+        height: 44px;
+        padding: 2px;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 8px;
+        cursor: pointer;
+        background: transparent;
+    }
+    .color-input-native::-webkit-color-swatch-wrapper { padding: 2px; }
+    .color-input-native::-webkit-color-swatch { border-radius: 4px; border: none; }
+    .color-input-native::-moz-color-swatch { border-radius: 4px; border: none; }
+    .format-input {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.9rem;
+    }
+    .palette-color {
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        border: 2px solid var(--bs-border-color);
+        cursor: pointer;
+        transition: transform 0.1s ease, border-color 0.15s ease;
+        display: inline-block;
+    }
+    .palette-color:hover {
+        transform: scale(1.2);
+        border-color: var(--bs-primary);
+        z-index: 1;
+    }
+    .palette-color.active {
+        border-color: var(--bs-primary);
+        box-shadow: 0 0 0 2px var(--bs-primary);
+    }
+    .history-color {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        border: 2px solid var(--bs-border-color);
+        cursor: pointer;
+        transition: transform 0.1s ease;
+        display: inline-block;
+    }
+    .history-color:hover {
+        transform: scale(1.15);
+        border-color: var(--bs-primary);
+    }
+    .contrast-badge {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 4px;
+    }
+    .contrast-pass { background-color: #198754; color: #fff; }
+    .contrast-fail { background-color: #dc3545; color: #fff; }
+    .contrast-sample {
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        border: 1px solid var(--bs-border-color);
+    }
+    .css-output {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        padding: 10px 12px;
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-palette" style="color: #e91e63;"></i> Color Picker
+        <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="colorpicker" onclick="togglePin('colorpicker')" title="Pin to navbar"></i>
+    </h5>
+    <div class="d-flex gap-1">
+        <button class="btn btn-sm btn-outline-secondary" id="randomBtn" title="Random color">
+            <i class="bi bi-shuffle"></i> Random
+        </button>
+        <button class="btn btn-sm btn-outline-secondary" id="eyedropperBtn" title="Pick from screen (if supported)">
+            <i class="bi bi-eyedropper"></i>
+        </button>
+    </div>
+</div>
+
+<div class="row g-3">
+    <!-- Left Column: Preview + Inputs -->
+    <div class="col-lg-7">
+        <!-- Color Preview -->
+        <div class="color-preview mb-3" id="colorPreview" title="Click to copy HEX">
+            <span class="color-preview-text" id="previewText">#E91E63</span>
+        </div>
+
+        <!-- Native Picker + Format Inputs -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row g-3 align-items-end">
+                    <!-- Native picker -->
+                    <div class="col-auto">
+                        <label class="form-label small fw-semibold mb-1">Pick</label>
+                        <input type="color" id="nativePicker" class="color-input-native" value="#e91e63">
+                    </div>
+
+                    <!-- HEX -->
+                    <div class="col">
+                        <label class="form-label small fw-semibold mb-1">HEX</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">#</span>
+                            <input type="text" id="hexInput" class="form-control format-input" value="E91E63" maxlength="6" placeholder="RRGGBB">
+                            <button class="btn btn-outline-secondary" id="copyHex" title="Copy HEX"><i class="bi bi-clipboard"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- RGB -->
+                    <div class="col">
+                        <label class="form-label small fw-semibold mb-1">RGB</label>
+                        <div class="d-flex gap-1 align-items-center">
+                            <input type="number" id="rgbR" class="form-control form-control-sm format-input" min="0" max="255" value="233" style="width: 62px;" placeholder="R">
+                            <input type="number" id="rgbG" class="form-control form-control-sm format-input" min="0" max="255" value="30" style="width: 62px;" placeholder="G">
+                            <input type="number" id="rgbB" class="form-control form-control-sm format-input" min="0" max="255" value="99" style="width: 62px;" placeholder="B">
+                            <button class="btn btn-sm btn-outline-secondary" id="copyRgb" title="Copy RGB"><i class="bi bi-clipboard"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HSL -->
+                <div class="row g-3 mt-1 align-items-end">
+                    <div class="col-auto" style="width: 76px;"></div>
+                    <div class="col">
+                        <label class="form-label small fw-semibold mb-1">HSL</label>
+                        <div class="d-flex gap-1 align-items-center">
+                            <input type="number" id="hslH" class="form-control form-control-sm format-input" min="0" max="360" value="340" style="width: 62px;" placeholder="H">
+                            <input type="number" id="hslS" class="form-control form-control-sm format-input" min="0" max="100" value="82" style="width: 62px;" placeholder="S%">
+                            <input type="number" id="hslL" class="form-control form-control-sm format-input" min="0" max="100" value="52" style="width: 62px;" placeholder="L%">
+                            <button class="btn btn-sm btn-outline-secondary" id="copyHsl" title="Copy HSL"><i class="bi bi-clipboard"></i></button>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- CSS Output -->
+                        <label class="form-label small fw-semibold mb-1">CSS</label>
+                        <div class="d-flex gap-1 align-items-center">
+                            <div class="css-output flex-grow-1 text-truncate" id="cssOutput">background-color: #E91E63;</div>
+                            <button class="btn btn-sm btn-outline-secondary" id="copyCss" title="Copy CSS"><i class="bi bi-clipboard"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contrast Checker -->
+        <div class="card mb-3">
+            <div class="card-header py-2">
+                <span class="fw-semibold"><i class="bi bi-eye"></i> Contrast Checker (WCAG)</span>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <div class="contrast-sample" id="contrastOnWhite">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span class="small fw-semibold">On White</span>
+                                <div>
+                                    <span class="contrast-badge" id="contrastWhiteAA">AA</span>
+                                    <span class="contrast-badge" id="contrastWhiteAAA">AAA</span>
+                                </div>
+                            </div>
+                            <div class="fw-semibold" id="contrastWhiteText">Sample Text</div>
+                            <div class="small" id="contrastWhiteRatio">Ratio: —</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contrast-sample" id="contrastOnBlack">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span class="small fw-semibold">On Black</span>
+                                <div>
+                                    <span class="contrast-badge" id="contrastBlackAA">AA</span>
+                                    <span class="contrast-badge" id="contrastBlackAAA">AAA</span>
+                                </div>
+                            </div>
+                            <div class="fw-semibold" id="contrastBlackText">Sample Text</div>
+                            <div class="small" id="contrastBlackRatio">Ratio: —</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-2">
+                    <small class="text-muted">AA: &ge; 4.5:1 (normal text) | AAA: &ge; 7:1 (enhanced)</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Palette + History -->
+    <div class="col-lg-5">
+        <!-- Color Palette -->
+        <div class="card mb-3">
+            <div class="card-header py-2">
+                <span class="fw-semibold"><i class="bi bi-palette2"></i> Palette</span>
+            </div>
+            <div class="card-body">
+                <div id="paletteGrid" class="d-flex flex-wrap gap-2 justify-content-start"></div>
+            </div>
+        </div>
+
+        <!-- Shades & Tints -->
+        <div class="card mb-3">
+            <div class="card-header py-2">
+                <span class="fw-semibold"><i class="bi bi-brightness-alt-high"></i> Shades & Tints</span>
+            </div>
+            <div class="card-body">
+                <div class="mb-2">
+                    <small class="text-muted fw-semibold">Shades (darker)</small>
+                    <div id="shadesRow" class="d-flex gap-1 mt-1"></div>
+                </div>
+                <div>
+                    <small class="text-muted fw-semibold">Tints (lighter)</small>
+                    <div id="tintsRow" class="d-flex gap-1 mt-1"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Colors -->
+        <div class="card">
+            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                <span class="fw-semibold"><i class="bi bi-clock-history"></i> Recent Colors</span>
+                <button class="btn btn-sm btn-outline-danger" id="clearHistoryBtn" title="Clear history"><i class="bi bi-trash"></i></button>
+            </div>
+            <div class="card-body">
+                <div id="historyColors" class="d-flex flex-wrap gap-2">
+                    <span class="text-muted small">No colors yet</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/colorpicker.js"></script>
+{{end}}

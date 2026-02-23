@@ -1,0 +1,170 @@
+{{define "content"}}
+<style>
+    .converter-textarea {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+        min-height: 400px;
+        resize: vertical;
+        tab-size: 2;
+    }
+    .direction-btn-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+    .panel-label {
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+    .error-display {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.8rem;
+        max-height: 80px;
+        overflow-y: auto;
+    }
+    @media (max-width: 767.98px) {
+        .converter-textarea {
+            min-height: 250px;
+        }
+        .direction-col {
+            order: -1;
+        }
+        .direction-btn-group {
+            flex-direction: row;
+            margin-bottom: 8px;
+        }
+    }
+</style>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-arrow-left-right" style="color: #673ab7;"></i> JSON ↔ YAML
+        <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="json2yaml" onclick="togglePin('json2yaml')" title="Pin to navbar"></i>
+    </h5>
+    <div class="d-flex gap-2 align-items-center">
+        <div class="form-check form-switch mb-0">
+            <input class="form-check-input" type="checkbox" id="autoConvert" checked>
+            <label class="form-check-label small" for="autoConvert">Auto-convert</label>
+        </div>
+    </div>
+</div>
+
+<!-- Error Display -->
+<div id="errorMsg" class="alert alert-danger py-2 small d-none error-display mb-3">
+    <i class="bi bi-exclamation-triangle"></i> <span id="errorText"></span>
+</div>
+
+<!-- Main Panels -->
+<div class="row g-3">
+    <!-- JSON Panel -->
+    <div class="col-md-5">
+        <div class="panel-header">
+            <span class="panel-label"><i class="bi bi-braces"></i> JSON</span>
+            <div class="d-flex gap-1">
+                <label class="btn btn-sm btn-outline-secondary mb-0" title="Import JSON file">
+                    <i class="bi bi-file-earmark-arrow-up"></i>
+                    <input type="file" id="jsonFileInput" class="d-none" accept=".json,.txt">
+                </label>
+                <button class="btn btn-sm btn-outline-secondary" id="prettifyJsonBtn" title="Prettify JSON">
+                    <i class="bi bi-text-indent-left"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="minifyJsonBtn" title="Minify JSON">
+                    <i class="bi bi-text-left"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="pasteJsonBtn" title="Paste from clipboard">
+                    <i class="bi bi-clipboard-plus"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="copyJsonBtn" title="Copy JSON">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="clearJsonBtn" title="Clear JSON">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+        <textarea id="jsonInput" class="form-control converter-textarea" rows="20" placeholder='Paste or type JSON here...&#10;&#10;{&#10;  "name": "example",&#10;  "version": 1&#10;}' spellcheck="false"></textarea>
+        <div class="d-flex justify-content-between mt-1">
+            <small id="jsonStats" class="text-muted"></small>
+            <small id="jsonValid" class="text-muted"></small>
+        </div>
+    </div>
+
+    <!-- Direction Buttons -->
+    <div class="col-md-2 d-flex align-items-center justify-content-center direction-col">
+        <div class="direction-btn-group">
+            <button class="btn btn-primary btn-sm" id="jsonToYamlBtn" title="Convert JSON to YAML">
+                JSON → YAML <i class="bi bi-arrow-right"></i>
+            </button>
+            <button class="btn btn-success btn-sm" id="yamlToJsonBtn" title="Convert YAML to JSON">
+                <i class="bi bi-arrow-left"></i> YAML → JSON
+            </button>
+            <button class="btn btn-outline-secondary btn-sm" id="swapBtn" title="Swap contents">
+                <i class="bi bi-arrow-left-right"></i> Swap
+            </button>
+            <hr class="w-100 my-1">
+            <button class="btn btn-outline-info btn-sm" id="sampleBtn" title="Load sample data">
+                <i class="bi bi-file-earmark-code"></i> Sample
+            </button>
+            <button class="btn btn-outline-danger btn-sm" id="clearAllBtn" title="Clear both panels">
+                <i class="bi bi-trash"></i> Clear All
+            </button>
+            <hr class="w-100 my-1">
+            <div class="d-flex align-items-center gap-1">
+                <label class="small text-muted text-nowrap">YAML indent:</label>
+                <select id="yamlIndent" class="form-select form-select-sm" style="width: 60px;">
+                    <option value="2" selected>2</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="d-flex align-items-center gap-1">
+                <label class="small text-muted text-nowrap">JSON indent:</label>
+                <select id="jsonIndent" class="form-select form-select-sm" style="width: 60px;">
+                    <option value="2" selected>2</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- YAML Panel -->
+    <div class="col-md-5">
+        <div class="panel-header">
+            <span class="panel-label"><i class="bi bi-file-earmark-text"></i> YAML</span>
+            <div class="d-flex gap-1">
+                <label class="btn btn-sm btn-outline-secondary mb-0" title="Import YAML file">
+                    <i class="bi bi-file-earmark-arrow-up"></i>
+                    <input type="file" id="yamlFileInput" class="d-none" accept=".yaml,.yml,.txt">
+                </label>
+                <button class="btn btn-sm btn-outline-secondary" id="pasteYamlBtn" title="Paste from clipboard">
+                    <i class="bi bi-clipboard-plus"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="copyYamlBtn" title="Copy YAML">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="clearYamlBtn" title="Clear YAML">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+        <textarea id="yamlInput" class="form-control converter-textarea" rows="20" placeholder="Paste or type YAML here...&#10;&#10;name: example&#10;version: 1" spellcheck="false"></textarea>
+        <div class="d-flex justify-content-between mt-1">
+            <small id="yamlStats" class="text-muted"></small>
+            <small id="yamlValid" class="text-muted"></small>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<script src="/static/json2yaml.js"></script>
+{{end}}

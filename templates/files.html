@@ -27,6 +27,50 @@
             </div>
         </div>
 
+        <!-- Filter Tabs -->
+        <ul class="nav nav-tabs mb-3" id="fileFilterTabs">
+            <li class="nav-item">
+                <button class="nav-link active" data-filter="all">
+                    <i class="bi bi-grid-3x3-gap"></i> All <span class="badge bg-secondary ms-1" id="countAll">0</span>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-filter="images">
+                    <i class="bi bi-image"></i> Images <span class="badge bg-secondary ms-1" id="countImages">0</span>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-filter="pdf">
+                    <i class="bi bi-file-earmark-pdf"></i> PDF <span class="badge bg-secondary ms-1" id="countPdf">0</span>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-filter="documents">
+                    <i class="bi bi-file-earmark-text"></i> Docs <span class="badge bg-secondary ms-1" id="countDocs">0</span>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-filter="code">
+                    <i class="bi bi-file-earmark-code"></i> Code <span class="badge bg-secondary ms-1" id="countCode">0</span>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-filter="media">
+                    <i class="bi bi-film"></i> Media <span class="badge bg-secondary ms-1" id="countMedia">0</span>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-filter="archives">
+                    <i class="bi bi-file-earmark-zip"></i> Archives <span class="badge bg-secondary ms-1" id="countArchives">0</span>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-filter="other">
+                    <i class="bi bi-file-earmark"></i> Other <span class="badge bg-secondary ms-1" id="countOther">0</span>
+                </button>
+            </li>
+        </ul>
+
         <!-- Files Grid -->
         <div id="filesGrid" class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
             <div class="col-12 text-center text-muted py-5" id="emptyState">

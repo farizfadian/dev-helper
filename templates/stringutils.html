@@ -1,0 +1,174 @@
+{{define "content"}}
+<style>
+    .io-textarea {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.85rem;
+        min-height: 180px;
+        resize: vertical;
+    }
+    .op-btn {
+        font-size: 0.78rem;
+        padding: 4px 10px;
+        white-space: nowrap;
+    }
+    .op-section-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--bs-secondary-color);
+        margin-bottom: 6px;
+    }
+    .stats-bar {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.78rem;
+    }
+    .stats-bar .stat-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+    }
+    .stats-bar .stat-value {
+        font-weight: 700;
+    }
+</style>
+
+<h5 class="mb-3">
+    <i class="bi bi-fonts" style="color: #607d8b;"></i> String Utilities
+    <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="stringutils" onclick="togglePin('stringutils')" title="Pin to navbar"></i>
+</h5>
+
+<!-- Stats Bar -->
+<div class="stats-bar d-flex flex-wrap gap-2 mb-3">
+    <span class="stat-item"><i class="bi bi-cursor-text"></i> Chars: <span class="stat-value" id="statChars">0</span></span>
+    <span class="stat-item"><i class="bi bi-text-left"></i> Words: <span class="stat-value" id="statWords">0</span></span>
+    <span class="stat-item"><i class="bi bi-list-ol"></i> Lines: <span class="stat-value" id="statLines">0</span></span>
+    <span class="stat-item"><i class="bi bi-chat-text"></i> Sentences: <span class="stat-value" id="statSentences">0</span></span>
+    <span class="stat-item"><i class="bi bi-file-earmark"></i> Bytes: <span class="stat-value" id="statBytes">0</span></span>
+</div>
+
+<div class="row g-3">
+    <!-- Input -->
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="form-label mb-0 fw-semibold"><i class="bi bi-input-cursor-text"></i> Input</label>
+            <div class="d-flex gap-1">
+                <button class="btn btn-sm btn-outline-secondary" id="pasteBtn" title="Paste from clipboard">
+                    <i class="bi bi-clipboard-plus"></i> Paste
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" id="clearInputBtn" title="Clear input">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+        <textarea id="inputText" class="form-control io-textarea" placeholder="Enter text here..." rows="8"></textarea>
+    </div>
+
+    <!-- Output -->
+    <div class="col-md-6">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="form-label mb-0 fw-semibold"><i class="bi bi-output"></i> Output</label>
+            <div class="d-flex gap-1">
+                <button class="btn btn-sm btn-outline-secondary" id="copyBtn" title="Copy output">
+                    <i class="bi bi-clipboard"></i> Copy
+                </button>
+            </div>
+        </div>
+        <textarea id="outputText" class="form-control io-textarea" readonly placeholder="Result will appear here..." rows="8"></textarea>
+    </div>
+</div>
+
+<!-- Action Buttons -->
+<div class="d-flex justify-content-center gap-2 mt-3 mb-3">
+    <button class="btn btn-outline-secondary" id="swapBtn" title="Swap input and output">
+        <i class="bi bi-arrow-left-right"></i> Swap
+    </button>
+    <button class="btn btn-outline-danger" id="clearAllBtn">
+        <i class="bi bi-trash"></i> Clear All
+    </button>
+</div>
+
+<!-- Operations -->
+<div class="row g-3">
+    <!-- Case -->
+    <div class="col-md-6 col-lg-4">
+        <div class="op-section-title"><i class="bi bi-type"></i> Case Conversion</div>
+        <div class="d-flex flex-wrap gap-1">
+            <button class="btn btn-outline-primary op-btn" data-op="uppercase">UPPERCASE</button>
+            <button class="btn btn-outline-primary op-btn" data-op="lowercase">lowercase</button>
+            <button class="btn btn-outline-primary op-btn" data-op="titlecase">Title Case</button>
+            <button class="btn btn-outline-primary op-btn" data-op="camelcase">camelCase</button>
+            <button class="btn btn-outline-primary op-btn" data-op="pascalcase">PascalCase</button>
+            <button class="btn btn-outline-primary op-btn" data-op="snakecase">snake_case</button>
+            <button class="btn btn-outline-primary op-btn" data-op="kebabcase">kebab-case</button>
+            <button class="btn btn-outline-primary op-btn" data-op="constantcase">CONSTANT_CASE</button>
+            <button class="btn btn-outline-primary op-btn" data-op="dotcase">dot.case</button>
+        </div>
+    </div>
+
+    <!-- Text -->
+    <div class="col-md-6 col-lg-4">
+        <div class="op-section-title"><i class="bi bi-scissors"></i> Text Cleanup</div>
+        <div class="d-flex flex-wrap gap-1">
+            <button class="btn btn-outline-success op-btn" data-op="trim">Trim Whitespace</button>
+            <button class="btn btn-outline-success op-btn" data-op="remove_extra_spaces">Remove Extra Spaces</button>
+            <button class="btn btn-outline-success op-btn" data-op="remove_all_whitespace">Remove All Whitespace</button>
+            <button class="btn btn-outline-success op-btn" data-op="remove_blank_lines">Remove Blank Lines</button>
+        </div>
+    </div>
+
+    <!-- Transform -->
+    <div class="col-md-6 col-lg-4">
+        <div class="op-section-title"><i class="bi bi-arrow-repeat"></i> Transform</div>
+        <div class="d-flex flex-wrap gap-1">
+            <button class="btn btn-outline-warning op-btn" data-op="reverse_string">Reverse String</button>
+            <button class="btn btn-outline-warning op-btn" data-op="reverse_words">Reverse Words</button>
+            <button class="btn btn-outline-warning op-btn" data-op="sort_asc">Sort Lines A-Z</button>
+            <button class="btn btn-outline-warning op-btn" data-op="sort_desc">Sort Lines Z-A</button>
+            <button class="btn btn-outline-warning op-btn" data-op="unique_lines">Unique Lines</button>
+            <button class="btn btn-outline-warning op-btn" data-op="shuffle_lines">Shuffle Lines</button>
+        </div>
+    </div>
+
+    <!-- Encode -->
+    <div class="col-md-6 col-lg-4">
+        <div class="op-section-title"><i class="bi bi-lock"></i> Encode / Decode</div>
+        <div class="d-flex flex-wrap gap-1">
+            <button class="btn btn-outline-info op-btn" data-op="url_encode">URL Encode</button>
+            <button class="btn btn-outline-info op-btn" data-op="url_decode">URL Decode</button>
+            <button class="btn btn-outline-info op-btn" data-op="html_encode">HTML Encode</button>
+            <button class="btn btn-outline-info op-btn" data-op="html_decode">HTML Decode</button>
+        </div>
+    </div>
+
+    <!-- Count -->
+    <div class="col-md-6 col-lg-4">
+        <div class="op-section-title"><i class="bi bi-123"></i> Count</div>
+        <div class="d-flex flex-wrap gap-1">
+            <button class="btn btn-outline-secondary op-btn" data-op="count_chars">Character Count</button>
+            <button class="btn btn-outline-secondary op-btn" data-op="count_words">Word Count</button>
+            <button class="btn btn-outline-secondary op-btn" data-op="count_lines">Line Count</button>
+            <button class="btn btn-outline-secondary op-btn" data-op="count_sentences">Sentence Count</button>
+        </div>
+    </div>
+
+    <!-- Generate / Extract -->
+    <div class="col-md-6 col-lg-4">
+        <div class="op-section-title"><i class="bi bi-magic"></i> Generate / Extract</div>
+        <div class="d-flex flex-wrap gap-1">
+            <button class="btn btn-outline-danger op-btn" data-op="slug">Slug from Text</button>
+            <button class="btn btn-outline-danger op-btn" data-op="extract_emails">Extract Emails</button>
+            <button class="btn btn-outline-danger op-btn" data-op="extract_urls">Extract URLs</button>
+            <button class="btn btn-outline-danger op-btn" data-op="extract_numbers">Extract Numbers</button>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/stringutils.js"></script>
+{{end}}

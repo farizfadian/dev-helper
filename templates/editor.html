@@ -36,11 +36,14 @@
     }
 </style>
 
+<!-- Focus wrapper -->
+<div id="focusWrapper" class="focus-wrapper">
+
 <!-- Toolbar -->
-<div class="d-flex justify-content-between align-items-center mb-2">
+<div class="d-flex justify-content-between align-items-center mb-2 focus-toolbar">
     <h5 class="mb-0"><i class="bi bi-code-slash"></i> Code Editor <i id="pinToggle" data-tool="editor" class="bi bi-star pin-star" onclick="togglePin('editor')"></i></h5>
     <div class="d-flex align-items-center editor-toolbar flex-wrap">
-        <select id="languageSelect" class="form-select form-select-sm">
+        <select id="languageSelect" class="form-select form-select-sm focus-hide">
             <option value="plaintext">Plain Text</option>
             <option value="javascript">JavaScript</option>
             <option value="typescript">TypeScript</option>
@@ -74,7 +77,7 @@
             <option value="scala">Scala</option>
             <option value="graphql">GraphQL</option>
         </select>
-        <select id="fontSizeSelect" class="form-select form-select-sm" style="min-width: 80px;">
+        <select id="fontSizeSelect" class="form-select form-select-sm focus-hide" style="min-width: 80px;">
             <option value="12">12px</option>
             <option value="13">13px</option>
             <option value="14" selected>14px</option>
@@ -82,30 +85,33 @@
             <option value="18">18px</option>
             <option value="20">20px</option>
         </select>
-        <button class="btn btn-sm btn-outline-secondary" id="wrapBtn" title="Toggle Word Wrap">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="wrapBtn" title="Toggle Word Wrap">
             <i class="bi bi-text-wrap"></i>
         </button>
-        <button class="btn btn-sm btn-outline-secondary" id="themeBtn" title="Toggle Dark/Light Theme">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="themeBtn" title="Toggle Dark/Light Theme">
             <i class="bi bi-moon-fill"></i>
         </button>
-        <button class="btn btn-sm btn-outline-secondary" id="openFileBtn" title="Open File">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="openFileBtn" title="Open File">
             <i class="bi bi-folder2-open"></i>
         </button>
-        <button class="btn btn-sm btn-outline-primary" id="downloadBtn" title="Download File">
+        <button class="btn btn-sm btn-outline-primary focus-hide" id="downloadBtn" title="Download File">
             <i class="bi bi-download"></i> Download
+        </button>
+        <button class="btn btn-sm btn-outline-primary" id="focusModeBtn" title="Expand (F11)">
+            <i class="bi bi-arrows-fullscreen"></i> Expand
         </button>
         <input type="file" id="fileInput" class="d-none">
     </div>
 </div>
 
 <!-- Drop Zone -->
-<div id="dropZone" class="drop-zone mb-2">
+<div id="dropZone" class="drop-zone mb-2 focus-hide">
     <i class="bi bi-file-earmark-code" style="font-size: 1.5rem;"></i><br>
     <span>Drag & drop file here, click to browse, or paste content</span>
 </div>
 
 <!-- URL Input -->
-<div class="input-group input-group-sm mb-2">
+<div class="input-group input-group-sm mb-2 focus-hide">
     <span class="input-group-text"><i class="bi bi-link-45deg"></i></span>
     <input type="text" id="urlInput" class="form-control" placeholder="Enter URL to fetch file (e.g. http://domain.com/HelloWorld.java)">
     <button class="btn btn-primary" id="fetchUrlBtn">
@@ -114,7 +120,9 @@
 </div>
 
 <!-- Editor Container -->
-<div id="editorContainer" style="height: calc(100vh - 320px); min-height: 400px;"></div>
+<div class="focus-grow">
+    <div id="editorContainer" class="focus-fill" style="height: calc(100vh - 320px); min-height: 400px;"></div>
+</div>
 
 <!-- Status Bar -->
 <div class="status-bar d-flex justify-content-between">
@@ -122,6 +130,8 @@
     <span id="statusCenter"></span>
     <span id="statusRight">Plain Text | UTF-8</span>
 </div>
+
+</div><!-- /focus-wrapper -->
 {{end}}
 
 {{define "scripts"}}

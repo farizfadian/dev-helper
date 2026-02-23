@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Копировать",
+    "copied": "Скопировано!",
+    "clear": "Очистить",
+    "save": "Сохранить",
+    "saved": "Сохранено!",
+    "delete": "Удалить",
+    "cancel": "Отмена",
+    "close": "Закрыть",
+    "open": "Открыть",
+    "search": "Поиск",
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "success": "Успешно",
+    "warning": "Предупреждение",
+    "info": "Информация",
+    "yes": "Да",
+    "no": "Нет",
+    "confirm": "Подтвердить",
+    "download": "Скачать",
+    "upload": "Загрузить",
+    "export": "Экспорт",
+    "import": "Импорт",
+    "expand": "Развернуть",
+    "exit": "Выход",
+    "file": "Файл",
+    "settings": "Настройки",
+    "none": "Нет",
+    "all": "Все",
+    "reset": "Сбросить",
+    "apply": "Применить",
+    "preview": "Предпросмотр",
+    "source": "Исходник",
+    "result": "Результат",
+    "input": "Ввод",
+    "output": "Вывод",
+    "generate": "Сгенерировать",
+    "encode": "Кодировать",
+    "decode": "Декодировать",
+    "paste": "Вставить",
+    "swap": "Поменять местами",
+    "back": "Назад",
+    "next": "Далее",
+    "samples": "Примеры",
+    "history": "История",
+    "options": "Параметры",
+    "format": "Формат",
+    "validate": "Проверить",
+    "convert": "Конвертировать",
+    "raw": "Необработанный",
+    "send": "Отправить",
+    "stop": "Остановить",
+    "start": "Запустить",
+    "refresh": "Обновить",
+    "browse": "Обзор",
+    "select": "Выбрать",
+    "add": "Добавить",
+    "remove": "Удалить",
+    "edit": "Редактировать",
+    "share": "Поделиться",
+    "pin": "Закрепить",
+    "unpin": "Открепить",
+    "new": "Новый",
+    "text": "Текст",
+    "type": "Тип",
+    "size": "Размер",
+    "name": "Название",
+    "value": "Значение",
+    "status": "Статус",
+    "actions": "Действия",
+    "description": "Описание",
+    "category": "Категория",
+    "tags": "Теги",
+    "language": "Язык",
+    "title": "Заголовок",
+    "content": "Содержание",
+    "count": "Количество",
+    "length": "Длина",
+    "total": "Всего",
+    "or": "или",
+    "and": "и",
+    "no_data": "Нет данных",
+    "no_results": "Ничего не найдено",
+    "confirm_delete": "Вы уверены, что хотите удалить это?",
+    "drag_drop": "Перетащите файл сюда",
+    "processing": "Обработка...",
+    "done": "Готово",
+    "copied_to_clipboard": "Скопировано в буфер обмена!",
+    "failed_to_copy": "Не удалось скопировать",
+    "keyboard_shortcuts": "Горячие клавиши",
+    "toggle_fullscreen": "Полноэкранный режим (F11)",
+    "exit_fullscreen": "Выйти из полноэкранного режима (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Поиск",
+    "search_tools": "Поиск инструментов...",
+    "more": "Ещё",
+    "all_tools": "Все инструменты",
+    "ask_ai": "Спросить ИИ",
+    "cloud_ai": "Облачный ИИ",
+    "local_ai": "Локальный ИИ",
+    "language": "Язык",
+    "pinned_to_navbar": "Закреплено на панели",
+    "unpinned_from_navbar": "Откреплено от панели",
+    "pin_to_navbar": "Закрепить на панели",
+    "unpin_from_navbar": "Открепить от панели",
+    "open_navigation": "Открыть навигацию"
+  },
+  "theme": {
+    "light": "Светлая",
+    "dark": "Тёмная",
+    "auto": "Авто",
+    "switch_theme": "Сменить тему"
+  },
+  "spotlight": {
+    "placeholder": "Поиск инструментов...",
+    "no_results": "Инструменты не найдены для «{query}»",
+    "navigate": "Навигация",
+    "open": "Открыть",
+    "close": "Закрыть"
+  },
+  "drawer": {
+    "search": "Поиск",
+    "theme": "Тема",
+    "pinned": "Закреплённые",
+    "file_code": "Файлы и код",
+    "encode_decode": "Кодирование и декодирование",
+    "converters": "Конвертеры",
+    "generators": "Генераторы",
+    "tools_section": "Инструменты",
+    "logs_network": "Логи и сеть",
+    "all_tools": "Все инструменты"
+  },
+  "footer": {
+    "made_by": "Сделано с ❤️ —"
+  },
+  "ai": {
+    "ask": "Спросить",
+    "prompt_placeholder": "Что вы хотите спросить?",
+    "enter_to_send": "Enter — отправить",
+    "shift_enter_newline": "Shift+Enter — новая строка",
+    "open_without_prompt": "Открыть без запроса",
+    "ollama_url": "URL Ollama",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Введите URL веб-интерфейса Ollama"
+  },
+  "dashboard": {
+    "search_placeholder": "Поиск инструментов...",
+    "pinned_tools": "Закреплённые инструменты",
+    "all_tools": "Все инструменты",
+    "no_results": "Инструменты, соответствующие запросу, не найдены.",
+    "open_source_toolkit": "Набор инструментов с открытым кодом",
+    "tools_count": "Доступно инструментов: {count}"
+  },
+  "tools": {
+    "upload": {
+      "name": "Загрузка",
+      "desc": "Перетаскивание, вставка или выбор файлов для загрузки. Предпросмотр изображений с лайтбоксом."
+    },
+    "files": {
+      "name": "Файловый менеджер",
+      "desc": "Просмотр, поиск и управление загруженными файлами в виде сетки, как в Google Drive."
+    },
+    "prettify": {
+      "name": "Форматирование",
+      "desc": "Форматирование и украшение кода JSON, XML, HTML, CSS, JavaScript и SQL."
+    },
+    "logs": {
+      "name": "Агрегатор логов",
+      "desc": "Легковесный сборщик логов. Приём логов от любого приложения через HTTP POST, фильтрация по приложению и уровню."
+    },
+    "logviewer": {
+      "name": "Просмотр логов",
+      "desc": "Загрузка и поиск в больших лог-файлах с фильтрацией по ключевым словам, regex и контексту."
+    },
+    "editor": {
+      "name": "Редактор кода",
+      "desc": "Полнофункциональный редактор кода на основе Monaco (VS Code). Подсветка синтаксиса для 40+ языков."
+    },
+    "markdown": {
+      "name": "Просмотр Markdown",
+      "desc": "Написание Markdown с предпросмотром в реальном времени, подсветкой кода и поддержкой GFM."
+    },
+    "diff": {
+      "name": "Сравнение кода",
+      "desc": "Сравнение двух файлов бок о бок или построчно с подсветкой различий."
+    },
+    "jwt": {
+      "name": "JWT",
+      "desc": "Кодирование, декодирование и проверка JSON Web Tokens. Поддержка HS256/384/512 с цветовой маркировкой."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Кодирование и декодирование строк Base64. Поддержка текста и бинарных файлов с URL-safe режимом."
+    },
+    "urlencoder": {
+      "name": "URL-кодировщик",
+      "desc": "Кодирование и декодирование URL и параметров запроса. Парсер URL показывает протокол, хост, путь и параметры."
+    },
+    "htmleditor": {
+      "name": "HTML-редактор",
+      "desc": "Визуальный WYSIWYG-редактор на основе TinyMCE с переключением на просмотр исходного HTML-кода."
+    },
+    "mermaid": {
+      "name": "Диаграммы Mermaid",
+      "desc": "Создание блок-схем, диаграмм последовательностей, ER-диаграмм, диаграмм Ганта и других с предпросмотром Mermaid.js."
+    },
+    "uuid": {
+      "name": "Генератор UUID",
+      "desc": "Генерация UUID v1, v4 и v7. Массовая генерация, проверка, разбор и копирование с параметрами формата."
+    },
+    "notes": {
+      "name": "Заметки",
+      "desc": "Markdown-заметки с предпросмотром, тегами, категориями, цветовыми метками, вложениями и автосохранением."
+    },
+    "regex": {
+      "name": "Тестер regex",
+      "desc": "Тестирование regex-шаблонов с подсветкой совпадений в реальном времени, группами захвата, заменой и шпаргалкой."
+    },
+    "charmap": {
+      "name": "Эмодзи и символы",
+      "desc": "Поиск и копирование эмодзи, символов и спецсимволов. Подробности Unicode, HTML-сущности и недавно использованные."
+    },
+    "epoch": {
+      "name": "Конвертер Epoch",
+      "desc": "Преобразование Unix-меток времени в читаемые даты и обратно. Живые часы, пресеты и калькулятор разницы."
+    },
+    "hash": {
+      "name": "Генератор хешей",
+      "desc": "Генерация хешей MD5, SHA-1, SHA-256, SHA-512 из текста или файлов. Мгновенная проверка контрольных сумм."
+    },
+    "colorpicker": {
+      "name": "Палитра цветов",
+      "desc": "Выбор цветов и конвертация между форматами HEX, RGB, HSL. Цветовая палитра и проверка контрастности."
+    },
+    "cron": {
+      "name": "Парсер Cron",
+      "desc": "Разбор и генерация cron-выражений с описанием на человеческом языке и временем следующих запусков."
+    },
+    "password": {
+      "name": "Генератор паролей",
+      "desc": "Генерация криптографически безопасных случайных паролей и запоминающихся парольных фраз."
+    },
+    "qrcode": {
+      "name": "Генератор QR Code",
+      "desc": "Генерация QR-кодов из текста, URL, WiFi-данных или контактной информации. Скачивание в PNG."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Генерация текста-заполнителя — абзацы, предложения или слова. Несколько стилей на выбор."
+    },
+    "baseconverter": {
+      "name": "Конвертер систем счисления",
+      "desc": "Конвертация чисел между двоичной, восьмеричной, десятичной и шестнадцатеричной системами в реальном времени."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Конвертация между форматами JSON и YAML с проверкой синтаксиса и форматированием."
+    },
+    "httpclient": {
+      "name": "HTTP-клиент",
+      "desc": "Тестирование API-эндпоинтов, как в мини-Postman. Пользовательские методы, заголовки, тело и просмотр ответа."
+    },
+    "stringutils": {
+      "name": "Строковые утилиты",
+      "desc": "Преобразование регистра, обрезка, подсчёт, реверс, генератор slug и другие строковые операции."
+    },
+    "chat": {
+      "name": "LAN-чат",
+      "desc": "Чат в реальном времени для локальной сети. Интернет не нужен — только Dev Helper в LAN."
+    },
+    "netscan": {
+      "name": "Сетевой сканер",
+      "desc": "Сканирование хостов и портов в LAN. Обнаружение устройств, служб и открытых портов в сети."
+    },
+    "worldclock": {
+      "name": "Мировые часы",
+      "desc": "Часы для нескольких часовых поясов с аналоговым отображением, планировщиком встреч и перетаскиванием."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Извлечение текста из изображений и скриншотов. Перетаскивание, вставка или загрузка — на основе Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Конвертация между application.yml и application.properties для проектов Java/Spring Boot."
+    },
+    "netinspect": {
+      "name": "Сетевой инспектор",
+      "desc": "Геолокация IP, DNS-поиск, HTTP-заголовки ответа и проверка SSL-сертификатов."
+    },
+    "aichat": {
+      "name": "ИИ-чат",
+      "desc": "Общение с локальными моделями Ollama AI. Потоковые ответы, рендеринг Markdown, история диалогов."
+    },
+    "speedtest": {
+      "name": "Тест скорости",
+      "desc": "Тестирование скорости скачивания/загрузки, пинга и производительности чтения/записи диска."
+    },
+    "snippets": {
+      "name": "Сниппеты кода",
+      "desc": "Сохранение и организация часто используемых фрагментов кода с подсветкой синтаксиса и быстрым копированием."
+    },
+    "sysmon": {
+      "name": "Системный монитор",
+      "desc": "Мониторинг CPU, памяти, диска, сети и процессов в реальном времени с живыми индикаторами."
+    },
+    "icons": {
+      "name": "Обозреватель иконок",
+      "desc": "Просмотр и поиск иконок Bootstrap Icons, Font Awesome и Tabler Icons. Нажмите для копирования CSS-класса или HTML."
+    },
+    "askai": {
+      "name": "Спросить ИИ",
+      "desc": "Быстрый доступ к 9 облачным ИИ (Claude, ChatGPT, Gemini и др.) и Ollama из панели навигации."
+    },
+    "translator": {
+      "name": "Переводчик",
+      "desc": "Перевод текста между языками с помощью локальных моделей Ollama AI. Как Google Translate, но офлайн."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Перетащите файлы сюда",
+    "drop_or_browse": "или нажмите для выбора",
+    "paste_hint": "Также можно вставить из буфера обмена (Ctrl+V)",
+    "recent_uploads": "Недавние загрузки",
+    "clear_recent": "Очистить недавние",
+    "copy_url": "Копировать URL",
+    "open_new_tab": "Открыть в новой вкладке",
+    "file_uploaded": "Файл успешно загружен",
+    "upload_failed": "Ошибка загрузки"
+  },
+  "files_page": {
+    "search_placeholder": "Поиск файлов...",
+    "grid_view": "Сетка",
+    "list_view": "Список",
+    "delete_all": "Удалить всё",
+    "confirm_delete_all": "Вы уверены, что хотите удалить все файлы?",
+    "no_files": "Файлы не найдены",
+    "file_deleted": "Файл удалён",
+    "download": "Скачать",
+    "file_size": "Размер",
+    "file_date": "Дата"
+  },
+  "prettify_page": {
+    "input_label": "Ввод",
+    "output_label": "Вывод",
+    "prettify": "Форматировать",
+    "minify": "Минифицировать",
+    "paste_placeholder": "Вставьте или введите код здесь...",
+    "auto_detect": "Автоопределение",
+    "copy_output": "Копировать результат"
+  },
+  "logs_page": {
+    "app": "Приложение",
+    "level": "Уровень",
+    "search_placeholder": "Поиск в логах...",
+    "clear_logs": "Очистить логи",
+    "auto_scroll": "Автопрокрутка",
+    "no_logs": "Логи не найдены",
+    "all_apps": "Все приложения",
+    "all_levels": "Все уровни",
+    "timestamp": "Время",
+    "message": "Сообщение"
+  },
+  "logviewer_page": {
+    "upload_log": "Загрузить лог-файл",
+    "search_placeholder": "Ключевое слово или regex...",
+    "use_regex": "Regex",
+    "case_sensitive": "С учётом регистра",
+    "context_lines": "Строки контекста",
+    "showing_lines": "Показано {shown} из {total} строк",
+    "no_matches": "Совпадений не найдено",
+    "line": "Строка"
+  },
+  "editor_page": {
+    "new_file": "Новый",
+    "open_file": "Открыть файл",
+    "save_file": "Сохранить",
+    "word_wrap": "Перенос строк",
+    "minimap": "Миникарта",
+    "line": "Строка",
+    "column": "Столбец",
+    "language": "Язык",
+    "fetch_url": "Загрузить по URL",
+    "url_placeholder": "Введите URL для загрузки файла..."
+  },
+  "markdown_page": {
+    "samples": "Примеры",
+    "open_file": "Открыть файл",
+    "copy_html": "Копировать HTML",
+    "export": "Экспорт",
+    "export_pdf": "Экспорт в PDF",
+    "export_md": "Экспорт в Markdown",
+    "export_html": "Экспорт в HTML",
+    "clear": "Очистить",
+    "expand": "Развернуть",
+    "editor_label": "Markdown",
+    "preview_label": "Предпросмотр",
+    "drop_zone": "Перетащите Markdown-файл сюда или нажмите для выбора",
+    "url_placeholder": "Введите URL для загрузки .md файла",
+    "fetch": "Загрузить",
+    "html_copied": "HTML скопирован!",
+    "readme": "README",
+    "api_docs": "Документация API",
+    "changelog": "Журнал изменений",
+    "blog_post": "Блог-пост",
+    "cheatsheet": "Шпаргалка по Markdown",
+    "meeting_notes": "Протокол встречи",
+    "project_todo": "TODO проекта"
+  },
+  "diff_page": {
+    "original": "Оригинал",
+    "modified": "Изменённый",
+    "side_by_side": "Бок о бок",
+    "inline": "Построчно",
+    "open_file": "Открыть файл",
+    "paste_code": "Вставьте код сюда...",
+    "swap": "Поменять местами",
+    "no_differences": "Различий не найдено"
+  },
+  "jwt_page": {
+    "header": "Заголовок",
+    "payload": "Данные",
+    "signature": "Подпись",
+    "secret": "Секретный ключ",
+    "algorithm": "Алгоритм",
+    "encode": "Кодировать",
+    "decode": "Декодировать",
+    "verify": "Проверить",
+    "valid_signature": "Подпись верна",
+    "invalid_signature": "Подпись недействительна",
+    "paste_jwt": "Вставьте JWT-токен сюда..."
+  },
+  "base64_page": {
+    "text_mode": "Текст",
+    "file_mode": "Файл",
+    "url_safe": "URL-safe",
+    "line_breaks": "Переносы строк",
+    "input_placeholder": "Введите текст для кодирования/декодирования...",
+    "drop_file": "Перетащите файл сюда или нажмите для выбора",
+    "download_result": "Скачать результат"
+  },
+  "urlencoder_page": {
+    "component_mode": "Компонент",
+    "full_url_mode": "Полный URL",
+    "url_parser": "Парсер URL",
+    "protocol": "Протокол",
+    "host": "Хост",
+    "path": "Путь",
+    "params": "Параметры",
+    "input_placeholder": "Введите URL или текст для кодирования/декодирования..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Исходный код",
+    "import_html": "Импорт HTML",
+    "export_html": "Экспорт HTML",
+    "clear": "Очистить"
+  },
+  "mermaid_page": {
+    "samples": "Примеры",
+    "download_svg": "Скачать SVG",
+    "download_png": "Скачать PNG",
+    "share": "Поделиться",
+    "zoom_in": "Увеличить",
+    "zoom_out": "Уменьшить",
+    "reset_zoom": "Сбросить масштаб",
+    "diagram_label": "Код Mermaid",
+    "preview_label": "Предпросмотр",
+    "link_copied": "Ссылка для обмена скопирована!",
+    "flowchart": "Блок-схема",
+    "sequence": "Диаграмма последовательностей",
+    "class_diagram": "Диаграмма классов",
+    "state": "Диаграмма состояний",
+    "er": "ER-диаграмма",
+    "gantt": "Диаграмма Ганта",
+    "pie": "Круговая диаграмма",
+    "mindmap": "Ментальная карта",
+    "timeline": "Временная шкала",
+    "quadrant": "Квадрантная диаграмма",
+    "git": "Граф Git",
+    "sankey": "Диаграмма Санки"
+  },
+  "uuid_page": {
+    "version": "Версия",
+    "bulk_generate": "Массовая генерация",
+    "validate_parse": "Проверить и разобрать",
+    "count": "Количество",
+    "uppercase": "Верхний регистр",
+    "braces": "Фигурные скобки",
+    "hyphens": "Дефисы",
+    "copy_all": "Копировать все",
+    "generated": "Сгенерировано",
+    "valid_uuid": "Допустимый UUID",
+    "invalid_uuid": "Недопустимый UUID",
+    "uuid_version": "Версия",
+    "uuid_variant": "Вариант",
+    "uuid_timestamp": "Метка времени"
+  },
+  "notes_page": {
+    "new_note": "Новая заметка",
+    "search_placeholder": "Поиск заметок...",
+    "categories": "Категории",
+    "all_notes": "Все заметки",
+    "pinned": "Закреплённые",
+    "trash": "Корзина",
+    "restore": "Восстановить",
+    "permanent_delete": "Удалить навсегда",
+    "note_saved": "Заметка сохранена",
+    "note_deleted": "Заметка перемещена в корзину",
+    "untitled": "Без названия",
+    "attachments": "Вложения",
+    "color_label": "Цветовая метка",
+    "sort_by": "Сортировка",
+    "date_modified": "Дата изменения",
+    "date_created": "Дата создания"
+  },
+  "regex_page": {
+    "pattern": "Шаблон",
+    "test_string": "Тестовая строка",
+    "flags": "Флаги",
+    "matches": "Совпадения",
+    "replace": "Замена",
+    "replacement": "Замена",
+    "cheat_sheet": "Шпаргалка",
+    "common_patterns": "Типичные шаблоны",
+    "no_matches": "Нет совпадений",
+    "match_count": "Найдено совпадений: {count}",
+    "global": "Глобальный",
+    "case_insensitive": "Без учёта регистра",
+    "multiline": "Многострочный"
+  },
+  "charmap_page": {
+    "search_placeholder": "Поиск эмодзи или символа...",
+    "recently_used": "Недавно использованные",
+    "unicode": "Unicode",
+    "html_entity": "HTML-сущность",
+    "css_code": "CSS-код",
+    "copy_char": "Нажмите для копирования",
+    "smileys": "Смайлики и люди",
+    "animals": "Животные и природа",
+    "food": "Еда и напитки",
+    "activities": "Активности",
+    "travel": "Путешествия и места",
+    "objects": "Объекты",
+    "symbols": "Символы",
+    "flags": "Флаги",
+    "arrows": "Стрелки",
+    "math": "Математика",
+    "currency": "Валюта",
+    "latin": "Расширенная латиница"
+  },
+  "epoch_page": {
+    "timestamp": "Метка времени",
+    "date_time": "Дата и время",
+    "now": "Сейчас",
+    "seconds": "Секунды",
+    "milliseconds": "Миллисекунды",
+    "local_time": "Местное время",
+    "utc_time": "Время UTC",
+    "relative": "Относительное",
+    "time_diff": "Разница во времени",
+    "presets": "Пресеты",
+    "live_clock": "Живые часы"
+  },
+  "hash_page": {
+    "text_input": "Текстовый ввод",
+    "file_input": "Файловый ввод",
+    "compare": "Сравнить хеши",
+    "hash_match": "Хеши совпадают!",
+    "hash_mismatch": "Хеши не совпадают",
+    "drop_file": "Перетащите файл для хеширования...",
+    "computing": "Вычисление хеша..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Проверка контрастности",
+    "foreground": "Передний план",
+    "background": "Фон",
+    "ratio": "Соотношение",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Пройдено",
+    "fail": "Не пройдено",
+    "palette": "Палитра",
+    "shades": "Тени",
+    "tints": "Оттенки",
+    "pick_color": "Выбрать цвет",
+    "eyedropper": "Пипетка"
+  },
+  "cron_page": {
+    "expression": "Выражение",
+    "description_label": "Описание",
+    "next_runs": "Следующие запуски",
+    "presets": "Пресеты",
+    "minute": "Минута",
+    "hour": "Час",
+    "day_month": "День (месяц)",
+    "month": "Месяц",
+    "day_week": "День (неделя)",
+    "every_minute": "Каждую минуту",
+    "every_hour": "Каждый час",
+    "every_day": "Каждый день в полночь",
+    "share": "Поделиться"
+  },
+  "password_page": {
+    "password": "Пароль",
+    "passphrase": "Парольная фраза",
+    "length": "Длина",
+    "uppercase": "Заглавные (A-Z)",
+    "lowercase": "Строчные (a-z)",
+    "numbers": "Цифры (0-9)",
+    "symbols": "Символы (!@#$...)",
+    "word_count": "Количество слов",
+    "separator": "Разделитель",
+    "strength": "Надёжность",
+    "entropy": "Энтропия",
+    "very_weak": "Очень слабый",
+    "weak": "Слабый",
+    "fair": "Средний",
+    "strong": "Сильный",
+    "very_strong": "Очень сильный",
+    "bulk_generate": "Массовая генерация",
+    "generate_count": "Количество"
+  },
+  "qrcode_page": {
+    "text_url": "Текст / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Введите текст или URL...",
+    "network_name": "Имя сети (SSID)",
+    "wifi_password": "Пароль",
+    "encryption": "Шифрование",
+    "hidden_network": "Скрытая сеть",
+    "full_name": "Полное имя",
+    "phone": "Телефон",
+    "email": "Эл. почта",
+    "organization": "Организация",
+    "error_correction": "Коррекция ошибок",
+    "foreground_color": "Передний план",
+    "background_color": "Фон",
+    "download_png": "Скачать PNG",
+    "download_svg": "Скачать SVG",
+    "copy_image": "Копировать изображение"
+  },
+  "lorem_page": {
+    "paragraphs": "Абзацы",
+    "sentences": "Предложения",
+    "words": "Слова",
+    "style": "Стиль",
+    "classic": "Классический",
+    "hipster": "Хипстерский",
+    "tech": "Технический",
+    "include_html": "Включить HTML-теги",
+    "start_lorem": "Начать с «Lorem ipsum...»",
+    "generated_text": "Сгенерированный текст",
+    "copy_text": "Копировать текст"
+  },
+  "baseconverter_page": {
+    "binary": "Двоичная",
+    "octal": "Восьмеричная",
+    "decimal": "Десятичная",
+    "hexadecimal": "Шестнадцатеричная",
+    "bit_visualization": "Визуализация битов",
+    "signed": "Знаковое",
+    "unsigned": "Беззнаковое",
+    "twos_complement": "Дополнительный код"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Форматировать",
+    "minify": "Минифицировать",
+    "import_file": "Импорт файла",
+    "invalid_json": "Некорректный JSON",
+    "invalid_yaml": "Некорректный YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "Введите URL запроса...",
+    "method": "Метод",
+    "headers": "Заголовки",
+    "body": "Тело",
+    "auth": "Авторизация",
+    "params": "Параметры",
+    "response": "Ответ",
+    "status_code": "Статус",
+    "response_time": "Время",
+    "response_size": "Размер",
+    "send_request": "Отправить",
+    "clear_history": "Очистить историю",
+    "no_auth": "Без авторизации",
+    "basic_auth": "Basic Auth",
+    "bearer_token": "Bearer Token",
+    "username": "Имя пользователя",
+    "token": "Токен",
+    "key": "Ключ",
+    "add_header": "Добавить заголовок",
+    "add_param": "Добавить параметр"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Введите текст здесь...",
+    "operations": "Операции",
+    "case_conversion": "Преобразование регистра",
+    "text_cleanup": "Очистка текста",
+    "text_transform": "Преобразование текста",
+    "encode_decode": "Кодирование / Декодирование",
+    "extract_info": "Извлечение информации",
+    "uppercase": "ВЕРХНИЙ РЕГИСТР",
+    "lowercase": "нижний регистр",
+    "title_case": "Заглавные Буквы",
+    "sentence_case": "Начало предложения",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Символы",
+    "word_count": "Слова",
+    "line_count": "Строки"
+  },
+  "chat_page": {
+    "username_placeholder": "Введите ваше имя...",
+    "message_placeholder": "Введите сообщение...",
+    "join": "Войти",
+    "online_users": "Пользователи онлайн",
+    "user_joined": "{user} присоединился к чату",
+    "user_left": "{user} покинул чат"
+  },
+  "netscan_page": {
+    "interface": "Интерфейс",
+    "target": "Цель",
+    "ports": "Порты",
+    "scan": "Сканировать",
+    "scanning": "Сканирование...",
+    "open_ports": "Открытые порты",
+    "host": "Хост",
+    "port": "Порт",
+    "service": "Служба",
+    "scan_complete": "Сканирование завершено",
+    "common_ports": "Стандартные порты",
+    "custom_range": "Произвольный диапазон"
+  },
+  "worldclock_page": {
+    "add_clock": "Добавить часы",
+    "your_local_time": "Ваше местное время",
+    "meeting_planner": "Планировщик встреч",
+    "timezone": "Часовой пояс",
+    "search_timezone": "Поиск часового пояса...",
+    "remove_clock": "Удалить"
+  },
+  "ocr_page": {
+    "upload_image": "Загрузить изображение",
+    "paste_image": "Вставить изображение",
+    "drop_image": "Перетащите изображение сюда",
+    "extract_text": "Извлечь текст",
+    "extracted_text": "Извлечённый текст",
+    "copy_result": "Копировать результат",
+    "recognizing": "Распознавание текста...",
+    "no_text_found": "Текст на изображении не найден",
+    "supported_formats": "Поддерживаемые форматы: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Импорт файла",
+    "download_result": "Скачать"
+  },
+  "aichat_page": {
+    "model": "Модель",
+    "no_models": "Модели не найдены. Ollama запущена?",
+    "message_placeholder": "Введите сообщение...",
+    "clear_chat": "Очистить чат",
+    "thinking": "Думаю...",
+    "ollama_not_running": "Не удаётся подключиться к Ollama",
+    "connection_error": "Ошибка соединения"
+  },
+  "speedtest_page": {
+    "start_test": "Начать тест",
+    "ping": "Пинг",
+    "download_speed": "Скачивание",
+    "upload_speed": "Загрузка",
+    "disk_speed": "Диск",
+    "latency": "Задержка",
+    "read_speed": "Чтение",
+    "write_speed": "Запись",
+    "testing": "Тестирование...",
+    "test_complete": "Тест завершён"
+  },
+  "snippets_page": {
+    "new_snippet": "Новый сниппет",
+    "search_placeholder": "Поиск сниппетов...",
+    "title_placeholder": "Название сниппета...",
+    "desc_placeholder": "Описание (необязательно)",
+    "tags_placeholder": "Теги (через запятую)",
+    "save_snippet": "Сохранить",
+    "delete_snippet": "Удалить",
+    "copy_code": "Копировать код",
+    "language": "Язык",
+    "default_loaded": "Сниппеты по умолчанию загружены",
+    "snippet_saved": "Сниппет сохранён",
+    "snippet_deleted": "Сниппет удалён",
+    "code_copied": "Код скопирован!",
+    "no_snippets": "Сниппеты не найдены",
+    "pinned": "Закреплённые",
+    "all_snippets": "Все сниппеты"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Память",
+    "disk": "Диск",
+    "network": "Сеть",
+    "processes": "Процессы",
+    "usage": "Использование",
+    "total": "Всего",
+    "used": "Занято",
+    "free": "Свободно",
+    "available": "Доступно",
+    "cores": "Ядра",
+    "uptime": "Время работы",
+    "pid": "PID",
+    "process_name": "Название",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Память %",
+    "connecting": "Подключение...",
+    "disconnected": "Отключено",
+    "bytes_sent": "Отправлено",
+    "bytes_recv": "Получено",
+    "read_speed": "Чтение",
+    "write_speed": "Запись"
+  },
+  "icons_page": {
+    "search_placeholder": "Поиск иконок...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "Все",
+    "recently_used": "Недавно использованные",
+    "class_name": "Класс",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Копировать класс",
+    "copy_html": "Копировать HTML",
+    "icon_count": "{count} иконок",
+    "loading_icons": "Загрузка иконок...",
+    "click_to_view": "Нажмите на иконку для подробностей"
+  },
+  "netinspect_page": {
+    "my_ip": "Мой IP",
+    "ip_lookup": "Поиск IP",
+    "dns_lookup": "DNS-поиск",
+    "http_headers": "HTTP-заголовки",
+    "ssl_cert": "SSL-сертификат",
+    "lookup": "Найти",
+    "check": "Проверить",
+    "ip_placeholder": "Введите IP-адрес...",
+    "domain_placeholder": "Введите доменное имя...",
+    "url_placeholder": "Введите URL...",
+    "location": "Расположение",
+    "isp": "ISP",
+    "record_type": "Тип записи",
+    "issuer": "Издатель",
+    "valid_from": "Действителен с",
+    "valid_until": "Действителен до",
+    "subject": "Субъект"
+  },
+  "translator_page": {
+    "source_lang": "Исходный язык",
+    "target_lang": "Целевой язык",
+    "auto_detect": "Автоопределение",
+    "translate": "Перевести",
+    "translating": "Перевод...",
+    "swap_languages": "Поменять языки",
+    "input_placeholder": "Введите текст для перевода...",
+    "model": "Модель",
+    "copy_translation": "Копировать перевод",
+    "translation_copied": "Перевод скопирован!",
+    "clear_all": "Очистить всё",
+    "char_count": "{count} символов"
+  }
+}

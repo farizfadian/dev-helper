@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Copier",
+    "copied": "Copié !",
+    "clear": "Effacer",
+    "save": "Enregistrer",
+    "saved": "Enregistré !",
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "open": "Ouvrir",
+    "search": "Rechercher",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "warning": "Avertissement",
+    "info": "Info",
+    "yes": "Oui",
+    "no": "Non",
+    "confirm": "Confirmer",
+    "download": "Télécharger",
+    "upload": "Importer",
+    "export": "Exporter",
+    "import": "Importer",
+    "expand": "Agrandir",
+    "exit": "Quitter",
+    "file": "Fichier",
+    "settings": "Paramètres",
+    "none": "Aucun",
+    "all": "Tout",
+    "reset": "Réinitialiser",
+    "apply": "Appliquer",
+    "preview": "Aperçu",
+    "source": "Source",
+    "result": "Résultat",
+    "input": "Entrée",
+    "output": "Sortie",
+    "generate": "Générer",
+    "encode": "Encoder",
+    "decode": "Décoder",
+    "paste": "Coller",
+    "swap": "Inverser",
+    "back": "Retour",
+    "next": "Suivant",
+    "samples": "Exemples",
+    "history": "Historique",
+    "options": "Options",
+    "format": "Format",
+    "validate": "Valider",
+    "convert": "Convertir",
+    "raw": "Brut",
+    "send": "Envoyer",
+    "stop": "Arrêter",
+    "start": "Démarrer",
+    "refresh": "Actualiser",
+    "browse": "Parcourir",
+    "select": "Sélectionner",
+    "add": "Ajouter",
+    "remove": "Supprimer",
+    "edit": "Modifier",
+    "share": "Partager",
+    "pin": "Épingler",
+    "unpin": "Désépingler",
+    "new": "Nouveau",
+    "text": "Texte",
+    "type": "Type",
+    "size": "Taille",
+    "name": "Nom",
+    "value": "Valeur",
+    "status": "Statut",
+    "actions": "Actions",
+    "description": "Description",
+    "category": "Catégorie",
+    "tags": "Tags",
+    "language": "Langue",
+    "title": "Titre",
+    "content": "Contenu",
+    "count": "Nombre",
+    "length": "Longueur",
+    "total": "Total",
+    "or": "ou",
+    "and": "et",
+    "no_data": "Aucune donnée",
+    "no_results": "Aucun résultat trouvé",
+    "confirm_delete": "Êtes-vous sûr de vouloir supprimer ceci ?",
+    "drag_drop": "Glissez-déposez un fichier ici",
+    "processing": "Traitement...",
+    "done": "Terminé",
+    "copied_to_clipboard": "Copié dans le presse-papiers !",
+    "failed_to_copy": "Échec de la copie",
+    "keyboard_shortcuts": "Raccourcis clavier",
+    "toggle_fullscreen": "Plein écran (F11)",
+    "exit_fullscreen": "Quitter le plein écran (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Rechercher",
+    "search_tools": "Rechercher des outils...",
+    "more": "Plus",
+    "all_tools": "Tous les outils",
+    "ask_ai": "Demander à l'IA",
+    "cloud_ai": "IA Cloud",
+    "local_ai": "IA locale",
+    "language": "Langue",
+    "pinned_to_navbar": "Épinglé à la barre de navigation",
+    "unpinned_from_navbar": "Retiré de la barre de navigation",
+    "pin_to_navbar": "Épingler à la barre de navigation",
+    "unpin_from_navbar": "Retirer de la barre de navigation",
+    "open_navigation": "Ouvrir la navigation"
+  },
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "auto": "Auto",
+    "switch_theme": "Changer de thème"
+  },
+  "spotlight": {
+    "placeholder": "Rechercher des outils...",
+    "no_results": "Aucun outil trouvé pour « {query} »",
+    "navigate": "Naviguer",
+    "open": "Ouvrir",
+    "close": "Fermer"
+  },
+  "drawer": {
+    "search": "Rechercher",
+    "theme": "Thème",
+    "pinned": "Épinglés",
+    "file_code": "Fichiers & Code",
+    "encode_decode": "Encodage & Décodage",
+    "converters": "Convertisseurs",
+    "generators": "Générateurs",
+    "tools_section": "Outils",
+    "logs_network": "Logs & Réseau",
+    "all_tools": "Tous les outils"
+  },
+  "footer": {
+    "made_by": "Fait avec ❤️ par"
+  },
+  "ai": {
+    "ask": "Demander",
+    "prompt_placeholder": "Que souhaitez-vous demander ?",
+    "enter_to_send": "Entrée pour envoyer",
+    "shift_enter_newline": "Shift+Enter pour un saut de ligne",
+    "open_without_prompt": "Ouvrir sans message",
+    "ollama_url": "URL Ollama",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Entrez l'URL de votre interface Ollama"
+  },
+  "dashboard": {
+    "search_placeholder": "Rechercher des outils...",
+    "pinned_tools": "Outils épinglés",
+    "all_tools": "Tous les outils",
+    "no_results": "Aucun outil ne correspond à votre recherche.",
+    "open_source_toolkit": "Boîte à outils open source pour développeurs",
+    "tools_count": "{count} outils disponibles"
+  },
+  "tools": {
+    "upload": {
+      "name": "Upload",
+      "desc": "Glissez-déposez, collez ou parcourez vos fichiers. Aperçu d'images avec lightbox."
+    },
+    "files": {
+      "name": "Explorateur de fichiers",
+      "desc": "Parcourez, recherchez et gérez vos fichiers dans une vue en grille façon Google Drive."
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "Formatez et embellissez du code JSON, XML, HTML, CSS, JavaScript et SQL."
+    },
+    "logs": {
+      "name": "Agrégateur de logs",
+      "desc": "Collecteur de logs léger. Recevez les logs de n'importe quelle appli via HTTP POST, filtrez par appli et niveau."
+    },
+    "logviewer": {
+      "name": "Visionneuse de logs",
+      "desc": "Importez et recherchez dans de gros fichiers de logs avec filtrage par mots-clés, regex et lignes de contexte."
+    },
+    "editor": {
+      "name": "Éditeur de code",
+      "desc": "Éditeur de code complet propulsé par Monaco (VS Code). Coloration syntaxique pour 40+ langages."
+    },
+    "markdown": {
+      "name": "Visionneuse Markdown",
+      "desc": "Écrivez du Markdown avec aperçu en direct, blocs de code colorés et support GFM."
+    },
+    "diff": {
+      "name": "Code Diff",
+      "desc": "Comparez deux fichiers côte à côte ou en mode intégré avec coloration syntaxique."
+    },
+    "jwt": {
+      "name": "Outil JWT",
+      "desc": "Encodez, décodez et vérifiez les JSON Web Tokens. Supporte HS256/384/512 avec affichage coloré."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Encodez et décodez des chaînes Base64. Supporte le texte et les fichiers binaires avec option URL-safe."
+    },
+    "urlencoder": {
+      "name": "Encodeur URL",
+      "desc": "Encodez et décodez des URL et paramètres de requête. L'analyseur URL affiche le protocole, l'hôte, le chemin et les paramètres."
+    },
+    "htmleditor": {
+      "name": "Éditeur HTML",
+      "desc": "Éditeur WYSIWYG propulsé par TinyMCE avec bascule vers le code source HTML."
+    },
+    "mermaid": {
+      "name": "Diagramme Mermaid",
+      "desc": "Créez des flowcharts, diagrammes de séquence, ER, Gantt et bien plus avec Mermaid.js en aperçu direct."
+    },
+    "uuid": {
+      "name": "Générateur UUID",
+      "desc": "Générez des UUID v1, v4 et v7. Génération en masse, validation, analyse et copie avec options de format."
+    },
+    "notes": {
+      "name": "Notes",
+      "desc": "Notes Markdown avec aperçu en direct, tags, catégories, étiquettes colorées, pièces jointes et sauvegarde automatique."
+    },
+    "regex": {
+      "name": "Testeur regex",
+      "desc": "Testez des regex en temps réel avec surbrillance des correspondances, groupes de capture, remplacement et aide-mémoire."
+    },
+    "charmap": {
+      "name": "Emoji & CharMap",
+      "desc": "Recherchez et copiez des emojis, symboles et caractères spéciaux. Détails Unicode, entités HTML et récemment utilisés."
+    },
+    "epoch": {
+      "name": "Convertisseur Epoch",
+      "desc": "Convertissez les timestamps Unix en dates lisibles et inversement. Horloge en direct, préréglages et calculateur de différence."
+    },
+    "hash": {
+      "name": "Générateur de hash",
+      "desc": "Générez des hashes MD5, SHA-1, SHA-256, SHA-512 à partir de texte ou de fichiers. Vérifiez les checksums instantanément."
+    },
+    "colorpicker": {
+      "name": "Sélecteur de couleurs",
+      "desc": "Sélectionnez des couleurs et convertissez entre HEX, RGB, HSL. Palette de couleurs et vérificateur de contraste."
+    },
+    "cron": {
+      "name": "Analyseur cron",
+      "desc": "Analysez et générez des expressions cron avec descriptions lisibles et prochaines exécutions."
+    },
+    "password": {
+      "name": "Générateur de mot de passe",
+      "desc": "Générez des mots de passe aléatoires cryptographiquement sûrs et des phrases de passe mémorisables."
+    },
+    "qrcode": {
+      "name": "Générateur QR Code",
+      "desc": "Générez des QR codes depuis du texte, URL, identifiants WiFi ou contacts. Téléchargez en PNG."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Générez du texte de remplissage — paragraphes, phrases ou mots. Plusieurs styles disponibles."
+    },
+    "baseconverter": {
+      "name": "Convertisseur de base",
+      "desc": "Convertissez des nombres entre Binaire, Octal, Décimal et Hexadécimal en temps réel."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Convertissez entre JSON et YAML avec validation syntaxique et formatage."
+    },
+    "httpclient": {
+      "name": "Client HTTP",
+      "desc": "Testez des API comme un mini Postman. Méthodes, en-têtes, corps personnalisés et visualiseur de réponse."
+    },
+    "stringutils": {
+      "name": "Utilitaires de chaînes",
+      "desc": "Conversion de casse, trim, comptage, inversion, générateur de slug et plus d'opérations sur les chaînes."
+    },
+    "chat": {
+      "name": "Chat LAN",
+      "desc": "Chat en temps réel sur votre réseau local. Pas besoin d'internet — juste Dev Helper sur le LAN."
+    },
+    "netscan": {
+      "name": "Scanner réseau",
+      "desc": "Scannez les hôtes et ports du LAN. Découvrez les appareils, services et ports ouverts sur votre réseau."
+    },
+    "worldclock": {
+      "name": "Horloge mondiale",
+      "desc": "Horloges multi-fuseaux avec affichage analogique, planificateur de réunion et réorganisation par glisser."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Extrayez du texte depuis des images et captures d'écran. Glissez, collez ou importez — propulsé par Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Convertissez entre application.yml et application.properties pour les projets Java/Spring Boot."
+    },
+    "netinspect": {
+      "name": "Inspecteur réseau",
+      "desc": "Géolocalisation IP, recherche DNS, en-têtes de réponse HTTP et vérificateur de certificat SSL."
+    },
+    "aichat": {
+      "name": "Chat IA",
+      "desc": "Discutez avec des modèles Ollama locaux. Réponses en streaming, rendu Markdown et historique de conversation."
+    },
+    "speedtest": {
+      "name": "Test de vitesse",
+      "desc": "Testez la vitesse de téléchargement/upload, la latence ping et les performances de lecture/écriture disque."
+    },
+    "snippets": {
+      "name": "Extraits de code",
+      "desc": "Sauvegardez et organisez vos extraits de code fréquemment utilisés avec coloration syntaxique et copie rapide."
+    },
+    "sysmon": {
+      "name": "Moniteur système",
+      "desc": "Surveillance en temps réel du CPU, mémoire, disque, réseau et processus avec jauges dynamiques."
+    },
+    "icons": {
+      "name": "Explorateur d'icônes",
+      "desc": "Parcourez et recherchez des Bootstrap Icons, Font Awesome et Tabler Icons. Cliquez pour copier la classe CSS ou le HTML."
+    },
+    "askai": {
+      "name": "Demander à l'IA",
+      "desc": "Accès rapide à 9 IA cloud (Claude, ChatGPT, Gemini, etc.) et Ollama depuis la barre de navigation."
+    },
+    "translator": {
+      "name": "Traducteur",
+      "desc": "Traduisez du texte entre les langues avec des modèles Ollama locaux. Comme Google Translate, hors ligne."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Glissez-déposez vos fichiers ici",
+    "drop_or_browse": "ou cliquez pour parcourir",
+    "paste_hint": "Vous pouvez aussi coller depuis le presse-papiers (Ctrl+V)",
+    "recent_uploads": "Imports récents",
+    "clear_recent": "Effacer les récents",
+    "copy_url": "Copier l'URL",
+    "open_new_tab": "Ouvrir dans un nouvel onglet",
+    "file_uploaded": "Fichier importé avec succès",
+    "upload_failed": "Échec de l'import"
+  },
+  "files_page": {
+    "search_placeholder": "Rechercher des fichiers...",
+    "grid_view": "Grille",
+    "list_view": "Liste",
+    "delete_all": "Tout supprimer",
+    "confirm_delete_all": "Êtes-vous sûr de vouloir supprimer tous les fichiers ?",
+    "no_files": "Aucun fichier trouvé",
+    "file_deleted": "Fichier supprimé",
+    "download": "Télécharger",
+    "file_size": "Taille",
+    "file_date": "Date"
+  },
+  "prettify_page": {
+    "input_label": "Entrée",
+    "output_label": "Sortie",
+    "prettify": "Embellir",
+    "minify": "Minifier",
+    "paste_placeholder": "Collez ou tapez du code ici...",
+    "auto_detect": "Détection auto",
+    "copy_output": "Copier la sortie"
+  },
+  "logs_page": {
+    "app": "Appli",
+    "level": "Niveau",
+    "search_placeholder": "Rechercher dans les logs...",
+    "clear_logs": "Effacer les logs",
+    "auto_scroll": "Défilement auto",
+    "no_logs": "Aucun log trouvé",
+    "all_apps": "Toutes les applis",
+    "all_levels": "Tous les niveaux",
+    "timestamp": "Horodatage",
+    "message": "Message"
+  },
+  "logviewer_page": {
+    "upload_log": "Importer un fichier de log",
+    "search_placeholder": "Mot-clé ou regex...",
+    "use_regex": "Regex",
+    "case_sensitive": "Sensible à la casse",
+    "context_lines": "Lignes de contexte",
+    "showing_lines": "Affichage de {shown} sur {total} lignes",
+    "no_matches": "Aucune correspondance trouvée",
+    "line": "Ligne"
+  },
+  "editor_page": {
+    "new_file": "Nouveau",
+    "open_file": "Ouvrir un fichier",
+    "save_file": "Enregistrer",
+    "word_wrap": "Retour à la ligne",
+    "minimap": "Minimap",
+    "line": "Ligne",
+    "column": "Col",
+    "language": "Langage",
+    "fetch_url": "Récupérer depuis une URL",
+    "url_placeholder": "Entrez l'URL du fichier..."
+  },
+  "markdown_page": {
+    "samples": "Exemples",
+    "open_file": "Ouvrir un fichier",
+    "copy_html": "Copier le HTML",
+    "export": "Exporter",
+    "export_pdf": "Exporter en PDF",
+    "export_md": "Exporter en Markdown",
+    "export_html": "Exporter en HTML",
+    "clear": "Effacer",
+    "expand": "Agrandir",
+    "editor_label": "Markdown",
+    "preview_label": "Aperçu",
+    "drop_zone": "Glissez-déposez un fichier Markdown ici, ou cliquez pour parcourir",
+    "url_placeholder": "Entrez l'URL du fichier .md",
+    "fetch": "Récupérer",
+    "html_copied": "HTML copié !",
+    "readme": "README",
+    "api_docs": "Documentation API",
+    "changelog": "Journal des modifications",
+    "blog_post": "Article de blog",
+    "cheatsheet": "Aide-mémoire Markdown",
+    "meeting_notes": "Notes de réunion",
+    "project_todo": "TODO du projet"
+  },
+  "diff_page": {
+    "original": "Original",
+    "modified": "Modifié",
+    "side_by_side": "Côte à côte",
+    "inline": "Intégré",
+    "open_file": "Ouvrir un fichier",
+    "paste_code": "Collez du code ici...",
+    "swap": "Inverser",
+    "no_differences": "Aucune différence trouvée"
+  },
+  "jwt_page": {
+    "header": "En-tête",
+    "payload": "Payload",
+    "signature": "Signature",
+    "secret": "Clé secrète",
+    "algorithm": "Algorithme",
+    "encode": "Encoder",
+    "decode": "Décoder",
+    "verify": "Vérifier",
+    "valid_signature": "Signature valide",
+    "invalid_signature": "Signature invalide",
+    "paste_jwt": "Collez un token JWT ici..."
+  },
+  "base64_page": {
+    "text_mode": "Texte",
+    "file_mode": "Fichier",
+    "url_safe": "URL-safe",
+    "line_breaks": "Sauts de ligne",
+    "input_placeholder": "Entrez le texte à encoder/décoder...",
+    "drop_file": "Déposez un fichier ici ou cliquez pour parcourir",
+    "download_result": "Télécharger le résultat"
+  },
+  "urlencoder_page": {
+    "component_mode": "Composant",
+    "full_url_mode": "URL complète",
+    "url_parser": "Analyseur URL",
+    "protocol": "Protocole",
+    "host": "Hôte",
+    "path": "Chemin",
+    "params": "Paramètres",
+    "input_placeholder": "Entrez une URL ou du texte à encoder/décoder..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Code source",
+    "import_html": "Importer HTML",
+    "export_html": "Exporter HTML",
+    "clear": "Effacer"
+  },
+  "mermaid_page": {
+    "samples": "Exemples",
+    "download_svg": "Télécharger SVG",
+    "download_png": "Télécharger PNG",
+    "share": "Partager",
+    "zoom_in": "Zoom avant",
+    "zoom_out": "Zoom arrière",
+    "reset_zoom": "Réinitialiser le zoom",
+    "diagram_label": "Code Mermaid",
+    "preview_label": "Aperçu",
+    "link_copied": "Lien de partage copié !",
+    "flowchart": "Organigramme",
+    "sequence": "Diagramme de séquence",
+    "class_diagram": "Diagramme de classes",
+    "state": "Diagramme d'états",
+    "er": "Diagramme ER",
+    "gantt": "Diagramme de Gantt",
+    "pie": "Diagramme circulaire",
+    "mindmap": "Carte mentale",
+    "timeline": "Chronologie",
+    "quadrant": "Diagramme en quadrants",
+    "git": "Graphe Git",
+    "sankey": "Diagramme de Sankey"
+  },
+  "uuid_page": {
+    "version": "Version",
+    "bulk_generate": "Génération en masse",
+    "validate_parse": "Valider & Analyser",
+    "count": "Nombre",
+    "uppercase": "Majuscules",
+    "braces": "Accolades",
+    "hyphens": "Tirets",
+    "copy_all": "Tout copier",
+    "generated": "Générés",
+    "valid_uuid": "UUID valide",
+    "invalid_uuid": "UUID invalide",
+    "uuid_version": "Version",
+    "uuid_variant": "Variante",
+    "uuid_timestamp": "Horodatage"
+  },
+  "notes_page": {
+    "new_note": "Nouvelle note",
+    "search_placeholder": "Rechercher des notes...",
+    "categories": "Catégories",
+    "all_notes": "Toutes les notes",
+    "pinned": "Épinglées",
+    "trash": "Corbeille",
+    "restore": "Restaurer",
+    "permanent_delete": "Supprimer définitivement",
+    "note_saved": "Note enregistrée",
+    "note_deleted": "Note déplacée dans la corbeille",
+    "untitled": "Note sans titre",
+    "attachments": "Pièces jointes",
+    "color_label": "Étiquette de couleur",
+    "sort_by": "Trier par",
+    "date_modified": "Date de modification",
+    "date_created": "Date de création"
+  },
+  "regex_page": {
+    "pattern": "Motif",
+    "test_string": "Texte de test",
+    "flags": "Options",
+    "matches": "Correspondances",
+    "replace": "Remplacer",
+    "replacement": "Remplacement",
+    "cheat_sheet": "Aide-mémoire",
+    "common_patterns": "Motifs courants",
+    "no_matches": "Aucune correspondance",
+    "match_count": "{count} correspondances trouvées",
+    "global": "Global",
+    "case_insensitive": "Insensible à la casse",
+    "multiline": "Multiligne"
+  },
+  "charmap_page": {
+    "search_placeholder": "Rechercher un emoji ou caractère...",
+    "recently_used": "Récemment utilisés",
+    "unicode": "Unicode",
+    "html_entity": "Entité HTML",
+    "css_code": "Code CSS",
+    "copy_char": "Cliquez pour copier",
+    "smileys": "Visages & Personnes",
+    "animals": "Animaux & Nature",
+    "food": "Nourriture & Boissons",
+    "activities": "Activités",
+    "travel": "Voyages & Lieux",
+    "objects": "Objets",
+    "symbols": "Symboles",
+    "flags": "Drapeaux",
+    "arrows": "Flèches",
+    "math": "Mathématiques",
+    "currency": "Devises",
+    "latin": "Latin étendu"
+  },
+  "epoch_page": {
+    "timestamp": "Horodatage",
+    "date_time": "Date & Heure",
+    "now": "Maintenant",
+    "seconds": "Secondes",
+    "milliseconds": "Millisecondes",
+    "local_time": "Heure locale",
+    "utc_time": "Heure UTC",
+    "relative": "Relatif",
+    "time_diff": "Différence de temps",
+    "presets": "Préréglages",
+    "live_clock": "Horloge en direct"
+  },
+  "hash_page": {
+    "text_input": "Saisie de texte",
+    "file_input": "Saisie de fichier",
+    "compare": "Comparer les hashes",
+    "hash_match": "Les hashes correspondent !",
+    "hash_mismatch": "Les hashes ne correspondent pas",
+    "drop_file": "Déposez un fichier pour le hacher...",
+    "computing": "Calcul du hash..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Vérification du contraste",
+    "foreground": "Premier plan",
+    "background": "Arrière-plan",
+    "ratio": "Ratio",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Réussi",
+    "fail": "Échoué",
+    "palette": "Palette",
+    "shades": "Teintes foncées",
+    "tints": "Teintes claires",
+    "pick_color": "Choisir une couleur",
+    "eyedropper": "Pipette"
+  },
+  "cron_page": {
+    "expression": "Expression",
+    "description_label": "Description",
+    "next_runs": "Prochaines exécutions",
+    "presets": "Préréglages",
+    "minute": "Minute",
+    "hour": "Heure",
+    "day_month": "Jour (Mois)",
+    "month": "Mois",
+    "day_week": "Jour (Semaine)",
+    "every_minute": "Chaque minute",
+    "every_hour": "Chaque heure",
+    "every_day": "Chaque jour à minuit",
+    "share": "Partager"
+  },
+  "password_page": {
+    "password": "Mot de passe",
+    "passphrase": "Phrase de passe",
+    "length": "Longueur",
+    "uppercase": "Majuscules (A-Z)",
+    "lowercase": "Minuscules (a-z)",
+    "numbers": "Chiffres (0-9)",
+    "symbols": "Symboles (!@#$...)",
+    "word_count": "Nombre de mots",
+    "separator": "Séparateur",
+    "strength": "Force",
+    "entropy": "Entropie",
+    "very_weak": "Très faible",
+    "weak": "Faible",
+    "fair": "Moyen",
+    "strong": "Fort",
+    "very_strong": "Très fort",
+    "bulk_generate": "Génération en masse",
+    "generate_count": "Nombre"
+  },
+  "qrcode_page": {
+    "text_url": "Texte / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Entrez du texte ou une URL...",
+    "network_name": "Nom du réseau (SSID)",
+    "wifi_password": "Mot de passe",
+    "encryption": "Chiffrement",
+    "hidden_network": "Réseau caché",
+    "full_name": "Nom complet",
+    "phone": "Téléphone",
+    "email": "Email",
+    "organization": "Organisation",
+    "error_correction": "Correction d'erreur",
+    "foreground_color": "Premier plan",
+    "background_color": "Arrière-plan",
+    "download_png": "Télécharger PNG",
+    "download_svg": "Télécharger SVG",
+    "copy_image": "Copier l'image"
+  },
+  "lorem_page": {
+    "paragraphs": "Paragraphes",
+    "sentences": "Phrases",
+    "words": "Mots",
+    "style": "Style",
+    "classic": "Classique",
+    "hipster": "Hipster",
+    "tech": "Tech / Dev",
+    "include_html": "Inclure les balises HTML",
+    "start_lorem": "Commencer par « Lorem ipsum... »",
+    "generated_text": "Texte généré",
+    "copy_text": "Copier le texte"
+  },
+  "baseconverter_page": {
+    "binary": "Binaire",
+    "octal": "Octal",
+    "decimal": "Décimal",
+    "hexadecimal": "Hexadécimal",
+    "bit_visualization": "Visualisation des bits",
+    "signed": "Signé",
+    "unsigned": "Non signé",
+    "twos_complement": "Complément à deux"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Embellir",
+    "minify": "Minifier",
+    "import_file": "Importer un fichier",
+    "invalid_json": "JSON invalide",
+    "invalid_yaml": "YAML invalide"
+  },
+  "httpclient_page": {
+    "url_placeholder": "Entrez l'URL de la requête...",
+    "method": "Méthode",
+    "headers": "En-têtes",
+    "body": "Corps",
+    "auth": "Auth",
+    "params": "Paramètres",
+    "response": "Réponse",
+    "status_code": "Statut",
+    "response_time": "Temps",
+    "response_size": "Taille",
+    "send_request": "Envoyer",
+    "clear_history": "Effacer l'historique",
+    "no_auth": "Sans auth",
+    "basic_auth": "Auth basique",
+    "bearer_token": "Token Bearer",
+    "username": "Nom d'utilisateur",
+    "token": "Token",
+    "key": "Clé",
+    "add_header": "Ajouter un en-tête",
+    "add_param": "Ajouter un paramètre"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Entrez du texte ici...",
+    "operations": "Opérations",
+    "case_conversion": "Conversion de casse",
+    "text_cleanup": "Nettoyage de texte",
+    "text_transform": "Transformation de texte",
+    "encode_decode": "Encodage / Décodage",
+    "extract_info": "Extraction d'infos",
+    "uppercase": "MAJUSCULES",
+    "lowercase": "minuscules",
+    "title_case": "Casse De Titre",
+    "sentence_case": "Casse de phrase",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Caractères",
+    "word_count": "Mots",
+    "line_count": "Lignes"
+  },
+  "chat_page": {
+    "username_placeholder": "Entrez votre nom...",
+    "message_placeholder": "Tapez un message...",
+    "join": "Rejoindre",
+    "online_users": "Utilisateurs en ligne",
+    "user_joined": "{user} a rejoint le chat",
+    "user_left": "{user} a quitté le chat"
+  },
+  "netscan_page": {
+    "interface": "Interface",
+    "target": "Cible",
+    "ports": "Ports",
+    "scan": "Scanner",
+    "scanning": "Scan en cours...",
+    "open_ports": "Ports ouverts",
+    "host": "Hôte",
+    "port": "Port",
+    "service": "Service",
+    "scan_complete": "Scan terminé",
+    "common_ports": "Ports courants",
+    "custom_range": "Plage personnalisée"
+  },
+  "worldclock_page": {
+    "add_clock": "Ajouter une horloge",
+    "your_local_time": "Votre heure locale",
+    "meeting_planner": "Planificateur de réunion",
+    "timezone": "Fuseau horaire",
+    "search_timezone": "Rechercher un fuseau...",
+    "remove_clock": "Supprimer"
+  },
+  "ocr_page": {
+    "upload_image": "Importer une image",
+    "paste_image": "Coller une image",
+    "drop_image": "Glissez-déposez une image ici",
+    "extract_text": "Extraire le texte",
+    "extracted_text": "Texte extrait",
+    "copy_result": "Copier le résultat",
+    "recognizing": "Reconnaissance du texte...",
+    "no_text_found": "Aucun texte trouvé dans l'image",
+    "supported_formats": "Formats supportés : PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Importer un fichier",
+    "download_result": "Télécharger"
+  },
+  "aichat_page": {
+    "model": "Modèle",
+    "no_models": "Aucun modèle trouvé. Ollama est-il en cours d'exécution ?",
+    "message_placeholder": "Tapez votre message...",
+    "clear_chat": "Effacer le chat",
+    "thinking": "Réflexion...",
+    "ollama_not_running": "Impossible de se connecter à Ollama",
+    "connection_error": "Erreur de connexion"
+  },
+  "speedtest_page": {
+    "start_test": "Lancer le test",
+    "ping": "Ping",
+    "download_speed": "Téléchargement",
+    "upload_speed": "Upload",
+    "disk_speed": "Disque",
+    "latency": "Latence",
+    "read_speed": "Lecture",
+    "write_speed": "Écriture",
+    "testing": "Test en cours...",
+    "test_complete": "Test terminé"
+  },
+  "snippets_page": {
+    "new_snippet": "Nouvel extrait",
+    "search_placeholder": "Rechercher des extraits...",
+    "title_placeholder": "Titre de l'extrait...",
+    "desc_placeholder": "Description (optionnel)",
+    "tags_placeholder": "Tags (séparés par des virgules)",
+    "save_snippet": "Enregistrer",
+    "delete_snippet": "Supprimer",
+    "copy_code": "Copier le code",
+    "language": "Langage",
+    "default_loaded": "Extraits par défaut chargés",
+    "snippet_saved": "Extrait enregistré",
+    "snippet_deleted": "Extrait supprimé",
+    "code_copied": "Code copié !",
+    "no_snippets": "Aucun extrait trouvé",
+    "pinned": "Épinglés",
+    "all_snippets": "Tous les extraits"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Mémoire",
+    "disk": "Disque",
+    "network": "Réseau",
+    "processes": "Processus",
+    "usage": "Utilisation",
+    "total": "Total",
+    "used": "Utilisé",
+    "free": "Libre",
+    "available": "Disponible",
+    "cores": "Cœurs",
+    "uptime": "Temps de fonctionnement",
+    "pid": "PID",
+    "process_name": "Nom",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Mémoire %",
+    "connecting": "Connexion...",
+    "disconnected": "Déconnecté",
+    "bytes_sent": "Envoyés",
+    "bytes_recv": "Reçus",
+    "read_speed": "Lecture",
+    "write_speed": "Écriture"
+  },
+  "icons_page": {
+    "search_placeholder": "Rechercher des icônes...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "Toutes",
+    "recently_used": "Récemment utilisées",
+    "class_name": "Classe",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Copier la classe",
+    "copy_html": "Copier le HTML",
+    "icon_count": "{count} icônes",
+    "loading_icons": "Chargement des icônes...",
+    "click_to_view": "Cliquez sur une icône pour voir les détails"
+  },
+  "netinspect_page": {
+    "my_ip": "Mon IP",
+    "ip_lookup": "Recherche IP",
+    "dns_lookup": "Recherche DNS",
+    "http_headers": "En-têtes HTTP",
+    "ssl_cert": "Certificat SSL",
+    "lookup": "Rechercher",
+    "check": "Vérifier",
+    "ip_placeholder": "Entrez une adresse IP...",
+    "domain_placeholder": "Entrez un nom de domaine...",
+    "url_placeholder": "Entrez une URL...",
+    "location": "Localisation",
+    "isp": "FAI",
+    "record_type": "Type d'enregistrement",
+    "issuer": "Émetteur",
+    "valid_from": "Valide à partir de",
+    "valid_until": "Valide jusqu'à",
+    "subject": "Sujet"
+  },
+  "translator_page": {
+    "source_lang": "Langue source",
+    "target_lang": "Langue cible",
+    "auto_detect": "Détection auto",
+    "translate": "Traduire",
+    "translating": "Traduction...",
+    "swap_languages": "Inverser les langues",
+    "input_placeholder": "Entrez le texte à traduire...",
+    "model": "Modèle",
+    "copy_translation": "Copier la traduction",
+    "translation_copied": "Traduction copiée !",
+    "clear_all": "Tout effacer",
+    "char_count": "{count} caractères"
+  }
+}

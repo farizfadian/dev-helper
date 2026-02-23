@@ -1,0 +1,248 @@
+{{define "content"}}
+<h4 class="mb-3">
+    <i class="bi bi-speedometer2"></i> Speed Test
+    <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="speedtest" title="Pin to navbar" onclick="togglePin(this.dataset.tool)"></i>
+</h4>
+
+<!-- Tabs -->
+<ul class="nav nav-tabs mb-3" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="networkTabBtn" data-bs-toggle="tab" data-bs-target="#networkPane" type="button" role="tab">
+            <i class="bi bi-globe"></i> Network
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="diskTabBtn" data-bs-toggle="tab" data-bs-target="#diskPane" type="button" role="tab">
+            <i class="bi bi-hdd"></i> Disk
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <!-- ═══ Network Tab ═══ -->
+    <div class="tab-pane fade show active" id="networkPane" role="tabpanel">
+        <!-- Gauge -->
+        <div class="text-center mb-3">
+            <svg viewBox="0 0 200 130" width="280" id="netGaugeSvg">
+                <defs>
+                    <linearGradient id="netGrad" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#ff4444"/>
+                        <stop offset="50%" stop-color="#ffbb33"/>
+                        <stop offset="100%" stop-color="#00C851"/>
+                    </linearGradient>
+                </defs>
+                <!-- Background arc -->
+                <path d="M 20 105 A 80 80 0 0 1 180 105" fill="none" stroke="var(--bs-border-color)" stroke-width="14" stroke-linecap="round"/>
+                <!-- Foreground arc -->
+                <path d="M 20 105 A 80 80 0 0 1 180 105" fill="none" stroke="url(#netGrad)" stroke-width="14" stroke-linecap="round"
+                    id="netGaugeArc" style="stroke-dasharray: 251.33; stroke-dashoffset: 251.33; transition: stroke-dashoffset 0.3s ease-out;"/>
+                <!-- Speed value -->
+                <text x="100" y="82" text-anchor="middle" font-size="32" font-weight="bold" fill="currentColor" id="netGaugeValue">0</text>
+                <!-- Unit -->
+                <text x="100" y="100" text-anchor="middle" font-size="12" fill="var(--bs-secondary-color)" id="netGaugeUnit">Mbps</text>
+                <!-- Status label -->
+                <text x="100" y="122" text-anchor="middle" font-size="10" fill="var(--bs-secondary-color)" id="netGaugeLabel">Ready</text>
+                <!-- Min/Max labels -->
+                <text x="18" y="120" text-anchor="middle" font-size="8" fill="var(--bs-secondary-color)">0</text>
+                <text x="182" y="120" text-anchor="middle" font-size="8" fill="var(--bs-secondary-color)">1000</text>
+            </svg>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="mb-3 d-none" id="netProgress">
+            <div class="progress" style="height: 22px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" id="netProgressBar" style="width: 0%;">Starting...</div>
+            </div>
+        </div>
+
+        <!-- Start / Stop buttons -->
+        <div class="text-center mb-3">
+            <button class="btn btn-primary btn-lg" id="netStartBtn">
+                <i class="bi bi-play-fill"></i> Start Network Test
+            </button>
+            <button class="btn btn-danger btn-lg d-none" id="netStopBtn">
+                <i class="bi bi-stop-fill"></i> Stop
+            </button>
+        </div>
+
+        <!-- Result cards -->
+        <div class="row g-3 mb-3">
+            <div class="col-md-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <div class="text-muted small mb-1"><i class="bi bi-arrow-down-circle text-success"></i> Download</div>
+                        <div class="fs-4 fw-bold" id="downloadResult">-</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <div class="text-muted small mb-1"><i class="bi bi-arrow-up-circle text-primary"></i> Upload</div>
+                        <div class="fs-4 fw-bold" id="uploadResult">-</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <div class="text-muted small mb-1"><i class="bi bi-stopwatch text-warning"></i> Ping</div>
+                        <div class="fs-4 fw-bold" id="pingResult">-</div>
+                        <div class="text-muted small" id="pingJitter"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="row g-2 mb-3 align-items-center">
+            <div class="col-auto">
+                <label class="form-label mb-0 small text-muted">Download</label>
+            </div>
+            <div class="col-auto">
+                <select class="form-select form-select-sm" id="downloadSize" style="width: auto;">
+                    <option value="5">5 MB</option>
+                    <option value="10" selected>10 MB</option>
+                    <option value="25">25 MB</option>
+                    <option value="50">50 MB</option>
+                    <option value="100">100 MB</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <label class="form-label mb-0 small text-muted">Upload</label>
+            </div>
+            <div class="col-auto">
+                <select class="form-select form-select-sm" id="uploadSize" style="width: auto;">
+                    <option value="2">2 MB</option>
+                    <option value="5">5 MB</option>
+                    <option value="10" selected>10 MB</option>
+                    <option value="25">25 MB</option>
+                    <option value="50">50 MB</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <label class="form-label mb-0 small text-muted">Pings</label>
+            </div>
+            <div class="col-auto">
+                <select class="form-select form-select-sm" id="pingCount" style="width: auto;">
+                    <option value="10">10</option>
+                    <option value="20" selected>20</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ Disk Tab ═══ -->
+    <div class="tab-pane fade" id="diskPane" role="tabpanel">
+        <!-- Path & Size -->
+        <div class="row g-2 mb-3 align-items-end">
+            <div class="col-md-6">
+                <label class="form-label small">Path <span class="text-muted">(empty = system temp dir)</span></label>
+                <input type="text" class="form-control form-control-sm" id="diskPath" placeholder="e.g. \\192.168.1.10\shared or /mnt/nas">
+            </div>
+            <div class="col-auto">
+                <label class="form-label small">Size</label>
+                <select class="form-select form-select-sm" id="diskSize">
+                    <option value="10">10 MB</option>
+                    <option value="50">50 MB</option>
+                    <option value="100" selected>100 MB</option>
+                    <option value="250">250 MB</option>
+                    <option value="500">500 MB</option>
+                    <option value="1000">1 GB</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-success btn-sm" id="diskStartBtn">
+                    <i class="bi bi-play-fill"></i> Run Disk Test
+                </button>
+                <button class="btn btn-danger btn-sm d-none" id="diskStopBtn">
+                    <i class="bi bi-stop-fill"></i> Stop
+                </button>
+            </div>
+        </div>
+
+        <!-- Gauge -->
+        <div class="text-center mb-3">
+            <svg viewBox="0 0 200 130" width="280" id="diskGaugeSvg">
+                <defs>
+                    <linearGradient id="diskGrad" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#ff4444"/>
+                        <stop offset="50%" stop-color="#ffbb33"/>
+                        <stop offset="100%" stop-color="#00C851"/>
+                    </linearGradient>
+                </defs>
+                <path d="M 20 105 A 80 80 0 0 1 180 105" fill="none" stroke="var(--bs-border-color)" stroke-width="14" stroke-linecap="round"/>
+                <path d="M 20 105 A 80 80 0 0 1 180 105" fill="none" stroke="url(#diskGrad)" stroke-width="14" stroke-linecap="round"
+                    id="diskGaugeArc" style="stroke-dasharray: 251.33; stroke-dashoffset: 251.33; transition: stroke-dashoffset 0.3s ease-out;"/>
+                <text x="100" y="82" text-anchor="middle" font-size="32" font-weight="bold" fill="currentColor" id="diskGaugeValue">0</text>
+                <text x="100" y="100" text-anchor="middle" font-size="12" fill="var(--bs-secondary-color)" id="diskGaugeUnit">MB/s</text>
+                <text x="100" y="122" text-anchor="middle" font-size="10" fill="var(--bs-secondary-color)" id="diskGaugeLabel">Ready</text>
+                <text x="18" y="120" text-anchor="middle" font-size="8" fill="var(--bs-secondary-color)">0</text>
+                <text x="182" y="120" text-anchor="middle" font-size="8" fill="var(--bs-secondary-color)">5000</text>
+            </svg>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="mb-3 d-none" id="diskProgress">
+            <div class="progress" style="height: 22px;">
+                <div class="progress-bar" id="diskProgressBar" style="width: 0%;">Preparing...</div>
+            </div>
+        </div>
+
+        <!-- Result cards -->
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <div class="text-muted small mb-1"><i class="bi bi-pencil-square text-success"></i> Write Speed</div>
+                        <div class="fs-4 fw-bold" id="writeResult">-</div>
+                        <div class="text-muted small" id="writeDuration"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <div class="text-muted small mb-1"><i class="bi bi-book text-primary"></i> Read Speed</div>
+                        <div class="fs-4 fw-bold" id="readResult">-</div>
+                        <div class="text-muted small" id="readDuration"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disk path info -->
+        <div class="text-muted small mb-3" id="diskPathInfo"></div>
+    </div>
+</div>
+
+<!-- History -->
+<div class="card mt-4">
+    <div class="card-header d-flex align-items-center justify-content-between py-2">
+        <span class="fw-bold small"><i class="bi bi-clock-history"></i> History</span>
+        <button class="btn btn-sm btn-outline-danger" id="clearHistoryBtn" title="Clear history"><i class="bi bi-trash3"></i></button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-sm table-hover mb-0 small">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Time</th>
+                    <th>Type</th>
+                    <th><i class="bi bi-arrow-down"></i> Down / Write</th>
+                    <th><i class="bi bi-arrow-up"></i> Up / Read</th>
+                    <th>Ping</th>
+                </tr>
+            </thead>
+            <tbody id="historyBody">
+                <tr><td colspan="6" class="text-center text-muted">No test results yet</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/speedtest.js"></script>
+{{end}}

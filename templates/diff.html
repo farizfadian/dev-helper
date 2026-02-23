@@ -30,11 +30,14 @@
     }
 </style>
 
+<!-- Focus wrapper -->
+<div id="focusWrapper" class="focus-wrapper">
+
 <!-- Toolbar -->
-<div class="d-flex justify-content-between align-items-center mb-2">
+<div class="d-flex justify-content-between align-items-center mb-2 focus-toolbar">
     <h5 class="mb-0"><i class="bi bi-file-diff"></i> Code Comparison <i id="pinToggle" data-tool="diff" class="bi bi-star pin-star" onclick="togglePin('diff')"></i></h5>
     <div class="d-flex align-items-center gap-2 flex-wrap">
-        <select id="languageSelect" class="form-select form-select-sm" style="width: auto; min-width: 120px;">
+        <select id="languageSelect" class="form-select form-select-sm focus-hide" style="width: auto; min-width: 120px;">
             <option value="plaintext">Plain Text</option>
             <option value="javascript">JavaScript</option>
             <option value="typescript">TypeScript</option>
@@ -56,20 +59,23 @@
             <option value="yaml">YAML</option>
             <option value="markdown">Markdown</option>
         </select>
-        <button class="btn btn-sm btn-outline-secondary" id="inlineToggle" title="Toggle inline/side-by-side">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="inlineToggle" title="Toggle inline/side-by-side">
             <i class="bi bi-layout-split"></i> Side by Side
         </button>
-        <button class="btn btn-sm btn-outline-secondary" id="swapBtn" title="Swap original and modified">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="swapBtn" title="Swap original and modified">
             <i class="bi bi-arrow-left-right"></i> Swap
         </button>
-        <button class="btn btn-sm btn-outline-secondary" id="clearBtn" title="Clear both">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="clearBtn" title="Clear both">
             <i class="bi bi-x-lg"></i> Clear
+        </button>
+        <button class="btn btn-sm btn-outline-primary" id="focusModeBtn" title="Expand (F11)">
+            <i class="bi bi-arrows-fullscreen"></i> Expand
         </button>
     </div>
 </div>
 
 <!-- File Upload Row -->
-<div class="row g-2 mb-2">
+<div class="row g-2 mb-2 focus-hide">
     <div class="col-md-6">
         <div class="file-drop" id="dropOriginal">
             <i class="bi bi-file-earmark-arrow-up"></i> Drop or click to load <strong>Original</strong> file
@@ -85,13 +91,17 @@
 </div>
 
 <!-- Diff Editor Container -->
-<div id="diffContainer" style="height: calc(100vh - 290px); min-height: 400px;"></div>
+<div class="focus-grow">
+    <div id="diffContainer" class="focus-fill" style="height: calc(100vh - 290px); min-height: 400px;"></div>
+</div>
 
 <!-- Status Bar -->
 <div class="status-bar d-flex justify-content-between">
     <span id="statusLeft">Ready</span>
     <span id="statusRight">Plain Text</span>
 </div>
+
+</div><!-- /focus-wrapper -->
 {{end}}
 
 {{define "scripts"}}

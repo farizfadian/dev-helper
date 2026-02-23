@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "نسخ",
+    "copied": "تم النسخ!",
+    "clear": "مسح",
+    "save": "حفظ",
+    "saved": "تم الحفظ!",
+    "delete": "حذف",
+    "cancel": "إلغاء",
+    "close": "إغلاق",
+    "open": "فتح",
+    "search": "بحث",
+    "loading": "جار التحميل...",
+    "error": "خطأ",
+    "success": "نجاح",
+    "warning": "تحذير",
+    "info": "معلومات",
+    "yes": "نعم",
+    "no": "لا",
+    "confirm": "تأكيد",
+    "download": "تنزيل",
+    "upload": "رفع",
+    "export": "تصدير",
+    "import": "استيراد",
+    "expand": "توسيع",
+    "exit": "خروج",
+    "file": "ملف",
+    "settings": "إعدادات",
+    "none": "لا شيء",
+    "all": "الكل",
+    "reset": "إعادة تعيين",
+    "apply": "تطبيق",
+    "preview": "معاينة",
+    "source": "المصدر",
+    "result": "النتيجة",
+    "input": "إدخال",
+    "output": "إخراج",
+    "generate": "توليد",
+    "encode": "ترميز",
+    "decode": "فك الترميز",
+    "paste": "لصق",
+    "swap": "تبديل",
+    "back": "رجوع",
+    "next": "التالي",
+    "samples": "أمثلة",
+    "history": "السجل",
+    "options": "خيارات",
+    "format": "تنسيق",
+    "validate": "تحقق",
+    "convert": "تحويل",
+    "raw": "خام",
+    "send": "إرسال",
+    "stop": "إيقاف",
+    "start": "بدء",
+    "refresh": "تحديث",
+    "browse": "استعراض",
+    "select": "اختيار",
+    "add": "إضافة",
+    "remove": "إزالة",
+    "edit": "تعديل",
+    "share": "مشاركة",
+    "pin": "تثبيت",
+    "unpin": "إلغاء التثبيت",
+    "new": "جديد",
+    "text": "نص",
+    "type": "نوع",
+    "size": "حجم",
+    "name": "اسم",
+    "value": "قيمة",
+    "status": "الحالة",
+    "actions": "إجراءات",
+    "description": "وصف",
+    "category": "فئة",
+    "tags": "وسوم",
+    "language": "اللغة",
+    "title": "عنوان",
+    "content": "محتوى",
+    "count": "عدد",
+    "length": "طول",
+    "total": "المجموع",
+    "or": "أو",
+    "and": "و",
+    "no_data": "لا توجد بيانات",
+    "no_results": "لم يتم العثور على نتائج",
+    "confirm_delete": "هل أنت متأكد من أنك تريد حذف هذا؟",
+    "drag_drop": "اسحب وأفلت الملف هنا",
+    "processing": "جار المعالجة...",
+    "done": "تم",
+    "copied_to_clipboard": "تم النسخ إلى الحافظة!",
+    "failed_to_copy": "فشل النسخ",
+    "keyboard_shortcuts": "اختصارات لوحة المفاتيح",
+    "toggle_fullscreen": "تبديل ملء الشاشة (F11)",
+    "exit_fullscreen": "الخروج من ملء الشاشة (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "بحث",
+    "search_tools": "البحث عن أدوات...",
+    "more": "المزيد",
+    "all_tools": "جميع الأدوات",
+    "ask_ai": "اسأل AI",
+    "cloud_ai": "AI سحابي",
+    "local_ai": "AI محلي",
+    "language": "اللغة",
+    "pinned_to_navbar": "تم تثبيته في شريط التنقل",
+    "unpinned_from_navbar": "تم إلغاء تثبيته من شريط التنقل",
+    "pin_to_navbar": "تثبيت في شريط التنقل",
+    "unpin_from_navbar": "إلغاء التثبيت من شريط التنقل",
+    "open_navigation": "فتح التنقل"
+  },
+  "theme": {
+    "light": "فاتح",
+    "dark": "داكن",
+    "auto": "تلقائي",
+    "switch_theme": "تغيير المظهر"
+  },
+  "spotlight": {
+    "placeholder": "البحث عن أدوات...",
+    "no_results": "لم يتم العثور على أدوات لـ \"{query}\"",
+    "navigate": "تنقل",
+    "open": "فتح",
+    "close": "إغلاق"
+  },
+  "drawer": {
+    "search": "بحث",
+    "theme": "المظهر",
+    "pinned": "المثبتة",
+    "file_code": "ملفات وأكواد",
+    "encode_decode": "ترميز وفك ترميز",
+    "converters": "محولات",
+    "generators": "مولدات",
+    "tools_section": "أدوات",
+    "logs_network": "سجلات وشبكات",
+    "all_tools": "جميع الأدوات"
+  },
+  "footer": {
+    "made_by": "صنع بـ ❤️ بواسطة"
+  },
+  "ai": {
+    "ask": "اسأل",
+    "prompt_placeholder": "ماذا تريد أن تسأل؟",
+    "enter_to_send": "Enter للإرسال",
+    "shift_enter_newline": "Shift+Enter لسطر جديد",
+    "open_without_prompt": "فتح بدون سؤال",
+    "ollama_url": "رابط Ollama",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "أدخل رابط واجهة Ollama"
+  },
+  "dashboard": {
+    "search_placeholder": "البحث عن أدوات...",
+    "pinned_tools": "الأدوات المثبتة",
+    "all_tools": "جميع الأدوات",
+    "no_results": "لم يتم العثور على أدوات مطابقة لبحثك.",
+    "open_source_toolkit": "مجموعة أدوات تطوير مفتوحة المصدر",
+    "tools_count": "{count} أداة متاحة"
+  },
+  "tools": {
+    "upload": {
+      "name": "رفع الملفات",
+      "desc": "اسحب وأفلت، أو الصق، أو استعرض الملفات لرفعها. معاينة الصور مع عرض مكبر."
+    },
+    "files": {
+      "name": "مستعرض الملفات",
+      "desc": "تصفح وابحث وأدر الملفات المرفوعة في عرض شبكي يشبه Google Drive."
+    },
+    "prettify": {
+      "name": "تجميل الكود",
+      "desc": "تنسيق وتجميل أكواد JSON و XML و HTML و CSS و JavaScript و SQL."
+    },
+    "logs": {
+      "name": "مجمع السجلات",
+      "desc": "مجمع سجلات خفيف. استقبل السجلات من أي تطبيق عبر HTTP POST، مع تصفية حسب التطبيق والمستوى."
+    },
+    "logviewer": {
+      "name": "عارض السجلات",
+      "desc": "ارفع وابحث في ملفات السجلات الكبيرة مع تصفية بالكلمات المفتاحية و regex وأسطر السياق."
+    },
+    "editor": {
+      "name": "محرر الأكواد",
+      "desc": "محرر أكواد متكامل مدعوم بـ Monaco (VS Code). تلوين بناء الجملة لأكثر من 40 لغة."
+    },
+    "markdown": {
+      "name": "عارض Markdown",
+      "desc": "اكتب Markdown مع معاينة مباشرة، وكتل أكواد ملونة، ودعم GFM."
+    },
+    "diff": {
+      "name": "مقارنة الأكواد",
+      "desc": "قارن بين ملفين من الأكواد جنباً إلى جنب أو مدمجاً مع عرض الفروقات الملون."
+    },
+    "jwt": {
+      "name": "أداة JWT",
+      "desc": "ترميز وفك ترميز والتحقق من JSON Web Tokens. يدعم HS256/384/512 مع عرض ملون."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "ترميز وفك ترميز نصوص Base64. يدعم النصوص والملفات الثنائية مع خيار URL-safe."
+    },
+    "urlencoder": {
+      "name": "مرمز URL",
+      "desc": "ترميز وفك ترميز عناوين URL ومعاملات الاستعلام. محلل URL يعرض البروتوكول والمضيف والمسار والمعاملات."
+    },
+    "htmleditor": {
+      "name": "محرر HTML",
+      "desc": "محرر نصوص غني WYSIWYG مدعوم بـ TinyMCE مع تبديل عرض كود HTML المصدري."
+    },
+    "mermaid": {
+      "name": "مخططات Mermaid",
+      "desc": "أنشئ مخططات انسيابية ومخططات تسلسلية و ER و Gantt والمزيد مع معاينة Mermaid.js المباشرة."
+    },
+    "uuid": {
+      "name": "مولد UUID",
+      "desc": "توليد UUID v1 و v4 و v7. توليد جماعي، تحقق، تحليل، ونسخ مع خيارات التنسيق."
+    },
+    "notes": {
+      "name": "ملاحظات",
+      "desc": "ملاحظات Markdown مع معاينة مباشرة، وسوم، فئات، تسميات ملونة، مرفقات، وحفظ تلقائي."
+    },
+    "regex": {
+      "name": "اختبار regex",
+      "desc": "اختبر أنماط regex مع تمييز المطابقات الفوري، مجموعات الالتقاط، الاستبدال، وورقة مرجعية."
+    },
+    "charmap": {
+      "name": "إيموجي وخريطة الأحرف",
+      "desc": "ابحث وانسخ الإيموجي والرموز والأحرف الخاصة. تفاصيل Unicode وكيانات HTML والمستخدمة مؤخراً."
+    },
+    "epoch": {
+      "name": "محول الطوابع الزمنية",
+      "desc": "تحويل طوابع Unix الزمنية إلى تواريخ مقروءة والعكس. ساعة حية، إعدادات مسبقة، وحاسبة فروق الوقت."
+    },
+    "hash": {
+      "name": "مولد Hash",
+      "desc": "توليد MD5 و SHA-1 و SHA-256 و SHA-512 من النصوص أو الملفات. تحقق من المجاميع الاختبارية فوراً."
+    },
+    "colorpicker": {
+      "name": "منتقي الألوان",
+      "desc": "اختر الألوان وحولها بين صيغ HEX و RGB و HSL. لوحة ألوان ومدقق التباين."
+    },
+    "cron": {
+      "name": "محلل cron",
+      "desc": "تحليل وتوليد تعبيرات cron مع أوصاف مقروءة وأوقات التشغيل القادمة."
+    },
+    "password": {
+      "name": "مولد كلمات المرور",
+      "desc": "توليد كلمات مرور عشوائية آمنة تشفيرياً وعبارات مرور سهلة التذكر."
+    },
+    "qrcode": {
+      "name": "مولد QR Code",
+      "desc": "توليد رموز QR من نصوص أو عناوين URL أو بيانات WiFi أو معلومات الاتصال. تنزيل بصيغة PNG."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "توليد نص بديل — فقرات أو جمل أو كلمات. أنماط متعددة متاحة."
+    },
+    "baseconverter": {
+      "name": "محول الأنظمة العددية",
+      "desc": "تحويل الأرقام بين الأنظمة الثنائية والثمانية والعشرية والسداسية عشرية في الوقت الفعلي."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "تحويل بين صيغتي JSON و YAML مع التحقق من الصحة والتنسيق."
+    },
+    "httpclient": {
+      "name": "عميل HTTP",
+      "desc": "اختبر نقاط API مثل Postman مصغر. طرق مخصصة، ترويسات، محتوى، وعارض الاستجابة."
+    },
+    "stringutils": {
+      "name": "أدوات النصوص",
+      "desc": "محول حالة الأحرف، قص، عد، عكس، مولد slug، والمزيد من عمليات النصوص."
+    },
+    "chat": {
+      "name": "دردشة LAN",
+      "desc": "دردشة فورية لشبكتك المحلية. لا حاجة للإنترنت — فقط Dev Helper على LAN."
+    },
+    "netscan": {
+      "name": "ماسح الشبكة",
+      "desc": "فحص أجهزة ومنافذ LAN. اكتشف الأجهزة والخدمات والمنافذ المفتوحة على شبكتك."
+    },
+    "worldclock": {
+      "name": "ساعة عالمية",
+      "desc": "ساعات متعددة المناطق الزمنية مع عرض تناظري، مخطط اجتماعات، وسحب لإعادة الترتيب."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "استخراج النص من الصور ولقطات الشاشة. اسحب أو الصق أو ارفع — مدعوم بـ Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "تحويل بين application.yml و application.properties لمشاريع Java/Spring Boot."
+    },
+    "netinspect": {
+      "name": "فاحص الشبكة",
+      "desc": "تحديد الموقع الجغرافي لـ IP، بحث DNS، ترويسات HTTP، وفاحص شهادات SSL."
+    },
+    "aichat": {
+      "name": "دردشة AI",
+      "desc": "تحدث مع نماذج Ollama المحلية. استجابات متدفقة، عرض Markdown، سجل المحادثات."
+    },
+    "speedtest": {
+      "name": "اختبار السرعة",
+      "desc": "اختبر سرعة التنزيل والرفع، زمن الاستجابة، وأداء القرص للقراءة والكتابة."
+    },
+    "snippets": {
+      "name": "مقتطفات الأكواد",
+      "desc": "احفظ ونظم مقتطفات الأكواد المستخدمة بكثرة مع تلوين بناء الجملة والنسخ السريع."
+    },
+    "sysmon": {
+      "name": "مراقب النظام",
+      "desc": "مراقبة فورية للمعالج والذاكرة والقرص والشبكة والعمليات مع مؤشرات حية."
+    },
+    "icons": {
+      "name": "مستعرض الأيقونات",
+      "desc": "تصفح وابحث في Bootstrap Icons و Font Awesome و Tabler Icons. انقر لنسخ فئة CSS أو HTML."
+    },
+    "askai": {
+      "name": "اسأل AI",
+      "desc": "وصول سريع لـ 9 خدمات AI سحابية (Claude و ChatGPT و Gemini وغيرها) و Ollama من شريط التنقل."
+    },
+    "translator": {
+      "name": "مترجم",
+      "desc": "ترجم النصوص بين اللغات باستخدام نماذج Ollama المحلية. مثل Google Translate، بدون إنترنت."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "اسحب وأفلت الملفات هنا",
+    "drop_or_browse": "أو انقر للاستعراض",
+    "paste_hint": "يمكنك أيضاً اللصق من الحافظة (Ctrl+V)",
+    "recent_uploads": "الملفات المرفوعة مؤخراً",
+    "clear_recent": "مسح الأخيرة",
+    "copy_url": "نسخ الرابط",
+    "open_new_tab": "فتح في علامة تبويب جديدة",
+    "file_uploaded": "تم رفع الملف بنجاح",
+    "upload_failed": "فشل رفع الملف"
+  },
+  "files_page": {
+    "search_placeholder": "البحث في الملفات...",
+    "grid_view": "شبكي",
+    "list_view": "قائمة",
+    "delete_all": "حذف الكل",
+    "confirm_delete_all": "هل أنت متأكد من أنك تريد حذف جميع الملفات؟",
+    "no_files": "لم يتم العثور على ملفات",
+    "file_deleted": "تم حذف الملف",
+    "download": "تنزيل",
+    "file_size": "الحجم",
+    "file_date": "التاريخ"
+  },
+  "prettify_page": {
+    "input_label": "الإدخال",
+    "output_label": "الإخراج",
+    "prettify": "تجميل",
+    "minify": "ضغط",
+    "paste_placeholder": "الصق أو اكتب الكود هنا...",
+    "auto_detect": "اكتشاف تلقائي",
+    "copy_output": "نسخ الإخراج"
+  },
+  "logs_page": {
+    "app": "التطبيق",
+    "level": "المستوى",
+    "search_placeholder": "البحث في السجلات...",
+    "clear_logs": "مسح السجلات",
+    "auto_scroll": "تمرير تلقائي",
+    "no_logs": "لم يتم العثور على سجلات",
+    "all_apps": "جميع التطبيقات",
+    "all_levels": "جميع المستويات",
+    "timestamp": "الطابع الزمني",
+    "message": "الرسالة"
+  },
+  "logviewer_page": {
+    "upload_log": "رفع ملف سجل",
+    "search_placeholder": "بحث بكلمة مفتاحية أو regex...",
+    "use_regex": "regex",
+    "case_sensitive": "حساس لحالة الأحرف",
+    "context_lines": "أسطر السياق",
+    "showing_lines": "عرض {shown} من {total} سطر",
+    "no_matches": "لم يتم العثور على تطابقات",
+    "line": "سطر"
+  },
+  "editor_page": {
+    "new_file": "جديد",
+    "open_file": "فتح ملف",
+    "save_file": "حفظ",
+    "word_wrap": "التفاف النص",
+    "minimap": "الخريطة المصغرة",
+    "line": "سطر",
+    "column": "عمود",
+    "language": "اللغة",
+    "fetch_url": "جلب من رابط",
+    "url_placeholder": "أدخل الرابط لجلب الملف..."
+  },
+  "markdown_page": {
+    "samples": "أمثلة",
+    "open_file": "فتح ملف",
+    "copy_html": "نسخ HTML",
+    "export": "تصدير",
+    "export_pdf": "تصدير إلى PDF",
+    "export_md": "تصدير إلى Markdown",
+    "export_html": "تصدير إلى HTML",
+    "clear": "مسح",
+    "expand": "توسيع",
+    "editor_label": "Markdown",
+    "preview_label": "معاينة",
+    "drop_zone": "اسحب وأفلت ملف Markdown هنا، أو انقر للاستعراض",
+    "url_placeholder": "أدخل رابط لجلب ملف .md",
+    "fetch": "جلب",
+    "html_copied": "تم نسخ HTML!",
+    "readme": "README",
+    "api_docs": "توثيق API",
+    "changelog": "سجل التغييرات",
+    "blog_post": "مقال مدونة",
+    "cheatsheet": "ورقة مرجعية لـ Markdown",
+    "meeting_notes": "ملاحظات الاجتماع",
+    "project_todo": "قائمة مهام المشروع"
+  },
+  "diff_page": {
+    "original": "الأصلي",
+    "modified": "المعدل",
+    "side_by_side": "جنباً إلى جنب",
+    "inline": "مدمج",
+    "open_file": "فتح ملف",
+    "paste_code": "الصق الكود هنا...",
+    "swap": "تبديل",
+    "no_differences": "لم يتم العثور على فروقات"
+  },
+  "jwt_page": {
+    "header": "الترويسة",
+    "payload": "الحمولة",
+    "signature": "التوقيع",
+    "secret": "المفتاح السري",
+    "algorithm": "الخوارزمية",
+    "encode": "ترميز",
+    "decode": "فك الترميز",
+    "verify": "تحقق",
+    "valid_signature": "التوقيع صالح",
+    "invalid_signature": "التوقيع غير صالح",
+    "paste_jwt": "الصق رمز JWT هنا..."
+  },
+  "base64_page": {
+    "text_mode": "نص",
+    "file_mode": "ملف",
+    "url_safe": "آمن لـ URL",
+    "line_breaks": "فواصل الأسطر",
+    "input_placeholder": "أدخل نصاً للترميز/فك الترميز...",
+    "drop_file": "أفلت الملف هنا أو انقر للاستعراض",
+    "download_result": "تنزيل النتيجة"
+  },
+  "urlencoder_page": {
+    "component_mode": "مكون",
+    "full_url_mode": "URL كامل",
+    "url_parser": "محلل URL",
+    "protocol": "البروتوكول",
+    "host": "المضيف",
+    "path": "المسار",
+    "params": "المعاملات",
+    "input_placeholder": "أدخل URL أو نصاً للترميز/فك الترميز..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "الكود المصدري",
+    "import_html": "استيراد HTML",
+    "export_html": "تصدير HTML",
+    "clear": "مسح"
+  },
+  "mermaid_page": {
+    "samples": "أمثلة",
+    "download_svg": "تنزيل SVG",
+    "download_png": "تنزيل PNG",
+    "share": "مشاركة",
+    "zoom_in": "تكبير",
+    "zoom_out": "تصغير",
+    "reset_zoom": "إعادة تعيين التكبير",
+    "diagram_label": "كود Mermaid",
+    "preview_label": "معاينة",
+    "link_copied": "تم نسخ رابط المشاركة!",
+    "flowchart": "مخطط انسيابي",
+    "sequence": "مخطط تسلسلي",
+    "class_diagram": "مخطط أصناف",
+    "state": "مخطط حالات",
+    "er": "مخطط ER",
+    "gantt": "مخطط Gantt",
+    "pie": "مخطط دائري",
+    "mindmap": "خريطة ذهنية",
+    "timeline": "خط زمني",
+    "quadrant": "مخطط رباعي",
+    "git": "رسم Git",
+    "sankey": "مخطط Sankey"
+  },
+  "uuid_page": {
+    "version": "الإصدار",
+    "bulk_generate": "توليد جماعي",
+    "validate_parse": "تحقق وتحليل",
+    "count": "العدد",
+    "uppercase": "أحرف كبيرة",
+    "braces": "أقواس",
+    "hyphens": "شرطات",
+    "copy_all": "نسخ الكل",
+    "generated": "تم التوليد",
+    "valid_uuid": "UUID صالح",
+    "invalid_uuid": "UUID غير صالح",
+    "uuid_version": "الإصدار",
+    "uuid_variant": "المتغير",
+    "uuid_timestamp": "الطابع الزمني"
+  },
+  "notes_page": {
+    "new_note": "ملاحظة جديدة",
+    "search_placeholder": "البحث في الملاحظات...",
+    "categories": "الفئات",
+    "all_notes": "جميع الملاحظات",
+    "pinned": "المثبتة",
+    "trash": "المحذوفات",
+    "restore": "استعادة",
+    "permanent_delete": "حذف نهائي",
+    "note_saved": "تم حفظ الملاحظة",
+    "note_deleted": "تم نقل الملاحظة إلى المحذوفات",
+    "untitled": "ملاحظة بدون عنوان",
+    "attachments": "المرفقات",
+    "color_label": "تسمية ملونة",
+    "sort_by": "ترتيب حسب",
+    "date_modified": "تاريخ التعديل",
+    "date_created": "تاريخ الإنشاء"
+  },
+  "regex_page": {
+    "pattern": "النمط",
+    "test_string": "نص الاختبار",
+    "flags": "العلامات",
+    "matches": "التطابقات",
+    "replace": "استبدال",
+    "replacement": "البديل",
+    "cheat_sheet": "ورقة مرجعية",
+    "common_patterns": "أنماط شائعة",
+    "no_matches": "لا تطابقات",
+    "match_count": "تم العثور على {count} تطابقات",
+    "global": "شامل",
+    "case_insensitive": "غير حساس لحالة الأحرف",
+    "multiline": "متعدد الأسطر"
+  },
+  "charmap_page": {
+    "search_placeholder": "البحث عن إيموجي أو حرف...",
+    "recently_used": "المستخدمة مؤخراً",
+    "unicode": "Unicode",
+    "html_entity": "كيان HTML",
+    "css_code": "كود CSS",
+    "copy_char": "انقر للنسخ",
+    "smileys": "وجوه وأشخاص",
+    "animals": "حيوانات وطبيعة",
+    "food": "طعام وشراب",
+    "activities": "أنشطة",
+    "travel": "سفر وأماكن",
+    "objects": "أشياء",
+    "symbols": "رموز",
+    "flags": "أعلام",
+    "arrows": "أسهم",
+    "math": "رياضيات",
+    "currency": "عملات",
+    "latin": "لاتينية ممتدة"
+  },
+  "epoch_page": {
+    "timestamp": "الطابع الزمني",
+    "date_time": "التاريخ والوقت",
+    "now": "الآن",
+    "seconds": "ثوان",
+    "milliseconds": "مللي ثانية",
+    "local_time": "الوقت المحلي",
+    "utc_time": "وقت UTC",
+    "relative": "نسبي",
+    "time_diff": "فرق الوقت",
+    "presets": "إعدادات مسبقة",
+    "live_clock": "ساعة حية"
+  },
+  "hash_page": {
+    "text_input": "إدخال نصي",
+    "file_input": "إدخال ملف",
+    "compare": "مقارنة المجاميع",
+    "hash_match": "المجاميع متطابقة!",
+    "hash_mismatch": "المجاميع غير متطابقة",
+    "drop_file": "أفلت الملف لحساب Hash...",
+    "computing": "جار حساب Hash..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "فحص التباين",
+    "foreground": "المقدمة",
+    "background": "الخلفية",
+    "ratio": "النسبة",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "نجح",
+    "fail": "فشل",
+    "palette": "لوحة الألوان",
+    "shades": "درجات داكنة",
+    "tints": "درجات فاتحة",
+    "pick_color": "اختر لوناً",
+    "eyedropper": "قاطرة الألوان"
+  },
+  "cron_page": {
+    "expression": "التعبير",
+    "description_label": "الوصف",
+    "next_runs": "التشغيلات القادمة",
+    "presets": "إعدادات مسبقة",
+    "minute": "دقيقة",
+    "hour": "ساعة",
+    "day_month": "يوم (شهر)",
+    "month": "شهر",
+    "day_week": "يوم (أسبوع)",
+    "every_minute": "كل دقيقة",
+    "every_hour": "كل ساعة",
+    "every_day": "كل يوم عند منتصف الليل",
+    "share": "مشاركة"
+  },
+  "password_page": {
+    "password": "كلمة المرور",
+    "passphrase": "عبارة المرور",
+    "length": "الطول",
+    "uppercase": "أحرف كبيرة (A-Z)",
+    "lowercase": "أحرف صغيرة (a-z)",
+    "numbers": "أرقام (0-9)",
+    "symbols": "رموز (!@#$...)",
+    "word_count": "عدد الكلمات",
+    "separator": "الفاصل",
+    "strength": "القوة",
+    "entropy": "الإنتروبيا",
+    "very_weak": "ضعيف جداً",
+    "weak": "ضعيف",
+    "fair": "مقبول",
+    "strong": "قوي",
+    "very_strong": "قوي جداً",
+    "bulk_generate": "توليد جماعي",
+    "generate_count": "العدد"
+  },
+  "qrcode_page": {
+    "text_url": "نص / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "أدخل نصاً أو URL...",
+    "network_name": "اسم الشبكة (SSID)",
+    "wifi_password": "كلمة المرور",
+    "encryption": "التشفير",
+    "hidden_network": "شبكة مخفية",
+    "full_name": "الاسم الكامل",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "organization": "المنظمة",
+    "error_correction": "تصحيح الأخطاء",
+    "foreground_color": "لون المقدمة",
+    "background_color": "لون الخلفية",
+    "download_png": "تنزيل PNG",
+    "download_svg": "تنزيل SVG",
+    "copy_image": "نسخ الصورة"
+  },
+  "lorem_page": {
+    "paragraphs": "فقرات",
+    "sentences": "جمل",
+    "words": "كلمات",
+    "style": "النمط",
+    "classic": "كلاسيكي",
+    "hipster": "هيبستر",
+    "tech": "تقني / برمجي",
+    "include_html": "تضمين وسوم HTML",
+    "start_lorem": "البدء بـ \"Lorem ipsum...\"",
+    "generated_text": "النص المولد",
+    "copy_text": "نسخ النص"
+  },
+  "baseconverter_page": {
+    "binary": "ثنائي",
+    "octal": "ثماني",
+    "decimal": "عشري",
+    "hexadecimal": "سداسي عشري",
+    "bit_visualization": "عرض البتات",
+    "signed": "بإشارة",
+    "unsigned": "بدون إشارة",
+    "twos_complement": "المتمم الثنائي"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "تجميل",
+    "minify": "ضغط",
+    "import_file": "استيراد ملف",
+    "invalid_json": "JSON غير صالح",
+    "invalid_yaml": "YAML غير صالح"
+  },
+  "httpclient_page": {
+    "url_placeholder": "أدخل رابط الطلب...",
+    "method": "الطريقة",
+    "headers": "الترويسات",
+    "body": "المحتوى",
+    "auth": "المصادقة",
+    "params": "المعاملات",
+    "response": "الاستجابة",
+    "status_code": "الحالة",
+    "response_time": "الوقت",
+    "response_size": "الحجم",
+    "send_request": "إرسال",
+    "clear_history": "مسح السجل",
+    "no_auth": "بدون مصادقة",
+    "basic_auth": "مصادقة أساسية",
+    "bearer_token": "Bearer Token",
+    "username": "اسم المستخدم",
+    "token": "الرمز",
+    "key": "المفتاح",
+    "add_header": "إضافة ترويسة",
+    "add_param": "إضافة معامل"
+  },
+  "stringutils_page": {
+    "input_placeholder": "أدخل النص هنا...",
+    "operations": "العمليات",
+    "case_conversion": "تحويل حالة الأحرف",
+    "text_cleanup": "تنظيف النص",
+    "text_transform": "تحويل النص",
+    "encode_decode": "ترميز / فك ترميز",
+    "extract_info": "استخراج المعلومات",
+    "uppercase": "UPPERCASE",
+    "lowercase": "lowercase",
+    "title_case": "Title Case",
+    "sentence_case": "Sentence case",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "أحرف",
+    "word_count": "كلمات",
+    "line_count": "أسطر"
+  },
+  "chat_page": {
+    "username_placeholder": "أدخل اسمك...",
+    "message_placeholder": "اكتب رسالة...",
+    "join": "انضمام",
+    "online_users": "المستخدمون المتصلون",
+    "user_joined": "{user} انضم إلى الدردشة",
+    "user_left": "{user} غادر الدردشة"
+  },
+  "netscan_page": {
+    "interface": "الواجهة",
+    "target": "الهدف",
+    "ports": "المنافذ",
+    "scan": "فحص",
+    "scanning": "جار الفحص...",
+    "open_ports": "المنافذ المفتوحة",
+    "host": "المضيف",
+    "port": "المنفذ",
+    "service": "الخدمة",
+    "scan_complete": "اكتمل الفحص",
+    "common_ports": "المنافذ الشائعة",
+    "custom_range": "نطاق مخصص"
+  },
+  "worldclock_page": {
+    "add_clock": "إضافة ساعة",
+    "your_local_time": "وقتك المحلي",
+    "meeting_planner": "مخطط الاجتماعات",
+    "timezone": "المنطقة الزمنية",
+    "search_timezone": "البحث عن منطقة زمنية...",
+    "remove_clock": "إزالة"
+  },
+  "ocr_page": {
+    "upload_image": "رفع صورة",
+    "paste_image": "لصق صورة",
+    "drop_image": "اسحب وأفلت صورة هنا",
+    "extract_text": "استخراج النص",
+    "extracted_text": "النص المستخرج",
+    "copy_result": "نسخ النتيجة",
+    "recognizing": "جار التعرف على النص...",
+    "no_text_found": "لم يتم العثور على نص في الصورة",
+    "supported_formats": "المدعوم: PNG، JPG، BMP، WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "استيراد ملف",
+    "download_result": "تنزيل"
+  },
+  "aichat_page": {
+    "model": "النموذج",
+    "no_models": "لم يتم العثور على نماذج. هل Ollama يعمل؟",
+    "message_placeholder": "اكتب رسالتك...",
+    "clear_chat": "مسح الدردشة",
+    "thinking": "جار التفكير...",
+    "ollama_not_running": "لا يمكن الاتصال بـ Ollama",
+    "connection_error": "خطأ في الاتصال"
+  },
+  "speedtest_page": {
+    "start_test": "بدء الاختبار",
+    "ping": "Ping",
+    "download_speed": "التنزيل",
+    "upload_speed": "الرفع",
+    "disk_speed": "القرص",
+    "latency": "زمن الاستجابة",
+    "read_speed": "القراءة",
+    "write_speed": "الكتابة",
+    "testing": "جار الاختبار...",
+    "test_complete": "اكتمل الاختبار"
+  },
+  "snippets_page": {
+    "new_snippet": "مقتطف جديد",
+    "search_placeholder": "البحث في المقتطفات...",
+    "title_placeholder": "عنوان المقتطف...",
+    "desc_placeholder": "الوصف (اختياري)",
+    "tags_placeholder": "الوسوم (مفصولة بفاصلة)",
+    "save_snippet": "حفظ",
+    "delete_snippet": "حذف",
+    "copy_code": "نسخ الكود",
+    "language": "اللغة",
+    "default_loaded": "تم تحميل المقتطفات الافتراضية",
+    "snippet_saved": "تم حفظ المقتطف",
+    "snippet_deleted": "تم حذف المقتطف",
+    "code_copied": "تم نسخ الكود!",
+    "no_snippets": "لم يتم العثور على مقتطفات",
+    "pinned": "المثبتة",
+    "all_snippets": "جميع المقتطفات"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "الذاكرة",
+    "disk": "القرص",
+    "network": "الشبكة",
+    "processes": "العمليات",
+    "usage": "الاستخدام",
+    "total": "الإجمالي",
+    "used": "المستخدم",
+    "free": "المتاح",
+    "available": "المتوفر",
+    "cores": "الأنوية",
+    "uptime": "وقت التشغيل",
+    "pid": "PID",
+    "process_name": "الاسم",
+    "cpu_percent": "CPU %",
+    "mem_percent": "الذاكرة %",
+    "connecting": "جار الاتصال...",
+    "disconnected": "غير متصل",
+    "bytes_sent": "المرسل",
+    "bytes_recv": "المستقبل",
+    "read_speed": "القراءة",
+    "write_speed": "الكتابة"
+  },
+  "icons_page": {
+    "search_placeholder": "البحث عن أيقونات...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "الكل",
+    "recently_used": "المستخدمة مؤخراً",
+    "class_name": "الفئة",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "نسخ الفئة",
+    "copy_html": "نسخ HTML",
+    "icon_count": "{count} أيقونة",
+    "loading_icons": "جار تحميل الأيقونات...",
+    "click_to_view": "انقر على أيقونة لعرض التفاصيل"
+  },
+  "netinspect_page": {
+    "my_ip": "عنوان IP الخاص بي",
+    "ip_lookup": "بحث IP",
+    "dns_lookup": "بحث DNS",
+    "http_headers": "ترويسات HTTP",
+    "ssl_cert": "شهادة SSL",
+    "lookup": "بحث",
+    "check": "فحص",
+    "ip_placeholder": "أدخل عنوان IP...",
+    "domain_placeholder": "أدخل اسم النطاق...",
+    "url_placeholder": "أدخل URL...",
+    "location": "الموقع",
+    "isp": "مزود الخدمة",
+    "record_type": "نوع السجل",
+    "issuer": "المُصدر",
+    "valid_from": "صالح من",
+    "valid_until": "صالح حتى",
+    "subject": "الموضوع"
+  },
+  "translator_page": {
+    "source_lang": "لغة المصدر",
+    "target_lang": "لغة الهدف",
+    "auto_detect": "اكتشاف تلقائي",
+    "translate": "ترجمة",
+    "translating": "جار الترجمة...",
+    "swap_languages": "تبديل اللغات",
+    "input_placeholder": "أدخل النص للترجمة...",
+    "model": "النموذج",
+    "copy_translation": "نسخ الترجمة",
+    "translation_copied": "تم نسخ الترجمة!",
+    "clear_all": "مسح الكل",
+    "char_count": "{count} حرف"
+  }
+}

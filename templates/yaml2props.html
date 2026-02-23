@@ -1,0 +1,131 @@
+{{define "content"}}
+<style>
+    .y2p-editor {
+        border: 1px solid var(--bs-border-color); border-radius: 10px;
+        background: var(--bs-body-bg); overflow: hidden;
+    }
+    .y2p-header {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 8px 12px; border-bottom: 1px solid var(--bs-border-color);
+        background: var(--bs-tertiary-bg);
+    }
+    .y2p-header label { font-weight: 600; font-size: 0.88rem; margin: 0; }
+    .y2p-textarea {
+        width: 100%; min-height: 400px; border: none; padding: 12px;
+        font-family: 'Consolas', 'Courier New', monospace; font-size: 0.88rem;
+        background: transparent; color: var(--bs-body-color);
+        resize: vertical; outline: none;
+    }
+    .y2p-arrow {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        gap: 8px; padding: 10px 0;
+    }
+    .y2p-arrow .btn { width: 44px; height: 44px; border-radius: 50%; font-size: 1.1rem; }
+    .y2p-error {
+        color: var(--bs-danger); font-size: 0.82rem; padding: 4px 12px;
+        border-top: 1px solid var(--bs-border-color);
+    }
+    .y2p-info {
+        font-size: 0.78rem; color: var(--bs-secondary-color); padding: 4px 12px;
+    }
+</style>
+
+<div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+    <h4 class="mb-0">
+        <i class="bi bi-filetype-yml text-warning"></i> YAML ↔ Properties
+        <button class="btn btn-link p-0 ms-2 pin-star" data-tool="yaml2props" title="Pin to navbar">
+            <i class="bi bi-star"></i>
+        </button>
+    </h4>
+    <div class="d-flex gap-1">
+        <button class="btn btn-outline-secondary btn-sm" id="btnSample" title="Load sample">
+            <i class="bi bi-file-text"></i> Sample
+        </button>
+        <button class="btn btn-outline-secondary btn-sm" id="btnClearAll" title="Clear all">
+            <i class="bi bi-trash3"></i> Clear
+        </button>
+    </div>
+</div>
+
+<div class="row g-2">
+    <!-- YAML Side -->
+    <div class="col-lg-5">
+        <div class="y2p-editor">
+            <div class="y2p-header">
+                <label><i class="bi bi-filetype-yml"></i> YAML (application.yml)</label>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-outline-secondary btn-sm py-0 px-2" id="btnImportYaml" title="Import file">
+                        <i class="bi bi-upload"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm py-0 px-2" id="btnCopyYaml" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm py-0 px-2" id="btnDownloadYaml" title="Download as .yml">
+                        <i class="bi bi-download"></i>
+                    </button>
+                </div>
+            </div>
+            <textarea class="y2p-textarea" id="yamlInput" placeholder="server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mydb
+    username: root
+    password: secret" spellcheck="false"></textarea>
+            <div class="y2p-error d-none" id="yamlError"></div>
+        </div>
+    </div>
+
+    <!-- Arrows -->
+    <div class="col-lg-2 d-flex flex-lg-column flex-row align-items-center justify-content-center gap-2 py-2">
+        <button class="btn btn-primary" id="btnYaml2Props" title="YAML → Properties">
+            <i class="bi bi-arrow-right d-none d-lg-inline"></i>
+            <i class="bi bi-arrow-down d-lg-none"></i>
+        </button>
+        <button class="btn btn-outline-primary" id="btnProps2Yaml" title="Properties → YAML">
+            <i class="bi bi-arrow-left d-none d-lg-inline"></i>
+            <i class="bi bi-arrow-up d-lg-none"></i>
+        </button>
+        <button class="btn btn-outline-secondary" id="btnSwap" title="Swap contents">
+            <i class="bi bi-arrow-left-right"></i>
+        </button>
+    </div>
+
+    <!-- Properties Side -->
+    <div class="col-lg-5">
+        <div class="y2p-editor">
+            <div class="y2p-header">
+                <label><i class="bi bi-file-earmark-text"></i> Properties (application.properties)</label>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-outline-secondary btn-sm py-0 px-2" id="btnImportProps" title="Import file">
+                        <i class="bi bi-upload"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm py-0 px-2" id="btnCopyProps" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm py-0 px-2" id="btnDownloadProps" title="Download as .properties">
+                        <i class="bi bi-download"></i>
+                    </button>
+                </div>
+            </div>
+            <textarea class="y2p-textarea" id="propsInput" placeholder="server.port=8080
+server.servlet.context-path=/api
+spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+spring.datasource.username=root
+spring.datasource.password=secret" spellcheck="false"></textarea>
+            <div class="y2p-error d-none" id="propsError"></div>
+        </div>
+    </div>
+</div>
+
+<input type="file" id="yamlFileInput" class="d-none" accept=".yml,.yaml,.txt">
+<input type="file" id="propsFileInput" class="d-none" accept=".properties,.txt,.cfg,.conf">
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<script src="/static/yaml2props.js"></script>
+{{end}}

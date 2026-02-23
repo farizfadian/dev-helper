@@ -1,0 +1,179 @@
+{{define "content"}}
+<style>
+    .wc-card {
+        border: 1px solid var(--bs-border-color); border-radius: 12px;
+        padding: 16px; background: var(--bs-body-bg); text-align: center;
+        transition: box-shadow 0.2s, transform 0.15s; cursor: grab; position: relative;
+    }
+    .wc-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+    .wc-card.dragging { opacity: 0.5; transform: scale(0.95); }
+    .wc-card.drag-over { border-color: var(--bs-primary); box-shadow: 0 0 0 2px var(--bs-primary); }
+    .wc-card-header {
+        display: flex; align-items: center; justify-content: center; gap: 6px;
+        margin-bottom: 8px; font-weight: 600; font-size: 0.95rem;
+    }
+    .wc-flag { font-size: 1.4rem; }
+    .wc-country { color: var(--bs-secondary-color); font-size: 0.78rem; font-weight: 400; }
+    .wc-remove {
+        position: absolute; top: 6px; right: 8px; border: none; background: none;
+        color: var(--bs-secondary-color); font-size: 1rem; cursor: pointer; padding: 2px 6px;
+        border-radius: 4px; line-height: 1; opacity: 0; transition: opacity 0.2s;
+    }
+    .wc-card:hover .wc-remove { opacity: 1; }
+    .wc-remove:hover { color: var(--bs-danger); background: var(--bs-tertiary-bg); }
+
+    /* Analog clock SVG */
+    .wc-analog { width: 90px; height: 90px; margin: 8px auto; }
+    .wc-clock-face { fill: var(--bs-body-bg); stroke: var(--bs-border-color); stroke-width: 2; }
+    .wc-tick { stroke: var(--bs-secondary-color); }
+    .wc-tick-major { stroke: var(--bs-body-color); stroke-width: 2; }
+    .wc-hand-hour { stroke: var(--bs-body-color); stroke-width: 3; stroke-linecap: round; }
+    .wc-hand-minute { stroke: var(--bs-body-color); stroke-width: 2; stroke-linecap: round; }
+    .wc-hand-second { stroke: var(--bs-danger); stroke-width: 1; stroke-linecap: round; }
+    .wc-center-dot { fill: var(--bs-danger); }
+
+    .wc-digital {
+        font-size: 1.8rem; font-weight: 700; font-family: 'Consolas', 'Courier New', monospace;
+        letter-spacing: 1px; margin: 4px 0;
+    }
+    .wc-date { font-size: 0.82rem; color: var(--bs-secondary-color); margin-bottom: 4px; }
+    .wc-offset { font-size: 0.78rem; color: var(--bs-secondary-color); }
+    .wc-daynight { font-size: 0.85rem; }
+
+    .wc-empty {
+        border: 2px dashed var(--bs-border-color); border-radius: 12px;
+        padding: 40px; text-align: center; color: var(--bs-secondary-color);
+        cursor: pointer; transition: border-color 0.2s;
+    }
+    .wc-empty:hover { border-color: var(--bs-primary); color: var(--bs-primary); }
+    .wc-empty i { font-size: 2rem; display: block; margin-bottom: 8px; }
+
+    /* Add City Modal */
+    .wc-city-search { margin-bottom: 12px; }
+    .wc-region-title {
+        font-weight: 700; font-size: 0.8rem; text-transform: uppercase;
+        color: var(--bs-secondary-color); padding: 8px 0 4px; letter-spacing: 0.5px;
+    }
+    .wc-city-list { max-height: 400px; overflow-y: auto; }
+    .wc-city-item {
+        display: flex; align-items: center; gap: 8px; padding: 7px 10px;
+        border-radius: 6px; cursor: pointer; transition: background 0.15s;
+        font-size: 0.9rem;
+    }
+    .wc-city-item:hover { background: var(--bs-tertiary-bg); }
+    .wc-city-item.added { opacity: 0.5; }
+    .wc-city-item.added::after { content: '✓'; margin-left: auto; color: var(--bs-success); font-weight: 700; }
+    .wc-city-item .wc-city-flag { font-size: 1.1rem; }
+    .wc-city-item .wc-city-name { font-weight: 500; }
+    .wc-city-item .wc-city-tz { color: var(--bs-secondary-color); font-size: 0.78rem; margin-left: auto; }
+
+    /* Meeting Planner */
+    .wc-planner {
+        border: 1px solid var(--bs-border-color); border-radius: 12px;
+        padding: 20px; background: var(--bs-body-bg); margin-top: 20px;
+    }
+    .wc-planner h6 { font-weight: 700; margin-bottom: 16px; }
+    .wc-planner-row {
+        display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.88rem;
+    }
+    .wc-planner-label {
+        min-width: 140px; font-weight: 500; display: flex; align-items: center; gap: 6px;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .wc-planner-bar-wrap { flex: 1; position: relative; height: 28px; }
+    .wc-planner-bar {
+        display: flex; height: 100%; border-radius: 4px; overflow: hidden;
+        border: 1px solid var(--bs-border-color);
+    }
+    .wc-planner-segment {
+        height: 100%; position: relative;
+    }
+    .wc-seg-work { background: #28a74533; }
+    .wc-seg-evening { background: #ffc10733; }
+    .wc-seg-night { background: var(--bs-tertiary-bg); }
+    .wc-planner-marker {
+        position: absolute; top: -2px; bottom: -2px; width: 3px;
+        background: var(--bs-primary); border-radius: 2px; z-index: 2;
+        transition: left 0.15s;
+    }
+    .wc-planner-time {
+        min-width: 80px; text-align: right; font-family: 'Consolas', monospace; font-weight: 500;
+    }
+    .wc-best-time {
+        margin-top: 12px; padding: 10px 14px; border-radius: 8px;
+        background: #28a74515; border: 1px solid #28a74533; font-size: 0.88rem;
+    }
+    .wc-best-time.no-overlap {
+        background: #ffc10715; border-color: #ffc10733;
+    }
+    .wc-slider-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .wc-slider-wrap input[type="range"] { flex: 1; }
+    .wc-slider-time {
+        font-family: 'Consolas', monospace; font-size: 1.1rem; font-weight: 700;
+        min-width: 50px; text-align: center;
+    }
+    .wc-ref-select { max-width: 200px; }
+
+    /* Format toggle */
+    .wc-format-toggle .btn { padding: 2px 10px; font-size: 0.82rem; }
+</style>
+
+<div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+    <h4 class="mb-0">
+        <i class="bi bi-globe-americas text-info"></i> World Clock
+        <button class="btn btn-link p-0 ms-2 pin-star" data-tool="worldclock" title="Pin to navbar">
+            <i class="bi bi-star"></i>
+        </button>
+    </h4>
+    <div class="d-flex align-items-center gap-2">
+        <div class="btn-group wc-format-toggle" role="group">
+            <button type="button" class="btn btn-outline-secondary" data-format="12h">12h</button>
+            <button type="button" class="btn btn-outline-secondary active" data-format="24h">24h</button>
+        </div>
+        <button class="btn btn-primary btn-sm" id="btnAddCity">
+            <i class="bi bi-plus-lg"></i> Add City
+        </button>
+    </div>
+</div>
+
+<!-- Clock Cards Grid -->
+<div class="row g-3 mb-3" id="clockGrid"></div>
+
+<!-- Meeting Planner -->
+<div class="wc-planner" id="meetingPlanner">
+    <h6><i class="bi bi-calendar-event"></i> Meeting Planner</h6>
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <label class="form-label mb-0 fw-semibold" style="font-size:0.88rem;">Reference:</label>
+        <select class="form-select form-select-sm wc-ref-select" id="refTimezone"></select>
+    </div>
+    <div class="wc-slider-wrap">
+        <span style="font-size:0.82rem;color:var(--bs-secondary-color)">00:00</span>
+        <input type="range" class="form-range" id="timeSlider" min="0" max="1439" value="540" step="15">
+        <span style="font-size:0.82rem;color:var(--bs-secondary-color)">23:59</span>
+        <span class="wc-slider-time" id="sliderTimeDisplay">09:00</span>
+    </div>
+    <div id="plannerRows"></div>
+    <div class="wc-best-time" id="bestTimeBox"></div>
+</div>
+
+<!-- Add City Modal -->
+<div class="modal fade" id="addCityModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-globe"></i> Add City</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control wc-city-search" id="citySearch"
+                    placeholder="Search city or country..." autofocus>
+                <div class="wc-city-list" id="cityList"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/worldclock.js"></script>
+{{end}}

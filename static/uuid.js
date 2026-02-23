@@ -220,6 +220,8 @@ document.addEventListener('DOMContentLoaded', function () {
             uuids.push(formatUuid(generateUuid()));
         }
         bulkOutput.value = uuids.join('\n');
+        bulkOutput.style.height = 'auto';
+        bulkOutput.style.height = bulkOutput.scrollHeight + 'px';
     });
 
     document.getElementById('bulkCopyBtn').addEventListener('click', function () {

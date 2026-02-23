@@ -39,6 +39,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let filesMap = {};
     let allFiles = [];
+    let activeFilter = 'all';
+
+    // File type categories
+    const imageExtsSet = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.bmp', '.ico', '.avif', '.tiff', '.tif']);
+    const pdfExts = new Set(['.pdf']);
+    const docExts = new Set(['.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx', '.csv', '.txt', '.md', '.rtf', '.odt', '.ods']);
+    const codeExts = new Set(['.html', '.htm', '.json', '.xml', '.js', '.ts', '.jsx', '.tsx', '.py', '.cs', '.java', '.go', '.rb', '.php', '.c', '.cpp', '.h', '.css', '.scss', '.less', '.sql', '.sh', '.bat', '.yaml', '.yml', '.toml', '.ini', '.cfg', '.env', '.log']);
+    const mediaExts = new Set(['.mp4', '.mp3', '.webm', '.ogg', '.wav', '.avi', '.mkv', '.mov', '.flac', '.aac', '.m4a', '.m4v']);
+    const archiveExts = new Set(['.zip', '.rar', '.7z', '.tar', '.gz', '.bz2', '.xz', '.tgz']);
+
+    function getFileCategory(name) {
+        var ext = getExt(name);
+        if (imageExtsSet.has(ext)) return 'images';
+        if (pdfExts.has(ext)) return 'pdf';
+        if (docExts.has(ext)) return 'documents';
+        if (codeExts.has(ext)) return 'code';
+        if (mediaExts.has(ext)) return 'media';
+        if (archiveExts.has(ext)) return 'archives';
+        return 'other';
+    }
+
+    // Tab click handlers
+    document.querySelectorAll('#fileFilterTabs .nav-link').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('#fileFilterTabs .nav-link').forEach(function (b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            activeFilter = this.dataset.filter;
+            renderFiles();
+        });
+    });
 
     function getExt(name) {
         const i = name.lastIndexOf('.');
@@ -134,11 +164,46 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+    function updateTabCounts() {
+        var counts = { all: 0, images: 0, pdf: 0, documents: 0, code: 0, media: 0, archives: 0, other: 0 };
+        allFiles.forEach(function (f) {
+            counts.all++;
+            var cat = getFileCategory(f.filename);
+            counts[cat] = (counts[cat] || 0) + 1;
+        });
+        var el;
+        el = document.getElementById('countAll'); if (el) el.textContent = counts.all;
+        el = document.getElementById('countImages'); if (el) el.textContent = counts.images;
+        el = document.getElementById('countPdf'); if (el) el.textContent = counts.pdf;
+        el = document.getElementById('countDocs'); if (el) el.textContent = counts.documents;
+        el = document.getElementById('countCode'); if (el) el.textContent = counts.code;
+        el = document.getElementById('countMedia'); if (el) el.textContent = counts.media;
+        el = document.getElementById('countArchives'); if (el) el.textContent = counts.archives;
+        el = document.getElementById('countOther'); if (el) el.textContent = counts.other;
+
+        // Hide tabs with 0 count (except All)
+        document.querySelectorAll('#fileFilterTabs .nav-item').forEach(function (li) {
+            var btn = li.querySelector('.nav-link');
+            var filter = btn.dataset.filter;
+            if (filter === 'all') return;
+            li.style.display = counts[filter] > 0 ? '' : 'none';
+        });
+    }
+
     function renderFiles() {
         const search = searchBox.value.trim().toLowerCase();
-        const filtered = search
+        let filtered = search
             ? allFiles.filter(f => f.filename.toLowerCase().includes(search))
             : allFiles;
+
+        // Apply tab filter
+        if (activeFilter !== 'all') {
+            filtered = filtered.filter(function (f) {
+                return getFileCategory(f.filename) === activeFilter;
+            });
+        }
+
+        updateTabCounts();
 
         if (allFiles.length === 0) {
             filesGrid.innerHTML = '';
@@ -154,11 +219,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (filtered.length === 0) {
             fileCount.textContent = `0 / ${allFiles.length} files`;
-            filesGrid.innerHTML = '<div class="col-12 text-center text-muted py-5">No files match your search</div>';
+            filesGrid.innerHTML = '<div class="col-12 text-center text-muted py-5"><i class="bi bi-funnel" style="font-size:2rem;opacity:0.3;"></i><p class="mt-2">No files match the current filter</p></div>';
             return;
         }
 
-        fileCount.textContent = search
+        fileCount.textContent = (search || activeFilter !== 'all')
             ? `${filtered.length} / ${allFiles.length} files`
             : `${allFiles.length} files`;
 

@@ -13,16 +13,41 @@
     }
     .tox .tox-promotion { display: none !important; }
     .tox .tox-statusbar__branding { display: none !important; }
+    /* Focus mode: TinyMCE + Monaco fill */
+    .focus-wrapper.focus-active .editor-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+    .focus-wrapper.focus-active #tinymceContainer {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+    .focus-wrapper.focus-active #tinymceContainer .tox-tinymce {
+        height: 100% !important;
+        flex: 1;
+    }
+    .focus-wrapper.focus-active #monacoContainer {
+        height: 100% !important;
+        flex: 1;
+        min-height: 0;
+    }
 </style>
 
+<!-- Focus wrapper -->
+<div id="focusWrapper" class="focus-wrapper">
+
 <!-- Toolbar -->
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3 focus-toolbar">
     <h5 class="mb-0">
         <i class="bi bi-filetype-html"></i> HTML / WYSIWYG Editor
         <i id="pinToggle" data-tool="htmleditor" class="bi bi-star pin-star" onclick="togglePin('htmleditor')"></i>
     </h5>
     <div class="d-flex gap-1">
-        <div class="btn-group btn-group-sm" role="group">
+        <div class="btn-group btn-group-sm focus-hide" role="group">
             <button class="btn btn-primary active" id="wysiwygBtn">
                 <i class="bi bi-eye"></i> WYSIWYG
             </button>
@@ -30,21 +55,24 @@
                 <i class="bi bi-code-slash"></i> Source
             </button>
         </div>
-        <button class="btn btn-sm btn-outline-secondary" id="copyHtmlBtn" title="Copy HTML">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="copyHtmlBtn" title="Copy HTML">
             <i class="bi bi-clipboard"></i> Copy HTML
         </button>
-        <button class="btn btn-sm btn-outline-secondary" id="clearBtn" title="Clear editor">
+        <button class="btn btn-sm btn-outline-secondary focus-hide" id="clearBtn" title="Clear editor">
             <i class="bi bi-trash"></i> Clear
         </button>
-        <label class="btn btn-sm btn-outline-secondary mb-0" title="Import HTML file">
+        <label class="btn btn-sm btn-outline-secondary mb-0 focus-hide" title="Import HTML file">
             <i class="bi bi-file-earmark-arrow-up"></i> Import
             <input type="file" id="importFile" class="d-none" accept=".html,.htm,.txt">
         </label>
+        <button class="btn btn-sm btn-outline-primary" id="focusModeBtn" title="Expand (F11)">
+            <i class="bi bi-arrows-fullscreen"></i> Expand
+        </button>
     </div>
 </div>
 
 <!-- WYSIWYG Editor -->
-<div class="editor-wrapper">
+<div class="editor-wrapper focus-grow">
     <div id="tinymceContainer">
         <textarea id="wysiwygEditor"></textarea>
     </div>
@@ -52,10 +80,12 @@
 </div>
 
 <!-- Stats -->
-<div class="d-flex justify-content-between mt-2">
+<div class="d-flex justify-content-between mt-2 focus-hide">
     <small id="stats" class="text-muted"></small>
     <small class="text-muted">Powered by TinyMCE</small>
 </div>
+
+</div><!-- /focus-wrapper -->
 {{end}}
 
 {{define "scripts"}}

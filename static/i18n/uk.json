@@ -1,0 +1,889 @@
+{
+  "common": {
+    "copy": "Копіювати",
+    "copied": "Скопійовано!",
+    "clear": "Очистити",
+    "save": "Зберегти",
+    "saved": "Збережено!",
+    "delete": "Видалити",
+    "cancel": "Скасувати",
+    "close": "Закрити",
+    "open": "Відкрити",
+    "search": "Пошук",
+    "loading": "Завантаження...",
+    "error": "Помилка",
+    "success": "Успішно",
+    "warning": "Попередження",
+    "info": "Інформація",
+    "yes": "Так",
+    "no": "Ні",
+    "confirm": "Підтвердити",
+    "download": "Завантажити",
+    "upload": "Вивантажити",
+    "export": "Експорт",
+    "import": "Імпорт",
+    "expand": "Розгорнути",
+    "exit": "Вийти",
+    "file": "Файл",
+    "settings": "Налаштування",
+    "none": "Немає",
+    "all": "Усі",
+    "reset": "Скинути",
+    "apply": "Застосувати",
+    "preview": "Попередній перегляд",
+    "source": "Джерело",
+    "result": "Результат",
+    "input": "Вхід",
+    "output": "Вихід",
+    "generate": "Згенерувати",
+    "encode": "Кодувати",
+    "decode": "Декодувати",
+    "paste": "Вставити",
+    "swap": "Поміняти",
+    "back": "Назад",
+    "next": "Далі",
+    "samples": "Зразки",
+    "history": "Історія",
+    "options": "Параметри",
+    "format": "Формат",
+    "validate": "Перевірити",
+    "convert": "Конвертувати",
+    "raw": "Необроблений",
+    "send": "Надіслати",
+    "stop": "Зупинити",
+    "start": "Почати",
+    "refresh": "Оновити",
+    "browse": "Огляд",
+    "select": "Вибрати",
+    "add": "Додати",
+    "remove": "Видалити",
+    "edit": "Редагувати",
+    "share": "Поділитися",
+    "pin": "Закріпити",
+    "unpin": "Відкріпити",
+    "new": "Новий",
+    "text": "Текст",
+    "type": "Тип",
+    "size": "Розмір",
+    "name": "Назва",
+    "value": "Значення",
+    "status": "Статус",
+    "actions": "Дії",
+    "description": "Опис",
+    "category": "Категорія",
+    "tags": "Теги",
+    "language": "Мова",
+    "title": "Заголовок",
+    "content": "Вміст",
+    "count": "Кількість",
+    "length": "Довжина",
+    "total": "Всього",
+    "or": "або",
+    "and": "та",
+    "no_data": "Немає даних",
+    "no_results": "Нічого не знайдено",
+    "confirm_delete": "Ви впевнені, що хочете видалити це?",
+    "drag_drop": "Перетягніть файл сюди",
+    "processing": "Обробка...",
+    "done": "Готово",
+    "copied_to_clipboard": "Скопійовано в буфер обміну!",
+    "failed_to_copy": "Не вдалося скопіювати",
+    "keyboard_shortcuts": "Комбінації клавіш",
+    "toggle_fullscreen": "Повноекранний режим (F11)",
+    "exit_fullscreen": "Вийти з повноекранного режиму (Esc)"
+  },
+  "nav": {
+    "brand": "Dev Helper",
+    "search": "Пошук",
+    "search_tools": "Пошук інструментів...",
+    "more": "Більше",
+    "all_tools": "Усі інструменти",
+    "ask_ai": "Запитати AI",
+    "cloud_ai": "Хмарний AI",
+    "local_ai": "Локальний AI",
+    "language": "Мова",
+    "pinned_to_navbar": "Закріплено на панелі",
+    "unpinned_from_navbar": "Відкріплено від панелі",
+    "pin_to_navbar": "Закріпити на панелі",
+    "unpin_from_navbar": "Відкріпити від панелі",
+    "open_navigation": "Відкрити навігацію"
+  },
+  "theme": {
+    "light": "Світла",
+    "dark": "Темна",
+    "auto": "Авто",
+    "switch_theme": "Змінити тему"
+  },
+  "spotlight": {
+    "placeholder": "Пошук інструментів...",
+    "no_results": "Не знайдено інструментів для \"{query}\"",
+    "navigate": "Навігація",
+    "open": "Відкрити",
+    "close": "Закрити"
+  },
+  "drawer": {
+    "search": "Пошук",
+    "theme": "Тема",
+    "pinned": "Закріплені",
+    "file_code": "Файли & Код",
+    "encode_decode": "Кодування & Декодування",
+    "converters": "Конвертери",
+    "generators": "Генератори",
+    "tools_section": "Інструменти",
+    "logs_network": "Логи & Мережа",
+    "all_tools": "Усі інструменти"
+  },
+  "footer": {
+    "made_by": "Зроблено з ❤️"
+  },
+  "ai": {
+    "ask": "Запитати",
+    "prompt_placeholder": "Що ви хочете запитати?",
+    "enter_to_send": "Enter щоб надіслати",
+    "shift_enter_newline": "Shift+Enter для нового рядка",
+    "open_without_prompt": "Відкрити без запиту",
+    "ollama_url": "Ollama URL",
+    "ollama_url_placeholder": "http://localhost:11434",
+    "enter_ollama_url": "Введіть URL веб-інтерфейсу Ollama"
+  },
+  "dashboard": {
+    "search_placeholder": "Пошук інструментів...",
+    "pinned_tools": "Закріплені інструменти",
+    "all_tools": "Усі інструменти",
+    "no_results": "Інструментів не знайдено.",
+    "open_source_toolkit": "Набір інструментів для розробників з відкритим кодом",
+    "tools_count": "{count} інструментів доступно"
+  },
+  "tools": {
+    "upload": {
+      "name": "Вивантаження",
+      "desc": "Перетягніть, вставте або виберіть файли для вивантаження. Попередній перегляд зображень з lightbox."
+    },
+    "files": {
+      "name": "Файловий менеджер",
+      "desc": "Переглядайте, шукайте та керуйте вивантаженими файлами у вигляді сітки, як у Google Drive."
+    },
+    "prettify": {
+      "name": "Prettify",
+      "desc": "Форматування та прикрашення коду JSON, XML, HTML, CSS, JavaScript і SQL."
+    },
+    "logs": {
+      "name": "Збирач логів",
+      "desc": "Легкий збирач логів. Отримуйте логи з будь-якого додатка через HTTP POST, фільтруйте за додатком і рівнем."
+    },
+    "logviewer": {
+      "name": "Переглядач логів",
+      "desc": "Вивантажуйте та шукайте у великих лог-файлах за ключовими словами, regex та контекстними рядками."
+    },
+    "editor": {
+      "name": "Редактор коду",
+      "desc": "Повнофункціональний редактор коду на базі Monaco (VS Code). Підсвічування синтаксису для 40+ мов."
+    },
+    "markdown": {
+      "name": "Переглядач Markdown",
+      "desc": "Пишіть Markdown з миттєвим переглядом, підсвіченими блоками коду та підтримкою GFM."
+    },
+    "diff": {
+      "name": "Порівняння коду",
+      "desc": "Порівнюйте два файли коду поруч або вбудовано з підсвіченим diff-переглядом."
+    },
+    "jwt": {
+      "name": "Інструмент JWT",
+      "desc": "Кодування, декодування та перевірка JSON Web Token. Підтримка HS256/384/512 з кольоровим відображенням."
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Кодування та декодування рядків Base64. Підтримка тексту та бінарних файлів з опцією URL-safe."
+    },
+    "urlencoder": {
+      "name": "Кодувальник URL",
+      "desc": "Кодування та декодування URL і параметрів запиту. Розбір URL показує протокол, хост, шлях і параметри."
+    },
+    "htmleditor": {
+      "name": "Редактор HTML",
+      "desc": "WYSIWYG-редактор на базі TinyMCE з перемиканням на перегляд HTML-коду."
+    },
+    "mermaid": {
+      "name": "Діаграми Mermaid",
+      "desc": "Створюйте блок-схеми, діаграми послідовностей, ER-діаграми, діаграми Ганта та інше з Mermaid.js у реальному часі."
+    },
+    "uuid": {
+      "name": "Генератор UUID",
+      "desc": "Генерація UUID v1, v4 та v7. Масова генерація, валідація, розбір та копіювання з налаштуваннями формату."
+    },
+    "notes": {
+      "name": "Нотатки",
+      "desc": "Нотатки Markdown з миттєвим переглядом, тегами, категоріями, кольоровими мітками, вкладеннями та автозбереженням."
+    },
+    "regex": {
+      "name": "Тестер regex",
+      "desc": "Тестуйте шаблони regex з підсвічуванням збігів у реальному часі, групами захоплення, заміною та шпаргалкою."
+    },
+    "charmap": {
+      "name": "Emoji та символи",
+      "desc": "Пошук і копіювання emoji, символів і спеціальних знаків. Деталі Unicode, HTML-сутності та нещодавно використані."
+    },
+    "epoch": {
+      "name": "Конвертер Epoch",
+      "desc": "Конвертуйте мітки часу Unix epoch у зрозумілі дати та навпаки. Живий годинник, шаблони та калькулятор різниці часу."
+    },
+    "hash": {
+      "name": "Генератор Hash",
+      "desc": "Генерація хешів MD5, SHA-1, SHA-256, SHA-512 з тексту або файлів. Миттєва перевірка контрольних сум."
+    },
+    "colorpicker": {
+      "name": "Вибір кольору",
+      "desc": "Вибирайте кольори та конвертуйте між форматами HEX, RGB, HSL. Палітра та перевірка контрасту."
+    },
+    "cron": {
+      "name": "Парсер cron",
+      "desc": "Розбір та генерація виразів cron зі зрозумілими описами та часом наступних запусків."
+    },
+    "password": {
+      "name": "Генератор паролів",
+      "desc": "Генерація криптографічно безпечних випадкових паролів та легких для запам'ятовування парольних фраз."
+    },
+    "qrcode": {
+      "name": "Генератор QR Code",
+      "desc": "Генерація QR-кодів з тексту, URL, облікових даних WiFi або контактної інформації. Завантаження у PNG."
+    },
+    "lorem": {
+      "name": "Lorem Ipsum",
+      "desc": "Генерація тексту-заповнювача — абзаци, речення або слова. Декілька стилів на вибір."
+    },
+    "baseconverter": {
+      "name": "Конвертер систем числення",
+      "desc": "Конвертуйте числа між двійковою, вісімковою, десятковою та шістнадцятковою системами в реальному часі."
+    },
+    "json2yaml": {
+      "name": "JSON ↔ YAML",
+      "desc": "Конвертація між форматами JSON та YAML з валідацією синтаксису та форматуванням."
+    },
+    "httpclient": {
+      "name": "HTTP Client",
+      "desc": "Тестуйте API-ендпоінти як у міні-Postman. Методи, заголовки, тіло запиту та перегляд відповіді."
+    },
+    "stringutils": {
+      "name": "Утиліти для рядків",
+      "desc": "Зміна регістру, обрізка, підрахунок, реверс, генерація slug та інші операції з рядками."
+    },
+    "chat": {
+      "name": "LAN Чат",
+      "desc": "Чат у реальному часі для локальної мережі. Інтернет не потрібен — лише Dev Helper у LAN."
+    },
+    "netscan": {
+      "name": "Сканер мережі",
+      "desc": "Скануйте хости та порти в LAN. Виявляйте пристрої, сервіси та відкриті порти у вашій мережі."
+    },
+    "worldclock": {
+      "name": "Світовий годинник",
+      "desc": "Годинники в різних часових поясах з аналоговим дисплеєм, планувальником зустрічей та перетягуванням."
+    },
+    "ocr": {
+      "name": "OCR",
+      "desc": "Витягуйте текст зі зображень та скріншотів. Перетягніть, вставте або вивантажте — на базі Tesseract.js."
+    },
+    "yaml2props": {
+      "name": "YAML ↔ Properties",
+      "desc": "Конвертація між application.yml та application.properties для проєктів Java/Spring Boot."
+    },
+    "netinspect": {
+      "name": "Інспектор мережі",
+      "desc": "Геолокація IP, пошук DNS, HTTP-заголовки відповіді та перевірка сертифікатів SSL."
+    },
+    "aichat": {
+      "name": "AI Чат",
+      "desc": "Спілкуйтеся з локальними моделями Ollama AI. Потокові відповіді, рендеринг markdown, історія розмов."
+    },
+    "speedtest": {
+      "name": "Тест швидкості",
+      "desc": "Тестуйте швидкість завантаження/вивантаження, пінг та продуктивність читання/запису диска."
+    },
+    "snippets": {
+      "name": "Фрагменти коду",
+      "desc": "Зберігайте та організовуйте фрагменти коду з підсвічуванням синтаксису та швидким копіюванням."
+    },
+    "sysmon": {
+      "name": "Системний монітор",
+      "desc": "Моніторинг CPU, пам'яті, диска, мережі та процесів у реальному часі з живими індикаторами."
+    },
+    "icons": {
+      "name": "Огляд іконок",
+      "desc": "Переглядайте та шукайте Bootstrap Icons, Font Awesome та Tabler Icons. Натисніть для копіювання CSS-класу або HTML."
+    },
+    "askai": {
+      "name": "Запитати AI",
+      "desc": "Швидкий доступ до 9 хмарних AI (Claude, ChatGPT, Gemini тощо) та Ollama з панелі навігації."
+    },
+    "translator": {
+      "name": "Перекладач",
+      "desc": "Перекладайте текст між мовами за допомогою локальних моделей Ollama AI. Як Google Translate, офлайн."
+    }
+  },
+  "upload_page": {
+    "drop_zone": "Перетягніть файли сюди",
+    "drop_or_browse": "або натисніть, щоб вибрати",
+    "paste_hint": "Також можна вставити з буфера обміну (Ctrl+V)",
+    "recent_uploads": "Нещодавні вивантаження",
+    "clear_recent": "Очистити нещодавні",
+    "copy_url": "Копіювати URL",
+    "open_new_tab": "Відкрити в новій вкладці",
+    "file_uploaded": "Файл успішно вивантажено",
+    "upload_failed": "Помилка вивантаження"
+  },
+  "files_page": {
+    "search_placeholder": "Пошук файлів...",
+    "grid_view": "Сітка",
+    "list_view": "Список",
+    "delete_all": "Видалити все",
+    "confirm_delete_all": "Ви впевнені, що хочете видалити всі файли?",
+    "no_files": "Файлів не знайдено",
+    "file_deleted": "Файл видалено",
+    "download": "Завантажити",
+    "file_size": "Розмір",
+    "file_date": "Дата"
+  },
+  "prettify_page": {
+    "input_label": "Вхід",
+    "output_label": "Вихід",
+    "prettify": "Форматувати",
+    "minify": "Мінімізувати",
+    "paste_placeholder": "Вставте або введіть код тут...",
+    "auto_detect": "Автовизначення",
+    "copy_output": "Копіювати результат"
+  },
+  "logs_page": {
+    "app": "Додаток",
+    "level": "Рівень",
+    "search_placeholder": "Пошук у логах...",
+    "clear_logs": "Очистити логи",
+    "auto_scroll": "Автопрокрутка",
+    "no_logs": "Логів не знайдено",
+    "all_apps": "Усі додатки",
+    "all_levels": "Усі рівні",
+    "timestamp": "Мітка часу",
+    "message": "Повідомлення"
+  },
+  "logviewer_page": {
+    "upload_log": "Вивантажити лог-файл",
+    "search_placeholder": "Пошук за ключовим словом або regex...",
+    "use_regex": "Regex",
+    "case_sensitive": "З урахуванням регістру",
+    "context_lines": "Контекстні рядки",
+    "showing_lines": "Показано {shown} з {total} рядків",
+    "no_matches": "Збігів не знайдено",
+    "line": "Рядок"
+  },
+  "editor_page": {
+    "new_file": "Новий",
+    "open_file": "Відкрити файл",
+    "save_file": "Зберегти",
+    "word_wrap": "Перенос слів",
+    "minimap": "Minimap",
+    "line": "Рядок",
+    "column": "Стовпець",
+    "language": "Мова",
+    "fetch_url": "Завантажити з URL",
+    "url_placeholder": "Введіть URL для завантаження файлу..."
+  },
+  "markdown_page": {
+    "samples": "Зразки",
+    "open_file": "Відкрити файл",
+    "copy_html": "Копіювати HTML",
+    "export": "Експорт",
+    "export_pdf": "Експорт у PDF",
+    "export_md": "Експорт у Markdown",
+    "export_html": "Експорт у HTML",
+    "clear": "Очистити",
+    "expand": "Розгорнути",
+    "editor_label": "Markdown",
+    "preview_label": "Попередній перегляд",
+    "drop_zone": "Перетягніть Markdown-файл сюди або натисніть для вибору",
+    "url_placeholder": "Введіть URL для завантаження .md файлу",
+    "fetch": "Завантажити",
+    "html_copied": "HTML скопійовано!",
+    "readme": "README",
+    "api_docs": "Документація API",
+    "changelog": "Журнал змін",
+    "blog_post": "Стаття блогу",
+    "cheatsheet": "Шпаргалка Markdown",
+    "meeting_notes": "Нотатки зустрічі",
+    "project_todo": "Завдання проєкту"
+  },
+  "diff_page": {
+    "original": "Оригінал",
+    "modified": "Змінений",
+    "side_by_side": "Поруч",
+    "inline": "Вбудований",
+    "open_file": "Відкрити файл",
+    "paste_code": "Вставте код тут...",
+    "swap": "Поміняти",
+    "no_differences": "Відмінностей не знайдено"
+  },
+  "jwt_page": {
+    "header": "Заголовок",
+    "payload": "Навантаження",
+    "signature": "Підпис",
+    "secret": "Секретний ключ",
+    "algorithm": "Алгоритм",
+    "encode": "Кодувати",
+    "decode": "Декодувати",
+    "verify": "Перевірити",
+    "valid_signature": "Підпис дійсний",
+    "invalid_signature": "Підпис недійсний",
+    "paste_jwt": "Вставте JWT-токен тут..."
+  },
+  "base64_page": {
+    "text_mode": "Текст",
+    "file_mode": "Файл",
+    "url_safe": "URL-safe",
+    "line_breaks": "Розриви рядків",
+    "input_placeholder": "Введіть текст для кодування/декодування...",
+    "drop_file": "Перетягніть файл сюди або натисніть для вибору",
+    "download_result": "Завантажити результат"
+  },
+  "urlencoder_page": {
+    "component_mode": "Компонент",
+    "full_url_mode": "Повний URL",
+    "url_parser": "Розбір URL",
+    "protocol": "Протокол",
+    "host": "Хост",
+    "path": "Шлях",
+    "params": "Параметри",
+    "input_placeholder": "Введіть URL або текст для кодування/декодування..."
+  },
+  "htmleditor_page": {
+    "wysiwyg": "WYSIWYG",
+    "source_code": "Вихідний код",
+    "import_html": "Імпортувати HTML",
+    "export_html": "Експортувати HTML",
+    "clear": "Очистити"
+  },
+  "mermaid_page": {
+    "samples": "Зразки",
+    "download_svg": "Завантажити SVG",
+    "download_png": "Завантажити PNG",
+    "share": "Поділитися",
+    "zoom_in": "Збільшити",
+    "zoom_out": "Зменшити",
+    "reset_zoom": "Скинути масштаб",
+    "diagram_label": "Код Mermaid",
+    "preview_label": "Попередній перегляд",
+    "link_copied": "Посилання скопійовано!",
+    "flowchart": "Блок-схема",
+    "sequence": "Діаграма послідовностей",
+    "class_diagram": "Діаграма класів",
+    "state": "Діаграма станів",
+    "er": "ER-діаграма",
+    "gantt": "Діаграма Ганта",
+    "pie": "Кругова діаграма",
+    "mindmap": "Інтелект-карта",
+    "timeline": "Хронологія",
+    "quadrant": "Квадрантна діаграма",
+    "git": "Git-графік",
+    "sankey": "Діаграма Санкі"
+  },
+  "uuid_page": {
+    "version": "Версія",
+    "bulk_generate": "Масова генерація",
+    "validate_parse": "Перевірити & Розібрати",
+    "count": "Кількість",
+    "uppercase": "Великі літери",
+    "braces": "Дужки",
+    "hyphens": "Дефіси",
+    "copy_all": "Копіювати все",
+    "generated": "Згенеровано",
+    "valid_uuid": "Дійсний UUID",
+    "invalid_uuid": "Недійсний UUID",
+    "uuid_version": "Версія",
+    "uuid_variant": "Варіант",
+    "uuid_timestamp": "Мітка часу"
+  },
+  "notes_page": {
+    "new_note": "Нова нотатка",
+    "search_placeholder": "Пошук нотаток...",
+    "categories": "Категорії",
+    "all_notes": "Усі нотатки",
+    "pinned": "Закріплені",
+    "trash": "Кошик",
+    "restore": "Відновити",
+    "permanent_delete": "Видалити назавжди",
+    "note_saved": "Нотатку збережено",
+    "note_deleted": "Нотатку переміщено в кошик",
+    "untitled": "Без назви",
+    "attachments": "Вкладення",
+    "color_label": "Кольорова мітка",
+    "sort_by": "Сортувати за",
+    "date_modified": "Датою зміни",
+    "date_created": "Датою створення"
+  },
+  "regex_page": {
+    "pattern": "Шаблон",
+    "test_string": "Тестовий рядок",
+    "flags": "Прапори",
+    "matches": "Збіги",
+    "replace": "Замінити",
+    "replacement": "Заміна",
+    "cheat_sheet": "Шпаргалка",
+    "common_patterns": "Поширені шаблони",
+    "no_matches": "Збігів немає",
+    "match_count": "Знайдено {count} збігів",
+    "global": "Глобальний",
+    "case_insensitive": "Без урахування регістру",
+    "multiline": "Багаторядковий"
+  },
+  "charmap_page": {
+    "search_placeholder": "Пошук emoji або символу...",
+    "recently_used": "Нещодавно використані",
+    "unicode": "Unicode",
+    "html_entity": "HTML-сутність",
+    "css_code": "CSS-код",
+    "copy_char": "Натисніть, щоб скопіювати",
+    "smileys": "Смайлики та люди",
+    "animals": "Тварини та природа",
+    "food": "Їжа та напої",
+    "activities": "Активності",
+    "travel": "Подорожі та місця",
+    "objects": "Об'єкти",
+    "symbols": "Символи",
+    "flags": "Прапори",
+    "arrows": "Стрілки",
+    "math": "Математика",
+    "currency": "Валюта",
+    "latin": "Розширена латиниця"
+  },
+  "epoch_page": {
+    "timestamp": "Мітка часу",
+    "date_time": "Дата та час",
+    "now": "Зараз",
+    "seconds": "Секунди",
+    "milliseconds": "Мілісекунди",
+    "local_time": "Місцевий час",
+    "utc_time": "Час UTC",
+    "relative": "Відносний",
+    "time_diff": "Різниця часу",
+    "presets": "Шаблони",
+    "live_clock": "Живий годинник"
+  },
+  "hash_page": {
+    "text_input": "Текстовий вхід",
+    "file_input": "Файловий вхід",
+    "compare": "Порівняти хеші",
+    "hash_match": "Хеші збігаються!",
+    "hash_mismatch": "Хеші не збігаються",
+    "drop_file": "Перетягніть файл для хешування...",
+    "computing": "Обчислення хешу..."
+  },
+  "colorpicker_page": {
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL",
+    "contrast_check": "Перевірка контрасту",
+    "foreground": "Передній план",
+    "background": "Фон",
+    "ratio": "Співвідношення",
+    "wcag_aa": "WCAG AA",
+    "wcag_aaa": "WCAG AAA",
+    "pass": "Пройдено",
+    "fail": "Не пройдено",
+    "palette": "Палітра",
+    "shades": "Темні відтінки",
+    "tints": "Світлі відтінки",
+    "pick_color": "Вибрати колір",
+    "eyedropper": "Піпетка"
+  },
+  "cron_page": {
+    "expression": "Вираз",
+    "description_label": "Опис",
+    "next_runs": "Наступні запуски",
+    "presets": "Шаблони",
+    "minute": "Хвилина",
+    "hour": "Година",
+    "day_month": "День (місяць)",
+    "month": "Місяць",
+    "day_week": "День (тиждень)",
+    "every_minute": "Кожну хвилину",
+    "every_hour": "Кожну годину",
+    "every_day": "Щодня опівночі",
+    "share": "Поділитися"
+  },
+  "password_page": {
+    "password": "Пароль",
+    "passphrase": "Парольна фраза",
+    "length": "Довжина",
+    "uppercase": "Великі літери (A-Z)",
+    "lowercase": "Малі літери (a-z)",
+    "numbers": "Цифри (0-9)",
+    "symbols": "Символи (!@#$...)",
+    "word_count": "Кількість слів",
+    "separator": "Роздільник",
+    "strength": "Надійність",
+    "entropy": "Ентропія",
+    "very_weak": "Дуже слабкий",
+    "weak": "Слабкий",
+    "fair": "Задовільний",
+    "strong": "Надійний",
+    "very_strong": "Дуже надійний",
+    "bulk_generate": "Масова генерація",
+    "generate_count": "Кількість"
+  },
+  "qrcode_page": {
+    "text_url": "Текст / URL",
+    "wifi": "WiFi",
+    "vcard": "vCard",
+    "content_placeholder": "Введіть текст або URL...",
+    "network_name": "Назва мережі (SSID)",
+    "wifi_password": "Пароль",
+    "encryption": "Шифрування",
+    "hidden_network": "Прихована мережа",
+    "full_name": "Повне ім'я",
+    "phone": "Телефон",
+    "email": "Email",
+    "organization": "Організація",
+    "error_correction": "Корекція помилок",
+    "foreground_color": "Передній план",
+    "background_color": "Фон",
+    "download_png": "Завантажити PNG",
+    "download_svg": "Завантажити SVG",
+    "copy_image": "Копіювати зображення"
+  },
+  "lorem_page": {
+    "paragraphs": "Абзаци",
+    "sentences": "Речення",
+    "words": "Слова",
+    "style": "Стиль",
+    "classic": "Класичний",
+    "hipster": "Хіпстерський",
+    "tech": "Технічний / Dev",
+    "include_html": "Включити HTML-теги",
+    "start_lorem": "Почати з \"Lorem ipsum...\"",
+    "generated_text": "Згенерований текст",
+    "copy_text": "Копіювати текст"
+  },
+  "baseconverter_page": {
+    "binary": "Двійкова",
+    "octal": "Вісімкова",
+    "decimal": "Десяткова",
+    "hexadecimal": "Шістнадцяткова",
+    "bit_visualization": "Візуалізація бітів",
+    "signed": "Знаковий",
+    "unsigned": "Беззнаковий",
+    "twos_complement": "Доповнення до двох"
+  },
+  "json2yaml_page": {
+    "json": "JSON",
+    "yaml": "YAML",
+    "json_to_yaml": "JSON → YAML",
+    "yaml_to_json": "YAML → JSON",
+    "prettify": "Форматувати",
+    "minify": "Мінімізувати",
+    "import_file": "Імпортувати файл",
+    "invalid_json": "Недійсний JSON",
+    "invalid_yaml": "Недійсний YAML"
+  },
+  "httpclient_page": {
+    "url_placeholder": "Введіть URL запиту...",
+    "method": "Метод",
+    "headers": "Заголовки",
+    "body": "Тіло",
+    "auth": "Авторизація",
+    "params": "Параметри",
+    "response": "Відповідь",
+    "status_code": "Статус",
+    "response_time": "Час",
+    "response_size": "Розмір",
+    "send_request": "Надіслати",
+    "clear_history": "Очистити історію",
+    "no_auth": "Без авторизації",
+    "basic_auth": "Basic Auth",
+    "bearer_token": "Bearer Token",
+    "username": "Ім'я користувача",
+    "token": "Токен",
+    "key": "Ключ",
+    "add_header": "Додати заголовок",
+    "add_param": "Додати параметр"
+  },
+  "stringutils_page": {
+    "input_placeholder": "Введіть текст тут...",
+    "operations": "Операції",
+    "case_conversion": "Зміна регістру",
+    "text_cleanup": "Очищення тексту",
+    "text_transform": "Перетворення тексту",
+    "encode_decode": "Кодування / Декодування",
+    "extract_info": "Витяг інформації",
+    "uppercase": "ВЕЛИКІ ЛІТЕРИ",
+    "lowercase": "малі літери",
+    "title_case": "Кожне Слово З Великої",
+    "sentence_case": "Перша літера велика",
+    "camel_case": "camelCase",
+    "pascal_case": "PascalCase",
+    "snake_case": "snake_case",
+    "kebab_case": "kebab-case",
+    "constant_case": "CONSTANT_CASE",
+    "char_count": "Символи",
+    "word_count": "Слова",
+    "line_count": "Рядки"
+  },
+  "chat_page": {
+    "username_placeholder": "Введіть ваше ім'я...",
+    "message_placeholder": "Введіть повідомлення...",
+    "join": "Приєднатися",
+    "online_users": "Онлайн-користувачі",
+    "user_joined": "{user} приєднався до чату",
+    "user_left": "{user} покинув чат"
+  },
+  "netscan_page": {
+    "interface": "Інтерфейс",
+    "target": "Ціль",
+    "ports": "Порти",
+    "scan": "Сканувати",
+    "scanning": "Сканування...",
+    "open_ports": "Відкриті порти",
+    "host": "Хост",
+    "port": "Порт",
+    "service": "Сервіс",
+    "scan_complete": "Сканування завершено",
+    "common_ports": "Поширені порти",
+    "custom_range": "Довільний діапазон"
+  },
+  "worldclock_page": {
+    "add_clock": "Додати годинник",
+    "your_local_time": "Ваш місцевий час",
+    "meeting_planner": "Планувальник зустрічей",
+    "timezone": "Часовий пояс",
+    "search_timezone": "Пошук часового поясу...",
+    "remove_clock": "Видалити"
+  },
+  "ocr_page": {
+    "upload_image": "Вивантажити зображення",
+    "paste_image": "Вставити зображення",
+    "drop_image": "Перетягніть зображення сюди",
+    "extract_text": "Витягти текст",
+    "extracted_text": "Витягнутий текст",
+    "copy_result": "Копіювати результат",
+    "recognizing": "Розпізнавання тексту...",
+    "no_text_found": "Текст у зображенні не знайдено",
+    "supported_formats": "Підтримуються: PNG, JPG, BMP, WebP"
+  },
+  "yaml2props_page": {
+    "yaml_label": "YAML",
+    "properties_label": "Properties",
+    "yaml_to_props": "YAML → Properties",
+    "props_to_yaml": "Properties → YAML",
+    "import_file": "Імпортувати файл",
+    "download_result": "Завантажити"
+  },
+  "aichat_page": {
+    "model": "Модель",
+    "no_models": "Моделей не знайдено. Ollama запущений?",
+    "message_placeholder": "Введіть ваше повідомлення...",
+    "clear_chat": "Очистити чат",
+    "thinking": "Думаю...",
+    "ollama_not_running": "Неможливо підключитися до Ollama",
+    "connection_error": "Помилка з'єднання"
+  },
+  "speedtest_page": {
+    "start_test": "Почати тест",
+    "ping": "Пінг",
+    "download_speed": "Завантаження",
+    "upload_speed": "Вивантаження",
+    "disk_speed": "Диск",
+    "latency": "Затримка",
+    "read_speed": "Читання",
+    "write_speed": "Запис",
+    "testing": "Тестування...",
+    "test_complete": "Тест завершено"
+  },
+  "snippets_page": {
+    "new_snippet": "Новий фрагмент",
+    "search_placeholder": "Пошук фрагментів...",
+    "title_placeholder": "Назва фрагменту...",
+    "desc_placeholder": "Опис (необов'язково)",
+    "tags_placeholder": "Теги (через кому)",
+    "save_snippet": "Зберегти",
+    "delete_snippet": "Видалити",
+    "copy_code": "Копіювати код",
+    "language": "Мова",
+    "default_loaded": "Стандартні фрагменти завантажено",
+    "snippet_saved": "Фрагмент збережено",
+    "snippet_deleted": "Фрагмент видалено",
+    "code_copied": "Код скопійовано!",
+    "no_snippets": "Фрагментів не знайдено",
+    "pinned": "Закріплені",
+    "all_snippets": "Усі фрагменти"
+  },
+  "sysmon_page": {
+    "cpu": "CPU",
+    "memory": "Пам'ять",
+    "disk": "Диск",
+    "network": "Мережа",
+    "processes": "Процеси",
+    "usage": "Використання",
+    "total": "Всього",
+    "used": "Використано",
+    "free": "Вільно",
+    "available": "Доступно",
+    "cores": "Ядра",
+    "uptime": "Час роботи",
+    "pid": "PID",
+    "process_name": "Назва",
+    "cpu_percent": "CPU %",
+    "mem_percent": "Пам'ять %",
+    "connecting": "Підключення...",
+    "disconnected": "Від'єднано",
+    "bytes_sent": "Надіслано",
+    "bytes_recv": "Отримано",
+    "read_speed": "Читання",
+    "write_speed": "Запис"
+  },
+  "icons_page": {
+    "search_placeholder": "Пошук іконок...",
+    "bootstrap_icons": "Bootstrap Icons",
+    "font_awesome": "Font Awesome",
+    "tabler_icons": "Tabler Icons",
+    "all_categories": "Усі",
+    "recently_used": "Нещодавно використані",
+    "class_name": "Клас",
+    "html_code": "HTML",
+    "jsx_code": "JSX",
+    "unicode_code": "Unicode",
+    "copy_class": "Копіювати клас",
+    "copy_html": "Копіювати HTML",
+    "icon_count": "{count} іконок",
+    "loading_icons": "Завантаження іконок...",
+    "click_to_view": "Натисніть на іконку для перегляду деталей"
+  },
+  "netinspect_page": {
+    "my_ip": "Мій IP",
+    "ip_lookup": "Пошук IP",
+    "dns_lookup": "Пошук DNS",
+    "http_headers": "HTTP-заголовки",
+    "ssl_cert": "Сертифікат SSL",
+    "lookup": "Пошук",
+    "check": "Перевірити",
+    "ip_placeholder": "Введіть IP-адресу...",
+    "domain_placeholder": "Введіть доменне ім'я...",
+    "url_placeholder": "Введіть URL...",
+    "location": "Місцезнаходження",
+    "isp": "Провайдер",
+    "record_type": "Тип запису",
+    "issuer": "Видавець",
+    "valid_from": "Дійсний з",
+    "valid_until": "Дійсний до",
+    "subject": "Суб'єкт"
+  },
+  "translator_page": {
+    "source_lang": "Мова оригіналу",
+    "target_lang": "Мова перекладу",
+    "auto_detect": "Автовизначення",
+    "translate": "Перекласти",
+    "translating": "Перекладаю...",
+    "swap_languages": "Поміняти мови",
+    "input_placeholder": "Введіть текст для перекладу...",
+    "model": "Модель",
+    "copy_translation": "Копіювати переклад",
+    "translation_copied": "Переклад скопійовано!",
+    "clear_all": "Очистити все",
+    "char_count": "{count} символів"
+  }
+}
