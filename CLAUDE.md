@@ -292,11 +292,12 @@ go run main.go --debug --port 8080 # Combine flags
 ```
 
 ### Windows Exe Icon
-The `rsrc.syso` file in project root embeds `favicon.ico` as the Windows exe icon. It's auto-included by `go build`. To regenerate:
+`rsrc_windows_amd64.syso` in project root embeds `favicon.ico` as the Windows exe icon. Go auto-includes it only for `GOOS=windows GOARCH=amd64` builds (filename convention). To regenerate:
 ```bash
 go install github.com/akavel/rsrc@latest
-rsrc -ico static/icons/favicon.ico -o rsrc.syso
+rsrc -ico static/icons/favicon.ico -o rsrc_windows_amd64.syso
 ```
+**IMPORTANT**: File must be named `rsrc_windows_amd64.syso` (not `rsrc.syso`) — otherwise cross-compilation for Linux/macOS ARM64 fails.
 
 ### Production Build
 ```bash
@@ -310,9 +311,27 @@ go build -o dev-helper.exe .       # Build binary (with icon on Windows)
 ```bash
 GOOS=windows GOARCH=amd64 go build -o dev-helper.exe .
 GOOS=linux   GOARCH=amd64 go build -o dev-helper .
+GOOS=linux   GOARCH=arm64 go build -o dev-helper .     # Linux ARM64
 GOOS=darwin  GOARCH=amd64 go build -o dev-helper .     # Mac Intel
 GOOS=darwin  GOARCH=arm64 go build -o dev-helper .     # Mac Apple Silicon
 ```
+
+### GitHub Actions (CI/CD)
+Workflow: `.github/workflows/release.yml` — triggers on tag push (`v*`).
+
+**How to release:**
+```bash
+git tag v1.3.0
+git push origin v1.3.0
+```
+GitHub Actions auto-builds 5 binaries and attaches them to the release page:
+- `dev-helper-windows-amd64.exe` (with embedded icon)
+- `dev-helper-linux-amd64`
+- `dev-helper-linux-arm64`
+- `dev-helper-macos-amd64`
+- `dev-helper-macos-arm64`
+
+Uses `softprops/action-gh-release@v2` with `generate_release_notes: true`. Build flags: `-s -w` (strip debug info) + `-X main.version=${VERSION}`.
 
 ### CLI Flags
 | Flag | Default | Description |
