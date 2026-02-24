@@ -24,17 +24,16 @@ jobs:
           LDFLAGS="-s -w -X main.version=${VERSION}"
           mkdir -p dist
 
-          # Windows
+          # Windows (rsrc_windows_amd64.syso auto-included for icon)
           GOOS=windows GOARCH=amd64 go build -ldflags "${LDFLAGS}" -o dist/dev-helper-windows-amd64.exe .
 
           # Linux
           GOOS=linux GOARCH=amd64 go build -ldflags "${LDFLAGS}" -o dist/dev-helper-linux-amd64 .
+          GOOS=linux GOARCH=arm64 go build -ldflags "${LDFLAGS}" -o dist/dev-helper-linux-arm64 .
 
-          # macOS Intel
-          GOOS=darwin GOARCH=amd64 go build -ldflags "${LDFLAGS}" -o dist/dev-helper-darwin-amd64 .
-
-          # macOS Apple Silicon
-          GOOS=darwin GOARCH=arm64 go build -ldflags "${LDFLAGS}" -o dist/dev-helper-darwin-arm64 .
+          # macOS
+          GOOS=darwin GOARCH=amd64 go build -ldflags "${LDFLAGS}" -o dist/dev-helper-macos-amd64 .
+          GOOS=darwin GOARCH=arm64 go build -ldflags "${LDFLAGS}" -o dist/dev-helper-macos-arm64 .
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
