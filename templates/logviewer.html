@@ -72,6 +72,84 @@
         padding: 0 2px;
         border-radius: 2px;
     }
+
+    /* Tag / Chips Input */
+    .tags-input {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 8px;
+        min-height: 38px;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        background: var(--bs-body-bg);
+        cursor: text;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .tags-input:focus-within {
+        border-color: #86b7fe;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+    .tags-input .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: var(--bs-primary);
+        color: #fff;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        white-space: nowrap;
+        max-width: 300px;
+        animation: tagIn 0.15s ease;
+    }
+    @keyframes tagIn {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    .tags-input .tag span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .tags-input .tag button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: rgba(255,255,255,0.3);
+        color: #fff;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+        line-height: 1;
+        padding: 0;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+    .tags-input .tag button:hover {
+        background: rgba(255,255,255,0.5);
+    }
+    .tags-input input {
+        flex: 1;
+        min-width: 120px;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: var(--bs-body-color);
+        font-size: 0.9rem;
+        padding: 2px 0;
+    }
+    .tags-input input::placeholder {
+        color: var(--bs-secondary-color);
+    }
+    .tags-hint {
+        font-size: 0.75rem;
+        color: var(--bs-secondary-color);
+        margin-top: 4px;
+    }
 </style>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -81,18 +159,57 @@
 <!-- Upload & Filter Section -->
 <div class="card mb-3">
     <div class="card-body">
-        <!-- Drop Zone -->
-        <div id="dropZone" class="drop-zone mb-3" onclick="document.getElementById('fileInput').click()">
-            <i class="bi bi-cloud-arrow-up fs-1 text-muted"></i>
-            <p class="mb-0 mt-2 text-muted" id="dropText">Drag & drop a log file here, or click to browse</p>
-            <small class="text-muted">.log, .txt, .csv, or any text file</small>
-        </div>
-        <input type="file" id="fileInput" class="d-none" accept=".log,.txt,.csv,.text,.out,.err">
+        <!-- Mode Tabs: Upload / Paste -->
+        <ul class="nav nav-tabs mb-3" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tabUpload" data-bs-toggle="tab" data-bs-target="#paneUpload" type="button" role="tab">
+                    <i class="bi bi-cloud-arrow-up"></i> Upload File
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tabPaste" data-bs-toggle="tab" data-bs-target="#panePaste" type="button" role="tab">
+                    <i class="bi bi-clipboard-plus"></i> Paste Text
+                </button>
+            </li>
+        </ul>
 
-        <!-- Keyword Input -->
+        <div class="tab-content">
+            <!-- Upload Pane -->
+            <div class="tab-pane fade show active" id="paneUpload" role="tabpanel">
+                <div id="dropZone" class="drop-zone mb-3" onclick="document.getElementById('fileInput').click()">
+                    <i class="bi bi-cloud-arrow-up fs-1 text-muted"></i>
+                    <p class="mb-0 mt-2 text-muted" id="dropText">Drag & drop a log file here, or click to browse</p>
+                    <small class="text-muted">.log, .txt, .csv, or any text file</small>
+                </div>
+                <input type="file" id="fileInput" class="d-none" accept=".log,.txt,.csv,.text,.out,.err">
+            </div>
+
+            <!-- Paste Pane -->
+            <div class="tab-pane fade" id="panePaste" role="tabpanel">
+                <div class="position-relative mb-3">
+                    <textarea id="pasteArea" class="form-control font-monospace" rows="10" placeholder="Paste your log text here (Ctrl+V)..." style="font-size: 0.85rem; resize: vertical;"></textarea>
+                    <div class="position-absolute top-0 end-0 m-2 d-flex gap-1">
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-1" onclick="clearPasteText()" title="Clear">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    <small class="text-muted" id="pasteInfo"></small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keyword Tags Input -->
         <div class="mb-3">
-            <label for="keywordInput" class="form-label fw-semibold">Keywords</label>
-            <input type="text" class="form-control" id="keywordInput" placeholder="Enter keywords, comma-separated (e.g. PR9628, ERROR, timeout)">
+            <div class="d-flex align-items-center justify-content-between mb-1">
+                <label class="form-label fw-semibold mb-0">Keywords</label>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2 d-none" id="clearTagsBtn" onclick="clearTags()" title="Clear all keywords" style="font-size: 0.75rem;">
+                    <i class="bi bi-x-lg"></i> Clear
+                </button>
+            </div>
+            <div class="tags-input" id="tagsContainer" onclick="document.getElementById('tagInput').focus()">
+                <input type="text" id="tagInput" placeholder="Type keyword and press Enter or comma...">
+            </div>
+            <div class="tags-hint">Press <kbd>Enter</kbd>, <kbd>,</kbd> or <kbd>Tab</kbd> to add &bull; <kbd>Backspace</kbd> to remove last</div>
         </div>
 
         <!-- Filter Options -->
@@ -199,7 +316,7 @@
                     <tr>
                         <td colspan="3" class="text-center text-muted py-4">
                             <i class="bi bi-file-earmark-text fs-1 d-block mb-2"></i>
-                            Upload a log file and enter filter keywords to begin
+                            Upload a log file or paste text, then enter filter keywords to begin
                         </td>
                     </tr>
                 </tbody>

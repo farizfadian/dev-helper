@@ -1,0 +1,49 @@
+# ── Dev Helper + Ollama ──
+# Run: docker compose up
+# Open: http://localhost:9090
+#
+# First time? After startup, pull an Ollama model:
+#   docker compose exec ollama ollama pull llama3.2
+#
+# Ollama URL in Dev Helper settings: http://ollama:11434
+
+services:
+  dev-helper:
+    build: .
+    container_name: dev-helper
+    ports:
+      - "9090:9090"
+    volumes:
+      - dev-helper-files:/app/files
+      - dev-helper-logs:/app/logs
+      - dev-helper-notes:/app/notes
+      - dev-helper-snippets:/app/snippets
+      - dev-helper-prompts:/app/prompts
+    restart: unless-stopped
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    restart: unless-stopped
+    # For GPU support (NVIDIA), uncomment:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+volumes:
+  dev-helper-files:
+  dev-helper-logs:
+  dev-helper-notes:
+  dev-helper-snippets:
+  dev-helper-prompts:
+  ollama-data:

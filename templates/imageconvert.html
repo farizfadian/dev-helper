@@ -1,0 +1,329 @@
+{{define "content"}}
+<style>
+    .drop-zone {
+        border: 2px dashed var(--bs-border-color);
+        border-radius: 8px;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s;
+        background: var(--bs-tertiary-bg);
+    }
+    .drop-zone:hover,
+    .drop-zone.drag-over {
+        border-color: var(--bs-primary);
+        background: color-mix(in srgb, var(--bs-primary) 8%, transparent);
+    }
+    .drop-zone .drop-icon { font-size: 2.5rem; color: var(--bs-secondary-color); }
+    .drop-zone .drop-text { color: var(--bs-secondary-color); font-size: 0.9rem; }
+    .thumb-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+    }
+    .thumb-card {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--bs-tertiary-bg);
+        transition: border-color 0.2s;
+        position: relative;
+    }
+    .thumb-card:hover { border-color: var(--bs-primary); }
+    .thumb-card .thumb-img-wrap {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: repeating-conic-gradient(var(--bs-border-color) 0% 25%, transparent 0% 50%) 50% / 16px 16px;
+        overflow: hidden;
+    }
+    .thumb-card img {
+        max-width: 100%;
+        max-height: 100px;
+        object-fit: contain;
+    }
+    .thumb-card .thumb-info {
+        padding: 6px 8px;
+        font-size: 0.75rem;
+        border-top: 1px solid var(--bs-border-color);
+    }
+    .thumb-card .thumb-name {
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.78rem;
+    }
+    .thumb-card .thumb-meta {
+        color: var(--bs-secondary-color);
+        font-size: 0.7rem;
+    }
+    .thumb-card .thumb-remove {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(0,0,0,0.5);
+        color: #fff;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+    .thumb-card:hover .thumb-remove { opacity: 1; }
+    .settings-panel {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 16px;
+        background: var(--bs-tertiary-bg);
+    }
+    .progress-bar-wrap {
+        height: 6px;
+        border-radius: 3px;
+        background: var(--bs-border-color);
+        overflow: hidden;
+    }
+    .progress-bar-inner {
+        height: 100%;
+        border-radius: 3px;
+        background: var(--bs-primary);
+        transition: width 0.15s;
+        width: 0%;
+    }
+    .result-table {
+        font-size: 0.8rem;
+    }
+    .result-table th {
+        font-weight: 600;
+        white-space: nowrap;
+    }
+    .result-table .size-badge {
+        font-size: 0.72rem;
+        padding: 2px 6px;
+    }
+    .size-smaller { color: var(--bs-success); }
+    .size-larger { color: var(--bs-danger); }
+    .size-same { color: var(--bs-secondary-color); }
+    .compare-container {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .compare-box {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 8px;
+        text-align: center;
+        max-width: 300px;
+        background: var(--bs-tertiary-bg);
+    }
+    .compare-box img {
+        max-width: 100%;
+        max-height: 200px;
+        object-fit: contain;
+        border-radius: 4px;
+    }
+    .compare-label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    @media (max-width: 767.98px) {
+        .thumb-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+        .thumb-card .thumb-img-wrap { height: 80px; }
+    }
+</style>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-images" style="color: #ff6f00;"></i> Image Converter
+        <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="imageconvert" onclick="togglePin('imageconvert')" title="Pin to navbar"></i>
+    </h5>
+    <div class="d-flex gap-2 align-items-center">
+        <span id="fileCount" class="badge bg-secondary">0 files</span>
+        <label class="btn btn-sm btn-primary mb-0">
+            <i class="bi bi-plus-lg"></i> Add Images
+            <input type="file" id="fileInput" class="d-none" accept="image/*" multiple>
+        </label>
+    </div>
+</div>
+
+<!-- Drop Zone -->
+<div id="dropZone" class="drop-zone mb-3">
+    <i class="bi bi-images drop-icon"></i>
+    <span class="drop-text">Drop images here, or click "Add Images"</span>
+    <span class="drop-text small">PNG, JPG, WebP, BMP, GIF, TIFF, SVG, ICO, AVIF</span>
+</div>
+
+<!-- Thumbnails Grid -->
+<div id="thumbGrid" class="thumb-grid mb-3 d-none"></div>
+
+<!-- Settings + Convert -->
+<div class="row g-3 mb-3">
+    <div class="col-md-8">
+        <div class="settings-panel">
+            <div class="row g-3">
+                <!-- Output Format -->
+                <div class="col-sm-4">
+                    <label class="form-label small fw-semibold"><i class="bi bi-file-earmark-image"></i> Output Format</label>
+                    <select id="outputFormat" class="form-select form-select-sm">
+                        <option value="image/png">PNG</option>
+                        <option value="image/jpeg" selected>JPEG</option>
+                        <option value="image/webp">WebP</option>
+                        <option value="image/bmp">BMP</option>
+                        <option value="image/gif">GIF (static)</option>
+                    </select>
+                </div>
+                <!-- Quality -->
+                <div class="col-sm-4">
+                    <label class="form-label small fw-semibold"><i class="bi bi-sliders"></i> Quality</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <input type="range" id="quality" class="form-range" min="10" max="100" value="90" style="flex:1;">
+                        <span id="qualityVal" class="small text-muted" style="min-width:36px;">90%</span>
+                    </div>
+                    <small id="qualityNote" class="text-muted" style="font-size:0.7rem;">Applies to JPEG & WebP</small>
+                </div>
+                <!-- Resize -->
+                <div class="col-sm-4">
+                    <label class="form-label small fw-semibold"><i class="bi bi-aspect-ratio"></i> Resize</label>
+                    <select id="resizeMode" class="form-select form-select-sm mb-1">
+                        <option value="none" selected>No resize</option>
+                        <option value="percent">By percentage</option>
+                        <option value="width">Max width</option>
+                        <option value="height">Max height</option>
+                        <option value="fit">Fit within (W x H)</option>
+                        <option value="exact">Exact (W x H)</option>
+                    </select>
+                    <div id="resizeInputs" class="d-none">
+                        <div class="d-flex gap-1 align-items-center">
+                            <input type="number" id="resizeW" class="form-control form-control-sm" placeholder="Width" min="1" max="10000">
+                            <span id="resizeSep" class="small text-muted d-none">&times;</span>
+                            <input type="number" id="resizeH" class="form-control form-control-sm d-none" placeholder="Height" min="1" max="10000">
+                            <span id="resizeUnit" class="small text-muted"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Extra options row -->
+            <div class="row g-3 mt-1">
+                <div class="col-sm-4">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="stripTransparency">
+                        <label class="form-check-label small" for="stripTransparency">Replace transparency with color</label>
+                    </div>
+                    <input type="color" id="bgColor" class="form-control form-control-sm form-control-color d-none mt-1" value="#ffffff" title="Background color">
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="preserveName" checked>
+                        <label class="form-check-label small" for="preserveName">Preserve original filename</label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="autoDownload">
+                        <label class="form-check-label small" for="autoDownload">Auto-download after convert</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex flex-column gap-2">
+        <button class="btn btn-primary" id="convertBtn" disabled>
+            <i class="bi bi-arrow-repeat"></i> Convert All
+        </button>
+        <button class="btn btn-outline-success" id="downloadAllBtn" disabled>
+            <i class="bi bi-download"></i> Download All (ZIP)
+        </button>
+        <button class="btn btn-outline-danger" id="clearAllBtn">
+            <i class="bi bi-trash"></i> Clear All
+        </button>
+    </div>
+</div>
+
+<!-- Progress -->
+<div id="progressWrap" class="mb-3 d-none">
+    <div class="d-flex justify-content-between mb-1">
+        <small class="fw-semibold" id="progressLabel">Converting...</small>
+        <small id="progressPercent" class="text-muted">0%</small>
+    </div>
+    <div class="progress-bar-wrap">
+        <div class="progress-bar-inner" id="progressBar"></div>
+    </div>
+</div>
+
+<!-- Results Table -->
+<div id="resultsSection" class="d-none">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h6 class="mb-0"><i class="bi bi-check2-circle text-success"></i> Results</h6>
+        <div class="d-flex gap-2">
+            <small id="totalSaved" class="text-muted"></small>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-sm result-table align-middle">
+            <thead>
+                <tr>
+                    <th>Preview</th>
+                    <th>Filename</th>
+                    <th>Original</th>
+                    <th>Converted</th>
+                    <th>Change</th>
+                    <th>Dimensions</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Compare Modal -->
+<div class="modal fade" id="compareModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header py-2">
+                <h6 class="modal-title"><i class="bi bi-columns-gap"></i> Before / After</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="compare-container">
+                    <div class="compare-box">
+                        <div class="compare-label">Original</div>
+                        <img id="compareOrigImg" src="">
+                        <div id="compareOrigInfo" class="thumb-meta mt-1"></div>
+                    </div>
+                    <div class="compare-box">
+                        <div class="compare-label">Converted</div>
+                        <img id="compareConvImg" src="">
+                        <div id="compareConvInfo" class="thumb-meta mt-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-2">
+    <small id="stats" class="text-muted"></small>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="/static/imageconvert.js"></script>
+{{end}}

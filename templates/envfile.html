@@ -1,0 +1,111 @@
+{{define "content"}}
+<style>
+    .env-table { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; }
+    .env-table td { padding: 0.3rem 0.5rem; vertical-align: middle; }
+    .env-table .key-cell { font-weight: 600; color: var(--bs-primary); min-width: 200px; }
+    .env-table .val-cell { word-break: break-all; }
+    .env-table input { font-family: inherit; font-size: inherit; border: 1px solid var(--bs-border-color); background: var(--bs-body-bg); color: var(--bs-body-color); padding: 0.2rem 0.4rem; border-radius: 0.25rem; width: 100%; }
+    .env-table input:focus { outline: 2px solid var(--bs-primary); }
+    .env-row-missing { background: rgba(220, 53, 69, 0.08); }
+    .env-row-extra { background: rgba(255, 193, 7, 0.08); }
+    .env-comment { color: var(--bs-secondary-color); font-style: italic; }
+    .env-empty { color: var(--bs-warning); }
+    .drop-zone { border: 2px dashed var(--bs-border-color); border-radius: 0.5rem; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.15s ease; }
+    .drop-zone:hover { border-color: var(--bs-primary); background: rgba(13,110,253,0.05); }
+    .stats-badge { font-size: 0.75rem; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-file-earmark-lock"></i> Env File Editor
+        <i id="pinToggle" data-tool="envfile" class="bi bi-star pin-star" onclick="togglePin('envfile')"></i>
+    </h5>
+    <div class="d-flex gap-1 flex-wrap">
+        <label class="btn btn-sm btn-primary mb-0">
+            <i class="bi bi-file-earmark-arrow-up"></i> Open .env
+            <input type="file" accept=".env,.env.*,.example,.local,.development,.production,.staging,.test" class="d-none" id="fileInput">
+        </label>
+        <button class="btn btn-sm btn-outline-secondary" id="pasteBtn"><i class="bi bi-clipboard-plus"></i> Paste</button>
+        <label class="btn btn-sm btn-outline-info mb-0" title="Load .env.example to compare">
+            <i class="bi bi-file-diff"></i> Compare
+            <input type="file" accept=".env,.env.*,.example" class="d-none" id="compareFile">
+        </label>
+        <button class="btn btn-sm btn-outline-secondary d-none" id="addKeyBtn"><i class="bi bi-plus-lg"></i> Add Key</button>
+        <div class="btn-group d-none" id="exportGroup">
+            <button class="btn btn-sm btn-outline-success dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-download"></i> Export
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" id="exportEnv"><i class="bi bi-file-earmark-lock"></i> .env</a></li>
+                <li><a class="dropdown-item" href="#" id="exportJson"><i class="bi bi-filetype-json"></i> JSON</a></li>
+                <li><a class="dropdown-item" href="#" id="exportYaml"><i class="bi bi-filetype-yml"></i> YAML</a></li>
+                <li><a class="dropdown-item" href="#" id="exportDocker"><i class="bi bi-box"></i> Docker --env-file</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#" id="exportCopy"><i class="bi bi-clipboard"></i> Copy</a></li>
+            </ul>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary d-none" id="clearBtn"><i class="bi bi-x-lg"></i></button>
+    </div>
+</div>
+
+<!-- Search -->
+<div class="d-none mb-2" id="searchBar">
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control" id="searchInput" placeholder="Search keys or values..." style="min-width:200px;">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input" type="checkbox" id="showComments">
+                <label class="form-check-label" for="showComments" style="font-size:0.82rem;">Show comments</label>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input" type="checkbox" id="maskValues">
+                <label class="form-check-label" for="maskValues" style="font-size:0.82rem;">Mask values</label>
+            </div>
+        </div>
+        <div class="col-auto" id="statsBar"></div>
+    </div>
+</div>
+
+<!-- Drop zone -->
+<div id="dropZone" class="drop-zone">
+    <i class="bi bi-file-earmark-lock" style="font-size:3rem; color:var(--bs-secondary-color);"></i>
+    <p class="mt-2 mb-1 fw-semibold">Drop .env file here</p>
+    <p class="text-muted mb-0" style="font-size:0.85rem;">or click "Open .env" / "Paste" to load</p>
+</div>
+
+<!-- Table -->
+<div class="d-none" id="tableWrap" style="max-height: calc(100vh - 280px); overflow-y: auto; border: 1px solid var(--bs-border-color); border-radius: 0.375rem;">
+    <table class="table table-sm env-table mb-0">
+        <thead>
+            <tr>
+                <th style="width:40px;">#</th>
+                <th>Key</th>
+                <th>Value</th>
+                <th style="width:80px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="envBody"></tbody>
+    </table>
+</div>
+
+<!-- Compare results -->
+<div class="d-none mt-3" id="comparePanel">
+    <div class="card">
+        <div class="card-header py-2 fw-semibold" style="font-size:0.85rem;">
+            <i class="bi bi-file-diff"></i> Comparison Results
+        </div>
+        <div class="card-body" id="compareBody" style="font-size:0.85rem;"></div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/envfile.js"></script>
+{{end}}

@@ -1,0 +1,75 @@
+{{define "content"}}
+<style>
+    .detect-result { font-family: 'SF Mono', monospace; font-size: 0.85rem; }
+    .drop-zone { border: 2px dashed var(--bs-border-color); border-radius: 0.5rem; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.15s; }
+    .drop-zone:hover { border-color: var(--bs-primary); background: rgba(13,110,253,0.05); }
+    .hex-view { font-family: 'Courier New', monospace; font-size: 0.78rem; background: var(--bs-tertiary-bg); border: 1px solid var(--bs-border-color); border-radius: 0.375rem; padding: 0.5rem; max-height: 200px; overflow: auto; white-space: pre; }
+    .text-preview { font-family: 'SF Mono', monospace; font-size: 0.85rem; min-height: 150px; resize: vertical; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-translate"></i> Encoding Detector
+        <i id="pinToggle" data-tool="encoding" class="bi bi-star pin-star" onclick="togglePin('encoding')"></i>
+    </h5>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="mb-3">
+            <label class="form-label fw-semibold"><i class="bi bi-file-earmark-arrow-up"></i> Input</label>
+            <div class="drop-zone mb-2" id="dropZone">
+                <i class="bi bi-file-earmark-binary" style="font-size:2rem; color:var(--bs-secondary-color);"></i>
+                <p class="mt-1 mb-0" style="font-size:0.85rem;">Drop a file here or click to browse</p>
+                <input type="file" class="d-none" id="fileInput">
+            </div>
+            <label class="form-label mb-1" style="font-size:0.82rem;">Or paste text:</label>
+            <textarea class="form-control text-preview" id="textInput" placeholder="Paste text to detect encoding..."></textarea>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <!-- Detection Results -->
+        <div class="card mb-3">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;"><i class="bi bi-search"></i> Detection Results</div>
+            <div class="card-body detect-result" id="results">
+                <div class="text-center text-muted py-3">Load a file or paste text to detect encoding</div>
+            </div>
+        </div>
+
+        <!-- Hex View -->
+        <div class="card mb-3">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;"><i class="bi bi-cpu"></i> Byte Inspector (first 256 bytes)</div>
+            <div class="hex-view" id="hexView">—</div>
+        </div>
+
+        <!-- Convert -->
+        <div class="card">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;"><i class="bi bi-arrow-left-right"></i> Re-decode As</div>
+            <div class="card-body">
+                <div class="input-group input-group-sm mb-2">
+                    <select class="form-select" id="reDecodeEncoding">
+                        <option value="utf-8">UTF-8</option>
+                        <option value="iso-8859-1">ISO-8859-1 (Latin-1)</option>
+                        <option value="windows-1252">Windows-1252</option>
+                        <option value="shift_jis">Shift_JIS</option>
+                        <option value="euc-jp">EUC-JP</option>
+                        <option value="iso-2022-jp">ISO-2022-JP</option>
+                        <option value="euc-kr">EUC-KR</option>
+                        <option value="gb2312">GB2312</option>
+                        <option value="big5">Big5</option>
+                        <option value="utf-16le">UTF-16 LE</option>
+                        <option value="utf-16be">UTF-16 BE</option>
+                    </select>
+                    <button class="btn btn-primary" id="reDecodeBtn">Decode</button>
+                </div>
+                <textarea class="form-control text-preview" id="reDecodeOutput" readonly style="min-height:80px;"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/encoding.js"></script>
+{{end}}

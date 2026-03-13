@@ -55,8 +55,16 @@ var (
 	notesMu     sync.Mutex
 	snippetsDir string
 	snippetsMu  sync.Mutex
+	promptsDir  string
+	promptsMu   sync.Mutex
 	devMode   bool
 	debugMode bool
+
+	// API Mock Server
+	mockEndpoints []MockEndpoint
+	mockMu        sync.RWMutex
+	mockLogChs    []chan MockLogEntry
+	mockLogMu     sync.Mutex
 )
 
 type PageData struct {
@@ -81,6 +89,33 @@ var pageTitles = map[string]string{
 	"sysmon": "System Monitor",
 	"icons": "Icon Explorer",
 	"translator": "Translator",
+	"imagebase64": "Image Base64",
+	"imageeditor":  "Image Editor",
+	"imageconvert": "Image Converter",
+	"csv":          "CSV Viewer",
+	"jsonschema":   "JSON Schema Validator",
+	"jsonpath":     "JSONPath Playground",
+	"subnet":       "IP Subnet Calculator",
+	"envfile":      "Env File Editor",
+	"mdtable":      "Markdown Table Generator",
+	"chmod":        "Chmod Calculator",
+	"apimock":      "API Mock Server",
+	"placeholder":  "Placeholder Image",
+	"asciiart":     "ASCII Art Generator",
+	"favicogen":    "Favicon Generator",
+	"encoding":     "Encoding Detector",
+	"githelp":      "Git Cheat Sheet",
+	"kanban":       "Kanban Board",
+	"pomodoro":     "Pomodoro Timer",
+	"bookmarks":    "Bookmark Manager",
+	"sqlplay":      "SQL Playground",
+	"timestamp":    "Timestamp Converter",
+	"textdiff":     "Text Diff",
+	"palette":      "Color Palette",
+	"keycode":      "Keycode Viewer",
+	"fontpreview":  "Font Preview",
+	"prompts":      "Prompt Notebook",
+	"scaffold":     "Scaffold Generator",
 }
 
 func newPageData(activePage string) PageData {
@@ -104,7 +139,37 @@ type LogEntry struct {
 func main() {
 	port := flag.Int("port", 9090, "server port")
 	debug := flag.Bool("debug", false, "enable verbose HTTP request/response logging")
+	showVersion := flag.Bool("version", false, "show version and exit")
+
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, `Dev Helper %s — Offline-first developer toolkit
+
+Usage:
+  dev-helper [flags]
+
+Flags:
+  --port int       Server port (default 9090)
+  --debug          Enable verbose HTTP request/response logging
+  --version        Show version and exit
+  --help           Show this help message
+
+Examples:
+  dev-helper                       Start on default port 9090
+  dev-helper --port 8080           Start on custom port
+  dev-helper --debug               Start with debug logging
+  dev-helper --debug --port 3000   Combine flags
+
+Documentation: https://github.com/farizfadian/dev-helper
+`, version)
+	}
+
 	flag.Parse()
+
+	if *showVersion {
+		fmt.Printf("Dev Helper %s\n", version)
+		os.Exit(0)
+	}
+
 	debugMode = *debug
 
 	// Detect dev mode: templates/ exists in working directory → read from disk (hot reload)
@@ -121,10 +186,12 @@ func main() {
 	logsDir = filepath.Join(baseDir, "logs")
 	notesDir = filepath.Join(baseDir, "notes")
 	snippetsDir = filepath.Join(baseDir, "snippets")
+	promptsDir = filepath.Join(baseDir, "prompts")
 	os.MkdirAll(filesDir, 0755)
 	os.MkdirAll(logsDir, 0755)
 	os.MkdirAll(filepath.Join(notesDir, "attachments"), 0755)
 	os.MkdirAll(snippetsDir, 0755)
+	os.MkdirAll(promptsDir, 0755)
 	initDefaultSnippets()
 
 	mux := http.NewServeMux()
@@ -201,6 +268,37 @@ func main() {
 	mux.HandleFunc("/api/sysmon/stream", handleAPISysMonStream)
 	mux.HandleFunc("/icons", handleIconsPage)
 	mux.HandleFunc("/translator", handleTranslatorPage)
+	mux.HandleFunc("/imagebase64", handleImageBase64Page)
+	mux.HandleFunc("/imageeditor", handleImageEditorPage)
+	mux.HandleFunc("/imageconvert", handleImageConvertPage)
+	mux.HandleFunc("/csv", handleCSVPage)
+	mux.HandleFunc("/jsonschema", handleJSONSchemaPage)
+	mux.HandleFunc("/jsonpath", handleJSONPathPage)
+	mux.HandleFunc("/subnet", handleSubnetPage)
+	mux.HandleFunc("/envfile", handleEnvFilePage)
+	mux.HandleFunc("/mdtable", handleMDTablePage)
+	mux.HandleFunc("/chmod", handleChmodPage)
+	mux.HandleFunc("/apimock", handleAPIMockPage)
+	mux.HandleFunc("/api/apimock/endpoints", handleAPIMockEndpoints)
+	mux.HandleFunc("/api/apimock/log", handleAPIMockLog)
+	mux.HandleFunc("/mock/", handleMockRequest)
+	mux.HandleFunc("/placeholder", handlePlaceholderPage)
+	mux.HandleFunc("/asciiart", handleASCIIArtPage)
+	mux.HandleFunc("/favicogen", handleFavicoGenPage)
+	mux.HandleFunc("/encoding", handleEncodingPage)
+	mux.HandleFunc("/githelp", handleGitHelpPage)
+	mux.HandleFunc("/kanban", handleKanbanPage)
+	mux.HandleFunc("/pomodoro", handlePomodoroPage)
+	mux.HandleFunc("/bookmarks", handleBookmarksPage)
+	mux.HandleFunc("/sqlplay", handleSQLPlayPage)
+	mux.HandleFunc("/timestamp", handleTimestampPage)
+	mux.HandleFunc("/textdiff", handleTextDiffPage)
+	mux.HandleFunc("/palette", handlePalettePage)
+	mux.HandleFunc("/keycode", handleKeycodePage)
+	mux.HandleFunc("/fontpreview", handleFontPreviewPage)
+	mux.HandleFunc("/prompts", handlePromptsPage)
+	mux.HandleFunc("/api/prompts", handleAPIPrompts)
+	mux.HandleFunc("/scaffold", handleScaffoldPage)
 
 	// Uploaded files — always served from disk
 	mux.Handle("/files/", http.StripPrefix("/files/", http.FileServer(http.Dir(filesDir))))
@@ -838,7 +936,7 @@ func formatFileSize(size int64) string {
 	}
 }
 
-// POST /api/logviewer — upload log file and filter
+// POST /api/logviewer — upload log file or paste text, then filter
 func handleAPILogViewer(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -849,15 +947,8 @@ func handleAPILogViewer(w http.ResponseWriter, r *http.Request) {
 
 	r.ParseMultipartForm(500 << 20) // 500 MB max
 
-	file, header, err := r.FormFile("file")
-	if err != nil {
-		http.Error(w, "Failed to read file", http.StatusBadRequest)
-		return
-	}
-	defer file.Close()
-
 	keyword := r.FormValue("keyword")
-	mode := r.FormValue("mode")           // "and" or "or"
+	mode := r.FormValue("mode") // "and" or "or"
 	caseSensitive := r.FormValue("caseSensitive") == "true"
 	useRegex := r.FormValue("regex") == "true"
 	contextLines, _ := strconv.Atoi(r.FormValue("contextLines"))
@@ -866,6 +957,30 @@ func handleAPILogViewer(w http.ResponseWriter, r *http.Request) {
 	}
 	if contextLines > 10 {
 		contextLines = 10
+	}
+
+	// Determine source: uploaded file or pasted text
+	var reader io.Reader
+	var fileName string
+	var fileSize int64
+
+	pastedContent := r.FormValue("content")
+	if pastedContent != "" {
+		// Paste mode
+		reader = strings.NewReader(pastedContent)
+		fileName = "pasted-text"
+		fileSize = int64(len(pastedContent))
+	} else {
+		// File upload mode
+		file, header, err := r.FormFile("file")
+		if err != nil {
+			http.Error(w, "No file uploaded and no text pasted", http.StatusBadRequest)
+			return
+		}
+		defer file.Close()
+		reader = file
+		fileName = header.Filename
+		fileSize = header.Size
 	}
 
 	// Parse keywords
@@ -902,7 +1017,7 @@ func handleAPILogViewer(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Read all lines
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(reader)
 	scanner.Buffer(make([]byte, 0, 1024*1024), 10*1024*1024) // 10MB max line
 
 	var allLines []string
@@ -948,8 +1063,8 @@ func handleAPILogViewer(w http.ResponseWriter, r *http.Request) {
 	resp := LogViewerResponse{
 		TotalLines:   totalLines,
 		MatchedLines: len(matchSet),
-		FileSize:     formatFileSize(header.Size),
-		FileName:     header.Filename,
+		FileSize:     formatFileSize(fileSize),
+		FileName:     fileName,
 		ElapsedMs:    elapsed,
 		Results:      results,
 	}
@@ -3369,6 +3484,295 @@ func handleIconsPage(w http.ResponseWriter, r *http.Request) {
 func handleTranslatorPage(w http.ResponseWriter, r *http.Request) {
 	data := newPageData("translator")
 	loadPage("translator.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleImageBase64Page(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("imagebase64")
+	loadPage("imagebase64.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleImageEditorPage(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("imageeditor")
+	loadPage("imageeditor.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleImageConvertPage(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("imageconvert")
+	loadPage("imageconvert.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleCSVPage(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("csv")
+	loadPage("csv.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleJSONSchemaPage(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("jsonschema")
+	loadPage("jsonschema.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleJSONPathPage(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("jsonpath")
+	loadPage("jsonpath.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleSubnetPage(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("subnet")
+	loadPage("subnet.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleEnvFilePage(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("envfile")
+	loadPage("envfile.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleMDTablePage(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("mdtable")
+	loadPage("mdtable.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleChmodPage(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("chmod")
+	loadPage("chmod.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+// ── API Mock Server ──
+
+type MockEndpoint struct {
+	ID          int               `json:"id"`
+	Method      string            `json:"method"`
+	Path        string            `json:"path"`
+	Status      int               `json:"status"`
+	ContentType string            `json:"contentType"`
+	Headers     map[string]string `json:"headers"`
+	Delay       int               `json:"delay"`
+	Body        string            `json:"body"`
+}
+
+type MockLogEntry struct {
+	Method string `json:"method"`
+	Path   string `json:"path"`
+	Status int    `json:"status"`
+	Time   string `json:"time"`
+}
+
+func handleAPIMockPage(w http.ResponseWriter, r *http.Request) {
+	data := newPageData("apimock")
+	loadPage("apimock.html").ExecuteTemplate(w, "layout.html", data)
+}
+
+func handleAPIMockEndpoints(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		var eps []MockEndpoint
+		if err := json.NewDecoder(r.Body).Decode(&eps); err != nil {
+			http.Error(w, err.Error(), 400)
+			return
+		}
+		mockMu.Lock()
+		mockEndpoints = eps
+		mockMu.Unlock()
+		w.WriteHeader(204)
+		return
+	}
+	// GET
+	mockMu.RLock()
+	defer mockMu.RUnlock()
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(mockEndpoints)
+}
+
+func handleAPIMockLog(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/event-stream")
+	w.Header().Set("Cache-Control", "no-cache")
+	w.Header().Set("Connection", "keep-alive")
+	flusher, ok := w.(http.Flusher)
+	if !ok {
+		http.Error(w, "SSE not supported", 500)
+		return
+	}
+
+	ch := make(chan MockLogEntry, 10)
+	mockLogMu.Lock()
+	mockLogChs = append(mockLogChs, ch)
+	mockLogMu.Unlock()
+
+	defer func() {
+		mockLogMu.Lock()
+		for i, c := range mockLogChs {
+			if c == ch {
+				mockLogChs = append(mockLogChs[:i], mockLogChs[i+1:]...)
+				break
+			}
+		}
+		mockLogMu.Unlock()
+		close(ch)
+	}()
+
+	ctx := r.Context()
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		case entry := <-ch:
+			data, _ := json.Marshal(entry)
+			fmt.Fprintf(w, "data: %s\n\n", data)
+			flusher.Flush()
+		}
+	}
+}
+
+func handleMockRequest(w http.ResponseWriter, r *http.Request) {
+	path := strings.TrimPrefix(r.URL.Path, "/mock/")
+
+	mockMu.RLock()
+	var matched *MockEndpoint
+	for i := range mockEndpoints {
+		ep := &mockEndpoints[i]
+		if ep.Method == r.Method && ep.Path == path {
+			matched = ep
+			break
+		}
+	}
+	mockMu.RUnlock()
+
+	logEntry := MockLogEntry{
+		Method: r.Method,
+		Path:   "/mock/" + path,
+		Time:   time.Now().Format("15:04:05"),
+	}
+
+	if matched == nil {
+		logEntry.Status = 404
+		broadcastMockLog(logEntry)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(404)
+		json.NewEncoder(w).Encode(map[string]string{"error": "No matching mock endpoint"})
+		return
+	}
+
+	if matched.Delay > 0 {
+		time.Sleep(time.Duration(matched.Delay) * time.Millisecond)
+	}
+
+	// Set CORS headers for mock endpoints
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+
+	if r.Method == "OPTIONS" {
+		w.WriteHeader(204)
+		return
+	}
+
+	w.Header().Set("Content-Type", matched.ContentType)
+	for k, v := range matched.Headers {
+		w.Header().Set(k, v)
+	}
+	w.WriteHeader(matched.Status)
+	w.Write([]byte(matched.Body))
+
+	logEntry.Status = matched.Status
+	broadcastMockLog(logEntry)
+}
+
+func broadcastMockLog(entry MockLogEntry) {
+	mockLogMu.Lock()
+	defer mockLogMu.Unlock()
+	for _, ch := range mockLogChs {
+		select {
+		case ch <- entry:
+		default:
+		}
+	}
+}
+
+// ── Medium & Lower Priority Tool Pages ──
+
+func handlePlaceholderPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("placeholder.html").ExecuteTemplate(w, "layout.html", newPageData("placeholder"))
+}
+func handleASCIIArtPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("asciiart.html").ExecuteTemplate(w, "layout.html", newPageData("asciiart"))
+}
+func handleFavicoGenPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("favicogen.html").ExecuteTemplate(w, "layout.html", newPageData("favicogen"))
+}
+func handleEncodingPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("encoding.html").ExecuteTemplate(w, "layout.html", newPageData("encoding"))
+}
+func handleGitHelpPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("githelp.html").ExecuteTemplate(w, "layout.html", newPageData("githelp"))
+}
+func handleKanbanPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("kanban.html").ExecuteTemplate(w, "layout.html", newPageData("kanban"))
+}
+func handlePomodoroPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("pomodoro.html").ExecuteTemplate(w, "layout.html", newPageData("pomodoro"))
+}
+func handleBookmarksPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("bookmarks.html").ExecuteTemplate(w, "layout.html", newPageData("bookmarks"))
+}
+func handleSQLPlayPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("sqlplay.html").ExecuteTemplate(w, "layout.html", newPageData("sqlplay"))
+}
+func handleTimestampPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("timestamp.html").ExecuteTemplate(w, "layout.html", newPageData("timestamp"))
+}
+func handleTextDiffPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("textdiff.html").ExecuteTemplate(w, "layout.html", newPageData("textdiff"))
+}
+func handlePalettePage(w http.ResponseWriter, r *http.Request) {
+	loadPage("palette.html").ExecuteTemplate(w, "layout.html", newPageData("palette"))
+}
+func handleKeycodePage(w http.ResponseWriter, r *http.Request) {
+	loadPage("keycode.html").ExecuteTemplate(w, "layout.html", newPageData("keycode"))
+}
+func handleFontPreviewPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("fontpreview.html").ExecuteTemplate(w, "layout.html", newPageData("fontpreview"))
+}
+func handlePromptsPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("prompts.html").ExecuteTemplate(w, "layout.html", newPageData("prompts"))
+}
+func handleScaffoldPage(w http.ResponseWriter, r *http.Request) {
+	loadPage("scaffold.html").ExecuteTemplate(w, "layout.html", newPageData("scaffold"))
+}
+
+// GET/POST /api/prompts — read/write prompts data to disk
+func handleAPIPrompts(w http.ResponseWriter, r *http.Request) {
+	dataFile := filepath.Join(promptsDir, "prompts.json")
+
+	if r.Method == http.MethodGet {
+		promptsMu.Lock()
+		data, err := os.ReadFile(dataFile)
+		promptsMu.Unlock()
+		if err != nil {
+			w.Header().Set("Content-Type", "application/json")
+			w.Write([]byte("{}"))
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(data)
+		return
+	}
+
+	if r.Method == http.MethodPost {
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "Failed to read body", 400)
+			return
+		}
+		promptsMu.Lock()
+		err = os.WriteFile(dataFile, body, 0644)
+		promptsMu.Unlock()
+		if err != nil {
+			http.Error(w, "Failed to write file", 500)
+			return
+		}
+		w.WriteHeader(204)
+		return
+	}
+
+	http.Error(w, "Method not allowed", 405)
 }
 
 // GET /api/sysmon/snapshot — single JSON snapshot (500ms CPU sample)

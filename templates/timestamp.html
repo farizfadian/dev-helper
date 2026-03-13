@@ -1,0 +1,57 @@
+{{define "content"}}
+<style>
+    .ts-input { font-family: 'SF Mono', monospace; font-size: 1rem; }
+    .format-row { font-size: 0.85rem; padding: 0.3rem 0; border-bottom: 1px solid var(--bs-border-color); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+    .format-row:hover { background: var(--bs-tertiary-bg); }
+    .format-label { font-weight: 600; color: var(--bs-secondary-color); font-size: 0.78rem; min-width: 140px; }
+    .format-value { font-family: 'SF Mono', monospace; font-size: 0.85rem; word-break: break-all; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-clock"></i> Timestamp Converter
+        <i id="pinToggle" data-tool="timestamp" class="bi bi-star pin-star" onclick="togglePin('timestamp')"></i>
+    </h5>
+    <button class="btn btn-sm btn-primary" id="nowBtn"><i class="bi bi-clock-fill"></i> Now</button>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-6">
+        <label class="form-label fw-semibold">Input</label>
+        <input type="text" class="form-control ts-input" id="tsInput" placeholder="Paste timestamp, ISO date, or any date string...">
+        <div class="text-muted mt-1" style="font-size:0.78rem;" id="inputHint">Try: 1710000000, 2025-03-10T12:00:00Z, Mar 10 2025, etc.</div>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label fw-semibold">Timezone</label>
+        <select class="form-select" id="timezone"></select>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;"><i class="bi bi-list-ul"></i> All Formats</div>
+            <div class="card-body p-2" id="formatList"></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;"><i class="bi bi-calendar3"></i> Date Picker</div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-6"><input type="date" class="form-control form-control-sm" id="datePicker"></div>
+                    <div class="col-6"><input type="time" class="form-control form-control-sm" id="timePicker" step="1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;"><i class="bi bi-clock-history"></i> Relative Time</div>
+            <div class="card-body" id="relativeTime" style="font-size:0.9rem;"></div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/timestamp.js"></script>
+{{end}}

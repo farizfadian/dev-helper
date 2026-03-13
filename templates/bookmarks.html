@@ -1,0 +1,60 @@
+{{define "content"}}
+<style>
+    .bm-card { border: 1px solid var(--bs-border-color); border-radius: 0.375rem; padding: 0.5rem 0.6rem; margin-bottom: 0.5rem; transition: all 0.1s; }
+    .bm-card:hover { border-color: var(--bs-primary); }
+    .bm-title { font-weight: 600; font-size: 0.85rem; }
+    .bm-url { font-family: 'SF Mono', monospace; font-size: 0.78rem; color: var(--bs-primary); text-decoration: none; word-break: break-all; }
+    .bm-url:hover { text-decoration: underline; }
+    .bm-desc { font-size: 0.78rem; color: var(--bs-secondary-color); }
+    .bm-tag { font-size: 0.65rem; padding: 0.1rem 0.35rem; border-radius: 0.2rem; background: var(--bs-tertiary-bg); color: var(--bs-secondary-color); cursor: pointer; }
+    .bm-tag:hover { background: var(--bs-primary); color: #fff; }
+    .category-badge { font-size: 0.72rem; cursor: pointer; }
+    .category-badge.active { font-weight: 700; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-bookmark-star"></i> Bookmark Manager
+        <i id="pinToggle" data-tool="bookmarks" class="bi bi-star pin-star" onclick="togglePin('bookmarks')"></i>
+    </h5>
+    <div class="d-flex gap-1">
+        <button class="btn btn-sm btn-primary" id="addBtn"><i class="bi bi-plus-lg"></i> Add</button>
+        <button class="btn btn-sm btn-outline-secondary" id="exportBtn"><i class="bi bi-download"></i> Export</button>
+        <label class="btn btn-sm btn-outline-secondary mb-0"><i class="bi bi-upload"></i> Import <input type="file" accept=".json" class="d-none" id="importFile"></label>
+    </div>
+</div>
+
+<div class="row g-2 mb-3">
+    <div class="col-md-4">
+        <div class="input-group input-group-sm">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control" id="searchInput" placeholder="Search bookmarks...">
+        </div>
+    </div>
+    <div class="col-md-8 d-flex gap-1 flex-wrap align-items-center" id="categoryBar"></div>
+</div>
+
+<div id="bookmarkList"></div>
+
+<!-- Add/Edit Modal -->
+<div class="modal fade" id="bmModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header py-2"><h6 class="modal-title" id="modalTitle">Add Bookmark</h6><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <input type="hidden" id="editId">
+                <div class="mb-2"><label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">Title</label><input type="text" class="form-control form-control-sm" id="bmTitle"></div>
+                <div class="mb-2"><label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">URL</label><input type="url" class="form-control form-control-sm" id="bmUrl" placeholder="https://"></div>
+                <div class="mb-2"><label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">Description</label><input type="text" class="form-control form-control-sm" id="bmDesc"></div>
+                <div class="mb-2"><label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">Category</label><input type="text" class="form-control form-control-sm" id="bmCategory" placeholder="General"></div>
+                <div class="mb-2"><label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">Tags (comma-separated)</label><input type="text" class="form-control form-control-sm" id="bmTags" placeholder="react, frontend"></div>
+            </div>
+            <div class="modal-footer py-2"><button class="btn btn-sm btn-primary" id="saveBmBtn">Save</button></div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/bookmarks.js"></script>
+{{end}}

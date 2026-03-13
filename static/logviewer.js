@@ -2,13 +2,157 @@
 
 let selectedFile = null;
 let lastResponse = null;
+let currentMode = 'upload'; // 'upload' or 'paste'
+let tags = []; // keyword tags
 
 const dropZone = document.getElementById('dropZone');
 const dropText = document.getElementById('dropText');
 const fileInput = document.getElementById('fileInput');
 const submitBtn = document.getElementById('submitBtn');
 const downloadBtn = document.getElementById('downloadBtn');
-const keywordInput = document.getElementById('keywordInput');
+const tagsContainer = document.getElementById('tagsContainer');
+const tagInput = document.getElementById('tagInput');
+const pasteArea = document.getElementById('pasteArea');
+const pasteInfo = document.getElementById('pasteInfo');
+
+// ── localStorage Keys ──
+
+const LS_TAGS = 'devhelper_logviewer_tags';
+const LS_PASTE = 'devhelper_logviewer_paste';
+const LS_TAB = 'devhelper_logviewer_tab';
+
+function saveTags() {
+    localStorage.setItem(LS_TAGS, JSON.stringify(tags));
+}
+
+function savePasteText() {
+    localStorage.setItem(LS_PASTE, pasteArea.value);
+}
+
+function saveTab() {
+    localStorage.setItem(LS_TAB, currentMode);
+}
+
+// ── Tag / Chips Input ──
+
+function addTag(text) {
+    text = text.trim();
+    if (!text) return;
+    // Avoid duplicates (case-insensitive)
+    if (tags.some(t => t.toLowerCase() === text.toLowerCase())) return;
+
+    tags.push(text);
+    renderTags();
+    tagInput.value = '';
+    saveTags();
+    updateSubmitState();
+}
+
+function removeTag(index) {
+    tags.splice(index, 1);
+    renderTags();
+    tagInput.focus();
+    saveTags();
+    updateSubmitState();
+}
+
+function clearTags() {
+    tags = [];
+    renderTags();
+    saveTags();
+    tagInput.focus();
+    updateSubmitState();
+}
+
+function clearPasteText() {
+    pasteArea.value = '';
+    pasteInfo.textContent = '';
+    localStorage.removeItem(LS_PASTE);
+    pasteArea.focus();
+    updateSubmitState();
+}
+
+function renderTags() {
+    // Remove existing tag elements
+    tagsContainer.querySelectorAll('.tag').forEach(el => el.remove());
+
+    // Insert tags before the input
+    tags.forEach((text, i) => {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.innerHTML = `<span title="${escapeHtml(text)}">${escapeHtml(text)}</span><button type="button" onclick="removeTag(${i})" title="Remove">&times;</button>`;
+        tagsContainer.insertBefore(tag, tagInput);
+    });
+
+    // Update placeholder
+    tagInput.placeholder = tags.length === 0
+        ? 'Type keyword and press Enter or comma...'
+        : 'Add more...';
+
+    // Toggle clear button
+    const clearBtn = document.getElementById('clearTagsBtn');
+    if (tags.length > 0) {
+        clearBtn.classList.remove('d-none');
+    } else {
+        clearBtn.classList.add('d-none');
+    }
+}
+
+function getKeywordsString() {
+    return tags.join(',');
+}
+
+function getKeywordsArray() {
+    return [...tags];
+}
+
+tagInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        // Split by comma in case user pastes "ERROR,WARN,timeout"
+        const parts = tagInput.value.split(',');
+        parts.forEach(p => addTag(p));
+        tagInput.value = '';
+    } else if (e.key === 'Tab' && tagInput.value.trim()) {
+        e.preventDefault();
+        addTag(tagInput.value);
+    } else if (e.key === 'Backspace' && !tagInput.value && tags.length > 0) {
+        removeTag(tags.length - 1);
+    }
+});
+
+// Handle paste of comma-separated keywords
+tagInput.addEventListener('paste', (e) => {
+    e.preventDefault();
+    const pasted = (e.clipboardData || window.clipboardData).getData('text');
+    const parts = pasted.split(',');
+    parts.forEach(p => addTag(p));
+});
+
+tagInput.addEventListener('input', updateSubmitState);
+
+// Submit on Enter key when tags exist and input is empty
+tagInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !tagInput.value.trim() && tags.length > 0 && !submitBtn.disabled) {
+        e.preventDefault();
+        submitFilter();
+    }
+});
+
+// ── Tab Switching ──
+
+document.getElementById('tabUpload').addEventListener('shown.bs.tab', () => {
+    currentMode = 'upload';
+    saveTab();
+    updateSubmitState();
+});
+
+document.getElementById('tabPaste').addEventListener('shown.bs.tab', () => {
+    currentMode = 'paste';
+    saveTab();
+    pasteArea.focus();
+    updateSubmitState();
+});
 
 // ── File Upload Handling ──
 
@@ -42,27 +186,57 @@ function selectFile(file) {
     updateSubmitState();
 }
 
-function updateSubmitState() {
-    submitBtn.disabled = !(selectedFile && keywordInput.value.trim());
-}
+// ── Paste Handling ──
 
-keywordInput.addEventListener('input', updateSubmitState);
-
-// Submit on Enter key
-keywordInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !submitBtn.disabled) {
-        submitFilter();
+pasteArea.addEventListener('input', () => {
+    const text = pasteArea.value;
+    if (text) {
+        const lineCount = text.split('\n').length;
+        const size = new Blob([text]).size;
+        pasteInfo.textContent = `${lineCount.toLocaleString()} lines | ${formatSize(size)}`;
+    } else {
+        pasteInfo.textContent = '';
     }
+    savePasteText();
+    updateSubmitState();
 });
+
+// ── Submit State ──
+
+function updateSubmitState() {
+    const hasSource = currentMode === 'upload'
+        ? !!selectedFile
+        : pasteArea.value.trim().length > 0;
+    const hasKeywords = tags.length > 0 || tagInput.value.trim().length > 0;
+    submitBtn.disabled = !(hasSource && hasKeywords);
+}
 
 // ── Filter Submission ──
 
 async function submitFilter() {
-    if (!selectedFile || !keywordInput.value.trim()) return;
+    // Flush any pending text in tagInput as a tag
+    if (tagInput.value.trim()) {
+        const parts = tagInput.value.split(',');
+        parts.forEach(p => addTag(p));
+        tagInput.value = '';
+    }
+
+    if (tags.length === 0) return;
+
+    const hasSource = currentMode === 'upload'
+        ? !!selectedFile
+        : pasteArea.value.trim().length > 0;
+    if (!hasSource) return;
 
     const formData = new FormData();
-    formData.append('file', selectedFile);
-    formData.append('keyword', keywordInput.value.trim());
+
+    if (currentMode === 'upload') {
+        formData.append('file', selectedFile);
+    } else {
+        formData.append('content', pasteArea.value);
+    }
+
+    formData.append('keyword', getKeywordsString());
     formData.append('mode', document.querySelector('input[name="mode"]:checked').value);
     formData.append('caseSensitive', document.getElementById('caseSensitive').checked.toString());
     formData.append('regex', document.getElementById('useRegex').checked.toString());
@@ -97,7 +271,11 @@ function renderResults(data) {
     const statsBar = document.getElementById('statsBar');
     const statsText = document.getElementById('statsText');
     statsBar.classList.remove('d-none');
-    statsText.textContent = `Showing ${data.matchedLines.toLocaleString()} of ${data.totalLines.toLocaleString()} lines | File: ${data.fileName} (${data.fileSize}) | Processed in ${data.elapsedMs} ms`;
+
+    const sourceLabel = data.fileName === 'pasted-text'
+        ? `Source: Pasted text (${data.fileSize})`
+        : `File: ${data.fileName} (${data.fileSize})`;
+    statsText.textContent = `Showing ${data.matchedLines.toLocaleString()} of ${data.totalLines.toLocaleString()} lines | ${sourceLabel} | Processed in ${data.elapsedMs} ms`;
 
     // Action buttons
     document.getElementById('copyBtn').classList.remove('d-none');
@@ -119,7 +297,7 @@ function renderResults(data) {
     }
 
     // Get keywords for highlighting
-    const keywords = keywordInput.value.trim().split(',').map(k => k.trim()).filter(k => k);
+    const keywords = getKeywordsArray();
     const isRegex = document.getElementById('useRegex').checked;
     const isCaseSensitive = document.getElementById('caseSensitive').checked;
 
@@ -302,3 +480,36 @@ function copyText(text) {
         setTimeout(() => toast.remove(), 1500);
     });
 }
+
+// ── Restore State from localStorage ──
+
+(function restoreState() {
+    // Restore tags
+    try {
+        const saved = localStorage.getItem(LS_TAGS);
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                parsed.forEach(t => { if (typeof t === 'string' && t.trim()) tags.push(t.trim()); });
+                renderTags();
+            }
+        }
+    } catch (e) { /* ignore */ }
+
+    // Restore pasted text
+    const savedPaste = localStorage.getItem(LS_PASTE);
+    if (savedPaste) {
+        pasteArea.value = savedPaste;
+        // Trigger info update
+        pasteArea.dispatchEvent(new Event('input'));
+    }
+
+    // Restore active tab
+    const savedTab = localStorage.getItem(LS_TAB);
+    if (savedTab === 'paste') {
+        const pasteTab = document.getElementById('tabPaste');
+        new bootstrap.Tab(pasteTab).show();
+    }
+
+    updateSubmitState();
+})();

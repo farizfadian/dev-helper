@@ -1,0 +1,260 @@
+{{define "content"}}
+<style>
+    .csv-table-wrap {
+        overflow: auto;
+        max-height: calc(100vh - 280px);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0.375rem;
+        position: relative;
+    }
+    .csv-table {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.82rem;
+        margin-bottom: 0;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+    .csv-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: var(--bs-tertiary-bg);
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+        border-bottom: 2px solid var(--bs-border-color);
+        padding: 0.4rem 0.6rem;
+        font-weight: 600;
+        font-size: 0.78rem;
+    }
+    .csv-table thead th:hover {
+        background: var(--bs-secondary-bg);
+    }
+    .csv-table thead th .sort-icon {
+        font-size: 0.7rem;
+        margin-left: 0.3rem;
+        opacity: 0.4;
+    }
+    .csv-table thead th .sort-icon.active {
+        opacity: 1;
+        color: var(--bs-primary);
+    }
+    .csv-table tbody td {
+        padding: 0.3rem 0.6rem;
+        white-space: nowrap;
+        max-width: 400px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-right: 1px solid var(--bs-border-color);
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+    .csv-table tbody tr:hover {
+        background: var(--bs-tertiary-bg);
+    }
+    .csv-table tbody tr.selected {
+        background: rgba(13, 110, 253, 0.1);
+    }
+    .csv-table td.editing {
+        padding: 0;
+    }
+    .csv-table td.editing input {
+        border: none;
+        outline: 2px solid var(--bs-primary);
+        background: var(--bs-body-bg);
+        padding: 0.3rem 0.6rem;
+        width: 100%;
+        font-family: inherit;
+        font-size: inherit;
+    }
+    .row-num {
+        color: var(--bs-secondary-color);
+        background: var(--bs-tertiary-bg) !important;
+        text-align: right;
+        min-width: 40px;
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        font-size: 0.72rem;
+        border-right: 2px solid var(--bs-border-color) !important;
+        cursor: default;
+    }
+    thead .row-num {
+        z-index: 3;
+    }
+    .csv-stats {
+        font-size: 0.8rem;
+        color: var(--bs-secondary-color);
+    }
+    .drop-zone {
+        border: 2px dashed var(--bs-border-color);
+        border-radius: 0.5rem;
+        padding: 3rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.15s ease;
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+        border-color: var(--bs-primary);
+        background: rgba(13, 110, 253, 0.05);
+    }
+    .filter-badge {
+        font-size: 0.75rem;
+    }
+    .col-filter-input {
+        font-size: 0.78rem;
+        padding: 0.15rem 0.4rem;
+        margin-top: 0.25rem;
+        width: 100%;
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0.25rem;
+        color: var(--bs-body-color);
+    }
+    .col-filter-input:focus {
+        outline: 2px solid var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+    .csv-empty {
+        padding: 4rem 2rem;
+        text-align: center;
+        color: var(--bs-secondary-color);
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-file-earmark-spreadsheet"></i> CSV Viewer
+        <i id="pinToggle" data-tool="csv" class="bi bi-star pin-star" onclick="togglePin('csv')"></i>
+    </h5>
+    <div class="d-flex gap-1 flex-wrap">
+        <label class="btn btn-sm btn-primary mb-0" id="importBtn">
+            <i class="bi bi-file-earmark-arrow-up"></i> Open CSV
+            <input type="file" id="fileInput" accept=".csv,.tsv,.txt" class="d-none">
+        </label>
+        <button class="btn btn-sm btn-outline-secondary" id="pasteBtn" title="Paste CSV from clipboard">
+            <i class="bi bi-clipboard-plus"></i> Paste
+        </button>
+        <button class="btn btn-sm btn-outline-secondary d-none" id="addRowBtn" title="Add row">
+            <i class="bi bi-plus-lg"></i> Row
+        </button>
+        <button class="btn btn-sm btn-outline-secondary d-none" id="addColBtn" title="Add column">
+            <i class="bi bi-plus-lg"></i> Col
+        </button>
+        <button class="btn btn-sm btn-outline-secondary d-none" id="deleteRowBtn" title="Delete selected rows" disabled>
+            <i class="bi bi-trash"></i> Row
+        </button>
+        <button class="btn btn-sm btn-outline-secondary d-none" id="deleteColBtn" title="Delete column">
+            <i class="bi bi-trash"></i> Col
+        </button>
+        <div class="btn-group d-none" id="exportGroup">
+            <button class="btn btn-sm btn-outline-success dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-download"></i> Export
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" id="exportCsv"><i class="bi bi-filetype-csv"></i> CSV</a></li>
+                <li><a class="dropdown-item" href="#" id="exportTsv"><i class="bi bi-file-earmark-text"></i> TSV</a></li>
+                <li><a class="dropdown-item" href="#" id="exportJson"><i class="bi bi-filetype-json"></i> JSON</a></li>
+                <li><a class="dropdown-item" href="#" id="exportSql"><i class="bi bi-database"></i> SQL INSERT</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#" id="exportCopy"><i class="bi bi-clipboard"></i> Copy to clipboard</a></li>
+            </ul>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary d-none" id="clearBtn" title="Clear data">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Search & Filter bar -->
+<div class="d-none mb-2" id="searchBar">
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control" id="globalSearch" placeholder="Search all columns..." style="min-width: 220px;">
+                <button class="btn btn-outline-secondary" id="clearSearch" title="Clear search"><i class="bi bi-x-lg"></i></button>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input" type="checkbox" id="hasHeader" checked>
+                <label class="form-check-label" for="hasHeader" style="font-size:0.85rem;">First row is header</label>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input" type="checkbox" id="colFilters">
+                <label class="form-check-label" for="colFilters" style="font-size:0.85rem;">Column filters</label>
+            </div>
+        </div>
+        <div class="col-auto">
+            <select class="form-select form-select-sm" id="delimiter" style="width:auto;">
+                <option value="auto">Delimiter: Auto</option>
+                <option value=",">Comma (,)</option>
+                <option value="&#9;">Tab (⇥)</option>
+                <option value=";">Semicolon (;)</option>
+                <option value="|">Pipe (|)</option>
+            </select>
+        </div>
+        <div class="col-auto csv-stats" id="statsBar"></div>
+    </div>
+</div>
+
+<!-- Drop zone (initial state) -->
+<div id="dropZone" class="drop-zone">
+    <i class="bi bi-file-earmark-spreadsheet" style="font-size: 3rem; color: var(--bs-secondary-color);"></i>
+    <p class="mt-2 mb-1 fw-semibold">Drop CSV / TSV file here</p>
+    <p class="text-muted mb-0" style="font-size: 0.85rem;">or click "Open CSV" / "Paste" to load data</p>
+</div>
+
+<!-- Table container -->
+<div id="tableContainer" class="csv-table-wrap d-none">
+    <table class="table csv-table" id="csvTable">
+        <thead id="csvHead"></thead>
+        <tbody id="csvBody"></tbody>
+    </table>
+</div>
+
+<!-- SQL Table Name Modal -->
+<div class="modal fade" id="sqlModal" tabindex="-1">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header py-2">
+                <h6 class="modal-title"><i class="bi bi-database"></i> SQL Export</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <label class="form-label fw-semibold" style="font-size:0.85rem;">Table name</label>
+                <input type="text" class="form-control form-control-sm" id="sqlTableName" value="my_table" placeholder="table_name">
+            </div>
+            <div class="modal-footer py-1">
+                <button class="btn btn-sm btn-primary" id="sqlExportConfirm"><i class="bi bi-download"></i> Export SQL</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Column Modal -->
+<div class="modal fade" id="deleteColModal" tabindex="-1">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header py-2">
+                <h6 class="modal-title"><i class="bi bi-trash"></i> Delete Column</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <label class="form-label fw-semibold" style="font-size:0.85rem;">Select column to delete</label>
+                <select class="form-select form-select-sm" id="deleteColSelect"></select>
+            </div>
+            <div class="modal-footer py-1">
+                <button class="btn btn-sm btn-danger" id="deleteColConfirm"><i class="bi bi-trash"></i> Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/csv.js"></script>
+{{end}}

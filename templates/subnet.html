@@ -1,0 +1,150 @@
+{{define "content"}}
+<style>
+    .result-card { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.85rem; }
+    .result-label { font-weight: 600; color: var(--bs-secondary-color); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    .result-value { font-size: 1rem; word-break: break-all; }
+    .bit-vis { display: flex; gap: 2px; flex-wrap: wrap; font-size: 0.72rem; font-family: monospace; }
+    .bit-vis .octet { display: flex; gap: 1px; margin-right: 6px; }
+    .bit-vis .bit { width: 16px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
+    .bit-vis .bit.net { background: rgba(13, 110, 253, 0.2); color: var(--bs-primary); font-weight: 600; }
+    .bit-vis .bit.host { background: var(--bs-tertiary-bg); color: var(--bs-secondary-color); }
+    .subnet-table { font-size: 0.82rem; }
+    .subnet-table td, .subnet-table th { padding: 0.3rem 0.6rem; }
+    .copy-btn { cursor: pointer; opacity: 0.5; }
+    .copy-btn:hover { opacity: 1; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-hdd-network"></i> IP Subnet Calculator
+        <i id="pinToggle" data-tool="subnet" class="bi bi-star pin-star" onclick="togglePin('subnet')"></i>
+    </h5>
+</div>
+
+<!-- Input -->
+<div class="row g-3 mb-4">
+    <div class="col-md-5">
+        <label class="form-label fw-semibold"><i class="bi bi-globe"></i> IP Address</label>
+        <input type="text" class="form-control" id="ipInput" placeholder="192.168.1.0" value="192.168.1.100">
+    </div>
+    <div class="col-md-3">
+        <label class="form-label fw-semibold"><i class="bi bi-slash-circle"></i> CIDR / Prefix</label>
+        <div class="input-group">
+            <span class="input-group-text">/</span>
+            <input type="number" class="form-control" id="cidrInput" min="0" max="32" value="24">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label fw-semibold"><i class="bi bi-shield"></i> Subnet Mask</label>
+        <input type="text" class="form-control" id="maskInput" placeholder="255.255.255.0" value="255.255.255.0">
+    </div>
+</div>
+
+<!-- Quick CIDR buttons -->
+<div class="mb-4">
+    <label class="form-label fw-semibold" style="font-size:0.82rem;">Common Subnets</label>
+    <div class="d-flex gap-1 flex-wrap">
+        <button class="btn btn-sm btn-outline-primary cidr-btn" data-cidr="8">/8 (Class A)</button>
+        <button class="btn btn-sm btn-outline-primary cidr-btn" data-cidr="16">/16 (Class B)</button>
+        <button class="btn btn-sm btn-outline-primary cidr-btn active" data-cidr="24">/24 (Class C)</button>
+        <button class="btn btn-sm btn-outline-secondary cidr-btn" data-cidr="20">/20</button>
+        <button class="btn btn-sm btn-outline-secondary cidr-btn" data-cidr="22">/22</button>
+        <button class="btn btn-sm btn-outline-secondary cidr-btn" data-cidr="25">/25</button>
+        <button class="btn btn-sm btn-outline-secondary cidr-btn" data-cidr="26">/26</button>
+        <button class="btn btn-sm btn-outline-secondary cidr-btn" data-cidr="27">/27</button>
+        <button class="btn btn-sm btn-outline-secondary cidr-btn" data-cidr="28">/28</button>
+        <button class="btn btn-sm btn-outline-secondary cidr-btn" data-cidr="30">/30</button>
+        <button class="btn btn-sm btn-outline-secondary cidr-btn" data-cidr="32">/32</button>
+    </div>
+</div>
+
+<!-- Results -->
+<div class="row g-3 mb-4" id="results" style="display:none;">
+    <div class="col-md-6">
+        <div class="card result-card">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="result-label">Network Address</div>
+                        <div class="result-value" id="netAddr"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="result-label">Broadcast Address</div>
+                        <div class="result-value" id="bcastAddr"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="result-label">Subnet Mask</div>
+                        <div class="result-value" id="subnetMask"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="result-label">Wildcard Mask</div>
+                        <div class="result-value" id="wildcardMask"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="result-label">First Usable Host</div>
+                        <div class="result-value" id="firstHost"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="result-label">Last Usable Host</div>
+                        <div class="result-value" id="lastHost"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="result-label">Total Hosts</div>
+                        <div class="result-value" id="totalHosts"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="result-label">Usable Hosts</div>
+                        <div class="result-value" id="usableHosts"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="result-label">CIDR Notation</div>
+                        <div class="result-value" id="cidrNotation"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="result-label">IP Class</div>
+                        <div class="result-value" id="ipClass"></div>
+                    </div>
+                    <div class="col-12">
+                        <div class="result-label">IP Range</div>
+                        <div class="result-value" id="ipRange"></div>
+                    </div>
+                    <div class="col-12">
+                        <div class="result-label">IP (Binary)</div>
+                        <div class="result-value" id="ipBinary" style="font-size:0.82rem;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card result-card">
+            <div class="card-header py-2 fw-semibold"><i class="bi bi-cpu"></i> Bit Visualization</div>
+            <div class="card-body">
+                <div class="mb-2" style="font-size:0.78rem;">
+                    <span class="badge bg-primary">Network bits</span>
+                    <span class="badge bg-secondary">Host bits</span>
+                </div>
+                <div class="bit-vis" id="bitVis"></div>
+            </div>
+        </div>
+
+        <!-- Subnet split -->
+        <div class="card result-card mt-3">
+            <div class="card-header py-2 fw-semibold d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-grid-3x3"></i> Subnet Split</span>
+                <select class="form-select form-select-sm" id="splitCidr" style="width:auto; font-size:0.8rem;"></select>
+            </div>
+            <div class="card-body p-0" style="max-height: 250px; overflow-y: auto;">
+                <table class="table table-sm subnet-table mb-0">
+                    <thead><tr><th>#</th><th>Network</th><th>Range</th><th>Broadcast</th></tr></thead>
+                    <tbody id="splitBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/subnet.js"></script>
+{{end}}

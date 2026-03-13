@@ -1,0 +1,630 @@
+{{define "content"}}
+<style>
+    .editor-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        align-items: center;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--bs-border-color);
+        margin-bottom: 8px;
+    }
+    .toolbar-group {
+        display: flex;
+        gap: 2px;
+        align-items: center;
+        padding: 0 6px;
+        border-right: 1px solid var(--bs-border-color);
+    }
+    .toolbar-group:last-child { border-right: none; }
+    .tool-btn {
+        padding: 4px 8px;
+        border: 1px solid transparent;
+        background: none;
+        border-radius: 4px;
+        color: var(--bs-body-color);
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .tool-btn:hover { background: var(--bs-tertiary-bg); }
+    .tool-btn.active { background: var(--bs-primary); color: #fff; border-color: var(--bs-primary); }
+    .tool-btn:disabled { opacity: 0.4; cursor: default; }
+    .tool-btn i { font-size: 1rem; }
+
+    .canvas-area {
+        position: relative;
+        flex: 1;
+        min-height: 400px;
+        overflow: auto;
+        background:
+            repeating-conic-gradient(var(--checker-c1) 0% 25%, var(--checker-c2) 0% 50%) 0 0 / 20px 20px;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    [data-bs-theme="light"] .canvas-area { --checker-c1: #e0e0e0; --checker-c2: #fff; }
+    [data-bs-theme="dark"] .canvas-area { --checker-c1: #2a2a2a; --checker-c2: #333; }
+
+    .canvas-wrapper {
+        position: relative;
+        display: inline-block;
+        transform-origin: center center;
+    }
+    #mainCanvas {
+        display: block;
+        max-width: none;
+        image-rendering: auto;
+    }
+
+    /* Crop overlay */
+    .crop-overlay {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        display: none;
+        pointer-events: none;
+    }
+    .crop-overlay.active { display: block; pointer-events: auto; cursor: crosshair; }
+    .crop-selection {
+        position: absolute;
+        border: 2px dashed #fff;
+        box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+        display: none;
+    }
+    .crop-selection.visible { display: block; }
+
+    /* Draw overlay */
+    .draw-overlay {
+        position: absolute;
+        top: 0; left: 0;
+        display: none;
+    }
+    .draw-overlay.active { display: block; }
+
+    /* Side panel */
+    .side-panel {
+        width: 260px;
+        min-width: 260px;
+        max-height: calc(100vh - 220px);
+        overflow-y: auto;
+        padding-left: 12px;
+    }
+    .panel-section {
+        margin-bottom: 12px;
+        padding: 10px;
+        background: var(--bs-tertiary-bg);
+        border-radius: 6px;
+        border: 1px solid var(--bs-border-color);
+    }
+    .panel-section h6 {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--bs-secondary-color);
+        margin-bottom: 8px;
+    }
+    .filter-info-link {
+        color: var(--bs-secondary-color);
+        opacity: 0.5;
+        font-size: 0.75rem;
+        text-decoration: none;
+        vertical-align: middle;
+        transition: opacity 0.2s;
+    }
+    .filter-info-link:hover {
+        opacity: 1;
+        color: var(--bs-primary);
+    }
+    .adjust-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 6px;
+    }
+    .adjust-row label {
+        font-size: 0.78rem;
+        min-width: 60px;
+        color: var(--bs-body-color);
+    }
+    .adjust-row input[type=range] { flex: 1; }
+    .adjust-row .adjust-val {
+        font-size: 0.72rem;
+        min-width: 32px;
+        text-align: right;
+        color: var(--bs-secondary-color);
+        font-family: monospace;
+    }
+
+    .filter-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+    }
+    .filter-btn {
+        padding: 4px 6px;
+        font-size: 0.75rem;
+        border: 1px solid var(--bs-border-color);
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        transition: border-color 0.15s, background 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--bs-primary); }
+    .filter-btn.active-filter { border-color: var(--bs-primary); background: color-mix(in srgb, var(--bs-primary) 15%, transparent); }
+    .ig-filter-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 3px;
+        max-height: 280px;
+        overflow-y: auto;
+    }
+    .ig-filter-btn {
+        padding: 3px 4px;
+        font-size: 0.68rem;
+        border: 1px solid var(--bs-border-color);
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        transition: border-color 0.15s, background 0.15s;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .ig-filter-btn:hover { border-color: var(--bs-primary); }
+    .ig-filter-btn.active-filter { border-color: var(--bs-primary); background: color-mix(in srgb, var(--bs-primary) 15%, transparent); font-weight: 600; }
+
+    .preset-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 4px;
+    }
+    .preset-btn {
+        padding: 3px;
+        font-size: 0.7rem;
+        border: 1px solid var(--bs-border-color);
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+    .preset-btn:hover { border-color: var(--bs-primary); }
+
+    .status-bar {
+        display: flex;
+        gap: 16px;
+        padding: 4px 0;
+        font-size: 0.75rem;
+        color: var(--bs-secondary-color);
+        border-top: 1px solid var(--bs-border-color);
+        margin-top: 8px;
+        flex-wrap: wrap;
+    }
+
+    .drop-hint {
+        text-align: center;
+        color: var(--bs-secondary-color);
+        padding: 60px 20px;
+    }
+    .drop-hint i { font-size: 3rem; display: block; margin-bottom: 12px; }
+
+    /* Draw options bar */
+    .draw-options {
+        display: none;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 10px;
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+    }
+    .draw-options.active { display: flex; }
+    .draw-options label { font-size: 0.8rem; }
+
+    /* Crop options bar */
+    .crop-options {
+        display: none;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 10px;
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        margin-bottom: 8px;
+    }
+    .crop-options.active { display: flex; }
+
+    /* Resize modal */
+    .resize-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .resize-row label { min-width: 50px; font-size: 0.85rem; }
+    .resize-row input { width: 100px; }
+
+    /* Text options */
+    .text-options {
+        display: none;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 10px;
+        background: var(--bs-tertiary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+    }
+    .text-options.active { display: flex; }
+
+    @media (max-width: 991.98px) {
+        .side-panel { width: 100%; min-width: auto; padding-left: 0; margin-top: 12px; }
+        .canvas-area { min-height: 300px; }
+    }
+</style>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-brush" style="color: #9c27b0;"></i> Image Editor
+        <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="imageeditor" onclick="togglePin('imageeditor')" title="Pin to navbar"></i>
+    </h5>
+    <div class="d-flex gap-1">
+        <button class="btn btn-sm btn-outline-secondary" id="beforeAfterBtn" title="Toggle before/after comparison" disabled>
+            <i class="bi bi-layout-split"></i> Before/After
+        </button>
+        <div class="dropdown">
+            <button class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" id="exportDropBtn" disabled>
+                <i class="bi bi-download"></i> Export
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-format="image/png">PNG (lossless)</a></li>
+                <li><a class="dropdown-item" href="#" data-format="image/jpeg">JPEG</a></li>
+                <li><a class="dropdown-item" href="#" data-format="image/webp">WebP</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#" id="exportCustom">Custom size...</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Toolbar -->
+<div class="editor-toolbar">
+    <div class="toolbar-group">
+        <label class="tool-btn" title="Open image (Ctrl+O)">
+            <i class="bi bi-folder2-open"></i>
+            <input type="file" id="fileInput" class="d-none" accept="image/*">
+        </label>
+        <button class="tool-btn" id="pasteBtn" title="Paste from clipboard (Ctrl+V)"><i class="bi bi-clipboard-plus"></i></button>
+        <button class="tool-btn" id="sampleBtn" title="Load sample image"><i class="bi bi-image"></i></button>
+    </div>
+    <div class="toolbar-group">
+        <button class="tool-btn" id="undoBtn" title="Undo (Ctrl+Z)" disabled><i class="bi bi-arrow-counterclockwise"></i></button>
+        <button class="tool-btn" id="redoBtn" title="Redo (Ctrl+Y)" disabled><i class="bi bi-arrow-clockwise"></i></button>
+    </div>
+    <div class="toolbar-group">
+        <button class="tool-btn" id="zoomOutBtn" title="Zoom out (-)"><i class="bi bi-zoom-out"></i></button>
+        <span id="zoomLabel" class="small text-muted" style="min-width:40px;text-align:center;">100%</span>
+        <button class="tool-btn" id="zoomInBtn" title="Zoom in (+)"><i class="bi bi-zoom-in"></i></button>
+        <button class="tool-btn" id="zoomFitBtn" title="Fit to view"><i class="bi bi-fullscreen"></i></button>
+        <button class="tool-btn" id="zoom100Btn" title="Actual size (1:1)">1:1</button>
+    </div>
+    <div class="toolbar-group">
+        <button class="tool-btn" id="rotateCWBtn" title="Rotate 90 CW" disabled><i class="bi bi-arrow-clockwise"></i> 90</button>
+        <button class="tool-btn" id="rotateCCWBtn" title="Rotate 90 CCW" disabled><i class="bi bi-arrow-counterclockwise"></i> 90</button>
+        <button class="tool-btn" id="flipHBtn" title="Flip horizontal" disabled><i class="bi bi-symmetry-vertical"></i></button>
+        <button class="tool-btn" id="flipVBtn" title="Flip vertical" disabled><i class="bi bi-symmetry-horizontal"></i></button>
+    </div>
+    <div class="toolbar-group">
+        <button class="tool-btn" id="cropToolBtn" title="Crop (C)" disabled><i class="bi bi-crop"></i></button>
+        <button class="tool-btn" id="resizeBtn" title="Resize (R)" disabled><i class="bi bi-arrows-angle-expand"></i></button>
+        <button class="tool-btn" id="drawToolBtn" title="Draw (D)" disabled><i class="bi bi-pencil"></i></button>
+        <button class="tool-btn" id="textToolBtn" title="Text (T)" disabled><i class="bi bi-type"></i></button>
+        <button class="tool-btn" id="shapeToolBtn" title="Shapes (S)" disabled><i class="bi bi-square"></i></button>
+        <button class="tool-btn" id="pickerToolBtn" title="Color picker (I)" disabled><i class="bi bi-eyedropper"></i></button>
+    </div>
+</div>
+
+<!-- Crop Options -->
+<div class="crop-options" id="cropOptions">
+    <label class="small fw-semibold">Crop Ratio:</label>
+    <select id="cropRatio" class="form-select form-select-sm" style="width:120px;">
+        <option value="free">Free</option>
+        <option value="1:1">1:1 Square</option>
+        <option value="4:3">4:3</option>
+        <option value="16:9">16:9</option>
+        <option value="3:2">3:2</option>
+        <option value="2:3">2:3 Portrait</option>
+    </select>
+    <button class="btn btn-sm btn-success" id="applyCropBtn"><i class="bi bi-check-lg"></i> Apply Crop</button>
+    <button class="btn btn-sm btn-outline-secondary" id="cancelCropBtn"><i class="bi bi-x-lg"></i> Cancel</button>
+    <span class="small text-muted" id="cropInfo"></span>
+</div>
+
+<!-- Draw Options -->
+<div class="draw-options" id="drawOptions">
+    <label class="small fw-semibold">Draw:</label>
+    <input type="color" id="drawColor" value="#ff0000" title="Pen color" style="width:32px;height:28px;padding:0;border:none;">
+    <label class="small">Size:</label>
+    <input type="range" id="drawSize" min="1" max="50" value="3" style="width:80px;">
+    <span id="drawSizeVal" class="small text-muted">3px</span>
+    <button class="btn btn-sm btn-outline-secondary" id="eraserBtn" title="Eraser"><i class="bi bi-eraser"></i></button>
+</div>
+
+<!-- Text Options -->
+<div class="text-options" id="textOptions">
+    <label class="small fw-semibold">Text:</label>
+    <input type="text" id="textInput" class="form-control form-control-sm" style="width:200px;" placeholder="Type text...">
+    <input type="color" id="textColor" value="#ff0000" style="width:32px;height:28px;padding:0;border:none;">
+    <label class="small">Size:</label>
+    <input type="number" id="textSize" class="form-control form-control-sm" value="24" min="8" max="200" style="width:60px;">
+    <select id="textFont" class="form-select form-select-sm" style="width:120px;">
+        <option value="sans-serif">Sans-serif</option>
+        <option value="serif">Serif</option>
+        <option value="monospace">Monospace</option>
+        <option value="cursive">Cursive</option>
+        <option value="Arial">Arial</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Courier New">Courier New</option>
+    </select>
+    <div class="form-check form-check-inline mb-0">
+        <input class="form-check-input" type="checkbox" id="textBold">
+        <label class="form-check-label small" for="textBold"><b>B</b></label>
+    </div>
+    <span class="small text-muted">Click on image to place text</span>
+</div>
+
+<!-- Shape Options -->
+<div class="draw-options" id="shapeOptions">
+    <label class="small fw-semibold">Shape:</label>
+    <select id="shapeType" class="form-select form-select-sm" style="width:100px;">
+        <option value="rect">Rectangle</option>
+        <option value="circle">Circle</option>
+        <option value="line">Line</option>
+        <option value="arrow">Arrow</option>
+    </select>
+    <input type="color" id="shapeColor" value="#ff0000" style="width:32px;height:28px;padding:0;border:none;">
+    <label class="small">Width:</label>
+    <input type="range" id="shapeWidth" min="1" max="20" value="3" style="width:80px;">
+    <span id="shapeWidthVal" class="small text-muted">3px</span>
+    <div class="form-check form-check-inline mb-0">
+        <input class="form-check-input" type="checkbox" id="shapeFill">
+        <label class="form-check-label small" for="shapeFill">Fill</label>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="d-flex flex-column flex-lg-row">
+    <!-- Canvas -->
+    <div class="canvas-area" id="canvasArea">
+        <div id="dropHint" class="drop-hint">
+            <i class="bi bi-image"></i>
+            <div>Drop an image here, click Open, or press Ctrl+V to paste</div>
+            <div class="small mt-1">PNG, JPG, WebP, GIF, SVG, BMP</div>
+        </div>
+        <div class="canvas-wrapper" id="canvasWrapper" style="display:none;">
+            <canvas id="mainCanvas"></canvas>
+            <canvas id="overlayCanvas" class="draw-overlay"></canvas>
+            <div class="crop-overlay" id="cropOverlay">
+                <div class="crop-selection" id="cropSelection"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Panel -->
+    <div class="side-panel" id="sidePanel">
+        <!-- Adjustments -->
+        <div class="panel-section">
+            <h6><i class="bi bi-sliders"></i> Adjustments</h6>
+            <div class="adjust-row">
+                <label>Bright</label>
+                <input type="range" id="adjBrightness" min="-100" max="100" value="0" class="form-range">
+                <span class="adjust-val" id="valBrightness">0</span>
+            </div>
+            <div class="adjust-row">
+                <label>Contrast</label>
+                <input type="range" id="adjContrast" min="-100" max="100" value="0" class="form-range">
+                <span class="adjust-val" id="valContrast">0</span>
+            </div>
+            <div class="adjust-row">
+                <label>Saturate</label>
+                <input type="range" id="adjSaturate" min="-100" max="100" value="0" class="form-range">
+                <span class="adjust-val" id="valSaturate">0</span>
+            </div>
+            <div class="adjust-row">
+                <label>Hue</label>
+                <input type="range" id="adjHue" min="-180" max="180" value="0" class="form-range">
+                <span class="adjust-val" id="valHue">0</span>
+            </div>
+            <div class="adjust-row">
+                <label>Blur</label>
+                <input type="range" id="adjBlur" min="0" max="20" value="0" class="form-range">
+                <span class="adjust-val" id="valBlur">0</span>
+            </div>
+            <div class="adjust-row">
+                <label>Opacity</label>
+                <input type="range" id="adjOpacity" min="0" max="100" value="100" class="form-range">
+                <span class="adjust-val" id="valOpacity">100</span>
+            </div>
+            <div class="d-flex gap-2 mt-2">
+                <button class="btn btn-sm btn-success flex-fill" id="applyAdjBtn" disabled><i class="bi bi-check-lg"></i> Apply</button>
+                <button class="btn btn-sm btn-outline-secondary flex-fill" id="resetAdjBtn"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
+            </div>
+        </div>
+
+        <!-- Basic Filters -->
+        <div class="panel-section">
+            <h6><i class="bi bi-magic"></i> Basic Filters</h6>
+            <div class="filter-grid">
+                <button class="filter-btn" data-filter="grayscale">Grayscale</button>
+                <button class="filter-btn" data-filter="sepia">Sepia</button>
+                <button class="filter-btn" data-filter="invert">Invert</button>
+                <button class="filter-btn" data-filter="vintage">Vintage</button>
+                <button class="filter-btn" data-filter="warm">Warm</button>
+                <button class="filter-btn" data-filter="cool">Cool</button>
+                <button class="filter-btn" data-filter="sharpen">Sharpen</button>
+                <button class="filter-btn" data-filter="emboss">Emboss</button>
+            </div>
+        </div>
+
+        <!-- Instagram Filters -->
+        <div class="panel-section">
+            <h6><i class="bi bi-camera"></i> Instagram Filters <span class="fw-normal text-muted">(41)</span> <a href="https://picturepan2.github.io/instagram.css/" target="_blank" rel="noopener" class="filter-info-link" title="instagram.css by picturepan2"><i class="bi bi-info-circle"></i></a></h6>
+            <input type="text" id="igFilterSearch" class="form-control form-control-sm mb-2" placeholder="Search filters...">
+            <div class="ig-filter-grid" id="igFilterGrid"></div>
+        </div>
+
+        <!-- Film Emulation Filters -->
+        <div class="panel-section">
+            <h6><i class="bi bi-film"></i> Film Emulation <span class="fw-normal text-muted" id="filmCount"></span> <a href="https://en.wikipedia.org/wiki/Film_stock" target="_blank" rel="noopener" class="filter-info-link" title="Classic film stock emulation"><i class="bi bi-info-circle"></i></a></h6>
+            <div class="ig-filter-grid" id="filmFilterGrid"></div>
+        </div>
+
+        <!-- Cinematic Filters -->
+        <div class="panel-section">
+            <h6><i class="bi bi-camera-reels"></i> Cinematic <span class="fw-normal text-muted" id="cineCount"></span> <a href="https://en.wikipedia.org/wiki/Color_grading" target="_blank" rel="noopener" class="filter-info-link" title="Cinematic color grading styles"><i class="bi bi-info-circle"></i></a></h6>
+            <div class="ig-filter-grid" id="cineFilterGrid"></div>
+        </div>
+
+        <!-- Creative Filters -->
+        <div class="panel-section">
+            <h6><i class="bi bi-stars"></i> Creative <span class="fw-normal text-muted" id="creativeCount"></span> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" target="_blank" rel="noopener" class="filter-info-link" title="Creative CSS filter effects"><i class="bi bi-info-circle"></i></a></h6>
+            <div class="ig-filter-grid" id="creativeFilterGrid"></div>
+        </div>
+
+        <!-- Color Blend Filters (colofilter.css inspired) -->
+        <div class="panel-section">
+            <h6><i class="bi bi-droplet-half"></i> Color Blend <span class="fw-normal text-muted" id="blendCount"></span> <a href="https://lukyvj.github.io/colofilter.css/" target="_blank" rel="noopener" class="filter-info-link" title="Inspired by colofilter.css by LukyVj"><i class="bi bi-info-circle"></i></a></h6>
+            <div class="ig-filter-grid" id="blendFilterGrid"></div>
+        </div>
+
+        <!-- CSSCO Filters (cssco.css by we-are-next — 3-layer blend) -->
+        <div class="panel-section">
+            <h6><i class="bi bi-layers"></i> CSSCO <span class="fw-normal text-muted" id="csscoCount"></span> <a href="https://www.bypeople.com/css-image-filters-library/" target="_blank" rel="noopener" class="filter-info-link" title="cssco.css by we-are-next"><i class="bi bi-info-circle"></i></a></h6>
+            <div class="ig-filter-grid" id="csscoFilterGrid"></div>
+        </div>
+
+        <!-- Quick Resize Presets -->
+        <div class="panel-section">
+            <h6><i class="bi bi-arrows-angle-expand"></i> Quick Resize</h6>
+            <div class="preset-grid">
+                <button class="preset-btn" data-w="16" data-h="16">16x16</button>
+                <button class="preset-btn" data-w="32" data-h="32">32x32</button>
+                <button class="preset-btn" data-w="48" data-h="48">48x48</button>
+                <button class="preset-btn" data-w="64" data-h="64">64x64</button>
+                <button class="preset-btn" data-w="128" data-h="128">128x128</button>
+                <button class="preset-btn" data-w="256" data-h="256">256x256</button>
+                <button class="preset-btn" data-w="512" data-h="512">512x512</button>
+                <button class="preset-btn" data-w="1024" data-h="1024">1024</button>
+                <button class="preset-btn" data-w="1200" data-h="630">OG 1200</button>
+                <button class="preset-btn" data-w="1080" data-h="1080">IG Post</button>
+                <button class="preset-btn" data-w="1920" data-h="1080">FHD</button>
+                <button class="preset-btn" data-w="800" data-h="600">800x600</button>
+            </div>
+        </div>
+
+        <!-- Image Info -->
+        <div class="panel-section" id="imageInfoPanel" style="display:none;">
+            <h6><i class="bi bi-info-circle"></i> Image Info</h6>
+            <div id="imageInfo" class="small" style="font-family:monospace;font-size:0.75rem;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Status Bar -->
+<div class="status-bar">
+    <span id="statusDim">No image loaded</span>
+    <span id="statusZoom"></span>
+    <span id="statusFile"></span>
+    <span id="statusColor"></span>
+    <span id="statusPos"></span>
+</div>
+
+<!-- Resize Modal -->
+<div class="modal fade" id="resizeModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header py-2">
+                <h6 class="modal-title"><i class="bi bi-arrows-angle-expand"></i> Resize Image</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="resize-row">
+                    <label>Width:</label>
+                    <input type="number" id="resizeW" class="form-control form-control-sm" min="1" max="10000">
+                    <span class="small text-muted">px</span>
+                </div>
+                <div class="resize-row">
+                    <label>Height:</label>
+                    <input type="number" id="resizeH" class="form-control form-control-sm" min="1" max="10000">
+                    <span class="small text-muted">px</span>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="resizeLock" checked>
+                    <label class="form-check-label small" for="resizeLock">Lock aspect ratio</label>
+                </div>
+                <div class="small text-muted" id="resizeInfo"></div>
+            </div>
+            <div class="modal-footer py-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary" id="applyResizeBtn">Resize</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Export Custom Modal -->
+<div class="modal fade" id="exportModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header py-2">
+                <h6 class="modal-title"><i class="bi bi-download"></i> Export Custom</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="resize-row">
+                    <label>Width:</label>
+                    <input type="number" id="exportW" class="form-control form-control-sm" min="1" max="10000">
+                    <span class="small text-muted">px</span>
+                </div>
+                <div class="resize-row">
+                    <label>Height:</label>
+                    <input type="number" id="exportH" class="form-control form-control-sm" min="1" max="10000">
+                    <span class="small text-muted">px</span>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="exportLock" checked>
+                    <label class="form-check-label small" for="exportLock">Lock aspect ratio</label>
+                </div>
+                <div class="resize-row">
+                    <label>Format:</label>
+                    <select id="exportFormat" class="form-select form-select-sm">
+                        <option value="image/png">PNG</option>
+                        <option value="image/jpeg">JPEG</option>
+                        <option value="image/webp">WebP</option>
+                    </select>
+                </div>
+                <div class="resize-row">
+                    <label>Quality:</label>
+                    <input type="range" id="exportQuality" min="10" max="100" value="92" style="flex:1;">
+                    <span id="exportQualityVal" class="small text-muted">92%</span>
+                </div>
+            </div>
+            <div class="modal-footer py-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary" id="applyExportBtn"><i class="bi bi-download"></i> Export</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/imageeditor.js"></script>
+{{end}}

@@ -1,0 +1,44 @@
+{{define "content"}}
+<style>
+    .palette-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .color-swatch { width: 80px; height: 80px; border-radius: 0.5rem; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; padding: 0.3rem; border: 2px solid transparent; transition: all 0.1s; }
+    .color-swatch:hover { transform: scale(1.05); border-color: var(--bs-primary); }
+    .color-swatch .hex { font-size: 0.65rem; font-family: monospace; background: rgba(0,0,0,0.5); color: #fff; padding: 0.1rem 0.3rem; border-radius: 0.2rem; }
+    .harmony-label { font-weight: 600; font-size: 0.82rem; margin-top: 1rem; margin-bottom: 0.3rem; }
+    .img-palette { display: flex; gap: 4px; flex-wrap: wrap; }
+    .img-swatch { width: 50px; height: 50px; border-radius: 4px; cursor: pointer; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-palette2"></i> Color Palette Generator
+        <i id="pinToggle" data-tool="palette" class="bi bi-star pin-star" onclick="togglePin('palette')"></i>
+    </h5>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Base Color</label>
+            <div class="d-flex gap-2 align-items-center">
+                <input type="color" class="form-control form-control-color" id="baseColor" value="#2196f3" style="width:50px; height:40px;">
+                <input type="text" class="form-control form-control-sm" id="baseHex" value="#2196f3" style="font-family:monospace; max-width:100px;">
+                <button class="btn btn-sm btn-outline-secondary" id="randomBtn" title="Random"><i class="bi bi-shuffle"></i></button>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Extract from Image</label>
+            <div class="d-flex gap-1">
+                <label class="btn btn-sm btn-outline-secondary mb-0"><i class="bi bi-image"></i> Upload <input type="file" accept="image/*" class="d-none" id="imgInput"></label>
+            </div>
+            <div class="img-palette mt-2" id="imgPalette"></div>
+        </div>
+    </div>
+    <div class="col-md-8" id="palettes"></div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/palette.js"></script>
+{{end}}

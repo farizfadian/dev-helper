@@ -1,0 +1,123 @@
+{{define "content"}}
+<style>
+    .preview-area { border: 1px solid var(--bs-border-color); border-radius: 0.375rem; min-height: 300px; display: flex; align-items: center; justify-content: center; background: var(--bs-tertiary-bg); overflow: hidden; position: relative; }
+    .preview-area canvas { max-width: 100%; max-height: 500px; }
+    .color-row { display: flex; gap: 0.5rem; align-items: center; }
+    .preset-color { width: 28px; height: 28px; border-radius: 4px; cursor: pointer; border: 2px solid transparent; transition: all 0.1s; }
+    .preset-color:hover, .preset-color.active { border-color: var(--bs-primary); transform: scale(1.15); }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-image"></i> Placeholder Image
+        <i id="pinToggle" data-tool="placeholder" class="bi bi-star pin-star" onclick="togglePin('placeholder')"></i>
+    </h5>
+    <div class="d-flex gap-1">
+        <button class="btn btn-sm btn-primary" id="downloadPng"><i class="bi bi-download"></i> PNG</button>
+        <button class="btn btn-sm btn-outline-secondary" id="downloadSvg"><i class="bi bi-filetype-svg"></i> SVG</button>
+        <button class="btn btn-sm btn-outline-secondary" id="copyDataUri" title="Copy Data URI"><i class="bi bi-clipboard"></i> Data URI</button>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Size</label>
+            <div class="row g-2">
+                <div class="col-6">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">W</span>
+                        <input type="number" class="form-control" id="imgWidth" value="640" min="1" max="4096">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">H</span>
+                        <input type="number" class="form-control" id="imgHeight" value="480" min="1" max="4096">
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex gap-1 mt-2 flex-wrap">
+                <button class="btn btn-sm btn-outline-secondary size-btn" data-w="150" data-h="150">150×150</button>
+                <button class="btn btn-sm btn-outline-secondary size-btn" data-w="320" data-h="240">320×240</button>
+                <button class="btn btn-sm btn-outline-secondary size-btn active" data-w="640" data-h="480">640×480</button>
+                <button class="btn btn-sm btn-outline-secondary size-btn" data-w="800" data-h="600">800×600</button>
+                <button class="btn btn-sm btn-outline-secondary size-btn" data-w="1280" data-h="720">1280×720</button>
+                <button class="btn btn-sm btn-outline-secondary size-btn" data-w="1920" data-h="1080">1920×1080</button>
+                <button class="btn btn-sm btn-outline-secondary size-btn" data-w="1200" data-h="630">OG Image</button>
+                <button class="btn btn-sm btn-outline-secondary size-btn" data-w="512" data-h="512">512×512</button>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Text</label>
+            <input type="text" class="form-control form-control-sm" id="imgText" placeholder="auto: 640×480">
+            <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" id="showSize" checked>
+                <label class="form-check-label" for="showSize" style="font-size:0.82rem;">Show dimensions</label>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Font Size</label>
+            <input type="range" class="form-range" id="fontSize" min="10" max="200" value="0">
+            <div class="text-muted" style="font-size:0.78rem;">Auto (0) or fixed: <span id="fontSizeVal">auto</span></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Background</label>
+            <div class="d-flex gap-2 align-items-center">
+                <input type="color" class="form-control form-control-color" id="bgColor" value="#cccccc" style="width:40px; height:32px;">
+                <div class="d-flex gap-1 flex-wrap">
+                    <div class="preset-color" style="background:#cccccc;" data-color="#cccccc" data-target="bg"></div>
+                    <div class="preset-color" style="background:#e0e0e0;" data-color="#e0e0e0" data-target="bg"></div>
+                    <div class="preset-color" style="background:#2196f3;" data-color="#2196f3" data-target="bg"></div>
+                    <div class="preset-color" style="background:#4caf50;" data-color="#4caf50" data-target="bg"></div>
+                    <div class="preset-color" style="background:#ff9800;" data-color="#ff9800" data-target="bg"></div>
+                    <div class="preset-color" style="background:#f44336;" data-color="#f44336" data-target="bg"></div>
+                    <div class="preset-color" style="background:#9c27b0;" data-color="#9c27b0" data-target="bg"></div>
+                    <div class="preset-color" style="background:#333333;" data-color="#333333" data-target="bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Text Color</label>
+            <div class="d-flex gap-2 align-items-center">
+                <input type="color" class="form-control form-control-color" id="textColor" value="#969696" style="width:40px; height:32px;">
+                <div class="d-flex gap-1 flex-wrap">
+                    <div class="preset-color" style="background:#969696;" data-color="#969696" data-target="text"></div>
+                    <div class="preset-color" style="background:#ffffff;" data-color="#ffffff" data-target="text" class="border"></div>
+                    <div class="preset-color" style="background:#000000;" data-color="#000000" data-target="text"></div>
+                    <div class="preset-color" style="background:#333333;" data-color="#333333" data-target="text"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Style</label>
+            <select class="form-select form-select-sm" id="bgStyle">
+                <option value="solid">Solid Color</option>
+                <option value="gradient-h">Gradient (Horizontal)</option>
+                <option value="gradient-v">Gradient (Vertical)</option>
+                <option value="gradient-d">Gradient (Diagonal)</option>
+                <option value="crosshatch">Crosshatch Pattern</option>
+            </select>
+            <div class="mt-2 d-none" id="gradientEndWrap">
+                <label class="form-label mb-1" style="font-size:0.82rem;">Gradient End Color</label>
+                <input type="color" class="form-control form-control-color" id="gradientEnd" value="#999999" style="width:40px; height:32px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="preview-area" id="previewArea">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/placeholder.js"></script>
+{{end}}

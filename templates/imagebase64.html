@@ -1,0 +1,341 @@
+{{define "content"}}
+<style>
+    .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+    .panel-label {
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+    .b64-textarea {
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.82rem;
+        min-height: 320px;
+        resize: vertical;
+        word-break: break-all;
+    }
+    .drop-zone {
+        border: 2px dashed var(--bs-border-color);
+        border-radius: 8px;
+        min-height: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s;
+        background: var(--bs-tertiary-bg);
+        position: relative;
+    }
+    .drop-zone:hover,
+    .drop-zone.drag-over {
+        border-color: var(--bs-primary);
+        background: color-mix(in srgb, var(--bs-primary) 8%, transparent);
+    }
+    .drop-zone .drop-icon {
+        font-size: 2.5rem;
+        color: var(--bs-secondary-color);
+    }
+    .drop-zone .drop-text {
+        color: var(--bs-secondary-color);
+        font-size: 0.9rem;
+    }
+    .drop-zone img.preview-img {
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        border-radius: 4px;
+    }
+    .direction-btn-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    .snippet-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        font-family: 'SF Mono', 'Fira Code', monospace;
+        font-size: 0.78rem;
+        background: var(--bs-tertiary-bg);
+        word-break: break-all;
+        cursor: pointer;
+        transition: border-color 0.2s;
+    }
+    .snippet-item:hover {
+        border-color: var(--bs-primary);
+    }
+    .snippet-label {
+        font-weight: 600;
+        font-size: 0.7rem;
+        color: var(--bs-secondary-color);
+        white-space: nowrap;
+        min-width: 40px;
+    }
+    .snippet-value {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .preview-container {
+        min-height: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        background: var(--bs-tertiary-bg);
+        padding: 12px;
+    }
+    .preview-container img {
+        max-width: 100%;
+        max-height: 280px;
+        object-fit: contain;
+        border-radius: 4px;
+    }
+    .preview-placeholder {
+        color: var(--bs-secondary-color);
+        text-align: center;
+    }
+    .file-meta {
+        font-size: 0.78rem;
+        color: var(--bs-secondary-color);
+    }
+    .error-display {
+        font-family: 'SF Mono', 'Fira Code', monospace;
+        font-size: 0.8rem;
+        max-height: 80px;
+        overflow-y: auto;
+    }
+    @media (max-width: 767.98px) {
+        .b64-textarea, .drop-zone, .preview-container { min-height: 220px; }
+        .direction-col { order: -1; }
+        .direction-btn-group { flex-direction: row; flex-wrap: wrap; margin-bottom: 8px; }
+    }
+</style>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+        <i class="bi bi-file-earmark-image" style="color: #e91e63;"></i> Image <span id="directionLabel">to Base64</span>
+        <i class="bi bi-star text-muted pin-star" id="pinToggle" data-tool="imagebase64" onclick="togglePin('imagebase64')" title="Pin to navbar"></i>
+    </h5>
+    <div class="d-flex gap-2 align-items-center">
+        <div class="form-check form-switch mb-0">
+            <input class="form-check-input" type="checkbox" id="autoConvert" checked>
+            <label class="form-check-label small" for="autoConvert">Auto-convert</label>
+        </div>
+    </div>
+</div>
+
+<!-- Error Display -->
+<div id="errorMsg" class="alert alert-danger py-2 small d-none error-display mb-3">
+    <i class="bi bi-exclamation-triangle"></i> <span id="errorText"></span>
+</div>
+
+<!-- Main Panels -->
+<div class="row g-3">
+    <!-- Left Panel: Image (mode=img2b64) / Base64 Input (mode=b642img) -->
+    <div class="col-md-5" id="leftPanel">
+        <!-- Image Input Panel (default) -->
+        <div id="imageInputPanel">
+            <div class="panel-header">
+                <span class="panel-label"><i class="bi bi-image"></i> Image</span>
+                <div class="d-flex gap-1">
+                    <label class="btn btn-sm btn-outline-secondary mb-0" title="Browse image file">
+                        <i class="bi bi-folder2-open"></i> Browse
+                        <input type="file" id="imageFileInput" class="d-none" accept="image/*">
+                    </label>
+                    <button class="btn btn-sm btn-outline-secondary" id="pasteImageBtn" title="Paste image from clipboard (Ctrl+V)">
+                        <i class="bi bi-clipboard-plus"></i> Paste
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" id="clearImageBtn" title="Clear image">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="dropZone" class="drop-zone">
+                <i class="bi bi-image drop-icon"></i>
+                <span class="drop-text">Drop image here, paste, or click Browse</span>
+                <span class="drop-text small">PNG, JPG, WebP, GIF, SVG, BMP, ICO</span>
+            </div>
+            <div id="imageMeta" class="file-meta mt-1 d-none"></div>
+        </div>
+        <!-- Base64 Input Panel (when swapped) -->
+        <div id="base64InputPanel" class="d-none">
+            <div class="panel-header">
+                <span class="panel-label"><i class="bi bi-file-earmark-binary"></i> Base64 String</span>
+                <div class="d-flex gap-1">
+                    <label class="btn btn-sm btn-outline-secondary mb-0" title="Import base64 from file">
+                        <i class="bi bi-file-earmark-arrow-up"></i>
+                        <input type="file" id="b64FileInput" class="d-none" accept=".txt,.b64">
+                    </label>
+                    <button class="btn btn-sm btn-outline-secondary" id="pasteB64Btn" title="Paste from clipboard">
+                        <i class="bi bi-clipboard-plus"></i> Paste
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" id="clearB64InputBtn" title="Clear">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <textarea id="b64Input" class="form-control b64-textarea" rows="18" placeholder="Paste base64 string or data URI here...&#10;&#10;data:image/png;base64,iVBORw0KGgo...&#10;or&#10;iVBORw0KGgo..." spellcheck="false"></textarea>
+            <div class="d-flex justify-content-between mt-1">
+                <small id="b64InputStats" class="text-muted"></small>
+                <small id="b64InputValid" class="text-muted"></small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Direction Buttons -->
+    <div class="col-md-2 d-flex align-items-center justify-content-center direction-col">
+        <div class="direction-btn-group">
+            <button class="btn btn-primary btn-sm" id="convertBtn" title="Convert">
+                <i class="bi bi-arrow-right"></i> Convert
+            </button>
+            <button class="btn btn-outline-secondary btn-sm" id="swapBtn" title="Swap direction">
+                <i class="bi bi-arrow-left-right"></i> Swap
+            </button>
+            <hr class="w-100 my-1">
+            <button class="btn btn-outline-info btn-sm" id="sampleBtn" title="Load sample image">
+                <i class="bi bi-file-earmark-image"></i> Sample
+            </button>
+            <button class="btn btn-outline-danger btn-sm" id="clearAllBtn" title="Clear everything">
+                <i class="bi bi-trash"></i> Clear All
+            </button>
+            <hr class="w-100 my-1">
+            <div class="d-flex align-items-center gap-1">
+                <label class="small text-muted text-nowrap">Format:</label>
+                <select id="outputFormat" class="form-select form-select-sm" style="width: 80px;">
+                    <option value="auto" selected>Auto</option>
+                    <option value="image/png">PNG</option>
+                    <option value="image/jpeg">JPEG</option>
+                    <option value="image/webp">WebP</option>
+                </select>
+            </div>
+            <div class="d-flex align-items-center gap-1" id="qualityRow">
+                <label class="small text-muted text-nowrap">Quality:</label>
+                <input type="range" id="quality" class="form-range" min="10" max="100" value="92" style="width: 70px;">
+                <span id="qualityVal" class="small text-muted">92%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel: Base64 Output (mode=img2b64) / Image Preview (mode=b642img) -->
+    <div class="col-md-5" id="rightPanel">
+        <!-- Base64 Output Panel (default) -->
+        <div id="base64OutputPanel">
+            <div class="panel-header">
+                <span class="panel-label"><i class="bi bi-file-earmark-binary"></i> Base64 Output</span>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-outline-secondary" id="copyB64Btn" title="Copy base64 string">
+                        <i class="bi bi-clipboard"></i> Copy
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" id="downloadB64Btn" title="Download as .txt file">
+                        <i class="bi bi-download"></i>
+                    </button>
+                </div>
+            </div>
+            <textarea id="b64Output" class="form-control b64-textarea" rows="18" readonly placeholder="Base64 output will appear here..."></textarea>
+            <div class="d-flex justify-content-between mt-1">
+                <small id="b64OutputStats" class="text-muted"></small>
+                <small id="b64OutputSize" class="text-muted"></small>
+            </div>
+        </div>
+        <!-- Image Preview Panel (when swapped) -->
+        <div id="imagePreviewPanel" class="d-none">
+            <div class="panel-header">
+                <span class="panel-label"><i class="bi bi-image"></i> Image Preview</span>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-outline-secondary" id="downloadImgBtn" title="Download image">
+                        <i class="bi bi-download"></i> Download
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" id="copyImgBtn" title="Copy image to clipboard">
+                        <i class="bi bi-clipboard"></i> Copy
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" id="openNewTabBtn" title="Open in new tab">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="previewContainer" class="preview-container">
+                <div class="preview-placeholder">
+                    <i class="bi bi-image" style="font-size: 2rem;"></i>
+                    <div>Image preview will appear here</div>
+                </div>
+            </div>
+            <div id="previewMeta" class="file-meta mt-1 d-none"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Snippets Section (for Image to Base64 mode) -->
+<div id="snippetsSection" class="mt-3">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="fw-semibold small"><i class="bi bi-code-slash"></i> Ready-to-use Snippets</span>
+        <div class="d-flex gap-1">
+            <button class="btn btn-sm btn-outline-secondary" id="copyDataUriBtn" title="Copy full data URI">
+                <i class="bi bi-link-45deg"></i> Data URI
+            </button>
+            <button class="btn btn-sm btn-outline-secondary" id="copyCssBtn" title="Copy CSS background-image">
+                <i class="bi bi-filetype-css"></i> CSS
+            </button>
+            <button class="btn btn-sm btn-outline-secondary" id="copyHtmlBtn" title="Copy HTML img tag">
+                <i class="bi bi-filetype-html"></i> HTML
+            </button>
+            <button class="btn btn-sm btn-outline-secondary" id="copyMdBtn" title="Copy Markdown image">
+                <i class="bi bi-markdown"></i> MD
+            </button>
+            <button class="btn btn-sm btn-outline-secondary" id="copyJsonBtn" title="Copy JSON value">
+                <i class="bi bi-braces"></i> JSON
+            </button>
+        </div>
+    </div>
+    <div id="snippetsList" class="d-flex flex-column gap-2 d-none">
+        <div class="snippet-item" data-snippet="datauri" title="Click to copy">
+            <span class="snippet-label">Data URI</span>
+            <span class="snippet-value" id="snippetDataUri"></span>
+            <i class="bi bi-clipboard snippet-copy"></i>
+        </div>
+        <div class="snippet-item" data-snippet="css" title="Click to copy">
+            <span class="snippet-label">CSS</span>
+            <span class="snippet-value" id="snippetCss"></span>
+            <i class="bi bi-clipboard snippet-copy"></i>
+        </div>
+        <div class="snippet-item" data-snippet="html" title="Click to copy">
+            <span class="snippet-label">HTML</span>
+            <span class="snippet-value" id="snippetHtml"></span>
+            <i class="bi bi-clipboard snippet-copy"></i>
+        </div>
+        <div class="snippet-item" data-snippet="md" title="Click to copy">
+            <span class="snippet-label">MD</span>
+            <span class="snippet-value" id="snippetMd"></span>
+            <i class="bi bi-clipboard snippet-copy"></i>
+        </div>
+        <div class="snippet-item" data-snippet="json" title="Click to copy">
+            <span class="snippet-label">JSON</span>
+            <span class="snippet-value" id="snippetJson"></span>
+            <i class="bi bi-clipboard snippet-copy"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Stats -->
+<div class="text-center mt-2">
+    <small id="stats" class="text-muted"></small>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/imagebase64.js"></script>
+{{end}}

@@ -1,0 +1,45 @@
+{{define "content"}}
+<style>
+    .key-display { font-size: 4rem; font-weight: 700; font-family: 'SF Mono', monospace; min-height: 120px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bs-border-color); border-radius: 0.5rem; background: var(--bs-tertiary-bg); transition: all 0.15s; cursor: default; }
+    .key-display.active { border-color: var(--bs-primary); background: rgba(13,110,253,0.05); }
+    .prop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem; }
+    .prop-card { border: 1px solid var(--bs-border-color); border-radius: 0.375rem; padding: 0.5rem 0.8rem; cursor: pointer; transition: all 0.1s; }
+    .prop-card:hover { border-color: var(--bs-primary); }
+    .prop-label { font-size: 0.72rem; font-weight: 600; color: var(--bs-secondary-color); text-transform: uppercase; }
+    .prop-value { font-family: 'SF Mono', monospace; font-size: 1.1rem; font-weight: 600; }
+    .history-item { font-family: 'SF Mono', monospace; font-size: 0.82rem; padding: 0.25rem 0.5rem; border-bottom: 1px solid var(--bs-border-color); display: flex; gap: 0.5rem; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-keyboard"></i> Keycode Viewer
+        <i id="pinToggle" data-tool="keycode" class="bi bi-star pin-star" onclick="togglePin('keycode')"></i>
+    </h5>
+</div>
+
+<div class="text-center mb-3">
+    <p class="text-muted mb-2">Press any key to see its properties</p>
+    <div class="key-display" id="keyDisplay" tabindex="0">Press a key</div>
+</div>
+
+<div class="prop-grid mb-4" id="propGrid">
+    <div class="prop-card" onclick="copyVal(this)"><div class="prop-label">event.key</div><div class="prop-value" id="propKey">—</div></div>
+    <div class="prop-card" onclick="copyVal(this)"><div class="prop-label">event.code</div><div class="prop-value" id="propCode">—</div></div>
+    <div class="prop-card" onclick="copyVal(this)"><div class="prop-label">event.keyCode</div><div class="prop-value" id="propKeyCode">—</div></div>
+    <div class="prop-card" onclick="copyVal(this)"><div class="prop-label">event.which</div><div class="prop-value" id="propWhich">—</div></div>
+    <div class="prop-card" onclick="copyVal(this)"><div class="prop-label">event.location</div><div class="prop-value" id="propLocation">—</div></div>
+    <div class="prop-card" onclick="copyVal(this)"><div class="prop-label">Modifiers</div><div class="prop-value" id="propModifiers">—</div></div>
+</div>
+
+<div class="card">
+    <div class="card-header py-2 fw-semibold d-flex justify-content-between" style="font-size:0.82rem;">
+        <span><i class="bi bi-clock-history"></i> History</span>
+        <button class="btn btn-sm btn-outline-secondary py-0 px-1" id="clearHistory"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="card-body p-0" id="historyList" style="max-height:200px; overflow-y:auto;"></div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/keycode.js"></script>
+{{end}}

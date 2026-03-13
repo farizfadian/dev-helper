@@ -1,0 +1,139 @@
+{{define "content"}}
+<style>
+    .notebook-sidebar { border-right: 1px solid var(--bs-border-color); height: calc(100vh - 140px); overflow-y: auto; }
+    .notebook-main { height: calc(100vh - 140px); display: flex; flex-direction: column; }
+    .folder-item { padding: 0.4rem 0.6rem; cursor: pointer; border-radius: 0.25rem; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; transition: all 0.1s; }
+    .folder-item:hover { background: var(--bs-tertiary-bg); }
+    .folder-item.active { background: rgba(13,110,253,0.1); color: var(--bs-primary); font-weight: 600; }
+    .folder-count { font-size: 0.72rem; background: var(--bs-tertiary-bg); padding: 0.1rem 0.4rem; border-radius: 1rem; color: var(--bs-secondary-color); }
+    .prompt-card { border: 1px solid var(--bs-border-color); border-radius: 0.5rem; margin-bottom: 0.75rem; transition: all 0.15s; background: var(--bs-body-bg); }
+    .prompt-card:hover { border-color: var(--bs-primary); }
+    .prompt-card.polishing { border-color: var(--bs-warning); }
+    .prompt-header { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0.6rem; background: var(--bs-tertiary-bg); border-bottom: 1px solid var(--bs-border-color); border-radius: 0.5rem 0.5rem 0 0; cursor: pointer; user-select: none; }
+    .prompt-header:hover { background: var(--bs-secondary-bg); }
+    .prompt-card.collapsed .prompt-body,
+    .prompt-card.collapsed .polish-result,
+    .prompt-card.collapsed .prompt-footer,
+    .prompt-card.collapsed [id^="polish-"] { display: none; }
+    .prompt-card.collapsed .prompt-header { border-bottom: none; border-radius: 0.5rem; }
+    .collapse-icon { transition: transform 0.2s; font-size: 0.7rem; color: var(--bs-secondary-color); }
+    .prompt-card.collapsed .collapse-icon { transform: rotate(-90deg); }
+    .prompt-num { font-weight: 700; font-size: 0.82rem; color: var(--bs-primary); min-width: 30px; }
+    .prompt-title-input { border: none; background: transparent; font-weight: 600; font-size: 0.85rem; color: var(--bs-body-color); flex: 1; padding: 0.1rem 0.3rem; }
+    .prompt-title-input:focus { outline: 1px solid var(--bs-primary); border-radius: 0.2rem; }
+    .prompt-body { padding: 0; }
+    .prompt-textarea { border: none; width: 100%; min-height: 120px; resize: vertical; padding: 0.6rem; font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.85rem; background: transparent; color: var(--bs-body-color); line-height: 1.6; }
+    .prompt-textarea:focus { outline: none; background: rgba(13,110,253,0.02); }
+    .prompt-footer { padding: 0.3rem 0.6rem; border-top: 1px solid var(--bs-border-color); display: flex; justify-content: space-between; align-items: center; }
+    .prompt-footer .btn { font-size: 0.75rem; padding: 0.15rem 0.4rem; }
+    .char-count { font-size: 0.7rem; color: var(--bs-secondary-color); font-family: monospace; }
+    .polish-result { border-top: 2px solid var(--bs-warning); padding: 0.4rem 0.6rem; background: rgba(255,193,7,0.05); font-family: 'SF Mono', monospace; font-size: 0.85rem; line-height: 1.6; max-height: 300px; overflow-y: auto; }
+    .polish-content { white-space: pre-wrap; }
+    .polish-streaming { border-left: 3px solid var(--bs-warning); animation: polishPulse 1s infinite; }
+    @keyframes polishPulse { 0%,100% { border-left-color: var(--bs-warning); } 50% { border-left-color: transparent; } }
+    .drag-handle { cursor: grab; color: var(--bs-secondary-color); font-size: 0.9rem; }
+    .drag-handle:hover { color: var(--bs-primary); }
+    .prompt-card.dragging { opacity: 0.4; }
+    .copy-all-btn { position: sticky; bottom: 0; background: var(--bs-body-bg); border-top: 1px solid var(--bs-border-color); padding: 0.5rem; z-index: 5; }
+    .ollama-status { font-size: 0.72rem; }
+    .ollama-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .ollama-dot.online { background: #198754; }
+    .ollama-dot.offline { background: #dc3545; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-journal-code"></i> Prompt Notebook
+        <i id="pinToggle" data-tool="prompts" class="bi bi-star pin-star" onclick="togglePin('prompts')"></i>
+    </h5>
+    <div class="d-flex gap-1 align-items-center flex-wrap">
+        <span class="ollama-status me-1" id="ollamaStatus">
+            <span class="ollama-dot offline" id="ollamaDot"></span> Ollama
+        </span>
+        <button class="btn btn-sm btn-outline-secondary" id="ollamaSettings" title="Ollama settings"><i class="bi bi-gear"></i></button>
+        <button class="btn btn-sm btn-outline-secondary" id="exportBtn"><i class="bi bi-download"></i> Export</button>
+        <label class="btn btn-sm btn-outline-secondary mb-0"><i class="bi bi-upload"></i> Import <input type="file" accept=".json" class="d-none" id="importFile"></label>
+        <div class="btn-group">
+            <button class="btn btn-sm btn-outline-info dropdown-toggle" data-bs-toggle="dropdown" title="Load sample prompts"><i class="bi bi-lightbulb"></i> Samples</button>
+            <ul class="dropdown-menu dropdown-menu-end" id="samplesMenu">
+                <li><a class="dropdown-item" href="#" data-sample="ecommerce"><i class="bi bi-cart3"></i> E-Commerce App (React)</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="restapi"><i class="bi bi-hdd-rack"></i> REST API (Node.js)</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="mobile"><i class="bi bi-phone"></i> Mobile App (Flutter)</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="devops"><i class="bi bi-gear-wide-connected"></i> DevOps Pipeline</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="refactor"><i class="bi bi-wrench"></i> Code Refactoring</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="bugfix"><i class="bi bi-bug"></i> Bug Investigation</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row g-0">
+    <!-- Sidebar: Folders -->
+    <div class="col-md-2">
+        <div class="notebook-sidebar pe-2">
+            <div class="d-flex justify-content-between align-items-center mb-2 px-1">
+                <span class="fw-semibold" style="font-size:0.82rem;">Folders</span>
+                <button class="btn btn-sm btn-outline-primary py-0 px-1" id="addFolderBtn" title="New folder"><i class="bi bi-folder-plus"></i></button>
+            </div>
+            <div id="folderList"></div>
+        </div>
+    </div>
+
+    <!-- Main: Prompt List -->
+    <div class="col-md-10">
+        <div class="notebook-main ps-3">
+            <!-- Toolbar -->
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex gap-2 align-items-center">
+                    <h6 class="mb-0" id="currentFolderName">All Prompts</h6>
+                    <span class="badge bg-secondary" id="promptCount">0</span>
+                </div>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-primary" id="addPromptBtn"><i class="bi bi-plus-lg"></i> Add Prompt</button>
+                    <button class="btn btn-sm btn-outline-success" id="copyAllBtn" title="Copy all prompts (sequential)"><i class="bi bi-clipboard2-check"></i> Copy All</button>
+                    <button class="btn btn-sm btn-outline-warning" id="polishAllBtn" title="Polish all prompts via Ollama"><i class="bi bi-stars"></i> Polish All</button>
+                    <button class="btn btn-sm btn-outline-danger" id="deleteAllBtn" title="Delete all prompts in current folder"><i class="bi bi-trash"></i> Delete All</button>
+                </div>
+            </div>
+
+            <!-- Prompt cards -->
+            <div style="flex:1; overflow-y:auto; padding-bottom:0.5rem;" id="promptList"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Ollama Settings Modal -->
+<div class="modal fade" id="ollamaModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header py-2"><h6 class="modal-title"><i class="bi bi-robot"></i> Ollama Settings</h6><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">Ollama URL</label>
+                        <input type="url" class="form-control form-control-sm" id="ollamaUrl" placeholder="http://localhost:11434">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">Model</label>
+                        <select class="form-select form-select-sm" id="ollamaModel">
+                            <option value="">Loading models...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">Polish System Prompt</label>
+                    <textarea class="form-control form-control-sm" id="polishSystemPrompt" rows="12" style="font-size:0.82rem; font-family: 'SF Mono', 'Fira Code', monospace; line-height: 1.5;"></textarea>
+                    <div class="text-muted mt-1" style="font-size:0.72rem;">This system prompt is used when polishing. <code>{prompt}</code> will be replaced with the user's prompt.</div>
+                </div>
+            </div>
+            <div class="modal-footer py-2">
+                <button class="btn btn-sm btn-primary" id="saveOllamaSettings">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/prompts.js"></script>
+{{end}}

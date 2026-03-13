@@ -1,0 +1,72 @@
+{{define "content"}}
+<style>
+    .preview-text { transition: all 0.2s; }
+    .font-card { border: 1px solid var(--bs-border-color); border-radius: 0.375rem; padding: 0.6rem; margin-bottom: 0.5rem; cursor: pointer; transition: all 0.1s; }
+    .font-card:hover { border-color: var(--bs-primary); }
+    .font-card.active { border-color: var(--bs-primary); background: rgba(13,110,253,0.03); }
+    .font-name { font-size: 0.78rem; font-weight: 600; color: var(--bs-secondary-color); }
+    .font-sample { font-size: 1.2rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .css-output { font-family: 'SF Mono', monospace; font-size: 0.82rem; background: var(--bs-tertiary-bg); padding: 0.5rem; border-radius: 0.25rem; cursor: pointer; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-type"></i> Font Preview
+        <i id="pinToggle" data-tool="fontpreview" class="bi bi-star pin-star" onclick="togglePin('fontpreview')"></i>
+    </h5>
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-md-6">
+        <label class="form-label fw-semibold">Preview Text</label>
+        <input type="text" class="form-control" id="previewText" value="The quick brown fox jumps over the lazy dog">
+    </div>
+    <div class="col-md-2">
+        <label class="form-label fw-semibold">Size</label>
+        <input type="number" class="form-control" id="fontSize" value="24" min="8" max="120">
+    </div>
+    <div class="col-md-2">
+        <label class="form-label fw-semibold">Weight</label>
+        <select class="form-select" id="fontWeight">
+            <option value="100">Thin (100)</option>
+            <option value="300">Light (300)</option>
+            <option value="400" selected>Normal (400)</option>
+            <option value="500">Medium (500)</option>
+            <option value="600">Semibold (600)</option>
+            <option value="700">Bold (700)</option>
+            <option value="900">Black (900)</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <label class="form-label fw-semibold">Filter</label>
+        <input type="text" class="form-control" id="fontFilter" placeholder="Search...">
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4" style="max-height: calc(100vh - 300px); overflow-y: auto;">
+        <div id="fontList"></div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="preview-text" id="mainPreview" style="font-size:24px; min-height:100px; word-break:break-word;">
+                    The quick brown fox jumps over the lazy dog
+                </div>
+            </div>
+        </div>
+        <div class="mt-2">
+            <label class="form-label fw-semibold" style="font-size:0.82rem;">CSS</label>
+            <div class="css-output" id="cssOutput" onclick="navigator.clipboard.writeText(this.textContent);this.style.color='var(--bs-success)';setTimeout(()=>this.style.color='',600)" title="Click to copy"></div>
+        </div>
+        <div class="card mt-3">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;">All Sizes</div>
+            <div class="card-body" id="sizePreview"></div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/fontpreview.js"></script>
+{{end}}

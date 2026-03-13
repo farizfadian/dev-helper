@@ -1,0 +1,45 @@
+{{define "content"}}
+<style>
+    .diff-textarea { font-family: 'SF Mono', monospace; font-size: 0.85rem; min-height: 250px; resize: vertical; }
+    .diff-result { font-family: 'SF Mono', monospace; font-size: 0.85rem; border: 1px solid var(--bs-border-color); border-radius: 0.375rem; padding: 0.5rem; min-height: 200px; max-height: 500px; overflow: auto; white-space: pre-wrap; word-break: break-word; }
+    .diff-add { background: rgba(25,135,84,0.15); }
+    .diff-del { background: rgba(220,53,69,0.15); text-decoration: line-through; }
+    .diff-stat { font-size: 0.82rem; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-file-earmark-diff"></i> Text Diff
+        <i id="pinToggle" data-tool="textdiff" class="bi bi-star pin-star" onclick="togglePin('textdiff')"></i>
+    </h5>
+    <div class="d-flex gap-1">
+        <button class="btn btn-sm btn-primary" id="diffBtn"><i class="bi bi-arrow-left-right"></i> Compare</button>
+        <button class="btn btn-sm btn-outline-secondary" id="swapBtn"><i class="bi bi-arrow-repeat"></i> Swap</button>
+        <button class="btn btn-sm btn-outline-secondary" id="clearBtn"><i class="bi bi-x-lg"></i></button>
+    </div>
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-md-6">
+        <label class="form-label fw-semibold"><i class="bi bi-file-earmark-text"></i> Original</label>
+        <textarea class="form-control diff-textarea" id="textA" placeholder="Paste original text here..."></textarea>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label fw-semibold"><i class="bi bi-file-earmark-text"></i> Modified</label>
+        <textarea class="form-control diff-textarea" id="textB" placeholder="Paste modified text here..."></textarea>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <span class="fw-semibold" style="font-size:0.85rem;"><i class="bi bi-list-check"></i> Diff Result</span>
+    <div class="d-flex gap-2 align-items-center">
+        <span class="diff-stat" id="diffStat"></span>
+        <button class="btn btn-sm btn-outline-secondary py-0 px-1" id="copyDiff" title="Copy"><i class="bi bi-clipboard"></i></button>
+    </div>
+</div>
+<div class="diff-result" id="diffResult">Compare two text blocks to see word-level differences.</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/textdiff.js"></script>
+{{end}}

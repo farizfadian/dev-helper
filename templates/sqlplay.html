@@ -1,0 +1,66 @@
+{{define "content"}}
+<style>
+    .editor-container { height: 200px; border: 1px solid var(--bs-border-color); border-radius: 0.375rem; overflow: hidden; }
+    .result-table { font-size: 0.82rem; max-height: 350px; overflow: auto; border: 1px solid var(--bs-border-color); border-radius: 0.375rem; }
+    .result-table table { margin-bottom: 0; }
+    .result-table th { position: sticky; top: 0; background: var(--bs-tertiary-bg); z-index: 1; }
+    .stat-bar { font-size: 0.78rem; color: var(--bs-secondary-color); }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-database"></i> SQL Playground
+        <i id="pinToggle" data-tool="sqlplay" class="bi bi-star pin-star" onclick="togglePin('sqlplay')"></i>
+    </h5>
+    <div class="d-flex gap-1">
+        <button class="btn btn-sm btn-primary" id="runBtn" title="Ctrl+Enter"><i class="bi bi-play-fill"></i> Run</button>
+        <label class="btn btn-sm btn-outline-secondary mb-0"><i class="bi bi-file-earmark-arrow-up"></i> Import CSV <input type="file" accept=".csv,.tsv" class="d-none" id="importCsv"></label>
+        <button class="btn btn-sm btn-outline-secondary" id="exportBtn"><i class="bi bi-download"></i> Export</button>
+        <div class="btn-group">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-lightbulb"></i> Samples</button>
+            <ul class="dropdown-menu dropdown-menu-end" id="samplesMenu">
+                <li><a class="dropdown-item" href="#" data-sample="basic">Basic Queries</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="join">JOIN Example</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="agg">Aggregation</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="editor-container mb-3" id="sqlEditor"></div>
+
+<!-- Tables sidebar -->
+<div class="mb-2 d-flex gap-2 align-items-center">
+    <span class="fw-semibold" style="font-size:0.82rem;"><i class="bi bi-table"></i> Tables:</span>
+    <div id="tableList" style="font-size:0.82rem;" class="d-flex gap-1 flex-wrap"></div>
+</div>
+
+<!-- Results -->
+<div class="stat-bar mb-1" id="statBar"></div>
+<div class="result-table" id="resultArea">
+    <div class="text-center text-muted py-4" style="font-size:0.85rem;">
+        <i class="bi bi-database" style="font-size:1.5rem;"></i>
+        <p class="mt-1 mb-0">Write SQL and click <strong>Run</strong> or press <kbd>Ctrl+Enter</kbd></p>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+<script>
+require.config({ paths: { 'vs': '/static/monaco-editor/min/vs' } });
+window.MonacoEnvironment = {
+    getWorkerUrl: function(workerId, label) {
+        const base = window.location.origin + '/static/monaco-editor/min';
+        return `data:text/javascript;charset=utf-8,${encodeURIComponent(
+            `self.MonacoEnvironment = { baseUrl: '${base}/' }; importScripts('${base}/vs/base/worker/workerMain.js');`
+        )}`;
+    }
+};
+require(['vs/editor/editor.main'], function() {
+    const script = document.createElement('script');
+    script.src = '/static/sqlplay.js';
+    document.body.appendChild(script);
+});
+</script>
+{{end}}

@@ -1,0 +1,10 @@
+*.exe
+*.syso
+files/
+logs/
+notes/
+snippets/
+prompts/
+.git
+.github
+*.md

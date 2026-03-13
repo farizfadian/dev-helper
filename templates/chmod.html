@@ -1,0 +1,158 @@
+{{define "content"}}
+<style>
+    .perm-grid { display: grid; grid-template-columns: auto repeat(3, 1fr); gap: 0; border: 1px solid var(--bs-border-color); border-radius: 0.375rem; overflow: hidden; }
+    .perm-grid .cell { padding: 0.5rem 0.8rem; border: 1px solid var(--bs-border-color); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+    .perm-grid .header { background: var(--bs-tertiary-bg); font-weight: 600; font-size: 0.82rem; }
+    .perm-grid .label { background: var(--bs-tertiary-bg); font-weight: 600; font-size: 0.82rem; justify-content: flex-start; }
+    .perm-grid input[type="checkbox"] { width: 1.2rem; height: 1.2rem; cursor: pointer; }
+    .result-box { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; }
+    .perm-display { font-size: 2rem; font-weight: 700; letter-spacing: 0.15em; font-family: 'SF Mono', 'Fira Code', monospace; }
+    .octal-display { font-size: 2.5rem; font-weight: 700; color: var(--bs-primary); font-family: 'SF Mono', 'Fira Code', monospace; }
+    .perm-char { display: inline-block; width: 1.3rem; text-align: center; }
+    .perm-char.on { color: var(--bs-success); }
+    .perm-char.off { color: var(--bs-secondary-color); opacity: 0.4; }
+    .preset-btn { font-size: 0.78rem; font-family: 'SF Mono', 'Fira Code', monospace; }
+    .special-perm .form-check-label { font-size: 0.82rem; }
+    .cmd-output { background: var(--bs-tertiary-bg); padding: 0.5rem 0.8rem; border-radius: 0.375rem; font-family: 'SF Mono', monospace; font-size: 0.85rem; cursor: pointer; }
+    .cmd-output:hover { background: var(--bs-secondary-bg); }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-lock"></i> Chmod Calculator
+        <i id="pinToggle" data-tool="chmod" class="bi bi-star pin-star" onclick="togglePin('chmod')"></i>
+    </h5>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-7">
+        <!-- Permission Grid -->
+        <div class="perm-grid mb-3">
+            <div class="cell header"></div>
+            <div class="cell header">Read (r)</div>
+            <div class="cell header">Write (w)</div>
+            <div class="cell header">Execute (x)</div>
+
+            <div class="cell label"><i class="bi bi-person"></i> Owner</div>
+            <div class="cell"><input type="checkbox" class="form-check-input" data-who="owner" data-perm="read" checked></div>
+            <div class="cell"><input type="checkbox" class="form-check-input" data-who="owner" data-perm="write" checked></div>
+            <div class="cell"><input type="checkbox" class="form-check-input" data-who="owner" data-perm="execute" checked></div>
+
+            <div class="cell label"><i class="bi bi-people"></i> Group</div>
+            <div class="cell"><input type="checkbox" class="form-check-input" data-who="group" data-perm="read" checked></div>
+            <div class="cell"><input type="checkbox" class="form-check-input" data-who="group" data-perm="write"></div>
+            <div class="cell"><input type="checkbox" class="form-check-input" data-who="group" data-perm="execute" checked></div>
+
+            <div class="cell label"><i class="bi bi-globe2"></i> Others</div>
+            <div class="cell"><input type="checkbox" class="form-check-input" data-who="others" data-perm="read" checked></div>
+            <div class="cell"><input type="checkbox" class="form-check-input" data-who="others" data-perm="write"></div>
+            <div class="cell"><input type="checkbox" class="form-check-input" data-who="others" data-perm="execute" checked></div>
+        </div>
+
+        <!-- Special permissions -->
+        <div class="card mb-3 special-perm">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;"><i class="bi bi-shield-exclamation"></i> Special Permissions</div>
+            <div class="card-body py-2">
+                <div class="d-flex gap-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setuid">
+                        <label class="form-check-label" for="setuid">SUID <code>(4)</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="setgid">
+                        <label class="form-check-label" for="setgid">SGID <code>(2)</code></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sticky">
+                        <label class="form-check-label" for="sticky">Sticky <code>(1)</code></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Octal input -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold" style="font-size:0.85rem;">Enter octal value</label>
+            <div class="input-group">
+                <span class="input-group-text">0</span>
+                <input type="text" class="form-control result-box" id="octalInput" maxlength="4" placeholder="755" style="font-size:1.2rem; letter-spacing:0.2em;">
+            </div>
+        </div>
+
+        <!-- Common presets -->
+        <div>
+            <label class="form-label fw-semibold" style="font-size:0.85rem;">Common Presets</label>
+            <div class="d-flex gap-1 flex-wrap">
+                <button class="btn btn-sm btn-outline-primary preset-btn" data-octal="755">755 (dir)</button>
+                <button class="btn btn-sm btn-outline-primary preset-btn" data-octal="644">644 (file)</button>
+                <button class="btn btn-sm btn-outline-primary preset-btn" data-octal="777">777 (all)</button>
+                <button class="btn btn-sm btn-outline-primary preset-btn" data-octal="700">700 (private)</button>
+                <button class="btn btn-sm btn-outline-primary preset-btn" data-octal="600">600 (secret)</button>
+                <button class="btn btn-sm btn-outline-secondary preset-btn" data-octal="444">444 (read-only)</button>
+                <button class="btn btn-sm btn-outline-secondary preset-btn" data-octal="750">750 (group rx)</button>
+                <button class="btn btn-sm btn-outline-secondary preset-btn" data-octal="775">775 (group rw)</button>
+                <button class="btn btn-sm btn-outline-secondary preset-btn" data-octal="664">664 (shared)</button>
+                <button class="btn btn-sm btn-outline-warning preset-btn" data-octal="4755">4755 (suid)</button>
+                <button class="btn btn-sm btn-outline-warning preset-btn" data-octal="2755">2755 (sgid)</button>
+                <button class="btn btn-sm btn-outline-warning preset-btn" data-octal="1777">1777 (sticky)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <!-- Display -->
+        <div class="card mb-3">
+            <div class="card-body text-center">
+                <div class="octal-display" id="octalDisplay">0755</div>
+                <div class="perm-display mt-2" id="symbolicDisplay"></div>
+                <div class="mt-2 text-muted" style="font-size:0.82rem;" id="humanDesc"></div>
+            </div>
+        </div>
+
+        <!-- Commands -->
+        <div class="card mb-3">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;"><i class="bi bi-terminal"></i> Commands</div>
+            <div class="card-body py-2">
+                <div class="mb-2">
+                    <small class="text-muted">Octal mode:</small>
+                    <div class="cmd-output" id="cmdOctal" onclick="copyText(this.textContent)" title="Click to copy"></div>
+                </div>
+                <div class="mb-2">
+                    <small class="text-muted">Symbolic mode:</small>
+                    <div class="cmd-output" id="cmdSymbolic" onclick="copyText(this.textContent)" title="Click to copy"></div>
+                </div>
+                <div>
+                    <small class="text-muted">Recursive:</small>
+                    <div class="cmd-output" id="cmdRecursive" onclick="copyText(this.textContent)" title="Click to copy"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- File type selector -->
+        <div class="card">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;"><i class="bi bi-info-circle"></i> ls -l output</div>
+            <div class="card-body py-2">
+                <div class="d-flex gap-2 mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="fileType" id="typeFile" value="-" checked>
+                        <label class="form-check-label" for="typeFile" style="font-size:0.82rem;">File</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="fileType" id="typeDir" value="d">
+                        <label class="form-check-label" for="typeDir" style="font-size:0.82rem;">Directory</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="fileType" id="typeLink" value="l">
+                        <label class="form-check-label" for="typeLink" style="font-size:0.82rem;">Symlink</label>
+                    </div>
+                </div>
+                <div class="cmd-output" id="lsOutput" onclick="copyText(this.textContent)" title="Click to copy"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/chmod.js"></script>
+{{end}}

@@ -1,0 +1,172 @@
+{{define "content"}}
+<style>
+    .editor-wrap {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0.375rem;
+        overflow: hidden;
+    }
+    .editor-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.35rem 0.6rem;
+        background: var(--bs-tertiary-bg);
+        border-bottom: 1px solid var(--bs-border-color);
+        font-size: 0.82rem;
+        font-weight: 600;
+    }
+    .editor-container {
+        height: 380px;
+    }
+    .validation-panel {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0.375rem;
+        overflow: hidden;
+    }
+    .validation-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.35rem 0.6rem;
+        background: var(--bs-tertiary-bg);
+        border-bottom: 1px solid var(--bs-border-color);
+        font-size: 0.82rem;
+        font-weight: 600;
+    }
+    .validation-body {
+        max-height: 200px;
+        overflow-y: auto;
+        font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.8rem;
+    }
+    .error-item {
+        padding: 0.35rem 0.6rem;
+        border-bottom: 1px solid var(--bs-border-color);
+        cursor: pointer;
+    }
+    .error-item:last-child { border-bottom: none; }
+    .error-item:hover { background: var(--bs-tertiary-bg); }
+    .error-path {
+        color: var(--bs-primary);
+        font-weight: 600;
+    }
+    .error-msg {
+        color: var(--bs-danger);
+    }
+    .error-keyword {
+        background: var(--bs-tertiary-bg);
+        padding: 0.1rem 0.35rem;
+        border-radius: 0.2rem;
+        font-size: 0.72rem;
+        margin-left: 0.3rem;
+    }
+    .valid-badge {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+</style>
+
+<!-- Toolbar -->
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-check2-square"></i> JSON Schema Validator
+        <i id="pinToggle" data-tool="jsonschema" class="bi bi-star pin-star" onclick="togglePin('jsonschema')"></i>
+    </h5>
+    <div class="d-flex gap-1 flex-wrap">
+        <button class="btn btn-sm btn-primary" id="validateBtn" title="Validate JSON against Schema (Ctrl+Enter)">
+            <i class="bi bi-check2-circle"></i> Validate
+        </button>
+        <button class="btn btn-sm btn-outline-secondary" id="generateBtn" title="Generate Schema from JSON">
+            <i class="bi bi-magic"></i> Generate Schema
+        </button>
+        <div class="btn-group">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-lightbulb"></i> Samples
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" id="samplesMenu">
+                <li><a class="dropdown-item" href="#" data-sample="user">User Profile</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="product">Product Catalog</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="address">Address (with $ref)</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="api">API Response</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="config">Config File</a></li>
+            </ul>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary" id="clearBtn" title="Clear all">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Editors -->
+<div class="row g-3 mb-3">
+    <div class="col-md-6">
+        <div class="editor-wrap">
+            <div class="editor-header">
+                <span><i class="bi bi-braces"></i> JSON Data</span>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-1" id="pasteJsonBtn" title="Paste"><i class="bi bi-clipboard-plus"></i></button>
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-1" id="prettifyJsonBtn" title="Prettify"><i class="bi bi-indent"></i></button>
+                    <label class="btn btn-sm btn-outline-secondary py-0 px-1 mb-0" title="Load file">
+                        <i class="bi bi-file-earmark-arrow-up"></i>
+                        <input type="file" accept=".json" class="d-none" id="loadJsonFile">
+                    </label>
+                </div>
+            </div>
+            <div class="editor-container" id="jsonEditor"></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="editor-wrap">
+            <div class="editor-header">
+                <span><i class="bi bi-file-earmark-code"></i> JSON Schema</span>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-1" id="pasteSchemaBtn" title="Paste"><i class="bi bi-clipboard-plus"></i></button>
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-1" id="prettifySchemaBtn" title="Prettify"><i class="bi bi-indent"></i></button>
+                    <label class="btn btn-sm btn-outline-secondary py-0 px-1 mb-0" title="Load file">
+                        <i class="bi bi-file-earmark-arrow-up"></i>
+                        <input type="file" accept=".json" class="d-none" id="loadSchemaFile">
+                    </label>
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-1" id="copySchemaBtn" title="Copy schema"><i class="bi bi-clipboard"></i></button>
+                </div>
+            </div>
+            <div class="editor-container" id="schemaEditor"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Validation Results -->
+<div class="validation-panel" id="resultsPanel">
+    <div class="validation-header">
+        <span><i class="bi bi-list-check"></i> Validation Results</span>
+        <span id="resultsBadge"></span>
+    </div>
+    <div class="validation-body" id="resultsBody">
+        <div class="text-center py-4 text-muted" style="font-size:0.85rem;">
+            <i class="bi bi-arrow-up-circle" style="font-size:1.2rem;"></i>
+            <p class="mt-1 mb-0">Enter JSON and Schema, then click <strong>Validate</strong> or press <kbd>Ctrl+Enter</kbd></p>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/ajv@8/dist/ajv2020.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ajv-formats@3/dist/formats.min.js"></script>
+<script>
+// Monaco setup
+require.config({ paths: { 'vs': '/static/monaco-editor/min/vs' } });
+window.MonacoEnvironment = {
+    getWorkerUrl: function(workerId, label) {
+        const base = window.location.origin + '/static/monaco-editor/min';
+        return `data:text/javascript;charset=utf-8,${encodeURIComponent(
+            `self.MonacoEnvironment = { baseUrl: '${base}/' }; importScripts('${base}/vs/base/worker/workerMain.js');`
+        )}`;
+    }
+};
+require(['vs/editor/editor.main'], function() {
+    const script = document.createElement('script');
+    script.src = '/static/jsonschema.js';
+    document.body.appendChild(script);
+});
+</script>
+{{end}}

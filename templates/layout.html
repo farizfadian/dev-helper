@@ -435,6 +435,77 @@
                             <i class="bi bi-translate"></i> Translator
                         </a>
                     </li>
+                    <li class="nav-item d-none" data-tool="imagebase64">
+                        <a class="nav-link {{if eq .ActivePage "imagebase64"}}active{{end}}" href="/imagebase64">
+                            <i class="bi bi-file-earmark-image"></i> Image Base64
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="imageeditor">
+                        <a class="nav-link {{if eq .ActivePage "imageeditor"}}active{{end}}" href="/imageeditor">
+                            <i class="bi bi-brush"></i> Image Editor
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="imageconvert">
+                        <a class="nav-link {{if eq .ActivePage "imageconvert"}}active{{end}}" href="/imageconvert">
+                            <i class="bi bi-images"></i> <span data-tool="imageconvert">Image Converter</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="csv">
+                        <a class="nav-link {{if eq .ActivePage "csv"}}active{{end}}" href="/csv">
+                            <i class="bi bi-file-earmark-spreadsheet"></i> <span data-tool="csv">CSV Viewer</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="jsonschema">
+                        <a class="nav-link {{if eq .ActivePage "jsonschema"}}active{{end}}" href="/jsonschema">
+                            <i class="bi bi-check2-square"></i> <span data-tool="jsonschema">JSON Schema</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="jsonpath">
+                        <a class="nav-link {{if eq .ActivePage "jsonpath"}}active{{end}}" href="/jsonpath">
+                            <i class="bi bi-signpost-2"></i> <span data-tool="jsonpath">JSONPath</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="subnet">
+                        <a class="nav-link {{if eq .ActivePage "subnet"}}active{{end}}" href="/subnet">
+                            <i class="bi bi-hdd-network"></i> <span data-tool="subnet">Subnet Calc</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="envfile">
+                        <a class="nav-link {{if eq .ActivePage "envfile"}}active{{end}}" href="/envfile">
+                            <i class="bi bi-file-earmark-lock"></i> <span data-tool="envfile">Env Editor</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="mdtable">
+                        <a class="nav-link {{if eq .ActivePage "mdtable"}}active{{end}}" href="/mdtable">
+                            <i class="bi bi-table"></i> <span data-tool="mdtable">MD Table</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="chmod">
+                        <a class="nav-link {{if eq .ActivePage "chmod"}}active{{end}}" href="/chmod">
+                            <i class="bi bi-lock"></i> <span data-tool="chmod">Chmod Calc</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="apimock">
+                        <a class="nav-link {{if eq .ActivePage "apimock"}}active{{end}}" href="/apimock">
+                            <i class="bi bi-server"></i> <span data-tool="apimock">API Mock</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" data-tool="placeholder"><a class="nav-link {{if eq .ActivePage "placeholder"}}active{{end}}" href="/placeholder"><i class="bi bi-image"></i> <span data-tool="placeholder">Placeholder</span></a></li>
+                    <li class="nav-item d-none" data-tool="asciiart"><a class="nav-link {{if eq .ActivePage "asciiart"}}active{{end}}" href="/asciiart"><i class="bi bi-type-bold"></i> <span data-tool="asciiart">ASCII Art</span></a></li>
+                    <li class="nav-item d-none" data-tool="favicogen"><a class="nav-link {{if eq .ActivePage "favicogen"}}active{{end}}" href="/favicogen"><i class="bi bi-app-indicator"></i> <span data-tool="favicogen">Favicon Gen</span></a></li>
+                    <li class="nav-item d-none" data-tool="encoding"><a class="nav-link {{if eq .ActivePage "encoding"}}active{{end}}" href="/encoding"><i class="bi bi-translate"></i> <span data-tool="encoding">Encoding</span></a></li>
+                    <li class="nav-item d-none" data-tool="githelp"><a class="nav-link {{if eq .ActivePage "githelp"}}active{{end}}" href="/githelp"><i class="bi bi-git"></i> <span data-tool="githelp">Git Help</span></a></li>
+                    <li class="nav-item d-none" data-tool="kanban"><a class="nav-link {{if eq .ActivePage "kanban"}}active{{end}}" href="/kanban"><i class="bi bi-kanban"></i> <span data-tool="kanban">Kanban</span></a></li>
+                    <li class="nav-item d-none" data-tool="pomodoro"><a class="nav-link {{if eq .ActivePage "pomodoro"}}active{{end}}" href="/pomodoro"><i class="bi bi-alarm"></i> <span data-tool="pomodoro">Pomodoro</span></a></li>
+                    <li class="nav-item d-none" data-tool="bookmarks"><a class="nav-link {{if eq .ActivePage "bookmarks"}}active{{end}}" href="/bookmarks"><i class="bi bi-bookmark-star"></i> <span data-tool="bookmarks">Bookmarks</span></a></li>
+                    <li class="nav-item d-none" data-tool="sqlplay"><a class="nav-link {{if eq .ActivePage "sqlplay"}}active{{end}}" href="/sqlplay"><i class="bi bi-database"></i> <span data-tool="sqlplay">SQL Play</span></a></li>
+                    <li class="nav-item d-none" data-tool="timestamp"><a class="nav-link {{if eq .ActivePage "timestamp"}}active{{end}}" href="/timestamp"><i class="bi bi-clock"></i> <span data-tool="timestamp">Timestamp</span></a></li>
+                    <li class="nav-item d-none" data-tool="textdiff"><a class="nav-link {{if eq .ActivePage "textdiff"}}active{{end}}" href="/textdiff"><i class="bi bi-file-earmark-diff"></i> <span data-tool="textdiff">Text Diff</span></a></li>
+                    <li class="nav-item d-none" data-tool="palette"><a class="nav-link {{if eq .ActivePage "palette"}}active{{end}}" href="/palette"><i class="bi bi-palette2"></i> <span data-tool="palette">Palette</span></a></li>
+                    <li class="nav-item d-none" data-tool="keycode"><a class="nav-link {{if eq .ActivePage "keycode"}}active{{end}}" href="/keycode"><i class="bi bi-keyboard"></i> <span data-tool="keycode">Keycode</span></a></li>
+                    <li class="nav-item d-none" data-tool="fontpreview"><a class="nav-link {{if eq .ActivePage "fontpreview"}}active{{end}}" href="/fontpreview"><i class="bi bi-type"></i> <span data-tool="fontpreview">Font Preview</span></a></li>
+                    <li class="nav-item d-none" data-tool="prompts"><a class="nav-link {{if eq .ActivePage "prompts"}}active{{end}}" href="/prompts"><i class="bi bi-journal-code"></i> <span data-tool="prompts">Prompts</span></a></li>
+                    <li class="nav-item d-none" data-tool="scaffold"><a class="nav-link {{if eq .ActivePage "scaffold"}}active{{end}}" href="/scaffold"><i class="bi bi-boxes"></i> <span data-tool="scaffold">Scaffold</span></a></li>
                     <!-- More dropdown for overflow items -->
                     <li class="nav-item dropdown d-none" id="moreDropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
@@ -899,6 +970,33 @@
             { id: 'sysmon', name: 'System Monitor', icon: 'bi-cpu', desc: 'Real-time CPU, memory, disk, network, and process monitoring', url: '/sysmon', tags: ['system','monitor','cpu','memory','disk','network','process','ram','task manager','htop','top'] },
             { id: 'icons', name: 'Icon Explorer', icon: 'bi-collection', desc: 'Browse Bootstrap Icons, Font Awesome, and Tabler Icons with search and copy', url: '/icons', tags: ['icon','icons','bootstrap','font awesome','tabler','collection','browse','css','class','svg'] },
             { id: 'translator', name: 'Translator', icon: 'bi-translate', desc: 'Translate text between languages using local Ollama AI', url: '/translator', tags: ['translate','translator','language','ollama','ai','google translate','bing','terjemahan'] },
+            { id: 'imagebase64', name: 'Image Base64', icon: 'bi-file-earmark-image', desc: 'Convert images to Base64 and back. Data URI, CSS, HTML, Markdown snippets', url: '/imagebase64', tags: ['image','base64','convert','data uri','png','jpg','webp','encode','decode','picture'] },
+            { id: 'imageeditor', name: 'Image Editor', icon: 'bi-brush', desc: 'Mini Photoshop: crop, resize, rotate, flip, brightness, contrast, filters, draw, text, shapes', url: '/imageeditor', tags: ['image','editor','photo','crop','resize','rotate','flip','brightness','contrast','filter','draw','annotate','photoshop'] },
+            { id: 'imageconvert', name: 'Image Converter', icon: 'bi-images', desc: 'Batch convert images between PNG, JPG, WebP, BMP, GIF with resize and quality control', url: '/imageconvert', tags: ['image','convert','batch','png','jpg','webp','bmp','gif','resize','compress','format'] },
+            { id: 'csv', name: 'CSV Viewer', icon: 'bi-file-earmark-spreadsheet', desc: 'Spreadsheet-like viewer/editor for CSV/TSV with sort, filter, export', url: '/csv', tags: ['csv','tsv','spreadsheet','table','viewer','sort','filter','export','sql'] },
+            { id: 'jsonschema', name: 'JSON Schema', icon: 'bi-check2-square', desc: 'Validate JSON against JSON Schema with auto-generate', url: '/jsonschema', tags: ['json','schema','validate','ajv','draft','check'] },
+            { id: 'jsonpath', name: 'JSONPath', icon: 'bi-signpost-2', desc: 'Query JSON with JSONPath expressions', url: '/jsonpath', tags: ['json','jsonpath','query','path','filter','jq'] },
+            { id: 'subnet', name: 'Subnet Calculator', icon: 'bi-hdd-network', desc: 'CIDR calculator with subnet mask and IP range', url: '/subnet', tags: ['ip','subnet','cidr','network','mask','calculator'] },
+            { id: 'envfile', name: 'Env File Editor', icon: 'bi-file-earmark-lock', desc: 'View, edit, and compare .env files', url: '/envfile', tags: ['env','dotenv','config','editor','compare','docker'] },
+            { id: 'mdtable', name: 'MD Table Generator', icon: 'bi-table', desc: 'Visual Markdown table editor with export', url: '/mdtable', tags: ['markdown','table','generator','csv','html','ascii'] },
+            { id: 'chmod', name: 'Chmod Calculator', icon: 'bi-lock', desc: 'Unix file permission calculator', url: '/chmod', tags: ['chmod','permission','unix','linux','octal','rwx'] },
+            { id: 'apimock', name: 'API Mock Server', icon: 'bi-server', desc: 'Define mock REST endpoints with custom responses', url: '/apimock', tags: ['api','mock','server','rest','endpoint','stub','test'] },
+            { id: 'placeholder', name: 'Placeholder Image', icon: 'bi-image', desc: 'Generate placeholder images with custom size and text', url: '/placeholder', tags: ['placeholder','image','dummy','generate','size'] },
+            { id: 'asciiart', name: 'ASCII Art', icon: 'bi-type-bold', desc: 'Convert text to ASCII art with multiple fonts', url: '/asciiart', tags: ['ascii','art','text','figlet','banner'] },
+            { id: 'favicogen', name: 'Favicon Generator', icon: 'bi-app-indicator', desc: 'Generate full favicon set from image', url: '/favicogen', tags: ['favicon','icon','generate','apple','android'] },
+            { id: 'encoding', name: 'Encoding Detector', icon: 'bi-translate', desc: 'Detect text/file encoding with hex inspector', url: '/encoding', tags: ['encoding','detect','utf8','ascii','charset','hex'] },
+            { id: 'githelp', name: 'Git Cheat Sheet', icon: 'bi-git', desc: 'Interactive Git command reference', url: '/githelp', tags: ['git','cheat','sheet','command','reference'] },
+            { id: 'kanban', name: 'Kanban Board', icon: 'bi-kanban', desc: 'Simple task board with drag-drop columns', url: '/kanban', tags: ['kanban','todo','task','board','project'] },
+            { id: 'pomodoro', name: 'Pomodoro Timer', icon: 'bi-alarm', desc: 'Focus timer with breaks and session tracking', url: '/pomodoro', tags: ['pomodoro','timer','focus','break','productivity'] },
+            { id: 'bookmarks', name: 'Bookmarks', icon: 'bi-bookmark-star', desc: 'Save and organize dev links with tags', url: '/bookmarks', tags: ['bookmark','link','save','organize','tag'] },
+            { id: 'sqlplay', name: 'SQL Playground', icon: 'bi-database', desc: 'In-browser SQL editor with SQLite WASM', url: '/sqlplay', tags: ['sql','database','sqlite','query','playground'] },
+            { id: 'timestamp', name: 'Timestamp Converter', icon: 'bi-clock', desc: 'Multi-format date/time converter', url: '/timestamp', tags: ['timestamp','date','time','converter','iso','unix'] },
+            { id: 'textdiff', name: 'Text Diff', icon: 'bi-file-earmark-diff', desc: 'Word-level text comparison', url: '/textdiff', tags: ['text','diff','compare','word','document'] },
+            { id: 'palette', name: 'Color Palette', icon: 'bi-palette2', desc: 'Generate harmonious color palettes', url: '/palette', tags: ['color','palette','generate','harmony','image'] },
+            { id: 'keycode', name: 'Keycode Viewer', icon: 'bi-keyboard', desc: 'Press any key to see its event properties', url: '/keycode', tags: ['key','keycode','keyboard','event','code'] },
+            { id: 'fontpreview', name: 'Font Preview', icon: 'bi-type', desc: 'Preview text in system and web fonts', url: '/fontpreview', tags: ['font','preview','text','compare','css'] },
+            { id: 'prompts', name: 'Prompt Notebook', icon: 'bi-journal-code', desc: 'Write, organize, and polish AI prompts via Ollama', url: '/prompts', tags: ['prompt','notebook','ai','claude','ollama','meta','polish'] },
+            { id: 'scaffold', name: 'Scaffold Generator', icon: 'bi-boxes', desc: 'Generate CRUD code from database schema', url: '/scaffold', tags: ['scaffold','generator','crud','entity','code','sql','java','angular','react'] },
         ];
 
         const backdrop = document.getElementById('spotlightBackdrop');
@@ -1063,6 +1161,9 @@
                 { icon: 'bi-markdown', name: 'Markdown Viewer', url: '/markdown', page: 'markdown' },
                 { icon: 'bi-file-diff', name: 'Code Diff', url: '/diff', page: 'diff' },
                 { icon: 'bi-filetype-html', name: 'HTML Editor', url: '/htmleditor', page: 'htmleditor' },
+                { icon: 'bi-file-earmark-spreadsheet', name: 'CSV Viewer', url: '/csv', page: 'csv' },
+                { icon: 'bi-check2-square', name: 'JSON Schema', url: '/jsonschema', page: 'jsonschema' },
+                { icon: 'bi-signpost-2', name: 'JSONPath', url: '/jsonpath', page: 'jsonpath' },
             ]},
             { section: 'drawer.encode_decode', items: [
                 { icon: 'bi-shield-lock', name: 'JWT Tool', url: '/jwt', page: 'jwt' },
@@ -1095,6 +1196,27 @@
                 { icon: 'bi-robot', name: 'AI Chat', url: '/aichat', page: 'aichat' },
                 { icon: 'bi-collection', name: 'Icon Explorer', url: '/icons', page: 'icons' },
                 { icon: 'bi-translate', name: 'Translator', url: '/translator', page: 'translator' },
+                { icon: 'bi-hdd-network', name: 'Subnet Calc', url: '/subnet', page: 'subnet' },
+                { icon: 'bi-file-earmark-lock', name: 'Env Editor', url: '/envfile', page: 'envfile' },
+                { icon: 'bi-table', name: 'MD Table', url: '/mdtable', page: 'mdtable' },
+                { icon: 'bi-lock', name: 'Chmod Calc', url: '/chmod', page: 'chmod' },
+                { icon: 'bi-server', name: 'API Mock', url: '/apimock', page: 'apimock' },
+                { icon: 'bi-image', name: 'Placeholder Image', url: '/placeholder', page: 'placeholder' },
+                { icon: 'bi-type-bold', name: 'ASCII Art', url: '/asciiart', page: 'asciiart' },
+                { icon: 'bi-app-indicator', name: 'Favicon Gen', url: '/favicogen', page: 'favicogen' },
+                { icon: 'bi-translate', name: 'Encoding', url: '/encoding', page: 'encoding' },
+                { icon: 'bi-git', name: 'Git Help', url: '/githelp', page: 'githelp' },
+                { icon: 'bi-kanban', name: 'Kanban', url: '/kanban', page: 'kanban' },
+                { icon: 'bi-alarm', name: 'Pomodoro', url: '/pomodoro', page: 'pomodoro' },
+                { icon: 'bi-bookmark-star', name: 'Bookmarks', url: '/bookmarks', page: 'bookmarks' },
+                { icon: 'bi-database', name: 'SQL Play', url: '/sqlplay', page: 'sqlplay' },
+                { icon: 'bi-clock', name: 'Timestamp', url: '/timestamp', page: 'timestamp' },
+                { icon: 'bi-file-earmark-diff', name: 'Text Diff', url: '/textdiff', page: 'textdiff' },
+                { icon: 'bi-palette2', name: 'Palette', url: '/palette', page: 'palette' },
+                { icon: 'bi-keyboard', name: 'Keycode', url: '/keycode', page: 'keycode' },
+                { icon: 'bi-type', name: 'Font Preview', url: '/fontpreview', page: 'fontpreview' },
+                { icon: 'bi-journal-code', name: 'Prompt Notebook', url: '/prompts', page: 'prompts' },
+                { icon: 'bi-boxes', name: 'Scaffold', url: '/scaffold', page: 'scaffold' },
             ]},
             { section: 'drawer.logs_network', items: [
                 { icon: 'bi-terminal', name: 'Log Aggregator', url: '/logs', page: 'logs' },

@@ -1,0 +1,173 @@
+{{define "content"}}
+<style>
+    .endpoint-card { border: 1px solid var(--bs-border-color); border-radius: 0.375rem; padding: 0.6rem; margin-bottom: 0.5rem; transition: all 0.15s ease; }
+    .endpoint-card:hover { border-color: var(--bs-primary); }
+    .endpoint-card.active { border-color: var(--bs-primary); background: rgba(13,110,253,0.03); }
+    .method-badge { font-family: 'SF Mono', monospace; font-size: 0.72rem; padding: 0.15rem 0.4rem; font-weight: 700; min-width: 50px; text-align: center; }
+    .method-GET { background: rgba(25,135,84,0.15); color: #198754; }
+    .method-POST { background: rgba(13,110,253,0.15); color: #0d6efd; }
+    .method-PUT { background: rgba(255,193,7,0.15); color: #cc9a00; }
+    .method-PATCH { background: rgba(111,66,193,0.15); color: #6f42c1; }
+    .method-DELETE { background: rgba(220,53,69,0.15); color: #dc3545; }
+    .endpoint-path { font-family: 'SF Mono', monospace; font-size: 0.85rem; font-weight: 600; }
+    .endpoint-status { font-size: 0.75rem; color: var(--bs-secondary-color); }
+    .mock-url { font-family: 'SF Mono', monospace; font-size: 0.82rem; background: var(--bs-tertiary-bg); padding: 0.3rem 0.6rem; border-radius: 0.25rem; cursor: pointer; word-break: break-all; }
+    .mock-url:hover { background: var(--bs-secondary-bg); }
+    .log-entry { font-family: 'SF Mono', monospace; font-size: 0.78rem; padding: 0.25rem 0.5rem; border-bottom: 1px solid var(--bs-border-color); }
+    .log-entry:last-child { border-bottom: none; }
+    .editor-container { height: 200px; border: 1px solid var(--bs-border-color); border-radius: 0.375rem; overflow: hidden; }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-server"></i> API Mock Server
+        <i id="pinToggle" data-tool="apimock" class="bi bi-star pin-star" onclick="togglePin('apimock')"></i>
+    </h5>
+    <div class="d-flex gap-1 align-items-center">
+        <span class="badge bg-success d-none" id="serverStatus"><i class="bi bi-circle-fill" style="font-size:0.5rem;"></i> Running</span>
+        <button class="btn btn-sm btn-primary" id="addEndpointBtn"><i class="bi bi-plus-lg"></i> Add Endpoint</button>
+        <div class="btn-group">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-lightbulb"></i> Templates
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" id="templatesMenu">
+                <li><a class="dropdown-item" href="#" data-tmpl="crud">REST CRUD</a></li>
+                <li><a class="dropdown-item" href="#" data-tmpl="auth">Auth Endpoints</a></li>
+                <li><a class="dropdown-item" href="#" data-tmpl="paginated">Paginated List</a></li>
+            </ul>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary" id="exportBtn" title="Export config"><i class="bi bi-download"></i></button>
+        <label class="btn btn-sm btn-outline-secondary mb-0" title="Import config">
+            <i class="bi bi-upload"></i>
+            <input type="file" accept=".json" class="d-none" id="importFile">
+        </label>
+        <button class="btn btn-sm btn-outline-danger" id="clearAllBtn"><i class="bi bi-x-lg"></i></button>
+    </div>
+</div>
+
+<!-- Mock base URL -->
+<div class="mb-3">
+    <div class="d-flex align-items-center gap-2">
+        <span style="font-size:0.82rem; font-weight:600;">Base URL:</span>
+        <div class="mock-url flex-grow-1" id="baseUrl" onclick="copyText(this.textContent)" title="Click to copy"></div>
+        <span class="text-muted" style="font-size:0.78rem;" id="endpointCount">0 endpoints</span>
+    </div>
+</div>
+
+<div class="row g-3">
+    <!-- Endpoint List -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;">
+                <i class="bi bi-list-ul"></i> Endpoints
+            </div>
+            <div class="card-body p-2" id="endpointList" style="max-height: 500px; overflow-y: auto;">
+                <div class="text-center text-muted py-4" style="font-size:0.85rem;">
+                    <i class="bi bi-server" style="font-size:1.5rem;"></i>
+                    <p class="mt-1 mb-0">Click "Add Endpoint" to create mock APIs</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Request Log -->
+        <div class="card mt-3">
+            <div class="card-header py-2 fw-semibold d-flex justify-content-between" style="font-size:0.82rem;">
+                <span><i class="bi bi-journal-text"></i> Request Log</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-1" id="clearLogBtn" title="Clear log"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="card-body p-0" id="requestLog" style="max-height: 200px; overflow-y: auto;">
+                <div class="text-center text-muted py-3" style="font-size:0.8rem;">No requests yet</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Endpoint Editor -->
+    <div class="col-md-8">
+        <div class="card" id="editorPanel">
+            <div class="card-header py-2 fw-semibold d-flex justify-content-between" style="font-size:0.82rem;">
+                <span><i class="bi bi-pencil-square"></i> Endpoint Editor</span>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-primary py-0 px-2" id="saveEndpointBtn"><i class="bi bi-check-lg"></i> Save</button>
+                    <button class="btn btn-sm btn-outline-danger py-0 px-2" id="deleteEndpointBtn"><i class="bi bi-trash"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row g-2 mb-3">
+                    <div class="col-auto">
+                        <select class="form-select form-select-sm" id="editMethod" style="width:auto; font-weight:700;">
+                            <option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">/mock/</span>
+                            <input type="text" class="form-control" id="editPath" placeholder="users" style="font-family:monospace;">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-select form-select-sm" id="editStatus" style="width:auto;">
+                            <option value="200">200 OK</option>
+                            <option value="201">201 Created</option>
+                            <option value="204">204 No Content</option>
+                            <option value="400">400 Bad Request</option>
+                            <option value="401">401 Unauthorized</option>
+                            <option value="403">403 Forbidden</option>
+                            <option value="404">404 Not Found</option>
+                            <option value="500">500 Internal Server Error</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Response Headers -->
+                <div class="mb-2">
+                    <label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">Response Headers</label>
+                    <div class="input-group input-group-sm mb-1">
+                        <span class="input-group-text">Content-Type</span>
+                        <select class="form-select" id="editContentType">
+                            <option value="application/json">application/json</option>
+                            <option value="text/plain">text/plain</option>
+                            <option value="text/html">text/html</option>
+                            <option value="application/xml">application/xml</option>
+                        </select>
+                    </div>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" id="editHeaderKey" placeholder="Header name">
+                        <input type="text" class="form-control" id="editHeaderVal" placeholder="Header value">
+                        <button class="btn btn-outline-secondary" id="addHeaderBtn">+</button>
+                    </div>
+                    <div id="customHeaders" class="mt-1" style="font-size:0.78rem;"></div>
+                </div>
+
+                <!-- Delay -->
+                <div class="mb-2">
+                    <label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">Response Delay (ms)</label>
+                    <input type="number" class="form-control form-control-sm" id="editDelay" value="0" min="0" max="30000" style="width:120px;">
+                </div>
+
+                <!-- Response Body -->
+                <label class="form-label mb-1 fw-semibold" style="font-size:0.82rem;">Response Body</label>
+                <div class="editor-container" id="bodyEditor"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script>
+require.config({ paths: { 'vs': '/static/monaco-editor/min/vs' } });
+window.MonacoEnvironment = {
+    getWorkerUrl: function(workerId, label) {
+        const base = window.location.origin + '/static/monaco-editor/min';
+        return `data:text/javascript;charset=utf-8,${encodeURIComponent(
+            `self.MonacoEnvironment = { baseUrl: '${base}/' }; importScripts('${base}/vs/base/worker/workerMain.js');`
+        )}`;
+    }
+};
+require(['vs/editor/editor.main'], function() {
+    const script = document.createElement('script');
+    script.src = '/static/apimock.js';
+    document.body.appendChild(script);
+});
+</script>
+{{end}}

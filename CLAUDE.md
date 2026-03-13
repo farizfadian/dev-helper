@@ -57,6 +57,33 @@ GET /yaml2props    → handleYAML2PropsPage()     → yaml2props.html    → yam
 GET /sysmon        → handleSysMonPage()         → sysmon.html        → sysmon.js
 GET /icons         → handleIconsPage()          → icons.html         → icons.js
 GET /translator    → handleTranslatorPage()     → translator.html    → translator.js
+GET /imagebase64   → handleImageBase64Page()   → imagebase64.html   → imagebase64.js
+GET /imageeditor   → handleImageEditorPage()   → imageeditor.html   → imageeditor.js
+GET /imageconvert  → handleImageConvertPage()  → imageconvert.html  → imageconvert.js
+GET /csv           → handleCSVPage()           → csv.html           → csv.js
+GET /jsonschema    → handleJSONSchemaPage()     → jsonschema.html    → jsonschema.js
+GET /jsonpath      → handleJSONPathPage()       → jsonpath.html      → jsonpath.js
+GET /subnet        → handleSubnetPage()         → subnet.html        → subnet.js
+GET /apimock       → handleAPIMockPage()        → apimock.html       → apimock.js
+GET /envfile       → handleEnvFilePage()        → envfile.html       → envfile.js
+GET /mdtable       → handleMDTablePage()        → mdtable.html       → mdtable.js
+GET /chmod         → handleChmodPage()          → chmod.html         → chmod.js
+GET /placeholder   → handlePlaceholderPage()    → placeholder.html   → placeholder.js
+GET /asciiart      → handleASCIIArtPage()       → asciiart.html      → asciiart.js
+GET /favicogen     → handleFavicoGenPage()      → favicogen.html     → favicogen.js
+GET /encoding      → handleEncodingPage()       → encoding.html      → encoding.js
+GET /githelp       → handleGitHelpPage()        → githelp.html       → githelp.js
+GET /kanban        → handleKanbanPage()         → kanban.html        → kanban.js
+GET /pomodoro      → handlePomodoroPage()       → pomodoro.html      → pomodoro.js
+GET /bookmarks     → handleBookmarksPage()      → bookmarks.html     → bookmarks.js
+GET /sqlplay       → handleSQLPlayPage()        → sqlplay.html       → sqlplay.js
+GET /timestamp     → handleTimestampPage()      → timestamp.html     → timestamp.js
+GET /textdiff      → handleTextDiffPage()       → textdiff.html      → textdiff.js
+GET /palette       → handlePalettePage()        → palette.html       → palette.js
+GET /keycode       → handleKeycodePage()        → keycode.html       → keycode.js
+GET /fontpreview   → handleFontPreviewPage()    → fontpreview.html   → fontpreview.js
+GET /prompts       → handlePromptsPage()        → prompts.html       → prompts.js
+GET /scaffold      → handleScaffoldPage()       → scaffold.html      → scaffold.js
 ```
 
 ### Template Pattern (IMPORTANT)
@@ -102,6 +129,33 @@ templates/
   json2yaml.html     — JSON ↔ YAML converter
   httpclient.html    — HTTP client (mini Postman)
   stringutils.html   — String utility tools
+  imagebase64.html   — Bidirectional Image ↔ Base64 converter (swap mode, snippets)
+  imageeditor.html   — Mini Photoshop (crop, resize, rotate, flip, draw, text, shapes, 144 filters, export)
+  imageconvert.html  — Batch image converter (PNG/JPG/WebP/BMP/GIF, resize, quality, ZIP download)
+  csv.html           — CSV/TSV viewer/editor (sort, filter, search, export CSV/JSON/SQL)
+  jsonschema.html    — JSON Schema validator (Ajv, auto-generate, Monaco)
+  jsonpath.html      — JSONPath query playground (pure JS engine, Monaco)
+  subnet.html        — IP subnet calculator (CIDR, bit visualization, subnet split)
+  apimock.html       — API Mock Server (define endpoints, SSE request log)
+  envfile.html       — Env file editor (compare, mask, export)
+  mdtable.html       — Markdown table generator (visual editor, export)
+  chmod.html         — Chmod calculator (rwx ↔ octal ↔ symbolic)
+  placeholder.html   — Placeholder image generator (PNG/SVG)
+  asciiart.html      — ASCII art text generator (FIGlet-style)
+  favicogen.html     — Favicon generator (multi-size, ZIP download)
+  encoding.html      — Encoding detector (hex inspector, re-decode)
+  githelp.html       — Git cheat sheet (interactive command reference)
+  kanban.html        — Kanban board (drag-drop, localStorage)
+  pomodoro.html      — Pomodoro timer (focus/break cycles)
+  bookmarks.html     — Bookmark manager (tags, categories)
+  sqlplay.html       — SQL playground (sql.js SQLite WASM, CSV import)
+  timestamp.html     — Multi-format timestamp converter
+  textdiff.html      — Word-level text diff comparison
+  palette.html       — Color palette generator (harmonies, extract from image)
+  keycode.html       — Keycode viewer (press key → show event properties)
+  fontpreview.html   — Font preview (system/web fonts, compare sizes)
+  prompts.html       — Prompt Notebook (sequential prompts, folders, Ollama meta-prompting)
+  scaffold.html      — Scaffold Generator (schema → CRUD code for 10 frameworks)
 static/
   dashboard.js       — Tool cards rendering, search, tools registry
   app.js             — Upload page logic (with localStorage recent uploads)
@@ -135,16 +189,47 @@ static/
   stringutils.js     — String utils logic (29 operations, case/trim/encode/extract)
   translator.js      — Translator logic (Ollama SSE, language detection, history)
   icons.js           — Icon Explorer logic (Bootstrap Icons, Font Awesome, Tabler Icons)
+  imagebase64.js     — Image↔Base64 logic (bidirectional, MIME detection, snippets, paste support)
+  imageeditor.js     — Image Editor logic (Canvas API, 144 filters, 3-layer blend, undo/redo, draw/text/shapes, export)
+  imageconvert.js    — Image Converter logic (Canvas API, batch convert, resize, quality, compare, JSZip)
+  csv.js             — CSV Viewer logic (RFC 4180 parser, sort, filter, edit, export)
+  jsonschema.js      — JSON Schema Validator logic (Ajv CDN, auto-generate, error highlighting)
+  jsonpath.js        — JSONPath Playground logic (pure JS engine, live query)
+  subnet.js          — IP Subnet Calculator logic (CIDR, bit visualization, split table)
+  apimock.js         — API Mock Server logic (Monaco, SSE log, templates)
+  envfile.js         — Env File Editor logic (parse .env, compare, mask, export)
+  mdtable.js         — Markdown Table Generator logic (visual editor, export MD/HTML/CSV/ASCII)
+  chmod.js           — Chmod Calculator logic (rwx checkboxes, octal, symbolic, ls -l)
+  placeholder.js     — Placeholder Image logic (Canvas, PNG/SVG download)
+  asciiart.js        — ASCII Art logic (FIGlet-style fonts, pure JS)
+  favicogen.js       — Favicon Generator logic (multi-size, JSZip download)
+  encoding.js        — Encoding Detector logic (BOM, UTF-8 validation, hex view)
+  githelp.js         — Git Cheat Sheet logic (categorized commands, click-to-copy)
+  kanban.js          — Kanban Board logic (drag-drop, labels, due dates, localStorage)
+  pomodoro.js        — Pomodoro Timer logic (focus/break cycles, notifications, stats)
+  bookmarks.js       — Bookmark Manager logic (tags, categories, import/export, localStorage)
+  sqlplay.js         — SQL Playground logic (sql.js WASM, CSV import, Monaco)
+  timestamp.js       — Timestamp Converter logic (multi-format, timezone, relative time)
+  textdiff.js        — Text Diff logic (word-level LCS, highlight additions/deletions)
+  palette.js         — Color Palette logic (HSL harmonies, image extraction)
+  keycode.js         — Keycode Viewer logic (event properties, history)
+  fontpreview.js     — Font Preview logic (system fonts, size comparison)
+  prompts.js         — Prompt Notebook logic (folders, CRUD, Ollama meta-prompting, disk persistence)
+  scaffold.js        — Scaffold Generator logic (schema builder, 10 code generators, SQL import/JSON import)
   i18n.js            — Internationalization core (21 languages, auto-translate headings/nav)
   i18n/              — Translation JSON files (en.json, id.json, es.json, ... 21 files)
   monaco-editor/     — Monaco Editor v0.52.2 assets (self-hosted, ~12MB)
     min/vs/          — AMD modules: loader.js, base/, basic-languages/, editor/, language/
   icons/             — Local AI favicons + app icons (favicon.svg, favicon.ico, bootstrap-icon.svg, font-awesome.svg, tabler-icon.svg, etc.)
 rsrc.syso              — Windows exe icon resource (generated by rsrc tool, DO NOT delete)
+Dockerfile           — Multi-stage Docker build (Go builder → Alpine runner)
+docker-compose.yml   — Dev Helper + Ollama (docker compose up)
+.dockerignore        — Docker build exclusions
 files/               — Uploaded files (served via /files/)
 logs/                — Log files, one per app (AppName.log), JSON-lines format
 notes/               — Notes data (notes.json + attachments/)
 snippets/            — Code snippets data (snippets.json, auto-created with 20 defaults)
+prompts/             — Prompt Notebook data (prompts.json, persisted to disk)
 ```
 
 ### API Endpoints
@@ -165,6 +250,9 @@ snippets/            — Code snippets data (snippets.json, auto-created with 20
 - `GET /api/aichat/models` — Ollama models, `/version` — Ollama version, `POST /api/aichat/chat` — SSE chat stream
 - `GET /api/speedtest/ping` — Latency test, `/download` — Download speed, `POST /api/speedtest/upload` — Upload speed, `/disk` — Disk speed
 - `GET /api/sysmon/snapshot` — Single JSON snapshot (500ms CPU sample), `GET /api/sysmon/stream` — SSE stream (2s interval)
+- `GET/POST /api/prompts` — Read/write prompt notebook data (JSON file on disk)
+- `POST /api/apimock/endpoints` — Save mock endpoint definitions, `GET /api/apimock/log` — SSE request log
+- `ANY /mock/{path}` — Mock endpoint (responds based on saved definitions, CORS enabled)
 
 ### Dashboard & Navigation
 - **`/` (Dashboard)**: Homepage showing all tools as cards with search. Tools defined in `dashboard.js` `tools` array.
@@ -240,13 +328,16 @@ window.MonacoEnvironment = {
 theme: document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'vs-dark' : 'vs',
 ```
 
-Pages using Monaco: editor.js, prettify.js, markdown.js, diff.js, jwt.js, htmleditor.js, mermaid-page.js
+Pages using Monaco: editor.js, prettify.js, markdown.js, diff.js, jwt.js, htmleditor.js, mermaid-page.js, jsonschema.js, jsonpath.js, apimock.js, sqlplay.js
 
 ### CDN Libraries (non-Monaco)
 - **TinyMCE v7**: `https://cdn.jsdelivr.net/npm/tinymce@7` (htmleditor)
 - **Mermaid.js v11**: `https://cdn.jsdelivr.net/npm/mermaid@11` (mermaid)
 - **js-yaml v4.1**: `https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js` (prettify, json2yaml)
 - **qrcode-generator v1.4.4**: `https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js` (qrcode)
+- **JSZip v3.10.1**: `https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js` (imageconvert, favicogen)
+- **Ajv 2020**: `https://cdn.jsdelivr.net/npm/ajv@8/dist/ajv2020.bundle.min.js` (jsonschema)
+- **sql.js v1.10.3**: `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js` (sqlplay)
 - **marked.js**: UMD build `lib/marked.umd.js` (markdown)
 - **highlight.js**: (markdown code blocks)
 - **js-beautify**: (prettify — HTML/CSS/JS/TS formatting)
@@ -272,14 +363,17 @@ Supported: JSON, XML, HTML, CSS, JavaScript, TypeScript, SQL, YAML, SCSS, LESS
 - **Footer**: Clickable links — Fariz → github.com/farizfadian, Claude → claude.ai (with local icon)
 
 ## Adding a New Page
-1. Add `mux.HandleFunc("/yourpage", handlerFunc)` in `main.go`
+1. Add page title in `pageTitles` map and `mux.HandleFunc("/yourpage", handlerFunc)` in `main.go`
 2. Create handler that calls `loadPage("yourpage.html").ExecuteTemplate(w, "layout.html", data)`
 3. Add navbar `<li>` with `d-none` and `data-tool="toolid"` in `templates/layout.html` `#pinnedNav`
-4. Create `templates/yourpage.html` with `{{define "content"}}` and `{{define "scripts"}}` blocks
-5. Create `static/yourpage.js` for frontend logic
-6. Add entry to `tools` array in `static/dashboard.js`
-7. Use CSS variables (not hardcoded colors) for dark mode compatibility
-8. If using Monaco: follow worker URL pattern above, set theme from `data-bs-theme`
+4. Add to Spotlight `TOOLS` array in `templates/layout.html`
+5. Add to `DRAWER_TOOLS` array in `templates/layout.html` (mobile navigation)
+6. Create `templates/yourpage.html` with `{{define "content"}}` and `{{define "scripts"}}` blocks
+7. Create `static/yourpage.js` for frontend logic
+8. Add entry to `tools` array in `static/dashboard.js`
+9. Use CSS variables (not hardcoded colors) for dark mode compatibility
+10. If using Monaco: follow worker URL pattern above, set theme from `data-bs-theme`
+11. Main page heading toolbar: use `mb-3` (not `mb-2`) for consistent spacing
 
 ## Build & Run
 
@@ -333,11 +427,22 @@ GitHub Actions auto-builds 5 binaries and attaches them to the release page:
 
 Uses `softprops/action-gh-release@v2` with `generate_release_notes: true`. Build flags: `-s -w` (strip debug info) + `-X main.version=${VERSION}`.
 
+### Docker
+```bash
+docker compose up                              # Dev Helper + Ollama
+docker compose exec ollama ollama pull llama3.2 # Download AI model (first time)
+```
+- Dev Helper: `http://localhost:9090`, Ollama: `http://localhost:11434`
+- Inside Docker containers, Ollama URL is `http://ollama:11434`
+- Data persisted in Docker volumes (files, logs, notes, snippets, prompts, ollama models)
+- GPU support: uncomment `deploy` section in `docker-compose.yml`
+
 ### CLI Flags
 | Flag | Default | Description |
 |------|---------|-------------|
 | `--port` | `9090` | Server port |
 | `--debug` | `false` | Enable verbose HTTP request/response logging to terminal |
+| `--version` | | Show version and exit |
 
 ### Debug Mode (`--debug`)
 Logs all API requests/responses to the terminal for investigation & debugging:

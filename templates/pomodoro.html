@@ -1,0 +1,91 @@
+{{define "content"}}
+<style>
+    .timer-display { font-size: 5rem; font-weight: 700; font-family: 'SF Mono', 'Fira Code', monospace; letter-spacing: 0.05em; line-height: 1; }
+    .timer-label { font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+    .session-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin: 0 3px; }
+    .session-dot.completed { background: var(--bs-success); }
+    .session-dot.current { background: var(--bs-primary); animation: pulse 1.5s infinite; }
+    .session-dot.pending { background: var(--bs-border-color); }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .mode-btn { font-size: 0.85rem; padding: 0.4rem 1.2rem; border-radius: 2rem; }
+    .mode-btn.active { font-weight: 700; }
+    .stat-card { text-align: center; padding: 0.5rem; }
+    .stat-num { font-size: 1.5rem; font-weight: 700; font-family: 'SF Mono', monospace; }
+    .stat-label { font-size: 0.75rem; color: var(--bs-secondary-color); }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h5 class="mb-0">
+        <i class="bi bi-alarm"></i> Pomodoro Timer
+        <i id="pinToggle" data-tool="pomodoro" class="bi bi-star pin-star" onclick="togglePin('pomodoro')"></i>
+    </h5>
+</div>
+
+<div class="text-center">
+    <!-- Mode selector -->
+    <div class="d-flex justify-content-center gap-2 mb-4">
+        <button class="btn btn-outline-danger mode-btn active" data-mode="work">Focus</button>
+        <button class="btn btn-outline-success mode-btn" data-mode="short">Short Break</button>
+        <button class="btn btn-outline-primary mode-btn" data-mode="long">Long Break</button>
+    </div>
+
+    <!-- Timer -->
+    <div class="mb-2">
+        <span class="timer-label" id="timerLabel">Focus Time</span>
+    </div>
+    <div class="timer-display mb-3" id="timerDisplay">25:00</div>
+
+    <!-- Session dots -->
+    <div class="mb-4" id="sessionDots"></div>
+
+    <!-- Controls -->
+    <div class="d-flex justify-content-center gap-2 mb-4">
+        <button class="btn btn-lg btn-primary" id="startBtn"><i class="bi bi-play-fill"></i> Start</button>
+        <button class="btn btn-lg btn-outline-secondary" id="resetBtn"><i class="bi bi-arrow-counterclockwise"></i></button>
+        <button class="btn btn-lg btn-outline-secondary" id="skipBtn" title="Skip to next"><i class="bi bi-skip-forward-fill"></i></button>
+    </div>
+
+    <!-- Stats -->
+    <div class="row g-3 justify-content-center" style="max-width: 500px; margin: 0 auto;">
+        <div class="col-4">
+            <div class="card stat-card">
+                <div class="stat-num" id="statPomodoros">0</div>
+                <div class="stat-label">Pomodoros</div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card stat-card">
+                <div class="stat-num" id="statMinutes">0</div>
+                <div class="stat-label">Focus Minutes</div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card stat-card">
+                <div class="stat-num" id="statStreak">0</div>
+                <div class="stat-label">Streak</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="card mt-4 mx-auto" style="max-width: 500px;">
+        <div class="card-header py-2 fw-semibold" style="font-size:0.82rem;"><i class="bi bi-gear"></i> Settings</div>
+        <div class="card-body">
+            <div class="row g-2 align-items-center">
+                <div class="col-4" style="font-size:0.82rem;">Focus duration</div>
+                <div class="col-8"><input type="number" class="form-control form-control-sm" id="setWork" value="25" min="1" max="120"> </div>
+                <div class="col-4" style="font-size:0.82rem;">Short break</div>
+                <div class="col-8"><input type="number" class="form-control form-control-sm" id="setShort" value="5" min="1" max="30"></div>
+                <div class="col-4" style="font-size:0.82rem;">Long break</div>
+                <div class="col-8"><input type="number" class="form-control form-control-sm" id="setLong" value="15" min="1" max="60"></div>
+                <div class="col-4" style="font-size:0.82rem;">Sessions before long break</div>
+                <div class="col-8"><input type="number" class="form-control form-control-sm" id="setSessions" value="4" min="2" max="10"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/pomodoro.js"></script>
+{{end}}
