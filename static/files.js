@@ -253,6 +253,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="d-flex justify-content-between align-items-center">
                                 <small class="text-muted">${formatSize(f.size)}</small>
                                 <div>
+                                    <button class="btn btn-outline-secondary btn-sm py-0 px-1 me-1" onclick="renameFile('${fname}')" title="Rename">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
                                     <button class="btn btn-outline-primary btn-sm py-0 px-1 me-1" onclick="showDetail('${fname}')" title="Details">
                                         <i class="bi bi-info-circle"></i>
                                     </button>
@@ -272,6 +275,36 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('/api/files?name=' + encodeURIComponent(filename), { method: 'DELETE' }).then(() => loadFiles());
     };
 
+    window.renameFile = function (filename) {
+        const ext = filename.lastIndexOf('.') !== -1 ? filename.substring(filename.lastIndexOf('.')) : '';
+        const nameOnly = filename.lastIndexOf('.') !== -1 ? filename.substring(0, filename.lastIndexOf('.')) : filename;
+        const newName = prompt('Rename file:', nameOnly);
+        if (!newName || newName.trim() === '' || newName.trim() === nameOnly) return;
+        const newFilename = newName.trim() + ext;
+        fetch('/api/files', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ oldName: filename, newName: newFilename }),
+        })
+        .then(res => {
+            if (!res.ok) return res.text().then(t => { throw new Error(t); });
+            return res.json();
+        })
+        .then(() => {
+            // Close detail modal if open
+            const modal = bootstrap.Modal.getInstance(document.getElementById('fileDetailModal'));
+            if (modal) modal.hide();
+            loadFiles();
+            const toast = document.createElement('div');
+            toast.className = 'position-fixed bottom-0 end-0 m-3 alert alert-success py-2 px-3 small';
+            toast.style.zIndex = '9999';
+            toast.textContent = 'Renamed to "' + newFilename + '"';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        })
+        .catch(err => alert('Rename failed: ' + err.message));
+    };
+
     window.showDetail = function (filename) {
         const f = filesMap[filename];
         if (!f) return;
@@ -279,6 +312,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('detailUrl').value = f.url;
         document.getElementById('detailPath').value = f.path;
         document.getElementById('detailMeta').textContent = 'Size: ' + formatSize(f.size) + ' — Uploaded: ' + new Date(f.modTime).toLocaleString('sv-SE');
+        document.getElementById('detailRenameBtn').onclick = () => {
+            window.renameFile(f.filename);
+        };
         document.getElementById('detailDeleteBtn').onclick = () => {
             bootstrap.Modal.getInstance(document.getElementById('fileDetailModal')).hide();
             window.deleteFile(f.filename);

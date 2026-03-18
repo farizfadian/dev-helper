@@ -148,10 +148,61 @@ document.addEventListener('DOMContentLoaded', function () {
         return fileIcons[ext] || 'bi-file-earmark text-secondary';
     }
 
+    // Current result data for rename
+    let currentResult = null;
+
+    function renameUploadedFile(oldFilename, onSuccess) {
+        const ext = oldFilename.lastIndexOf('.') !== -1 ? oldFilename.substring(oldFilename.lastIndexOf('.')) : '';
+        const nameOnly = oldFilename.lastIndexOf('.') !== -1 ? oldFilename.substring(0, oldFilename.lastIndexOf('.')) : oldFilename;
+        const newName = prompt('Rename file:', nameOnly);
+        if (!newName || newName.trim() === '' || newName.trim() === nameOnly) return;
+        const newFilename = newName.trim() + ext;
+        fetch('/api/files', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ oldName: oldFilename, newName: newFilename }),
+        })
+        .then(res => {
+            if (!res.ok) return res.text().then(t => { throw new Error(t); });
+            return res.json();
+        })
+        .then(result => {
+            const toast = document.createElement('div');
+            toast.className = 'position-fixed bottom-0 end-0 m-3 alert alert-success py-2 px-3 small';
+            toast.style.zIndex = '9999';
+            toast.textContent = 'Renamed to "' + newFilename + '"';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+            if (onSuccess) onSuccess(result);
+        })
+        .catch(err => alert('Rename failed: ' + err.message));
+    }
+
     function showResult(data) {
+        currentResult = data;
         document.getElementById('resultFilename').textContent = data.filename;
         document.getElementById('fileUrl').value = data.url;
         document.getElementById('filePath').value = data.path;
+
+        document.getElementById('resultRenameBtn').onclick = function () {
+            renameUploadedFile(currentResult.filename, function (result) {
+                currentResult.filename = result.filename;
+                currentResult.url = result.url;
+                document.getElementById('resultFilename').textContent = result.filename;
+                document.getElementById('fileUrl').value = result.url;
+                // Update history
+                const list = loadHistory();
+                const idx = list.findIndex(h => h.filename === data.filename);
+                if (idx !== -1) {
+                    list[idx].filename = result.filename;
+                    list[idx].url = result.url;
+                    saveHistory(list);
+                }
+                // Re-render history
+                historyList.innerHTML = '';
+                loadHistory().forEach(h => renderHistoryItem(h));
+            });
+        };
 
         // Preview
         const previewArea = document.getElementById('previewArea');
@@ -207,6 +258,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <span class="text-truncate">${data.filename}</span>
                 </div>
                 <div>
+                    <button class="btn btn-outline-secondary btn-sm py-0 px-1 me-1 rename-hist-btn" title="Rename">
+                        <i class="bi bi-pencil"></i>
+                    </button>
                     <button class="btn btn-outline-primary btn-sm py-0 px-1 me-1" onclick="copyText('${data.url}')" title="Copy URL">
                         <i class="bi bi-link-45deg"></i>
                     </button>
@@ -217,6 +271,21 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `;
         historyList.appendChild(item);
+        item.querySelector('.rename-hist-btn').addEventListener('click', function () {
+            renameUploadedFile(data.filename, function (result) {
+                data.filename = result.filename;
+                data.url = result.url;
+                const list = loadHistory();
+                const idx = list.findIndex(h => h.url === data.url || h.filename === result.filename);
+                if (idx !== -1) {
+                    list[idx].filename = result.filename;
+                    list[idx].url = result.url;
+                    saveHistory(list);
+                }
+                historyList.innerHTML = '';
+                loadHistory().forEach(h => renderHistoryItem(h));
+            });
+        });
     }
 
     // Clear history button

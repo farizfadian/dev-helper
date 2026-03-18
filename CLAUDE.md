@@ -234,7 +234,7 @@ prompts/             — Prompt Notebook data (prompts.json, persisted to disk)
 
 ### API Endpoints
 - `POST /api/upload` — File upload (multipart)
-- `GET /api/files` — List files, `DELETE /api/files?name=X` or `?all=true`
+- `GET /api/files` — List files, `PUT /api/files` — Rename file (`{oldName, newName}`), `DELETE /api/files?name=X` or `?all=true`
 - `POST /api/logs` — Receive log (JSON), `GET /api/logs?app=X` — Read logs
 - `GET /api/logs/send?app=X&level=Y&msg=Z` — Quick log via query string
 - `GET /api/logs/apps` — List apps, `DELETE /api/logs?app=X` — Clear logs

@@ -211,16 +211,20 @@
         .focus-wrapper.focus-active .focus-grow {
             flex: 1;
             min-height: 0;
+            overflow: hidden;
+            flex-wrap: nowrap !important;
         }
         .focus-wrapper.focus-active .focus-grow > [class*="col-"] {
             display: flex;
             flex-direction: column;
             min-height: 0;
+            overflow: hidden;
+            height: 100%;
         }
         .focus-wrapper.focus-active .focus-fill {
-            height: 100% !important;
-            min-height: 0 !important;
             flex: 1;
+            min-height: 0 !important;
+            overflow: auto;
         }
     </style>
 </head>

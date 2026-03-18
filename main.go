@@ -622,8 +622,12 @@ func handleAPIUpload(w http.ResponseWriter, r *http.Request) {
 
 	absPath, _ := filepath.Abs(destPath)
 
+	scheme := "http"
+	if r.TLS != nil {
+		scheme = "https"
+	}
 	resp := UploadResponse{
-		URL:      fmt.Sprintf("http://localhost:9090/files/%s", filename),
+		URL:      fmt.Sprintf("%s://%s/files/%s", scheme, r.Host, filename),
 		Path:     absPath,
 		Filename: filename,
 	}
@@ -659,6 +663,8 @@ func handleAPIFiles(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		handleAPIFilesGet(w, r)
+	case http.MethodPut:
+		handleAPIFilesRename(w, r)
 	case http.MethodDelete:
 		handleAPIFilesDelete(w, r)
 	default:
@@ -674,6 +680,10 @@ func handleAPIFilesGet(w http.ResponseWriter, r *http.Request) {
 		".webp": true, ".svg": true, ".bmp": true, ".ico": true,
 	}
 
+	scheme := "http"
+	if r.TLS != nil {
+		scheme = "https"
+	}
 	var files []FileInfo
 	for _, e := range entries {
 		if e.IsDir() {
@@ -687,7 +697,7 @@ func handleAPIFilesGet(w http.ResponseWriter, r *http.Request) {
 		absPath, _ := filepath.Abs(filepath.Join(filesDir, e.Name()))
 		files = append(files, FileInfo{
 			Filename: e.Name(),
-			URL:      fmt.Sprintf("http://localhost:9090/files/%s", e.Name()),
+			URL:      fmt.Sprintf("%s://%s/files/%s", scheme, r.Host, e.Name()),
 			Path:     absPath,
 			Size:     info.Size(),
 			ModTime:  info.ModTime().Format(time.RFC3339),
@@ -700,6 +710,57 @@ func handleAPIFilesGet(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(files)
+}
+
+// PUT /api/files — rename a file
+func handleAPIFilesRename(w http.ResponseWriter, r *http.Request) {
+	var req struct {
+		OldName string `json:"oldName"`
+		NewName string `json:"newName"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "Invalid JSON", http.StatusBadRequest)
+		return
+	}
+	if req.OldName == "" || req.NewName == "" {
+		http.Error(w, "oldName and newName required", http.StatusBadRequest)
+		return
+	}
+
+	// Prevent path traversal
+	oldBase := filepath.Base(req.OldName)
+	newBase := filepath.Base(req.NewName)
+
+	oldPath := filepath.Join(filesDir, oldBase)
+	newPath := filepath.Join(filesDir, newBase)
+
+	// Check old file exists
+	if _, err := os.Stat(oldPath); os.IsNotExist(err) {
+		http.Error(w, "File not found", http.StatusNotFound)
+		return
+	}
+
+	// Check new name not taken
+	if _, err := os.Stat(newPath); err == nil {
+		http.Error(w, "A file with that name already exists", http.StatusConflict)
+		return
+	}
+
+	if err := os.Rename(oldPath, newPath); err != nil {
+		http.Error(w, "Rename failed: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	scheme := "http"
+	if r.TLS != nil {
+		scheme = "https"
+	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{
+		"status":   "renamed",
+		"filename": newBase,
+		"url":      fmt.Sprintf("%s://%s/files/%s", scheme, r.Host, newBase),
+	})
 }
 
 // DELETE /api/files?name=X or DELETE /api/files?all=true

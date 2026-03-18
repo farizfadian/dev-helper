@@ -34,11 +34,24 @@
     .drag-handle { cursor: grab; color: var(--bs-secondary-color); font-size: 0.9rem; }
     .drag-handle:hover { color: var(--bs-primary); }
     .prompt-card.dragging { opacity: 0.4; }
+    .prompt-card.done { opacity: 0.55; }
+    .prompt-card.done .prompt-title-input { text-decoration: line-through; color: var(--bs-secondary-color); }
+    .prompt-card.done .prompt-num { color: var(--bs-success); }
+    .done-check { font-size: 1rem; cursor: pointer; transition: all 0.15s; }
+    .done-check:hover { transform: scale(1.2); }
+    .done-check.checked { color: var(--bs-success); }
+    .done-check.unchecked { color: var(--bs-secondary-color); opacity: 0.4; }
+    .progress-bar-wrapper { height: 6px; background: var(--bs-tertiary-bg); border-radius: 3px; overflow: hidden; flex: 1; }
+    .progress-bar-fill { height: 100%; background: var(--bs-success); border-radius: 3px; transition: width 0.3s ease; }
+    .progress-info { font-size: 0.75rem; color: var(--bs-secondary-color); font-family: monospace; white-space: nowrap; }
     .copy-all-btn { position: sticky; bottom: 0; background: var(--bs-body-bg); border-top: 1px solid var(--bs-border-color); padding: 0.5rem; z-index: 5; }
     .ollama-status { font-size: 0.72rem; }
     .ollama-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
     .ollama-dot.online { background: #198754; }
     .ollama-dot.offline { background: #dc3545; }
+    .tell-ai-chip { display: inline-block; padding: 0.2rem 0.55rem; font-size: 0.75rem; border: 1px solid var(--bs-border-color); border-radius: 1rem; cursor: pointer; transition: all 0.15s; background: var(--bs-body-bg); color: var(--bs-body-color); white-space: nowrap; max-width: 220px; overflow: hidden; text-overflow: ellipsis; vertical-align: middle; }
+    .tell-ai-chip:hover { border-color: var(--bs-primary); color: var(--bs-primary); background: rgba(13,110,253,0.05); }
+    .tell-ai-chips-empty { font-size: 0.75rem; color: var(--bs-secondary-color); font-style: italic; padding: 0.2rem 0; }
 </style>
 
 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
@@ -51,15 +64,37 @@
             <span class="ollama-dot offline" id="ollamaDot"></span> Ollama
         </span>
         <button class="btn btn-sm btn-outline-secondary" id="ollamaSettings" title="Ollama settings"><i class="bi bi-gear"></i></button>
+        <button class="btn btn-sm btn-primary" id="tellAiBtnTop" title="Tell AI what you want to build — auto-generate sequential prompts"><i class="bi bi-chat-dots"></i> Tell AI</button>
         <button class="btn btn-sm btn-outline-secondary" id="exportBtn"><i class="bi bi-download"></i> Export</button>
         <label class="btn btn-sm btn-outline-secondary mb-0"><i class="bi bi-upload"></i> Import <input type="file" accept=".json" class="d-none" id="importFile"></label>
         <div class="btn-group">
             <button class="btn btn-sm btn-outline-info dropdown-toggle" data-bs-toggle="dropdown" title="Load sample prompts"><i class="bi bi-lightbulb"></i> Samples</button>
-            <ul class="dropdown-menu dropdown-menu-end" id="samplesMenu">
+            <ul class="dropdown-menu dropdown-menu-end" id="samplesMenu" style="max-height: 400px; overflow-y: auto;">
+                <li><a class="dropdown-item fw-semibold" href="#" id="tellAiBtn"><i class="bi bi-chat-dots text-primary"></i> Tell AI — Generate Prompts</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">Full-Stack</h6></li>
                 <li><a class="dropdown-item" href="#" data-sample="ecommerce"><i class="bi bi-cart3"></i> E-Commerce App (React)</a></li>
                 <li><a class="dropdown-item" href="#" data-sample="restapi"><i class="bi bi-hdd-rack"></i> REST API (Node.js)</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="landingpage"><i class="bi bi-window-desktop"></i> Landing Page (Next.js)</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="authsystem"><i class="bi bi-shield-lock"></i> Auth System (Full-Stack)</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">Mobile & Extensions</h6></li>
                 <li><a class="dropdown-item" href="#" data-sample="mobile"><i class="bi bi-phone"></i> Mobile App (Flutter)</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="chromeext"><i class="bi bi-puzzle"></i> Chrome Extension</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">Backend & Infrastructure</h6></li>
+                <li><a class="dropdown-item" href="#" data-sample="clitool"><i class="bi bi-terminal"></i> CLI Tool (Go)</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="microservices"><i class="bi bi-diagram-3"></i> Microservices Architecture</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="datapipeline"><i class="bi bi-funnel"></i> Data Pipeline (Python)</a></li>
                 <li><a class="dropdown-item" href="#" data-sample="devops"><i class="bi bi-gear-wide-connected"></i> DevOps Pipeline</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">AI & Specialty</h6></li>
+                <li><a class="dropdown-item" href="#" data-sample="llmapp"><i class="bi bi-robot"></i> AI/LLM Application</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="gamedev"><i class="bi bi-joystick"></i> Game Dev (JavaScript)</a></li>
+                <li><a class="dropdown-item" href="#" data-sample="designsystem"><i class="bi bi-palette2"></i> Design System (React)</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">Workflow</h6></li>
+                <li><a class="dropdown-item" href="#" data-sample="testing"><i class="bi bi-check2-all"></i> Testing Strategy</a></li>
                 <li><a class="dropdown-item" href="#" data-sample="refactor"><i class="bi bi-wrench"></i> Code Refactoring</a></li>
                 <li><a class="dropdown-item" href="#" data-sample="bugfix"><i class="bi bi-bug"></i> Bug Investigation</a></li>
             </ul>
@@ -96,6 +131,9 @@
                 </div>
             </div>
 
+            <!-- Progress bar -->
+            <div class="d-flex align-items-center gap-2 mb-2 d-none" id="progressBar"></div>
+
             <!-- Prompt cards -->
             <div style="flex:1; overflow-y:auto; padding-bottom:0.5rem;" id="promptList"></div>
         </div>
@@ -128,6 +166,38 @@
             </div>
             <div class="modal-footer py-2">
                 <button class="btn btn-sm btn-primary" id="saveOllamaSettings">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tell AI Modal -->
+<div class="modal fade" id="tellAiModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header py-2">
+                <h6 class="modal-title"><i class="bi bi-chat-dots text-primary"></i> Tell AI — Generate Sequential Prompts</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted mb-2" style="font-size:0.82rem;">
+                    Describe what you want to build in your own words. AI will analyze your request and generate a sequential prompt plan — from simple tasks for beginners to advanced architecture for experienced developers.
+                </p>
+                <textarea class="form-control mb-2" id="tellAiInput" rows="4" placeholder="Describe what you want to build..."></textarea>
+                <div class="mb-2" id="tellAiSuggestions" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-muted" style="font-size:0.72rem;" id="tellAiHint">
+                        <i class="bi bi-info-circle"></i> Uses Ollama (<span id="tellAiModelName">—</span>). Write in any language.
+                    </span>
+                    <button class="btn btn-primary btn-sm" id="tellAiSubmit">
+                        <i class="bi bi-stars"></i> Generate Prompts
+                    </button>
+                </div>
+                <div id="tellAiStatus" class="mt-2 d-none"></div>
+                <div id="tellAiPreview" class="mt-2 d-none" style="max-height:300px; overflow-y:auto; border:1px solid var(--bs-border-color); border-radius:0.5rem; padding:0.75rem; background:var(--bs-tertiary-bg); font-size:0.82rem;"></div>
+                <div id="tellAiActions" class="mt-2 d-none d-flex justify-content-end gap-2">
+                    <button class="btn btn-sm btn-outline-secondary" id="tellAiRetry"><i class="bi bi-arrow-repeat"></i> Retry</button>
+                    <button class="btn btn-sm btn-success" id="tellAiAccept"><i class="bi bi-check-lg"></i> Add to Notebook</button>
+                </div>
             </div>
         </div>
     </div>
